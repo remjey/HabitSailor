@@ -10,19 +10,16 @@
 #   - translation filenames have to be changed
 
 # The name of your application
-TARGET = habitica_client
+TARGET = HabitSailor
 
 CONFIG += sailfishapp
 
-SOURCES += src/habitica_client.cpp
+SOURCES += \
+    src/HabitSailor.cpp
 
-OTHER_FILES += qml/habitica_client.qml \
+OTHER_FILES += \
     qml/cover/CoverPage.qml \
-    rpm/habitica_client.changes.in \
-    rpm/habitica_client.spec \
-    rpm/habitica_client.yaml \
-    translations/*.ts \
-    habitica_client.desktop
+    translations/*.ts
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 
@@ -34,7 +31,7 @@ CONFIG += sailfishapp_i18n
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
-TRANSLATIONS += translations/habitica_client-de.ts
+TRANSLATIONS += translations/HabitSailor-de.ts
 
 DISTFILES += \
     qml/pages/Main.qml \
@@ -42,5 +39,11 @@ DISTFILES += \
     qml/model.js \
     qml/pages/Init.qml \
     qml/pages/Login.qml \
-    qml/rpc.js
+    qml/rpc.js \
+    README.md \
+    HabitSailor.desktop \
+    rpm/HabitSailor.yaml \
+    rpm/HabitSailor.spec \
+    rpm/HabitSailor.changes.in \
+    qml/HabitSailor.qml
 
