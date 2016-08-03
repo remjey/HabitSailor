@@ -45,5 +45,6 @@ DISTFILES += \
     rpm/HabitSailor.yaml \
     rpm/HabitSailor.spec \
     rpm/HabitSailor.changes.in \
-    qml/HabitSailor.qml
+    qml/HabitSailor.qml \
+    qml/pages/Habits.qml
 

@@ -17,6 +17,35 @@ var setupRpc = function () {
     }
 }
 
+var colorForValue = function (value) {
+    // Stolen from HabitRPG/common/script/libs/taskClasses.js
+    if (value < -20) {
+        return "#cc5f49"; // "#e6b8af";
+    } else if (value < -10) {
+        return "#db6060"; // "#f4cccc";
+    } else if (value < -1) {
+        return "#e2a25d"; // "#fce5cd";
+    } else if (value < 1) {
+        return "#e5c35b"; // "#fff2cc";
+    } else if (value < 5) {
+        return "#84d168"; // "#d9ead3"
+    } else if (value < 10) {
+        return "#68bac9"; // "#d0e0e3";
+    } else {
+        return "#5a8add"; // "#c9daf8";
+    }
+}
+
+var sortTasks = function(ids, tasks) {
+    var r = [];
+    for (var i in ids) {
+        for (var j in tasks) {
+            if (tasks[j].id === ids[i]) r.push(tasks[j]);
+        }
+    }
+    return r;
+}
+
 function init() {
     db = Sql.LocalStorage.openDatabaseSync("HabitSailor", "", "HabitSailor", 1000000);
     print("DB: version: " + db.version)
@@ -34,6 +63,8 @@ function init() {
     })
     setupRpc();
 }
+
+// TODO signal connect for updates
 
 function configGet(key) {
     return configCache[key];
@@ -56,10 +87,25 @@ function update(cb) {
     var cs = new Rpc.CallSeq(function () { cb(false); });
     cs.autofail = true;
     cs.push("/user", "get", {}, function (ok, r) {
+        data.tasksOrder = r.tasksOrder;
         data.balance = r.balance;
         data.name = r.profile.name;
         data.stats = r.stats;
         cb(true);
+        return true;
+    });
+    cs.push("/tasks/user", "get", {}, function (ok, r) {
+        data.habits = [];
+        for (var i in r) {
+            var item = r[i];
+            item.color = colorForValue(item.value);
+            switch (item.type) {
+            case "habit": data.habits.push(item); break;
+            //case "todo": data.todos.push(item); break;
+            //case "daily": data.dailies.push(item); break;
+            }
+        }
+        data.habits = sortTasks(data.tasksOrder.habits, data.habits)
         return true;
     });
     cs.run();
@@ -75,6 +121,8 @@ function getXp() { return data.stats.exp; }
 function getXpNext() { return data.stats.toNextLevel; }
 function getGold() { return Math.floor(parseFloat(data.stats.gp)); }
 function getGems() { return Math.floor(parseFloat(data.balance) * 4); }
+
+function listHabits() { return data.habits; }
 
 function getProfilePictureUrl() {
     return configGet("apiUrl") + "/export/avatar-" + configGet("apiUser") + ".png"

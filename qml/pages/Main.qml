@@ -202,7 +202,7 @@ Page {
                 }
 
                 onClicked: {
-
+                    pageStack.push(Qt.resolvedUrl("Habits.qml"))
                 }
             }
 
