@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
 X-Nemo-Application-Type=silica-qt5
-Icon=habitica_client
-Exec=habitica_client
+Icon=HabitSailor
+Exec=HabitSailor
 Name=HabitSailor
 # translation example:
 # your app name in German locale (de)

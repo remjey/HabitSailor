@@ -40,7 +40,7 @@ function call(path, method, data, onload) {
             } catch (e) {}
             var ok = false;
             if (typeof(o) != "object") {
-                o = { error: "_InvalidData", errorMessage: "Invalid data or no data was received from server" };
+                o = { error: "_InvalidData", message: "Invalid data or no data was received from server" };
             } else if (o.success) {
                 ok = true;
                 o = o.data;
