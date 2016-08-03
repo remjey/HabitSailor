@@ -20,11 +20,17 @@ Page {
             }
         }
 
-
         VerticalScrollDecorator {}
 
         delegate: ListItem {
             width: parent.width
+
+            function habitUpdate(ok, c) {
+                if (ok) {
+                    colorIndicator.color = c;
+                    model.color = c;
+                }
+            }
 
             menu: ContextMenu {
                 id: contextMenu
@@ -42,6 +48,7 @@ Page {
                             height: width
                         }
                         onClicked: {
+                            Model.habitClick(model.id, "down", habitUpdate);
                             hideMenu();
                         }
                     }
@@ -56,6 +63,7 @@ Page {
                             height: width
                         }
                         onClicked: {
+                            Model.habitClick(model.id, "up", habitUpdate);
                             hideMenu();
                         }
                     }
@@ -77,6 +85,7 @@ Page {
                 height: Theme.itemSizeSmall
 
                 Rectangle {
+                    id: colorIndicator
                     anchors.verticalCenter: parent.verticalCenter
                     width: parent.height / 3
                     height: width

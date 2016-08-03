@@ -47,7 +47,7 @@ ApplicationWindow
                     pageStack.replaceAbove(null, "pages/Main.qml", {})
             });
         } else
-            pageStack.replace("pages/Login.qml", { cancellable: false }, PageStackAction.Immediate)
+            pageStack.replace("pages/Login.qml")
     }
 
 }

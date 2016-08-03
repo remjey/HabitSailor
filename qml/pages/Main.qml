@@ -1,7 +1,8 @@
 
 import QtQuick 2.0
-import "../model.js" as Model
 import Sailfish.Silica 1.0
+import "../components"
+import "../model.js" as Model
 
 Page {
     SilicaFlickable {
@@ -119,61 +120,31 @@ Page {
                     property int xp: 0
                     property int xpNext: 1
 
-
-                    Column {
+                    Stat {
                         width: parent.itemSize
-                        spacing: Theme.paddingMedium
-                        Label {
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            text: stats.hp + " / " + stats.hpMax
-                        }
-                        ProgressCircle {
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            value: stats.hp / stats.hpMax
-                        }
-                        Label {
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            text: "Health"
-                            color: Theme.secondaryHighlightColor
-                        }
+                        value: stats.hp
+                        maximum: stats.hpMax
+                        label: "Health"
+                        barColor: "#da5353"
                     }
 
-                    Column {
+                    Stat {
+                        width: parent.itemSize
+                        value: stats.xp
+                        maximum: stats.xpNext
+                        label: "Experience"
+                        barColor: "#ffcc35"
+                    }
+
+                    Stat {
                         id: mana
                         width: parent.itemSize
-                        spacing: Theme.paddingMedium
-                        Label {
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            text: stats.mp + " / " + stats.mpMax
-                        }
-                        ProgressCircle {
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            value: stats.mp / stats.mpMax
-                        }
-                        Label {
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            text: "Mana"
-                            color: Theme.secondaryHighlightColor
-                        }
+                        value: stats.mp
+                        maximum: stats.mpNext
+                        label: "Mana"
+                        barColor: "#4781e7"
                     }
 
-                    Column {
-                        width: parent.itemSize
-                        spacing: Theme.paddingMedium
-                        Label {
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            text: stats.xp + " / " + stats.xpNext
-                        }
-                        ProgressCircle {
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            value: stats.xp / stats.xpNext
-                        }
-                        Label {
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            text: "Experience"
-                            color: Theme.secondaryHighlightColor
-                        }
-                    }
                 }
 
             }
@@ -254,20 +225,21 @@ Page {
     }
 
     function update() {
-        profilePicture.source = Qt.resolvedUrl(Model.getProfilePictureUrl())
         profileName.text = Model.getName();
-        stats.hp = Model.getHp();
         stats.hpMax = Model.getHpMax();
+        stats.hp = Model.getHp();
         mana.visible = Model.getLevel() >= 10;
-        stats.mp = Model.getMp();
         stats.mpMax = Model.getMpMax();
-        stats.xp = Model.getXp();
+        stats.mp = Model.getMp();
         stats.xpNext = Model.getXpNext();
+        stats.xp = Model.getXp();
         gold.text = Model.getGold();
         gems.text = Model.getGems();
     }
 
     Component.onCompleted: {
+        profilePicture.source = Qt.resolvedUrl(Model.getProfilePictureUrl())
         update();
+        Model.signals.updateStats.connect(update);
     }
 }

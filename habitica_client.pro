@@ -46,5 +46,8 @@ DISTFILES += \
     rpm/HabitSailor.spec \
     rpm/HabitSailor.changes.in \
     qml/HabitSailor.qml \
-    qml/pages/Habits.qml
+    qml/pages/Habits.qml \
+    qml/utils.js \
+    qml/components/Bar.qml \
+    qml/components/Stat.qml
 

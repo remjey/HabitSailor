@@ -6,13 +6,9 @@ var apiUrl = null;
 var apiKey = null;
 var apiUser = null;
 
-function setUrl(url) { apiUrl = url; }
-function setKey(key) { apiKey = key; }
-function setUser(user) { apiUser = user; }
-
-
 function populatePath(path, data) {
-    return path.replace(/:([a-zA-Z_0-9]+)\b/, function (match, varname) {
+    return path.replace(/:(:|[a-zA-Z_0-9]+\b)/g, function (match, varname) {
+        if (varname === "::") return ":";
         var r = data[varname];
         if (typeof(r) == "string") return r;
         return "";
@@ -21,8 +17,12 @@ function populatePath(path, data) {
 
 function call(path, method, data, onload) {
     var xhr = new XMLHttpRequest();
-    var fullpath = apiUrl + "/api/v3" + path;
-    if (method === "get") fullpath = populatePath(fullpath, data);
+    var fullpath = populatePath(apiUrl + "/api/v3" + path, data);
+    var noBody = method === "get";
+    if (method === "post-no-body") {
+        method = "post";
+        noBody = true;
+    }
     print("XHR Query: " + method + " " + fullpath)
     xhr.open(method, fullpath);
     if (apiKey && apiUser) {
@@ -50,10 +50,8 @@ function call(path, method, data, onload) {
         }
     }
     xhr.setRequestHeader("Content-Type", "application/json");
-    if (method === "post")
-        xhr.send(JSON.stringify(data));
-    else if (method === "get")
-        xhr.send();
+    if (method === "post" || method === "get")
+        xhr.send(noBody ? "" : JSON.stringify(data));
     else
         throw "Invalid method for rpc call"
 }
