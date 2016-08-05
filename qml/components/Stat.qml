@@ -10,7 +10,7 @@ Column {
     Label {
         anchors.horizontalCenter: parent.horizontalCenter
         color: Theme.highlightColor
-        text: maximum <= 0 ? Math.round(value) : Math.round(value) + " / " + Math.round(maximum)
+        text: Math.floor(value) + (maximum <= 0 ? "" : " / " + Math.floor(maximum))
     }
     Bar {
         visible: maximum > 0

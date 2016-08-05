@@ -152,8 +152,8 @@ var signals = Qt.createQmlObject("\
      getMpMax = function () { return data.stats.maxMP; }
      getXp = function () { return data.stats.exp; }
      getXpNext = function () { return data.stats.toNextLevel; }
-     getGold = function () { return Math.floor(data.stats.gp); }
-     getGems = function () { return Math.floor(data.balance * 4); }
+     getGold = function () { return data.stats.gp; }
+     getGems = function () { return data.balance * 4; }
 
      listHabits = function () { return data.habits; }
 
