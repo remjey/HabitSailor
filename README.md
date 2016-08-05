@@ -16,18 +16,23 @@ Already working:
 
 * Login/Logout
 * Show basic profile info
+* Display Habits, pressing on plus or minus
+* Detects death, revive from profile page
+* Refresh action from pulley menu
 
 Most importantly and in approximate order:
 
-* Display habits list, be able to click on them
 * Display To-Dos and Tasks with their subtasks, be able to check and uncheck
-* React gracefully when connection drops, refresh
+* React gracefully when connection drops
 * A useful cover
 
 Some stuff that would be great in approximate order:
 
-* Rewards, Spells
-* Tasks editing
+* Rewards (at least the life potion)
+* Filter tasks by tag, completed/not completed
+* Sort tasks by color
+* Other rewards (at least custom rewards and spells)
+* Tasks editing, creation, deletion
 * Social (team, guilds)
 
 
