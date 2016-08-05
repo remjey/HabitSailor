@@ -10,7 +10,7 @@ Item {
     property color color: Theme.highlightColor
 
     GlassItem {
-        id: slidertrack
+        id: track
         anchors.centerIn: parent
         width: parent.width - Theme.paddingSmall
         height: parent.height
@@ -26,7 +26,7 @@ Item {
             anchors.top: parent.top
             anchors.left: parent.left
             height: parent.height
-            width: height + Math.floor((parent.width - height) * root.value / root.maximum)
+            width: barWidth(track.width, track.height, root.value, root.maximum) // To trigger the change of width through binding
             visible: root.value > 0
 
             color: root.color
@@ -35,6 +35,12 @@ Item {
             ratio: 0.0
             cache: false
         }
+    }
+
+    function barWidth(width, height, value, maximum) {
+        if (maximum <= 0 || value <= 0) return 0;
+        if (value >= maximum) value = maximum;
+        return height + Math.round((width - height) * value / maximum);
     }
 
 }

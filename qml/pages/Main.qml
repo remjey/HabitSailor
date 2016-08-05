@@ -12,6 +12,7 @@ Page {
         VerticalScrollDecorator {}
 
         PullDownMenu {
+            id: menu
             MenuItem {
                 text: "Log out"
                 onClicked: {
@@ -22,10 +23,16 @@ Page {
                 }
             }
             MenuItem {
-                text: "Settings"
-            }
-            MenuItem {
+                id: refreshMenuItem
                 text: "Refresh"
+                onClicked: {
+                    refreshMenuItem.enabled = false;
+                    menu.busy = true
+                    Model.update(function () {
+                        refreshMenuItem.enabled = true;
+                        menu.busy = false;
+                    });
+                }
             }
         }
 
@@ -53,7 +60,7 @@ Page {
 
                     Image {
                         id: profilePicture
-                        width: Math.min(root.width / 2.5, Theme.itemSizeExtraLarge * 3)
+                        width: Math.min(root.width / 3, Theme.itemSizeExtraLarge * 3)
                         height: width
                         anchors.verticalCenter: parent.verticalCenter
                         asynchronous: true;
@@ -66,8 +73,8 @@ Page {
                         Label {
                             id: profileName
                             width: parent.width
-                            height: Theme.itemSizeExtraSmall
 
+                            color: Theme.highlightColor
                             font.pixelSize: Theme.fontSizeLarge
                             wrapMode: Text.WordWrap
                             horizontalAlignment: Text.AlignHCenter
@@ -76,32 +83,22 @@ Page {
                         Row {
                             width: parent.width
 
-                            Column {
-                                width: parent.width / 2
-                                Label {
-                                    id: gems
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                    text: "-"
-                                }
-                                Label {
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                    text: "Gems"
-                                    color: Theme.secondaryHighlightColor
-                                }
+                            Stat {
+                                id: gems
+                                width: parent.width / 3
+                                label: "Gems"
                             }
 
-                            Column {
-                                width: parent.width / 2
-                                Label {
-                                    id: gold
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                    text: "-"
-                                }
-                                Label {
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                    text: "Gold"
-                                    color: Theme.secondaryHighlightColor
-                                }
+                            Stat {
+                                id: gold
+                                width: parent.width / 3
+                                label: "Gold"
+                            }
+
+                            Stat {
+                                id: level
+                                width: parent.width / 3
+                                label: "Level"
                             }
 
                         }
@@ -113,25 +110,16 @@ Page {
                     anchors.horizontalCenter: parent.horizontalCenter
 
                     property int itemSize: parent.width / 3 - Theme.horizontalPageMargin
-                    property int hp: 0
-                    property int hpMax: 1
-                    property int mp: 0
-                    property int mpMax: 1
-                    property int xp: 0
-                    property int xpNext: 1
-
                     Stat {
+                        id: health
                         width: parent.itemSize
-                        value: stats.hp
-                        maximum: stats.hpMax
                         label: "Health"
                         barColor: "#da5353"
                     }
 
                     Stat {
+                        id: exp
                         width: parent.itemSize
-                        value: stats.xp
-                        maximum: stats.xpNext
                         label: "Experience"
                         barColor: "#ffcc35"
                     }
@@ -139,8 +127,6 @@ Page {
                     Stat {
                         id: mana
                         width: parent.itemSize
-                        value: stats.mp
-                        maximum: stats.mpNext
                         label: "Mana"
                         barColor: "#4781e7"
                     }
@@ -153,69 +139,34 @@ Page {
                 text: "Tasks"
             }
 
-            // TODO regrouper
-
-            BackgroundItem {
-                width: parent.width
-                contentHeight: Theme.itemSizeSmall
-                Row {
-                    anchors.verticalCenter: parent.verticalCenter
-                    x: Theme.horizontalPageMargin
-                    spacing: Theme.paddingMedium
-                    Image {
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: "image://theme/icon-m-favorite"
-                    }
-                    Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "Habits"
-                    }
-                }
-
+            MenuButton {
+                visible: health.value == 0
+                imageSource: "image://theme/icon-m-health"
+                label: "Refill your health"
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("Habits.qml"))
+                    pageStack.push(Qt.resolvedUrl("Revive.qml"));
                 }
             }
 
-            BackgroundItem {
-                width: parent.width
-                contentHeight: Theme.itemSizeSmall
-                Row {
-                    anchors.verticalCenter: parent.verticalCenter
-                    x: Theme.horizontalPageMargin
-                    spacing: Theme.paddingMedium
-                    Image {
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: "image://theme/icon-m-clock"
-                    }
-                    Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "Dailies"
-                    }
+            MenuButton {
+                imageSource: "image://theme/icon-m-favorite"
+                label: "Habits"
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("Habits.qml"));
                 }
+            }
 
+            MenuButton {
+                imageSource: "image://theme/icon-m-clock"
+                label: "Dailies"
                 onClicked: {
 
                 }
             }
 
-            BackgroundItem {
-                width: parent.width
-                contentHeight: Theme.itemSizeSmall
-                Row {
-                    anchors.verticalCenter: parent.verticalCenter
-                    x: Theme.horizontalPageMargin
-                    spacing: Theme.paddingMedium
-                    Image {
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: "image://theme/icon-m-certificates"
-                    }
-                    Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "To-Dos"
-                    }
-                }
-
+            MenuButton {
+                imageSource: "image://theme/icon-m-certificates"
+                label: "To-Dos"
                 onClicked: {
 
                 }
@@ -226,15 +177,16 @@ Page {
 
     function update() {
         profileName.text = Model.getName();
-        stats.hpMax = Model.getHpMax();
-        stats.hp = Model.getHp();
+        health.value = Model.getHp();
+        health.maximum = Model.getHpMax();
         mana.visible = Model.getLevel() >= 10;
-        stats.mpMax = Model.getMpMax();
-        stats.mp = Model.getMp();
-        stats.xpNext = Model.getXpNext();
-        stats.xp = Model.getXp();
-        gold.text = Model.getGold();
-        gems.text = Model.getGems();
+        mana.maximum = Model.getMpMax();
+        mana.value = Model.getMp();
+        exp.maximum = Model.getXpNext();
+        exp.value = Model.getXp();
+        gold.value = Model.getGold();
+        gems.value = Model.getGems();
+        level.value = Model.getLevel();
     }
 
     Component.onCompleted: {

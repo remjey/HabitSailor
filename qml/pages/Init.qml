@@ -16,6 +16,7 @@ Page {
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
             text: "HabitSailor loading…"
+            color: Theme.highlightColor
         }
 
         BusyIndicator {

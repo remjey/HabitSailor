@@ -3,15 +3,17 @@ import Sailfish.Silica 1.0
 
 Column {
     property real value: 0
-    property real maximum: 100
+    property real maximum: 0
     property string label: ""
     property color barColor: Theme.highlightColor
 
     Label {
         anchors.horizontalCenter: parent.horizontalCenter
-        text: Math.round(value) + " / " + Math.round(maximum)
+        color: Theme.highlightColor
+        text: maximum <= 0 ? Math.round(value) : Math.round(value) + " / " + Math.round(maximum)
     }
     Bar {
+        visible: maximum > 0
         width: parent.width
         value: parent.value
         maximum: parent.maximum

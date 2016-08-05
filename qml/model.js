@@ -17,6 +17,7 @@ var getProfilePictureUrl;
 
 // Mutate local and remote data
 var habitClick;
+var revive;
 
 // Signals
 var signals = Qt.createQmlObject("\
@@ -24,6 +25,7 @@ var signals = Qt.createQmlObject("\
     QtObject {
         signal updateStats()
         signal updateTasks()
+        signal showMessage(string msg)
     }", Qt.application, "signals");
 
  (function () {
@@ -110,7 +112,10 @@ var signals = Qt.createQmlObject("\
      }
 
      update = function (cb) {
-         var cs = new Rpc.CallSeq(function () { if (cb) cb(false); });
+         var cs = new Rpc.CallSeq(function () {
+             if (cb) cb(false);
+             signals.showMessage("The server did not respond to the status request.")
+         });
          cs.autofail = true;
          cs.push("/user", "get", {}, function (ok, r) {
              data.tasksOrder = r.tasksOrder;
@@ -147,8 +152,8 @@ var signals = Qt.createQmlObject("\
      getMpMax = function () { return data.stats.maxMP; }
      getXp = function () { return data.stats.exp; }
      getXpNext = function () { return data.stats.toNextLevel; }
-     getGold = function () { return Math.floor(parseFloat(data.stats.gp)); }
-     getGems = function () { return Math.floor(parseFloat(data.balance) * 4); }
+     getGold = function () { return Math.floor(data.stats.gp); }
+     getGems = function () { return Math.floor(data.balance * 4); }
 
      listHabits = function () { return data.habits; }
 
@@ -158,7 +163,7 @@ var signals = Qt.createQmlObject("\
 
      login = function (url, login, password, success, error) {
          url = url || configDefaults.apiUrl;
-         Rpc.setUrl(url);
+         Rpc.apiUrl = url;
          Rpc.call("/user/auth/local/login", "post",
                   { username: login, password: password },
                   function (ok, r) {
@@ -180,15 +185,30 @@ var signals = Qt.createQmlObject("\
          configSet("apiKey", null);
      }
 
+     function addStatDiff(list, name, a, b) {
+         if (a === b) return;
+         list.push(name + " " + ((b > a) ? "+" : "") + (Math.round(100 * (b - a)) / 100));
+     }
+
      function partialStatsUpdate(stats) {
-         if (stats.lvl !== data.stats.lvl) {
+         var msgs = [];
+         var lvlChange = stats.hasOwnProperty("lvl") && stats.lvl !== data.stats.lvl;
+         [{p:"lvl", n:"Level"}, {p:"hp", n:"Health"}, {p:"mp", n:"Mana"}, {p:"exp", n:"Experience"}, {p:"gp", n:"Gold"}].every(function (item) {
+             if (stats.hasOwnProperty(item.p)) {
+                 if (item.p !== "exp" || !lvlChange)
+                    addStatDiff(msgs, item.n, data.stats[item.p], stats[item.p]);
+                 data.stats[item.p] = stats[item.p];
+             }
+             return true;
+         });
+         if (data.stats.hp === 0) {
+             signals.showMessage("Sorry, you ran out of health… Refill your health on the profile page to continue!");
+         } else {
+            if (msgs.length > 0) signals.showMessage(msgs.join(" ∙ "));
+         }
+         if (lvlChange) {
              update();
          } else {
-             ["gp", "hp", "mp", "exp"].every(function (k) {
-                 if (stats.hasOwnProperty(k))
-                    data.stats[k] = stats[k];
-                 return true;
-             });
              signals.updateStats();
          }
      }
@@ -197,11 +217,27 @@ var signals = Qt.createQmlObject("\
          var habit;
          if (data.habits.every(function (item) { return item.id !== tid || !(habit = item); })) return;
 
+         if (data.stats.hp === 0) {
+             signals.showMessage("You must first refill your health from the profile page before you can do this!");
+             return;
+         }
+
          Rpc.call("/tasks/:tid/score/:dir", "post-no-body", { tid: tid, dir: orientation }, function (ok, o) {
              if (ok) {
                  habit.value += o.delta;
                  partialStatsUpdate(o);
                  cb(true, colorForValue(habit.value));
+             } else {
+                 cb(false);
+             }
+         });
+     }
+
+     revive = function (cb) {
+         if (data.stats.hp !== 0) return;
+         Rpc.call("/user/revive", "post-no-body", {}, function (ok, o) {
+             if (ok) {
+                 update(cb);
              } else {
                  cb(false);
              }

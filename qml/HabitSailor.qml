@@ -40,6 +40,7 @@ ApplicationWindow
     _defaultPageOrientations: Orientation.Portrait
 
     Component.onCompleted: {
+        messageBox.connectTo(Model.signals.showMessage)
         Model.init()
         if (Model.isLogged()) {
             Model.update(function (ok) {
@@ -48,6 +49,90 @@ ApplicationWindow
             });
         } else
             pageStack.replace("pages/Login.qml")
+    }
+
+    Item {
+        id: messageBox
+        width: parent.width
+        height: Theme.itemSizeMedium
+        anchors.bottom: parent.bottom
+        visible: true
+        opacity: 0
+
+        Rectangle {
+            anchors.fill: parent
+            color: "black"
+            opacity: 0.75
+        }
+
+        Rectangle {
+            width: parent.width
+            height: Theme.paddingSmall
+            anchors.top: parent.top
+            color: Theme.highlightBackgroundColor;
+        }
+
+        PanelBackground {
+            anchors.fill: parent
+
+            BackgroundItem {
+                id: bgItem
+                width: parent.width
+                anchors.bottom: parent.bottom
+                height: parent.height
+                Label {
+                    id: msgLabel
+                    anchors.centerIn: parent
+                    width: parent.width - Theme.horizontalPageMargin * 2
+                    color: bgItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    maximumLineCount: 2
+                    elide: Text.ElideRight
+                    font.pixelSize: Theme.fontSizeSmall
+                }
+                onClicked: {
+                    hideTimer.stop()
+                    hideAnim.start()
+                }
+            }
+        }
+
+        NumberAnimation on opacity {
+            id: showAnim
+            running: false
+            duration: 100
+            onStarted: { messageBox.visible = true; }
+            from: 0
+            to: 1
+        }
+
+        NumberAnimation on opacity {
+            id: hideAnim
+            running: false
+            duration: 200
+            onStopped: { messageBox.visible = false; }
+            from: 1
+            to: 0
+        }
+
+        Timer {
+            id: hideTimer
+            interval: 3000
+            onTriggered: { hideAnim.start() }
+        }
+
+        function connectTo(signl) {
+            signl.connect(show)
+        }
+
+        function show(msg) {
+            msgLabel.text = msg;
+            if (opacity != 1) {
+                hideAnim.stop();
+                showAnim.start();
+            }
+            hideTimer.restart();
+        }
     }
 
 }

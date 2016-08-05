@@ -2,10 +2,42 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../model.js" as Model
 
-Page {
+Dialog {
     id: loginPage
 
+    acceptDestination: connectPage
+    onAccepted: {
+        errorLabel.text = ""
+        if (useHabitica.checked) customHabitRpgUrl.text = ""
+        Model.login(customHabitRpgUrl.text,
+                    login.text,
+                    password.text,
+                    function () {
+                        pageStack.completeAnimation();
+                        pageStack.currentPage.setStatus("Loading profile");
+                        Model.update(function (ok) {
+                            if (ok) {
+                                pageStack.replaceAbove(null, Qt.resolvedUrl("Main.qml"));
+                            } else {
+                                pageStack.pop(loginPage);
+                                errorLabel.text = "Impossible to retrieve profile data although the login and password are correct";
+                                errorLabel.focus = true;
+                                errorLabelColorAnim.start();
+                            }
+                        });
+                    },
+                    function (msg) {
+                        pageStack.completeAnimation();
+                        pageStack.pop(loginPage);
+                        errorLabel.text = msg;
+                        errorLabel.focus = true;
+                        errorLabelColorAnim.start();
+                    });
+    }
+    canAccept: true // TODO conditions
+
     SilicaFlickable {
+
         anchors.fill: parent
         contentHeight: content.height + Theme.paddingLarge
 
@@ -15,7 +47,10 @@ Page {
             id: content
             width: parent.width
 
-            PageHeader {
+
+            DialogHeader {
+                dialog: loginPage
+                acceptText: "Login"
                 title: "HabitSailor"
             }
 
@@ -23,6 +58,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width - 2 * Theme.paddingLarge
                 wrapMode: Text.WordWrap
+                color: Theme.highlightColor
                 text: "Welcome to HabitSailor, an unofficial client for HabitRPG servers like Habitica! Have fun making habits and get tasks done while collecting items and pets!"
             }
 
@@ -32,7 +68,7 @@ Page {
 
             TextSwitch {
                 id: useHabitica
-                text: "Use the Habitica server"
+                text: "Use the Habitica.com server"
                 description: "Uncheck only if you want to use a custom HabitRPG server"
                 checked: true
             }
@@ -44,8 +80,10 @@ Page {
                 label: "URL of the custom HabitRPG server"
                 placeholderText: label
                 inputMethodHints: Qt.ImhUrlCharactersOnly
-                EnterKey.onClicked: login.focus = true
                 // TODO validator
+                EnterKey.enabled: text.length > 2
+                EnterKey.iconSource: "image://theme/icon-m-enter-next"
+                EnterKey.onClicked: login.focus = true
             }
 
             TextField {
@@ -54,6 +92,8 @@ Page {
                 label: "Username or email"
                 placeholderText: label
                 inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
+                EnterKey.enabled: text.length > 2
+                EnterKey.iconSource: "image://theme/icon-m-enter-next"
                 EnterKey.onClicked: password.focus = true
             }
 
@@ -62,42 +102,9 @@ Page {
                 width: parent.width
                 label: "Password"
                 placeholderText: label
-                EnterKey.onClicked: password.focus = false
-            }
-
-            Button {
-                id: loginButton
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: "Login"
-                onClicked: {
-                    errorLabel.text = ""
-                    if (useHabitica.checked) customHabitRpgUrl.text = ""
-                    pageStack.push(connectPage);
-                    Model.login(customHabitRpgUrl.text,
-                                login.text,
-                                password.text,
-                                function () {
-                                    pageStack.completeAnimation();
-                                    pageStack.currentPage.setStatus("Loading profile");
-                                    Model.update(function (ok) {
-                                        if (ok) {
-                                            pageStack.replaceAbove(null, Qt.resolvedUrl("Main.qml"));
-                                        } else {
-                                            pageStack.pop(loginPage);
-                                            errorLabel.text = "Impossible to retrieve profile data although the login and password are correct";
-                                            errorLabel.focus = true;
-                                            errorLabelColorAnim.start();
-                                        }
-                                    });
-                                },
-                                function (msg) {
-                                    pageStack.completeAnimation();
-                                    pageStack.pop(loginPage);
-                                    errorLabel.text = msg;
-                                    errorLabel.focus = true;
-                                    errorLabelColorAnim.start();
-                                });
-                }
+                EnterKey.enabled: text.length > 2
+                EnterKey.iconSource: "image://theme/icon-m-enter-accept"
+                EnterKey.onClicked: loginPage.accept()
             }
 
             Label {
@@ -131,6 +138,7 @@ Page {
                     id: connectStatus
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: "Connecting"
+                    color: Theme.highlightColor
                 }
 
                 BusyIndicator {
@@ -142,5 +150,6 @@ Page {
             }
         }
     }
+
 }
 

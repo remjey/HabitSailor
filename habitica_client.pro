@@ -49,5 +49,8 @@ DISTFILES += \
     qml/pages/Habits.qml \
     qml/utils.js \
     qml/components/Bar.qml \
-    qml/components/Stat.qml
+    qml/components/Stat.qml \
+    qml/components/MenuButton.qml \
+    qml/pages/Revive.qml \
+    qml/components/HabitButton.qml
 
