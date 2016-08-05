@@ -31,7 +31,7 @@ CONFIG += sailfishapp_i18n
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
-TRANSLATIONS += translations/HabitSailor-de.ts
+#TRANSLATIONS += translations/harbour-HabitSailor-de.ts
 
 DISTFILES += \
     qml/pages/Main.qml \
@@ -54,6 +54,5 @@ DISTFILES += \
     qml/components/SignalConnect.qml \
     rpm/harbour-HabitSailor.yaml \
     rpm/harbour-HabitSailor.changes.in \
-    qml/harbour-HabitSailor.qml \
-    rpm/harbour-HabitSailor.spec
+    qml/harbour-HabitSailor.qml
 
