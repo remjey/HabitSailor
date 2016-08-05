@@ -21,6 +21,7 @@ Already working:
 * Display Habits, pressing on plus or minus
 * Detects death, revive from profile page
 * Refresh action from pulley menu
+* Buy Health Potion
 
 Most importantly and in approximate order:
 
@@ -30,7 +31,6 @@ Most importantly and in approximate order:
 
 Some stuff that would be great in approximate order:
 
-* Rewards (at least the life potion)
 * Filter tasks by tag, completed/not completed
 * Sort tasks by color
 * Other rewards (at least custom rewards and spells)

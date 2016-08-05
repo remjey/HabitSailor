@@ -18,6 +18,7 @@ var getProfilePictureUrl;
 // Mutate local and remote data
 var habitClick;
 var revive;
+var buyHealthPotion;
 
 // Signals
 var signals = Qt.createQmlObject("\
@@ -190,6 +191,10 @@ var signals = Qt.createQmlObject("\
          list.push(name + " " + ((b > a) ? "+" : "") + (Math.round(100 * (b - a)) / 100));
      }
 
+     function remindDead() {
+         signals.showMessage("You must first refill your health from the profile page before you can do this!");
+     }
+
      function partialStatsUpdate(stats) {
          var msgs = [];
          var lvlChange = stats.hasOwnProperty("lvl") && stats.lvl !== data.stats.lvl;
@@ -218,7 +223,7 @@ var signals = Qt.createQmlObject("\
          if (data.habits.every(function (item) { return item.id !== tid || !(habit = item); })) return;
 
          if (data.stats.hp === 0) {
-             signals.showMessage("You must first refill your health from the profile page before you can do this!");
+             remindDead()
              return;
          }
 
@@ -226,8 +231,10 @@ var signals = Qt.createQmlObject("\
              if (ok) {
                  habit.value += o.delta;
                  partialStatsUpdate(o);
-                 cb(true, colorForValue(habit.value));
-             } else {
+                 if (cb)
+                    cb(true, colorForValue(habit.value));
+             } else if (cb) {
+                 signals.showMessage("Cannot update habit: " + o.message)
                  cb(false);
              }
          });
@@ -239,7 +246,21 @@ var signals = Qt.createQmlObject("\
              if (ok) {
                  update(cb);
              } else {
-                 cb(false);
+                 signals.showMessage("Cannot refill health: " + o.message)
+                 if (cb) cb(false);
+             }
+         });
+     }
+
+     buyHealthPotion = function (cb) {
+         if (data.stats.hp === 0) remindDead()
+         Rpc.call("/user/buy-health-potion", "post-no-body", {}, function (ok, o) {
+             if (ok) {
+                 partialStatsUpdate(o)
+                 if (cb) cb(true)
+             } else {
+                 signals.showMessage("Cannot buy Health Potion: " + o.message)
+                 if (cb) cb(false)
              }
          });
      }

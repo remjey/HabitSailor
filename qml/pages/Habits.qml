@@ -17,6 +17,8 @@ Page {
 
         VerticalScrollDecorator {}
 
+        // TODO placeholder for empty ListElement
+
         delegate: ListItem {
             id: listItem
             contentHeight: Math.max(listItemRow.height + 2 * Theme.paddingMedium, Theme.itemSizeSmall)

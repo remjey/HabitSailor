@@ -15,7 +15,7 @@ Page {
             MenuItem {
                 text: "Log out"
                 onClicked: {
-                    remorse.execute("Logging out", function () {
+                    globalRemorse.execute("Logging out", function () {
                         Model.logout();
                         pageStack.replaceAbove(null, Qt.resolvedUrl("Login.qml"));
                     });
@@ -35,7 +35,7 @@ Page {
             }
         }
 
-        RemorsePopup { id: remorse }
+        RemorsePopup { id: globalRemorse }
 
         Column {
             id: content
@@ -174,6 +174,20 @@ Page {
                 }
             }
 
+            SectionHeader {
+                text: "Rewards"
+            }
+
+            MenuButton {
+                imageSource: "image://theme/icon-m-health"
+                label: "Health Potion"
+                subLabel: "Costs 25 Gold"
+                onClicked: {
+                    remorse("Buying Health Potion", function () {
+                        Model.buyHealthPotion()
+                    });
+                }
+            }
         }
     }
 

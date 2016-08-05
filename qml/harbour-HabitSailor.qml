@@ -26,7 +26,7 @@ ApplicationWindow
         width: parent.width
         height: Theme.itemSizeMedium
         anchors.bottom: parent.bottom
-        visible: true
+        visible: false
         opacity: 0
 
         Rectangle {

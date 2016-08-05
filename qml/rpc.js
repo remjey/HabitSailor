@@ -31,8 +31,8 @@ function call(path, method, data, onload) {
     }
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
-            //print("XHR Status: ", xhr.status);
-            //print("XHR Response: ", xhr.responseText);
+            print("XHR Status: ", xhr.status);
+            print("XHR Response: ", xhr.responseText);
             var o;
             try {
                 if (typeof(xhr.responseText) == "string")
@@ -40,12 +40,19 @@ function call(path, method, data, onload) {
             } catch (e) {}
             var ok = false;
             if (typeof(o) != "object") {
-                o = { error: "_InvalidData", message: "Invalid data or no data was received from server" };
-            } else if (o.success) {
-                ok = true;
-                o = o.data;
+                o = {
+                    success: false,
+                    error: "_InvalidData",
+                    message: "Invalid data or no data was received from server"
+                };
             }
             o.httpStatus = xhr.status;
+            if (o.success) {
+                ok = true;
+                o = o.data;
+            } else if (!o.hasOwnProperty("message")) {
+                o.message = err(o);
+            }
             onload(ok, o);
         }
     }
