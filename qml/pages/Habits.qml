@@ -107,7 +107,11 @@ Page {
 
     Component.onCompleted: {
         update();
-        Model.signals.updateTasks.connect(update);
+    }
+
+    SignalConnect {
+        signl: Model.signals.updateTasks
+        fun: update
     }
 
 }

@@ -31,8 +31,8 @@ function call(path, method, data, onload) {
     }
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
-            print("XHR Status: ", xhr.status);
-            print("XHR Response: ", xhr.responseText);
+            //print("XHR Status: ", xhr.status);
+            //print("XHR Response: ", xhr.responseText);
             var o;
             try {
                 if (typeof(xhr.responseText) == "string")

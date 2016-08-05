@@ -192,6 +192,10 @@ Page {
     Component.onCompleted: {
         profilePicture.source = Qt.resolvedUrl(Model.getProfilePictureUrl())
         update();
-        Model.signals.updateStats.connect(update);
+    }
+
+    SignalConnect {
+        signl: Model.signals.updateStats
+        fun: update
     }
 }

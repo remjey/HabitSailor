@@ -52,5 +52,6 @@ DISTFILES += \
     qml/components/Stat.qml \
     qml/components/MenuButton.qml \
     qml/pages/Revive.qml \
-    qml/components/HabitButton.qml
+    qml/components/HabitButton.qml \
+    qml/components/SignalConnect.qml
 

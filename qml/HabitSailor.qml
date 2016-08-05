@@ -30,6 +30,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "components"
 import "model.js" as Model
 
 ApplicationWindow
@@ -40,7 +41,6 @@ ApplicationWindow
     _defaultPageOrientations: Orientation.Portrait
 
     Component.onCompleted: {
-        messageBox.connectTo(Model.signals.showMessage)
         Model.init()
         if (Model.isLogged()) {
             Model.update(function (ok) {
@@ -62,7 +62,7 @@ ApplicationWindow
         Rectangle {
             anchors.fill: parent
             color: "black"
-            opacity: 0.75
+            opacity: 0.85
         }
 
         Rectangle {
@@ -121,17 +121,18 @@ ApplicationWindow
             onTriggered: { hideAnim.start() }
         }
 
-        function connectTo(signl) {
-            signl.connect(show)
-        }
-
-        function show(msg) {
+        function showMessage(msg) {
             msgLabel.text = msg;
             if (opacity != 1) {
                 hideAnim.stop();
                 showAnim.start();
             }
             hideTimer.restart();
+        }
+
+        SignalConnect {
+            signl: Model.signals.showMessage
+            fun: messageBox.showMessage
         }
     }
 
