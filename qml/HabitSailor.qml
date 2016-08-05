@@ -100,7 +100,7 @@ ApplicationWindow
         NumberAnimation on opacity {
             id: showAnim
             running: false
-            duration: 100
+            duration: 200
             onStarted: { messageBox.visible = true; }
             from: 0
             to: 1
@@ -109,7 +109,7 @@ ApplicationWindow
         NumberAnimation on opacity {
             id: hideAnim
             running: false
-            duration: 200
+            duration: 300
             onStopped: { messageBox.visible = false; }
             from: 1
             to: 0
@@ -117,7 +117,7 @@ ApplicationWindow
 
         Timer {
             id: hideTimer
-            interval: 3000
+            interval: 5000
             onTriggered: { hideAnim.start() }
         }
 

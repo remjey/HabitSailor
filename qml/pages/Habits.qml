@@ -40,7 +40,7 @@ Page {
                     width: Theme.itemSizeSmall / 3
                     height: width
                     color: model.color
-                    opacity: model.up || model.down ? 1 : 0
+                    opacity: model.up || model.down ? 0.8 : 0
                 }
 
                 Label {
