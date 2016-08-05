@@ -58,12 +58,15 @@ Page {
                     width: parent.width - Theme.horizontalPageMargin * 2
                     spacing: Theme.paddingMedium
 
-                    Image {
-                        id: profilePicture
+                    PanelBackground {
                         width: Math.min(root.width / 3, Theme.itemSizeExtraLarge * 3)
                         height: width
-                        anchors.verticalCenter: parent.verticalCenter
-                        asynchronous: true;
+                        Image {
+                            anchors.fill: parent
+                            id: profilePicture
+                            anchors.verticalCenter: parent.verticalCenter
+                            asynchronous: true;
+                        }
                     }
 
                     Column {
