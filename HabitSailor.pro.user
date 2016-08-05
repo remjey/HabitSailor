@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 3.5.0, 2016-08-04T21:15:50. -->
+<!-- Written by QtCreator 3.5.0, 2016-08-05T05:58:53. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -8,7 +8,7 @@
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
-  <value type="int">0</value>
+  <value type="int">1</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.EditorSettings</variable>
@@ -607,11 +607,11 @@
     </valuelist>
     <value type="int" key="PE.EnvironmentAspect.Base">1</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">HabitSailor (on Mer Device)</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">harbour-HabitSailor (on Mer Device)</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QmakeProjectManager.MerRunConfiguration:HabitSailor</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QmakeProjectManager.MerRunConfiguration:harbour-HabitSailor</value>
     <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.Arguments"/>
-    <value type="QString" key="Qt4ProjectManager.MaemoRunConfiguration.TargetName">HabitSailor</value>
+    <value type="QString" key="Qt4ProjectManager.MaemoRunConfiguration.TargetName">harbour-HabitSailor</value>
     <value type="QString" key="RemoteLinux.RunConfig.AlternateRemoteExecutable"></value>
     <value type="bool" key="RemoteLinux.RunConfig.UseAlternateRemoteExecutable">false</value>
     <value type="QString" key="RemoteLinux.RunConfig.WorkingDirectory"></value>

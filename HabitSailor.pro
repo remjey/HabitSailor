@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # The name of your application
-TARGET = HabitSailor
+TARGET = harbour-HabitSailor
 
 CONFIG += sailfishapp
 
@@ -44,8 +44,6 @@ DISTFILES += \
     HabitSailor.desktop \
     rpm/HabitSailor.yaml \
     rpm/HabitSailor.spec \
-    rpm/HabitSailor.changes.in \
-    qml/HabitSailor.qml \
     qml/pages/Habits.qml \
     qml/utils.js \
     qml/components/Bar.qml \
@@ -53,5 +51,9 @@ DISTFILES += \
     qml/components/MenuButton.qml \
     qml/pages/Revive.qml \
     qml/components/HabitButton.qml \
-    qml/components/SignalConnect.qml
+    qml/components/SignalConnect.qml \
+    rpm/harbour-HabitSailor.yaml \
+    rpm/harbour-HabitSailor.changes.in \
+    qml/harbour-HabitSailor.qml \
+    rpm/harbour-HabitSailor.spec
 

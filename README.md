@@ -5,6 +5,8 @@
 HabitSailor is a work-in-progress SailfishOS client for HabitRPG servers like Habitica.
 It is meant to be imported int the QtCreator of the SailfishOS SDK.
 
+HabitSailor is free software, released under GPLv3. Artwork is CC-BY-SA 3.0. (see LICENCE file for details)
+
 ## Why
 
 Because the Android client is terribly slow and the website is too heavy for Jolla’s navigator.
