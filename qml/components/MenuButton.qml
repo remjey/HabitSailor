@@ -40,7 +40,7 @@ BackgroundItem {
             visible: root.subLabel
             height: root.subLabel ? undefined : 0
             color: root.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
-            font.pixelSize: Theme.fontSizeTiny
+            font.pixelSize: Theme.fontSizeSmall
         }
 
     }

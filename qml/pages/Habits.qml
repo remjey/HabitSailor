@@ -19,43 +19,14 @@ Page {
 
         // TODO placeholder for empty ListElement
 
-        delegate: ListItem {
-            id: listItem
-            contentHeight: Math.max(listItemRow.height + 2 * Theme.paddingMedium, Theme.itemSizeSmall)
-
-            function habitUpdate(ok, c) {
-                if (ok) {
-                    colorIndicator.color = c;
-                    model.color = c;
-                }
+        function habitUpdate(index, ok, c) {
+            if (ok) {
+                model.setProperty(index, "color", c)
             }
+        }
 
-            Row {
-                id: listItemRow
-                anchors.centerIn: parent
-                width: parent.width - 2 * Theme.horizontalPageMargin
-                spacing: Theme.paddingLarge
-
-                Rectangle {
-                    id: colorIndicator
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: Theme.itemSizeSmall / 3
-                    height: width
-                    color: model.color
-                    opacity: model.up || model.down ? 0.8 : 0
-                }
-
-                Label {
-                    id: itemLabel
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: model.text
-                    width: parent.width - x
-                    maximumLineCount: 3
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                    elide: Text.ElideRight
-                    color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
-                }
-            }
+        delegate: TaskItem {
+            showColor: model.up || model.down
 
             menu: ContextMenu {
                 id: contextMenu
@@ -68,7 +39,7 @@ Page {
                         imageDown: true
                         visible: model.down
                         onClicked: {
-                            Model.habitClick(model.id, "down", habitUpdate);
+                            Model.habitClick(model.id, "down", list.habitUpdate.bind(list, model.index));
                             hideMenu();
                         }
                     }
@@ -77,7 +48,7 @@ Page {
                         width: model.down ? parent.width / 2 : parent.width
                         visible: model.up
                         onClicked: {
-                            Model.habitClick(model.id, "up", habitUpdate);
+                            Model.habitClick(model.id, "up", list.habitUpdate.bind(list, model.index));
                             hideMenu();
                         }
                     }
@@ -93,9 +64,8 @@ Page {
                 }
             }
 
-            onClicked: {
-                showMenu();
-            }
+            onClicked: { showMenu(); }
+
         }
     }
 

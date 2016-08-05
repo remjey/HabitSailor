@@ -54,5 +54,7 @@ DISTFILES += \
     qml/components/SignalConnect.qml \
     rpm/harbour-HabitSailor.yaml \
     rpm/harbour-HabitSailor.changes.in \
-    qml/harbour-HabitSailor.qml
+    qml/harbour-HabitSailor.qml \
+    qml/pages/Todos.qml \
+    qml/components/TaskItem.qml
 

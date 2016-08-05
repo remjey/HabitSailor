@@ -167,10 +167,10 @@ Page {
             }
 
             MenuButton {
-                imageSource: "image://theme/icon-m-certificates"
+                imageSource: "image://theme/icon-m-acknowledge"
                 label: "To-Dos"
                 onClicked: {
-
+                    pageStack.push(Qt.resolvedUrl("Todos.qml"));
                 }
             }
 
