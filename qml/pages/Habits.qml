@@ -19,17 +19,25 @@ Page {
 
         // TODO placeholder for empty ListElement
 
-        function habitUpdate(index, ok, c) {
-            if (ok) {
-                model.setProperty(index, "color", c)
-            }
-        }
-
         delegate: TaskItem {
+            id: taskItem
             showColor: model.up || model.down
 
             menu: ContextMenu {
                 id: contextMenu
+
+                function clickItem(dir) {
+                    taskItem.enabled = false;
+                    taskItem.busy = true;
+                    Model.habitClick(model.id, dir, function (ok, c) {
+                        taskItem.enabled = true;
+                        taskItem.busy = false;
+                        if (ok)
+                            list.model.setProperty(model.index, "color", c)
+                    });
+                    hideMenu();
+                }
+
                 Row {
                     width: parent.width
                     height: Theme.itemSizeLarge
@@ -38,19 +46,13 @@ Page {
                         width: model.up ? parent.width / 2 : parent.width
                         imageDown: true
                         visible: model.down
-                        onClicked: {
-                            Model.habitClick(model.id, "down", list.habitUpdate.bind(list, model.index));
-                            hideMenu();
-                        }
+                        onClicked: contextMenu.clickItem("down");
                     }
 
                     HabitButton {
                         width: model.down ? parent.width / 2 : parent.width
                         visible: model.up
-                        onClicked: {
-                            Model.habitClick(model.id, "up", list.habitUpdate.bind(list, model.index));
-                            hideMenu();
-                        }
+                        onClicked: contextMenu.clickItem("up");
                     }
 
                     Label {

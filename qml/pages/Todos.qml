@@ -21,50 +21,58 @@ Page {
 
         delegate: TaskItem {
 
+            id: taskItem
             hollowRect: true
             subLabel: model.cltotal === 0
                       ? ""
-                      : model.clcompleted + " / " + model.cltotal + " sub-tasks completed"
+                      : model.clcompleted + " / " + model.cltotal + " subtasks completed"
 
             menu: ContextMenu {
                 id: contextMenu
 
                 Component {
                     id: subtaskItem
-                    BackgroundItem {
-                        id: subtaskItemInstance
-                        property bool completed;
-                        property string text;
+                    TextSwitch {
+                        property int taskIndex
+                        property string taskId
+                        property string subtaskId
                         width: parent.width
                         height: Theme.itemSizeExtraSmall
-                        Row {
-                            anchors.fill: parent
-                            anchors.leftMargin: Theme.horizontalPageMargin
-                            spacing: Theme.paddingLarge
-                            Rectangle {
-                                id: rect
-                                anchors.verticalCenter: parent.verticalCenter
-                                width: Theme.itemSizeSmall / 3
-                                height: width
-                                color: completed ? border.color : "transparent"
-                                border.color: subtaskItemInstance.highlighted ? Theme.highlightColor : Theme.primaryColor
-                                border.width: Theme.paddingSmall
-                                opacity: 0.8
-                            }
-                            Label {
-                                width: parent.width - x - Theme.paddingMedium
-                                anchors.verticalCenter: parent.verticalCenter
-                                text: subtaskItemInstance.text
-                                truncationMode: TruncationMode.Fade
-                                font.pixelSize: Theme.fontSizeSmall
-                                color: subtaskItemInstance.highlighted ? Theme.highlightColor : Theme.primaryColor
-                            }
+                        onClicked: {
+                            Model.setSubtask(taskId, subtaskId, function (ok, value) {
+                                busy = false;
+                                enabled = true;
+                                if (!ok) checked = !checked; // Reverse change
+                                else if (checked === value) {
+                                    list.model.setProperty(taskIndex, "clcompleted", list.model.get(taskIndex).clcompleted + (checked ? 1 : -1));
+                                } else {
+                                    // The server said to us that the new value the value before
+                                    // we tried to change, so roll-back!
+                                    checked = value;
+                                }
+                            });
+                            enabled = false;
+                            busy = true;
                         }
                     }
                 }
 
                 MenuItem {
                     text: "Check Task"
+                    onClicked: {
+                        taskItem.remorse("Check " + model.text, function () {
+                            taskItem.enabled = false;
+                            taskItem.busy = true;
+                            Model.setTask(model.id, true, function (ok) {
+                                if (ok) {
+                                    list.model.remove(model.index, 1);
+                                } else {
+                                    taskItem.enabled = true;
+                                    taskItem.busy = false;
+                                }
+                            });
+                        })
+                    }
                 }
 
                 MenuItem {
@@ -90,7 +98,10 @@ Page {
                             for (var i in subtasks[model.id]) {
                                 var item = subtasks[model.id][i];
                                 var citem = subtaskItem.createObject(subtaskItemList);
-                                citem.completed = item.completed;
+                                citem.taskIndex = model.index;
+                                citem.taskId = model.id;
+                                citem.subtaskId = item.id;
+                                citem.checked = item.completed;
                                 citem.text = item.text;
                             }
                         } else {
@@ -100,7 +111,9 @@ Page {
                 }
             }
 
-            onClicked: { showMenu(); }
+            onClicked: {
+                showMenu();
+            }
         }
     }
 

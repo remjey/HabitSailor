@@ -17,6 +17,7 @@ var getProfilePictureUrl;
 
 // Mutate local and remote data
 var habitClick;
+var setTask, setSubtask;
 var revive;
 var buyHealthPotion;
 
@@ -264,6 +265,33 @@ var signals = Qt.createQmlObject("\
             } else {
                 signals.showMessage("Cannot buy Health Potion: " + o.message)
                 if (cb) cb(false)
+            }
+        });
+    }
+
+    setSubtask = function (taskId, subtaskId, cb) {
+        // TODO take checked and enforce this value instead of returning the value on the server
+        Rpc.call("/tasks/:taskId/checklist/:subtaskId/score", "post-no-body",
+                 { taskId: taskId, subtaskId: subtaskId },
+                 function (ok, o) {
+                     if (!ok) { if (cb) cb(false); return; }
+                     var completed = false;
+                     o.checklist.every(function (item) {
+                         return item.id !== subtaskId || ((completed = item.completed) && false);
+                     });
+                     cb(true, completed);
+                 });
+    }
+
+    setTask = function (taskId, checked, cb) {
+        Rpc.call("/tasks/:tid/score/:dir", "post-no-body", { tid: taskId, dir: checked ? "up" : "down" }, function (ok, o) {
+            if (ok) {
+                data.todos = data.todos.filter(function (item) { return item.id !== taskId; });
+                partialStatsUpdate(o);
+                if (cb) cb(true);
+            } else if (cb) {
+                signals.showMessage("Cannot update task: " + o.message)
+                if (cb) cb(false);
             }
         });
     }
