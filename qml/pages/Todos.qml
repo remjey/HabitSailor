@@ -45,7 +45,7 @@ Page {
                             id: sbswitchItem
                             anchors.left: parent.left
                             anchors.top: parent.top
-                            width: Theme.itemSizeExtraSmall
+                            width: Theme.itemSizeSmall
                             height: parent.height
                             enabled: false
 
