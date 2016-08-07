@@ -57,5 +57,6 @@ DISTFILES += \
     qml/harbour-HabitSailor.qml \
     qml/pages/Todos.qml \
     qml/components/TaskItem.qml \
-    qml/pages/Checklist.qml
+    qml/pages/Checklist.qml \
+    qml/components/TaskItemStupid.qml
 

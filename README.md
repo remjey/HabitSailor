@@ -19,18 +19,20 @@ Already working:
 * Login/Logout
 * Show basic profile info
 * Display Habits, pressing on plus or minus
-* Detects death, revive from profile page
-* Refresh action from pulley menu
+* Detects death, and show revive action from profile page
+* Refresh action from pulley menu of profile screen
 * Buy Health Potion
+* To-Dos with their subtasks, all checkable and uncheckable
 
 Most importantly and in approximate order:
 
-* Display To-Dos and Tasks with their subtasks, be able to check and uncheck
-* React gracefully when connection drops
+* Daily tasks
+* React gracefully when connection drops (already done to some extent)
 * A useful cover
 
 Some stuff that would be great in approximate order:
 
+* Bring back todos from the dead (aka completed) state
 * Filter tasks by tag, completed/not completed
 * Sort tasks by color
 * Other rewards (at least custom rewards and spells)
