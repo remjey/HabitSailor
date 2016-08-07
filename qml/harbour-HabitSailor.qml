@@ -14,6 +14,10 @@ ApplicationWindow
         Model.init();
     }
 
+    onApplicationActiveChanged: {
+        // TODO refresh if we’ve been out too long?
+    }
+
     Item {
         id: messageBox
         width: parent.width

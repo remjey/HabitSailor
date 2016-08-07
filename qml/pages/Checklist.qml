@@ -6,6 +6,7 @@ import "../model.js" as Model
 Page {
     id: root
 
+    property string taskMode
     property string taskName
     property string taskNotes
     property string taskId
@@ -20,7 +21,7 @@ Page {
             width: parent.width
 
             PageHeader {
-                title: "To-Do"
+                title: taskMode == "todos" ? "To-Do" : "Daily"
             }
 
             SectionHeader {

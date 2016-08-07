@@ -22,12 +22,13 @@ Already working:
 * Detects death, and show revive action from profile page
 * Refresh action from pulley menu of profile screen
 * Buy Health Potion
-* To-Dos with their subtasks, all checkable and uncheckable
+* To-Dos, Daily tasks with their subtasks, all checkable and uncheckable
 
 Most importantly and in approximate order:
 
-* Daily tasks
 * React gracefully when connection drops (already done to some extent)
+* Gray out tasks that are not due today, not yet active, and redflag tasks due in the past
+* Automatic refresh, interval to be decided (when app returns active after long time? 1 hour period?)
 * A useful cover
 
 Some stuff that would be great in approximate order:

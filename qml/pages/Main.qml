@@ -165,7 +165,7 @@ Page {
                 imageSource: "image://theme/icon-m-clock"
                 label: "Dailies"
                 onClicked: {
-
+                    pageStack.push(Qt.resolvedUrl("Tasks.qml"), { mode: "dailies" });
                 }
             }
 
@@ -174,7 +174,7 @@ Page {
                 imageSource: "image://theme/icon-m-acknowledge"
                 label: "To-Dos"
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("Todos.qml"));
+                    pageStack.push(Qt.resolvedUrl("Tasks.qml"), { mode: "todos" });
                 }
             }
 

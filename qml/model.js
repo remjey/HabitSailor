@@ -12,7 +12,7 @@ var update;
 // Read local data
 var getName, getLevel, getHp, getHpMax, getMp, getMpMax, getXp, getXpNext,
         getGold, getGems;
-var listHabits, listTodos;
+var listHabits, listTodos, listDailies;
 var getProfilePictureUrl;
 
 // Mutate local and remote data
@@ -132,18 +132,23 @@ var signals = Qt.createQmlObject("\
         });
         cs.push("/tasks/user", "get", {}, function (ok, r) {
             data.habits = [];
-            data.todos = [];
+            data.tasks = [];
+            data.rewards = [];
             for (var i in r) {
                 var item = r[i];
                 item.color = colorForValue(item.value);
                 switch (item.type) {
-                case "habit": data.habits.push(item); break;
-                case "todo": data.todos.push(item); break;
-                    //case "daily": data.dailies.push(item); break;
+                case "habit":
+                    data.habits.push(item); break;
+                case "todo":
+                case "daily":
+                    data.tasks.push(item); break;
+                case "reward":
+                    data.rewards.push(item); break;
                 }
             }
             data.habits = sortTasks(data.tasksOrder.habits, data.habits)
-            data.todos = sortTasks(data.tasksOrder.todos, data.todos)
+            data.rewards = sortTasks(data.tasksOrder.rewards, data.rewards)
             signals.updateTasks();
             if (cb) cb(true);
             return true;
@@ -163,7 +168,16 @@ var signals = Qt.createQmlObject("\
     getGems = function () { return data.balance * 4; }
 
     listHabits = function () { return data.habits; }
-    listTodos = function () { return data.todos; }
+    listTodos = function () {
+        return sortTasks(
+                    data.tasksOrder.todos,
+                    data.tasks.filter(function (item) { return item.type === "todo"; }));
+    }
+    listDailies = function () {
+        return sortTasks(
+                    data.tasksOrder.dailys, // Yes this is dailys
+                    data.tasks.filter(function (item) { return item.type === "daily"; }));
+    }
 
     getProfilePictureUrl = function () {
         return configGet("apiUrl") + "/export/avatar-" + configGet("apiUser") + ".png"
@@ -274,10 +288,10 @@ var signals = Qt.createQmlObject("\
 
     setSubtask = function (taskId, subtaskId, cb) {
         // TODO everywhere: call cb(false) when fun returns because of bad args
-        var todo;
-        if (data.todos.every(function (item) { return item.id !== taskId || !(todo = item); })) return;
+        var task;
+        if (data.tasks.every(function (item) { return item.id !== taskId || !(task = item); })) return;
         var clitem;
-        if (todo.checklist.every(function (item) { return item.id !== subtaskId || !(clitem = item); })) return;
+        if (task.checklist.every(function (item) { return item.id !== subtaskId || !(clitem = item); })) return;
 
         // TODO take checked and enforce this value instead of returning the value on the server
         Rpc.call("/tasks/:taskId/checklist/:subtaskId/score", "post-no-body",
@@ -299,9 +313,16 @@ var signals = Qt.createQmlObject("\
     }
 
     setTask = function (taskId, checked, cb) {
+        var task, taskIndex;
+        var taskNotFound = data.tasks.every(function (item, itemIndex) {
+            if (item.id === taskId) { task = item; taskIndex = itemIndex; return false; } return true;
+        });
+        if (taskNotFound) return;
+
         Rpc.call("/tasks/:tid/score/:dir", "post-no-body", { tid: taskId, dir: checked ? "up" : "down" }, function (ok, o) {
             if (ok) {
-                data.todos = data.todos.filter(function (item) { return item.id !== taskId; });
+                if (task.type === "todo") data.tasks.splice(taskIndex, 1);
+                else task.completed = checked
                 partialStatsUpdate(o);
                 if (cb) cb(true);
             } else if (cb) {

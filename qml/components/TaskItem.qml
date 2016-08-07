@@ -9,6 +9,7 @@ ListItem {
     property string subLabel: ""
     property bool hollowRect: false
     property bool busy: false
+    property bool crossed: false
 
     Item {
         id: colorIndicatorWrapper
@@ -21,23 +22,27 @@ ListItem {
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.height
             height: parent.height
-            border.color: showColor ? model.color : Theme.highlightDimmerColor
+            border.color: showColor ? model.color : Theme.highlightColor
             color: hollowRect ? "transparent" : border.color
             border.width: Theme.paddingSmall
-            opacity: defaultOpacity(showColor)
+            opacity: showColor ? 0.8 : 0.4
+            Behavior on border.color { ColorAnimation { duration: 200 } }
+        }
 
-            function defaultOpacity(showColor) {
-                return showColor ? 0.8 : 0;
-            }
+        Image {
+            source: "image://theme/icon-s-clear-opaque-cross"
+            anchors.centerIn: parent
+            opacity: crossed ? 1 : 0
+            Behavior on opacity { NumberAnimation { duration: 200 } }
+        }
 
-            SequentialAnimation on opacity {
-                running: busy && showColor
-                loops: Animation.Infinite
-                NumberAnimation { from: 0.2; to: 0.8; duration: 500; }
-                NumberAnimation { from: 0.8; to: 0.2; duration: 500; }
-                onStopped: {
-                    colorIndicator.opacity = colorIndicator.defaultOpacity(showColor);
-                }
+        SequentialAnimation on opacity {
+            running: busy
+            loops: Animation.Infinite
+            NumberAnimation { from: 1.0; to: 0.2; duration: 500; }
+            NumberAnimation { from: 0.2; to: 1.0; duration: 500; }
+            onStopped: {
+                colorIndicatorWrapper.opacity = 1;
             }
         }
     }
@@ -49,7 +54,7 @@ ListItem {
         anchors.rightMargin: Theme.horizontalPageMargin
         anchors.verticalCenter: parent.verticalCenter
 
-        opacity: listItem.enabled ? 1 : 0.4 // Same as in TextSwitch
+        opacity: listItem.enabled ? (showColor ? 1 : 0.8) : 0.4 // Same as in TextSwitch
 
         Label {
             text: model.text
