@@ -143,6 +143,7 @@ Page {
 
             MenuButton {
                 visible: health.value == 0
+                enabled: !menu.busy
                 imageSource: "image://theme/icon-m-health"
                 label: "Refill your health"
                 onClicked: {
@@ -151,6 +152,7 @@ Page {
             }
 
             MenuButton {
+                enabled: !menu.busy
                 imageSource: "image://theme/icon-m-favorite"
                 label: "Habits"
                 onClicked: {
@@ -159,6 +161,7 @@ Page {
             }
 
             MenuButton {
+                enabled: !menu.busy
                 imageSource: "image://theme/icon-m-clock"
                 label: "Dailies"
                 onClicked: {
@@ -167,6 +170,7 @@ Page {
             }
 
             MenuButton {
+                enabled: !menu.busy
                 imageSource: "image://theme/icon-m-acknowledge"
                 label: "To-Dos"
                 onClicked: {
@@ -179,6 +183,7 @@ Page {
             }
 
             MenuButton {
+                enabled: !menu.busy
                 imageSource: "image://theme/icon-m-health"
                 label: "Health Potion"
                 subLabel: "Costs 25 Gold"

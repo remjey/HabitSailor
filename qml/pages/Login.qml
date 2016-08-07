@@ -6,32 +6,25 @@ Dialog {
     id: loginPage
 
     acceptDestination: connectPage
+
     onAccepted: {
-        errorLabel.text = ""
+        acceptDestinationInstance.setStatus("Connecting", true);
         if (useHabitica.checked) customHabitRpgUrl.text = ""
         Model.login(customHabitRpgUrl.text,
                     login.text,
                     password.text,
                     function () {
-                        pageStack.completeAnimation();
-                        pageStack.currentPage.setStatus("Loading profile");
+                        acceptDestinationInstance.setStatus("Loading profile", true);
                         Model.update(function (ok) {
                             if (ok) {
                                 pageStack.replaceAbove(null, Qt.resolvedUrl("Main.qml"));
                             } else {
-                                pageStack.pop(loginPage);
-                                errorLabel.text = "Impossible to retrieve profile data although the login and password are correct";
-                                errorLabel.focus = true;
-                                errorLabelColorAnim.start();
+                                acceptDestinationInstance.setStatus("Impossible to retrieve profile data although the login and password are correct!", false)
                             }
                         });
                     },
                     function (msg) {
-                        pageStack.completeAnimation();
-                        pageStack.pop(loginPage);
-                        errorLabel.text = msg;
-                        errorLabel.focus = true;
-                        errorLabelColorAnim.start();
+                        acceptDestinationInstance.setStatus(msg, false)
                     });
     }
     canAccept: true // TODO conditions
@@ -107,41 +100,37 @@ Dialog {
                 EnterKey.onClicked: loginPage.accept()
             }
 
-            Label {
-                id: errorLabel
-                anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width - 2 * Theme.paddingLarge
-                wrapMode: Text.WordWrap
-
-                ColorAnimation on color {
-                    id: errorLabelColorAnim
-                    running: false
-                    from: "red"
-                    to: Theme.highlightColor
-                    duration: 2000
-                }
-            }
         }
     }
 
     Component {
+        // TODO prevent going back?
         id: connectPage
         Page {
-            function setStatus(text) {
+            forwardNavigation: false
+            function setStatus(text, working) {
                 connectStatus.text = text
+                connectBusy.running = working;
+                connectBusy.visible = working;
+                backNavigation = !working;
             }
             Column {
                 anchors.centerIn: parent
                 spacing: Theme.paddingLarge
+                width: parent.width
 
                 Label {
                     id: connectStatus
                     anchors.horizontalCenter: parent.horizontalCenter
+                    width: parent.width - 2 * Theme.horizontalPageMargin
+                    horizontalAlignment: Text.AlignHCenter
+                    wrapMode: Text.WordWrap
                     text: "Connecting"
                     color: Theme.highlightColor
                 }
 
                 BusyIndicator {
+                    id: connectBusy
                     anchors.topMargin: Theme.paddingLarge
                     anchors.horizontalCenter: parent.horizontalCenter
                     running: true

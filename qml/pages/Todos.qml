@@ -9,8 +9,6 @@ Page {
         id: list
         anchors.fill: parent
 
-        model: ListModel {}
-
         header: PageHeader {
             title: "To-Dos"
         }
@@ -32,27 +30,59 @@ Page {
 
                 Component {
                     id: subtaskItem
-                    TextSwitch {
+                    BackgroundItem {
+                        id: sbbg
+                        width: parent.width
+                        height: Theme.itemSizeExtraSmall
+
                         property int taskIndex
                         property string taskId
                         property string subtaskId
-                        width: parent.width
-                        height: Theme.itemSizeExtraSmall
+                        property string text
+                        property bool checked
+
+                        Item {
+                            id: sbswitchItem
+                            anchors.left: parent.left
+                            anchors.top: parent.top
+                            width: Theme.itemSizeExtraSmall
+                            height: parent.height
+                            enabled: false
+
+                            Switch {
+                                id: sbswitch
+                                anchors.fill: parent
+                                checked: sbbg.checked
+                            }
+                        }
+
+                        Label {
+                            id: label
+                            anchors.left: sbswitchItem.right
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.width - x - Theme.horizontalPageMargin
+                            color: sbbg.highlighted ? Theme.highlightColor : Theme.primaryColor
+                            text: sbbg.text
+                            opacity: sbbg.enabled ? 1 : 0.4
+                            truncationMode: TruncationMode.Fade
+                        }
+
                         onClicked: {
-                            Model.setSubtask(taskId, subtaskId, function (ok, value) {
-                                busy = false;
-                                enabled = true;
-                                if (!ok) checked = !checked; // Reverse change
-                                else if (checked === value) {
-                                    list.model.setProperty(taskIndex, "clcompleted", list.model.get(taskIndex).clcompleted + (checked ? 1 : -1));
-                                } else {
-                                    // The server said to us that the new value the value before
-                                    // we tried to change, so roll-back!
-                                    checked = value;
-                                }
-                            });
                             enabled = false;
-                            busy = true;
+                            sbswitch.busy = true;
+                            Model.setSubtask(taskId, subtaskId, function (ok, value) {
+                                sbswitch.busy = false;
+                                enabled = true;
+                                if (ok) checked = value;
+                            });
+                        }
+
+                        SignalConnect {
+                            signl: Model.signals.setSubtask
+                            fun: function (taskId, subtaskId, checked) {
+                                if (subtaskId === sbbg.subtaskId)
+                                    sbswitch.checked = checked;
+                            }
                         }
                     }
                 }
@@ -76,9 +106,18 @@ Page {
                 }
 
                 MenuItem {
-                    id: checkSubtasksMenu
-                    visible: false
-                    text: "Update Checklist"
+                    visible: model.cltotal > 0 || !!model.notes.trim(); // && !!model.notes.trim()
+                    text: "View Details" + (model.cltotal > 0 ? " and Checklist" : "")
+                    onClicked: {
+                        pageStack.push(Qt.resolvedUrl("Checklist.qml"),
+                                       {
+                                           taskName: model.text,
+                                           taskNotes: model.notes,
+                                           taskId: model.id,
+                                           taskIndex: model.index,
+                                           checklist: subtasks[model.id]
+                                       });
+                    }
                 }
 
                 Column {
@@ -87,7 +126,7 @@ Page {
                     visible: false
 
                     SectionHeader {
-                        text: "Checklist"
+                        text: "Quick Checklist"
                     }
                 }
 
@@ -104,8 +143,6 @@ Page {
                                 citem.checked = item.completed;
                                 citem.text = item.text;
                             }
-                        } else {
-                            checkSubtasksMenu.visible = true;
                         }
                     }
                 }
@@ -119,10 +156,13 @@ Page {
 
     property var subtasks: ({})
 
+    ListModel { id: todosModel }
+
     function update() {
         var todos = Model.listTodos();
         subtasks = {}
-        list.model.clear();
+        list.model = null
+        todosModel.clear();
         for (var i in todos) {
             var task = todos[i];
             subtasks[task.id] = task.checklist;
@@ -130,8 +170,9 @@ Page {
             var count = 0;
             task.checklist.forEach(function (item) { if (item.completed) count++; });
             task.clcompleted = count;
-            list.model.append(task);
+            todosModel.append(task);
         }
+        list.model = todosModel
     }
 
     Component.onCompleted: {
@@ -141,6 +182,18 @@ Page {
     SignalConnect {
         signl: Model.signals.updateTasks
         fun: update
+    }
+
+    SignalConnect {
+        signl: Model.signals.setSubtask
+        fun: function (taskId, subtaskId, checked) {
+            for (var i = 0; i < todosModel.count; i++) {
+                var todo = todosModel.get(i);
+                if (todo.id !== taskId) continue;
+                todosModel.setProperty(i, "clcompleted", todo.clcompleted + (checked ? 1 : -1))
+                break;
+            }
+        }
     }
 
 }

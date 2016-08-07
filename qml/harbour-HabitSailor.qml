@@ -11,14 +11,7 @@ ApplicationWindow
     _defaultPageOrientations: Orientation.Portrait
 
     Component.onCompleted: {
-        Model.init()
-        if (Model.isLogged()) {
-            Model.update(function (ok) {
-                if (ok)
-                    pageStack.replaceAbove(null, "pages/Main.qml", {})
-            });
-        } else
-            pageStack.replace("pages/Login.qml")
+        Model.init();
     }
 
     Item {

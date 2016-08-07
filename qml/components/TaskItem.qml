@@ -44,6 +44,7 @@ ListItem {
         Column {
             width: parent.width - x
             anchors.verticalCenter: parent.verticalCenter
+            opacity: listItem.enabled ? 1 : 0.4 // Same as in TextSwitch
 
             Label {
                 text: model.text
@@ -52,7 +53,6 @@ ListItem {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 elide: Text.ElideRight
                 color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
-                opacity: listItem.enabled ? 1 : 0.5
             }
 
             Label {
@@ -64,7 +64,6 @@ ListItem {
                 maximumLineCount: 2
                 elide: Text.ElideRight
                 font.pixelSize: Theme.fontSizeSmall
-                opacity: listItem.enabled ? 1 : 0.5
             }
         }
 

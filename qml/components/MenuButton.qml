@@ -6,6 +6,8 @@ BackgroundItem {
     width: parent.width
     height: root.subLabel ? (subLabelItem.y + subLabelItem.height + Theme.paddingMedium) : Theme.itemSizeSmall
 
+    opacity: enabled ? 1 : 0.4
+
     property url imageSource
     property string label
     property string subLabel

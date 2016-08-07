@@ -25,9 +25,11 @@ var buyHealthPotion;
 var signals = Qt.createQmlObject("\
     import QtQuick 2.0;
     QtObject {
+        signal start()
         signal updateStats()
         signal updateTasks()
         signal showMessage(string msg)
+        signal setSubtask(string taskId, string subtaskId, bool checked)
     }", Qt.application, "signals");
 
 (function () {
@@ -92,6 +94,7 @@ var signals = Qt.createQmlObject("\
             }
         })
         setupRpc();
+        signals.start();
     }
 
     // TODO signal connect for updates
@@ -114,9 +117,9 @@ var signals = Qt.createQmlObject("\
     }
 
     update = function (cb) {
-        var cs = new Rpc.CallSeq(function () {
+        var cs = new Rpc.CallSeq(function (o) {
+            signals.showMessage("Bad or no response frome server: " + o.message)
             if (cb) cb(false);
-            signals.showMessage("The server did not respond to the status request.")
         });
         cs.autofail = true;
         cs.push("/user", "get", {}, function (ok, r) {
@@ -270,16 +273,28 @@ var signals = Qt.createQmlObject("\
     }
 
     setSubtask = function (taskId, subtaskId, cb) {
+        // TODO everywhere: call cb(false) when fun returns because of bad args
+        var todo;
+        if (data.todos.every(function (item) { return item.id !== taskId || !(todo = item); })) return;
+        var clitem;
+        if (todo.checklist.every(function (item) { return item.id !== subtaskId || !(clitem = item); })) return;
+
         // TODO take checked and enforce this value instead of returning the value on the server
         Rpc.call("/tasks/:taskId/checklist/:subtaskId/score", "post-no-body",
                  { taskId: taskId, subtaskId: subtaskId },
                  function (ok, o) {
-                     if (!ok) { if (cb) cb(false); return; }
-                     var completed = false;
+                     if (!ok) {
+                         signals.showMessage("Cannot update subtask: " + o.message)
+                         if (cb) cb(false);
+                         return;
+                     }
+                     var previousCompletedValue = clitem.completed
                      o.checklist.every(function (item) {
-                         return item.id !== subtaskId || ((completed = item.completed) && false);
+                         return item.id !== subtaskId || ((clitem.completed = item.completed) && false);
                      });
-                     cb(true, completed);
+                     cb(true, clitem.completed);
+                     if (clitem.completed !== previousCompletedValue)
+                        signals.setSubtask(taskId, subtaskId, clitem.completed);
                  });
     }
 

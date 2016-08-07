@@ -1,6 +1,6 @@
 .pragma library
 
-var defaultErrorList = { 0: "Invalid URL", 400: "Bad request", 401: "Unauthorized or bad credentials" };
+var defaultErrorList = { 0: "Invalid URL", 400: "Bad request", 401: "Unauthorized or bad login and password" };
 
 var apiUrl = null;
 var apiKey = null;
@@ -77,13 +77,12 @@ CallSeq.prototype.run = function () {
     if (this.index >= this.list.length) return;
     var c = this.list[this.index];
     this.index++;
-    var me = this;
-    call(c.path, c.method, c.data, function (ok, r) {
+    call(c.path, c.method, c.data, (function (ok, r) {
         if ((!this.autofail || ok) && c.onload(ok, r))
-            return me.run();
-        me.index = 0;
-        if (me.onfail) me.onfail();
-    });
+            return this.run();
+        this.index = 0;
+        if (this.onfail) this.onfail(r);
+    }).bind(this));
 }
 
 function err(r, errorList) {
