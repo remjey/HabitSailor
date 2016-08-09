@@ -22,8 +22,7 @@ Page {
         delegate: TaskItem {
 
             id: taskItem
-            hollowRect: !model.completed
-            showColor: !model.completed
+            showColor: !model.completed && model.activeToday
             crossed: model.completed
             subLabel: model.cltotal === 0
                       ? ""

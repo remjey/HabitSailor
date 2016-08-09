@@ -7,9 +7,17 @@ ListItem {
 
     property bool showColor: true
     property string subLabel: ""
-    property bool hollowRect: false
     property bool busy: false
     property bool crossed: false
+
+    Rectangle {
+        anchors.fill: parent;
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: Theme.rgba("red", 0.1) }
+            GradientStop { position: 1.0; color: Theme.rgba("red", 0.2) }
+        }
+        visible: model.missedDueDate && !listItem.highlighted;
+    }
 
     Item {
         id: colorIndicatorWrapper
@@ -22,11 +30,10 @@ ListItem {
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.height
             height: parent.height
-            border.color: showColor ? model.color : Theme.highlightColor
-            color: hollowRect ? "transparent" : border.color
-            border.width: Theme.paddingSmall
+            color: showColor ? model.color : Theme.highlightColor
             opacity: showColor ? 0.8 : 0.4
-            Behavior on border.color { ColorAnimation { duration: 200 } }
+            Behavior on color { ColorAnimation { duration: 200 } }
+            Behavior on opacity { NumberAnimation { duration: 200 } }
         }
 
         Image {
@@ -54,7 +61,7 @@ ListItem {
         anchors.rightMargin: Theme.horizontalPageMargin
         anchors.verticalCenter: parent.verticalCenter
 
-        opacity: listItem.enabled ? (showColor ? 1 : 0.8) : 0.4 // Same as in TextSwitch
+        opacity: listItem.enabled ? (showColor ? 1 : 0.7) : 0.4 // Same as in TextSwitch
 
         Label {
             text: model.text
@@ -67,9 +74,9 @@ ListItem {
 
         Label {
             width: parent.width
-            visible: subLabel
+            visible: text
             color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
-            text: subLabel
+            text: subLabel + (model.dueDate ? (subLabel ? "\n" : "") + "Due date: " + model.dueDate : "")
             wrapMode: Text.WordWrap
             maximumLineCount: 2
             elide: Text.ElideRight

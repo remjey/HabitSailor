@@ -23,13 +23,16 @@ Already working:
 * Refresh action from pulley menu of profile screen
 * Buy Health Potion
 * To-Dos, Daily tasks with their subtasks, all checkable and uncheckable
+* Gray out tasks that are not due today or not active yes, and redflag tasks due in the past, display due date
 
 Most importantly and in approximate order:
 
+* Use something like last cron date to compute state of tasks according to date constraints
 * React gracefully when connection drops (already done to some extent)
-* Gray out tasks that are not due today, not yet active, and redflag tasks due in the past
 * Automatic refresh, interval to be decided (when app returns active after long time? 1 hour period?)
 * A useful cover
+* About page
+* Make it translation ready, with at least french translation
 
 Some stuff that would be great in approximate order:
 

@@ -1,5 +1,6 @@
 .pragma library
 .import "rpc.js" as Rpc
+.import "utils.js" as Utils
 .import QtQuick.Signals 2.0 as QS
 .import QtQuick.LocalStorage 2.0 as Sql
 
@@ -33,6 +34,8 @@ var signals = Qt.createQmlObject("\
     }", Qt.application, "signals");
 
 (function () {
+
+    var weekDays = [ "su", "m", "t", "w", "th", "f", "s" ];
 
     var db;
     var configCache = {};
@@ -131,17 +134,34 @@ var signals = Qt.createQmlObject("\
             return true;
         });
         cs.push("/tasks/user", "get", {}, function (ok, r) {
+            var now = new Date();
             data.habits = [];
             data.tasks = [];
             data.rewards = [];
             for (var i in r) {
                 var item = r[i];
                 item.color = colorForValue(item.value);
+                item.activeToday = true;
+                item.missedDueDate = false;
                 switch (item.type) {
                 case "habit":
                     data.habits.push(item); break;
                 case "todo":
+                    var dueDate = new Date(item.date);
+                    item.missedDueDate = item.date && dueDate.getTime() < now.getTime();
+                    item.dueDate = item.date ? (Utils.zeroPad(2, dueDate.getDate()) + "/" + Utils.zeroPad(2, dueDate.getMonth() + 1)) : "";
+                    data.tasks.push(item); break;
                 case "daily":
+                    item.activeToday = item.startDate && Date.parse(item.startDate) <= now.getTime();
+                    if (item.activeToday) {
+                        if (item.everyX === 1) {
+                            item.activeToday = item.repeat[weekDays[now.getDay()]]
+                        } else {
+                            var days = Math.floor((now.getTime() - Date.parse(item.startDate)) / 86400000);
+                            item.activeToday = (days % item.everyX == 0);
+                        }
+                    }
+
                     data.tasks.push(item); break;
                 case "reward":
                     data.rewards.push(item); break;
