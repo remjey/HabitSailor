@@ -28,6 +28,7 @@ Already working:
 Most importantly and in approximate order:
 
 * Use something like last cron date to compute state of tasks according to date constraints
+* Add more data in the detailed view of tasks
 * React gracefully when connection drops (already done to some extent)
 * Automatic refresh, interval to be decided (when app returns active after long time? 1 hour period?)
 * A useful cover

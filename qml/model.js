@@ -147,9 +147,13 @@ var signals = Qt.createQmlObject("\
                 case "habit":
                     data.habits.push(item); break;
                 case "todo":
-                    var dueDate = new Date(item.date);
-                    item.missedDueDate = item.date && dueDate.getTime() < now.getTime();
-                    item.dueDate = item.date ? (Utils.zeroPad(2, dueDate.getDate()) + "/" + Utils.zeroPad(2, dueDate.getMonth() + 1)) : "";
+                    if (item.date) {
+                        var dueDate = new Date(item.date);
+                        print("due date " + dueDate)
+                        item.missedDueDate = item.date && dueDate.getTime() < now.getTime();
+                        print("missed due date " + item.missedDueDate)
+                        item.dueDate = Utils.zeroPad(2, dueDate.getDate()) + "/" + Utils.zeroPad(2, dueDate.getMonth() + 1);
+                    }
                     data.tasks.push(item); break;
                 case "daily":
                     item.activeToday = item.startDate && Date.parse(item.startDate) <= now.getTime();
