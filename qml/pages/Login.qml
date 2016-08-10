@@ -52,7 +52,7 @@ Dialog {
                 width: parent.width - 2 * Theme.paddingLarge
                 wrapMode: Text.WordWrap
                 color: Theme.highlightColor
-                text: "Welcome to HabitSailor, an unofficial client for HabitRPG servers like Habitica! Have fun making habits and get tasks done while collecting items and pets!"
+                text: "Welcome to HabitSailor, an unofficial client for Habitica! Have fun making habits and get tasks done while collecting items and pets!"
             }
 
             SectionHeader {
@@ -62,7 +62,7 @@ Dialog {
             TextSwitch {
                 id: useHabitica
                 text: "Use the Habitica.com server"
-                description: "Uncheck only if you want to use a custom HabitRPG server"
+                description: "Uncheck only if you want to use a custom Habitica server"
                 checked: true
             }
 
@@ -70,7 +70,7 @@ Dialog {
                 id: customHabitRpgUrl
                 visible: !useHabitica.checked
                 width: parent.width
-                label: "URL of the custom HabitRPG server"
+                label: "URL of the custom Habitica server"
                 placeholderText: label
                 inputMethodHints: Qt.ImhUrlCharactersOnly
                 // TODO validator

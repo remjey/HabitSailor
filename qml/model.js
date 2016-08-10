@@ -63,7 +63,7 @@ var signals = Qt.createQmlObject("\
         } else if (value < 1) {
             return "#e5c35b"; // "#fff2cc";
         } else if (value < 5) {
-            return "#84d168"; // "#d9ead3"
+            return "#84d168"; // "#d9ead3";
         } else if (value < 10) {
             return "#68bac9"; // "#d0e0e3";
         } else {
@@ -151,18 +151,25 @@ var signals = Qt.createQmlObject("\
                     if (item.date) {
                         var dueDate = new Date(item.date);
                         item.missedDueDate = item.date && dueDate.getTime() < data.lastCron.getTime();
-                        item.dueDate = dueDate.format(data.dateFormat);
+                        item.dueDateFormatted = dueDate.format(data.dateFormat);
                     }
                     data.tasks.push(item); break;
                 case "daily":
-                    item.activeToday = item.startDate && Date.parse(item.startDate) <= data.lastCron.getTime();
-                    if (item.activeToday) {
-                        if (item.everyX === 1) {
-                            item.activeToday = item.repeat[weekDays[data.lastCron.getDay()]]
+                    if (item.startDate) {
+                        var startDate = new Date(item.startDate);
+                        item.activeToday = startDate <= data.lastCron;
+                        if (item.activeToday) {
+                            if (item.everyX === 1) {
+                                item.activeToday = item.repeat[weekDays[data.lastCron.getDay()]]
+                            } else {
+                                var days = Math.floor((data.lastCron.getTime() - Date.parse(item.startDate)) / 86400000);
+                                item.activeToday = (days % item.everyX == 0);
+                            }
                         } else {
-                            var days = Math.floor((data.lastCron.getTime() - Date.parse(item.startDate)) / 86400000);
-                            item.activeToday = (days % item.everyX == 0);
+                            item.startDateFormatted = startDate.format(data.dateFormat);
                         }
+                    } else {
+                        item.activeToday = false;
                     }
 
                     data.tasks.push(item); break;

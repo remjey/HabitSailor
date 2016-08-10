@@ -5,7 +5,7 @@ Date.prototype.format = function (format) {
     var replacements = {
         "MM": (date.getMonth() + 1).zeroPad(2),
         "yyyy": date.getFullYear(),
-        "dd": date.getDay().zeroPad(2),
+        "dd": date.getDate().zeroPad(2),
     }
     return format.replace(/dd|MM|yyyy/g, function (r) { return replacements[r]; });
 }

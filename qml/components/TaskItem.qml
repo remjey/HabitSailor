@@ -76,11 +76,19 @@ ListItem {
             width: parent.width
             visible: text
             color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
-            text: subLabel + (model.dueDate ? (subLabel ? "\n" : "") + "Due date: " + model.dueDate : "")
+            text: makeText(subLabel, model.dueDateFormatted, model.startDateFormatted)
             wrapMode: Text.WordWrap
             maximumLineCount: 2
             elide: Text.ElideRight
             font.pixelSize: Theme.fontSizeSmall
+
+            function makeText(subLabel, dueDate, startDate) {
+                var r = []
+                if (subLabel) r.push(subLabel);
+                if (dueDate) r.push("Due Date: " + dueDate);
+                if (startDate) r.push("Start Date: " + startDate);
+                return r.join("\n");
+            }
         }
     }
 
