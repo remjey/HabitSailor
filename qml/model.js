@@ -126,6 +126,7 @@ var signals = Qt.createQmlObject("\
         });
         cs.autofail = true;
         cs.push("/user", "get", {}, function (ok, r) {
+            data.lastCron = new Date(r.lastCron);
             data.tasksOrder = r.tasksOrder;
             data.balance = r.balance;
             data.name = r.profile.name;
@@ -134,7 +135,6 @@ var signals = Qt.createQmlObject("\
             return true;
         });
         cs.push("/tasks/user", "get", {}, function (ok, r) {
-            var now = new Date();
             data.habits = [];
             data.tasks = [];
             data.rewards = [];
@@ -150,18 +150,18 @@ var signals = Qt.createQmlObject("\
                     if (item.date) {
                         var dueDate = new Date(item.date);
                         print("due date " + dueDate)
-                        item.missedDueDate = item.date && dueDate.getTime() < now.getTime();
+                        item.missedDueDate = item.date && dueDate.getTime() < data.lastCron.getTime();
                         print("missed due date " + item.missedDueDate)
                         item.dueDate = Utils.zeroPad(2, dueDate.getDate()) + "/" + Utils.zeroPad(2, dueDate.getMonth() + 1);
                     }
                     data.tasks.push(item); break;
                 case "daily":
-                    item.activeToday = item.startDate && Date.parse(item.startDate) <= now.getTime();
+                    item.activeToday = item.startDate && Date.parse(item.startDate) <= data.lastCron.getTime();
                     if (item.activeToday) {
                         if (item.everyX === 1) {
-                            item.activeToday = item.repeat[weekDays[now.getDay()]]
+                            item.activeToday = item.repeat[weekDays[data.lastCron.getDay()]]
                         } else {
-                            var days = Math.floor((now.getTime() - Date.parse(item.startDate)) / 86400000);
+                            var days = Math.floor((data.lastCron.getTime() - Date.parse(item.startDate)) / 86400000);
                             item.activeToday = (days % item.everyX == 0);
                         }
                     }

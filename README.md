@@ -27,7 +27,6 @@ Already working:
 
 Most importantly and in approximate order:
 
-* Use something like last cron date to compute state of tasks according to date constraints
 * Add more data in the detailed view of tasks
 * React gracefully when connection drops (already done to some extent)
 * Automatic refresh, interval to be decided (when app returns active after long time? 1 hour period?)
@@ -37,6 +36,7 @@ Most importantly and in approximate order:
 
 Some stuff that would be great in approximate order:
 
+* Use data from user profile to build up-to-date profile picture instead of requesting a png profile picture (which may be old)
 * Bring back todos from the dead (aka completed) state
 * Filter tasks by tag, completed/not completed
 * Sort tasks by color
