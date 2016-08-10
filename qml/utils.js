@@ -1,12 +1,22 @@
 .pragma library
 
+Date.prototype.format = function (format) {
+    var date = this;
+    var replacements = {
+        "MM": (date.getMonth() + 1).zeroPad(2),
+        "yyyy": date.getFullYear(),
+        "dd": date.getDay().zeroPad(2),
+    }
+    return format.replace(/dd|MM|yyyy/g, function (r) { return replacements[r]; });
+}
+
 String.prototype.repeat = function (n) {
     var r = "";
     for (var i = 0; i < n; i++) r = r + this;
     return r;
 }
 
-function zeroPad(zeroes, value) {
-    var svalue = value.toString();
+Number.prototype.zeroPad = function (zeroes) {
+    var svalue = this.toString();
     return "0".repeat(zeroes - svalue.length) + svalue;
 }

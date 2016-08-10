@@ -126,6 +126,7 @@ var signals = Qt.createQmlObject("\
         });
         cs.autofail = true;
         cs.push("/user", "get", {}, function (ok, r) {
+            data.dateFormat = r.preferences.dateFormat;
             data.lastCron = new Date(r.lastCron);
             data.tasksOrder = r.tasksOrder;
             data.balance = r.balance;
@@ -149,10 +150,8 @@ var signals = Qt.createQmlObject("\
                 case "todo":
                     if (item.date) {
                         var dueDate = new Date(item.date);
-                        print("due date " + dueDate)
                         item.missedDueDate = item.date && dueDate.getTime() < data.lastCron.getTime();
-                        print("missed due date " + item.missedDueDate)
-                        item.dueDate = Utils.zeroPad(2, dueDate.getDate()) + "/" + Utils.zeroPad(2, dueDate.getMonth() + 1);
+                        item.dueDate = dueDate.format(data.dateFormat);
                     }
                     data.tasks.push(item); break;
                 case "daily":
