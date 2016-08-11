@@ -12,7 +12,7 @@ Page {
         model: ListModel {}
 
         header: PageHeader {
-            title: "Habits"
+            title: qsTr("Habits")
         }
 
         VerticalScrollDecorator {}
@@ -60,7 +60,7 @@ Page {
                         width: parent.width
                         horizontalAlignment: Text.AlignHCenter
                         visible: !model.down && !model.up
-                        text: "This item has no enabled buttons"
+                        text: qsTr("This item has no enabled buttons")
                         color: Theme.secondaryHighlightColor
                     }
                 }

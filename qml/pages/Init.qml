@@ -9,13 +9,13 @@ Page {
         State {
             name: "LOADING"
             PropertyChanges { target: busyCircle; visible: true; running: true }
-            PropertyChanges { target: label; text: "HabitSailor Loading…" }
+            PropertyChanges { target: label; text: qsTr("HabitSailor Loading...") }
             PropertyChanges { target: retryBlock; visible: false }
         },
         State {
             name: "ERROR"
             PropertyChanges { target: busyCircle; visible: false; running: false }
-            PropertyChanges { target: label; text: "HabitSailor could not connect to the server or received an unexpected error!" }
+            PropertyChanges { target: label; text: qsTr("HabitSailor could not connect to the server or received an unexpected error!") }
             PropertyChanges { target: retryBlock; visible: true }
         }
     ]
@@ -37,7 +37,7 @@ Page {
             x: Theme.horizontalPageMargin
             color: Theme.highlightColor
             wrapMode: Text.WordWrap
-            horizontalAlignment: "AlignHCenter"
+            horizontalAlignment: Text.AlignHCenter
         }
 
         BusyIndicator {
@@ -46,21 +46,24 @@ Page {
             size: BusyIndicatorSize.Large
         }
 
-        Row {
+        Column {
             id: retryBlock
-            width: parent.width - 2 * Theme.horizontalPageMargin
-            x: Theme.horizontalPageMargin
-            spacing: Theme.horizontalPageMargin
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: parent.width - Theme.horizontalPageMargin * 2
+            spacing: Theme.paddingSmall
+
             Button {
-                width: (parent.width - parent.spacing) / 2
-                text: "Retry"
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width
+                text: qsTr("Retry")
                 onClicked: {
                     connect();
                 }
             }
             Button {
-                width: (parent.width - parent.spacing) / 2
-                text: "Change Login"
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width
+                text: qsTr("Change Login")
                 onClicked: {
                     Model.logout();
                     pageStack.replace("Login.qml");

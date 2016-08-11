@@ -1,6 +1,6 @@
 .pragma library
 
-var defaultErrorList = { 0: "Invalid URL", 400: "Bad request", 401: "Unauthorized or bad login and password" };
+var defaultErrorList = { 0: qsTr("Invalid URL"), 400: qsTr("Bad request"), 401: qsTr("Unauthorized or bad login and password") };
 
 var apiUrl = null;
 var apiKey = null;
@@ -43,7 +43,7 @@ function call(path, method, data, onload) {
                 o = {
                     success: false,
                     error: "_InvalidData",
-                    message: "Invalid data or no data was received from server"
+                    message: qsTr("Invalid data or no data was received from server")
                 };
             }
             o.httpStatus = xhr.status;
@@ -60,7 +60,7 @@ function call(path, method, data, onload) {
     if (method === "post" || method === "get")
         xhr.send(noBody ? "" : JSON.stringify(data));
     else
-        throw "Invalid method for rpc call"
+        throw qsTr("Invalid method for rpc call") // TODO notify callback instead of throwing
 }
 
 function CallSeq(onfail) {
@@ -97,7 +97,7 @@ function err(r, errorList) {
         if (errorList.hasOwnProperty(error)) return errorList[error];
     }
     if (errorMessage) return errorMessage;
-    if (error) return "Unexplained error: " + error + " (status: " + r.httpStatus + ")";
+    if (error) return qsTr("Unexplained error: %1 (status: %2)").arg(error).arg(r.httpStatus);
     if (errorList.hasOwnProperty(r.httpStatus)) return errorList[r.httpStatus];
-    return "Unknown error, status: " + r.httpStatus;
+    return qsTr("Unknown error, status: %1").arg(r.httpStatus);
 }

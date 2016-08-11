@@ -31,7 +31,6 @@ Most importantly and in approximate order:
 * React gracefully when connection drops (already done to some extent)
 * Automatic refresh, interval to be decided (when app returns active after long time? 1 hour period?)
 * About page
-* Make it translation ready, with at least french translation
 * Display notifications (and discard them from server?)
 
 Some stuff that would be great in approximate order:

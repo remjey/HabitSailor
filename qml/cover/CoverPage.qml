@@ -142,7 +142,7 @@ CoverBackground {
             x: Theme.paddingMedium
             spacing: Theme.paddingMedium
             Label {
-                text: "Dailies"
+                text: qsTr("Dailies")
                 color: Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeSmall
             }

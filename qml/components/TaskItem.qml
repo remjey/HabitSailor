@@ -85,8 +85,8 @@ ListItem {
             function makeText(subLabel, dueDate, startDate) {
                 var r = []
                 if (subLabel) r.push(subLabel);
-                if (dueDate) r.push("Due Date: " + dueDate);
-                if (startDate) r.push("Start Date: " + startDate);
+                if (dueDate) r.push(qsTr("Due Date: %1").arg(dueDate));
+                if (startDate) r.push(qsTr("Start Date: %1").arg(startDate));
                 return r.join("\n");
             }
         }

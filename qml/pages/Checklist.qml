@@ -21,11 +21,13 @@ Page {
             width: parent.width
 
             PageHeader {
-                title: taskMode == "todos" ? "To-Do" : "Daily"
+                title: taskMode == "todos"
+                       ? qsTr("To-Do")
+                       : qsTr("Daily")
             }
 
             SectionHeader {
-                text: "Title"
+                text: qsTr("Title")
             }
 
             Label {
@@ -37,7 +39,7 @@ Page {
             }
 
             SectionHeader {
-                text: "Extra Notes"
+                text: qsTr("Extra Notes")
                 visible: notes.visible
             }
 
@@ -53,7 +55,7 @@ Page {
             }
 
             SectionHeader {
-                text: "Checklist"
+                text: qsTr("Checklist")
                 visible: model.count > 0
             }
         }

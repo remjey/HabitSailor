@@ -13,9 +13,9 @@ Page {
         PullDownMenu {
             id: menu
             MenuItem {
-                text: "Log out"
+                text: qsTr("Log out")
                 onClicked: {
-                    globalRemorse.execute("Logging out", function () {
+                    globalRemorse.execute(qsTr("Logging out"), function () {
                         Model.logout();
                         pageStack.replaceAbove(null, Qt.resolvedUrl("Login.qml"));
                     });
@@ -23,7 +23,7 @@ Page {
             }
             MenuItem {
                 id: refreshMenuItem
-                text: "Refresh"
+                text: qsTr("Refresh")
                 onClicked: {
                     refreshMenuItem.enabled = false;
                     menu.busy = true
@@ -46,7 +46,7 @@ Page {
             }
 
             SectionHeader {
-                text: "Profile"
+                text: qsTr("Profile")
             }
 
             Column {
@@ -88,19 +88,19 @@ Page {
                             Stat {
                                 id: gems
                                 width: parent.width / 3
-                                label: "Gems"
+                                label: qsTr("Gems")
                             }
 
                             Stat {
                                 id: gold
                                 width: parent.width / 3
-                                label: "Gold"
+                                label: qsTr("Gold")
                             }
 
                             Stat {
                                 id: level
                                 width: parent.width / 3
-                                label: "Level"
+                                label: qsTr("Level")
                             }
 
                         }
@@ -115,21 +115,21 @@ Page {
                     Stat {
                         id: health
                         width: parent.itemSize
-                        label: "Health"
+                        label: qsTr("Health")
                         barColor: "#da5353"
                     }
 
                     Stat {
                         id: exp
                         width: parent.itemSize
-                        label: "Experience"
+                        label: qsTr("Experience")
                         barColor: "#ffcc35"
                     }
 
                     Stat {
                         id: mana
                         width: parent.itemSize
-                        label: "Mana"
+                        label: qsTr("Mana")
                         barColor: "#4781e7"
                     }
 
@@ -138,14 +138,14 @@ Page {
             }
 
             SectionHeader {
-                text: "Tasks"
+                text: qsTr("Tasks")
             }
 
             MenuButton {
                 visible: health.value == 0
                 enabled: !menu.busy
                 imageSource: "image://theme/icon-m-health"
-                label: "Refill your health"
+                label: qsTr("Refill your health")
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("Revive.qml"));
                 }
@@ -154,7 +154,7 @@ Page {
             MenuButton {
                 enabled: !menu.busy
                 imageSource: "image://theme/icon-m-favorite"
-                label: "Habits"
+                label: qsTr("Habits")
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("Habits.qml"));
                 }
@@ -163,7 +163,7 @@ Page {
             MenuButton {
                 enabled: !menu.busy
                 imageSource: "image://theme/icon-m-clock"
-                label: "Dailies"
+                label: qsTr("Dailies")
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("Tasks.qml"), { mode: "dailies" });
                 }
@@ -172,23 +172,23 @@ Page {
             MenuButton {
                 enabled: !menu.busy
                 imageSource: "image://theme/icon-m-acknowledge"
-                label: "To-Dos"
+                label: qsTr("To-Dos")
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("Tasks.qml"), { mode: "todos" });
                 }
             }
 
             SectionHeader {
-                text: "Rewards"
+                text: qsTr("Rewards")
             }
 
             MenuButton {
                 enabled: !menu.busy
                 imageSource: "image://theme/icon-m-health"
-                label: "Health Potion"
-                subLabel: "Costs 25 Gold"
+                label: qsTr("Health Potion")
+                subLabel: qsTr("Costs %1 Gold").arg(25)
                 onClicked: {
-                    remorse("Buying Health Potion", function () {
+                    remorse(qsTr("Buying Health Potion"), function () {
                         Model.buyHealthPotion()
                     });
                 }

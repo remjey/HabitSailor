@@ -22,8 +22,8 @@ Dialog {
 
             DialogHeader {
                 dialog: root
-                cancelText: "Cancel"
-                acceptText: "Continue"
+                cancelText: qsTr("Cancel")
+                acceptText: qsTr("Continue")
             }
 
             Label {
@@ -32,7 +32,7 @@ Dialog {
                 color: Theme.highlightColor
                 font.pixelSize: Theme.fontSizeLarge
                 wrapMode: Text.WordWrap
-                text: "You ran out of Health!"
+                text: qsTr("You ran out of Health!")
             }
 
             Label {
@@ -40,7 +40,7 @@ Dialog {
                 anchors.horizontalCenter: parent.horizontalCenter;
                 color: Theme.highlightColor
                 wrapMode: Text.WordWrap
-                text: "Don’t despair, You lost a Level, your Gold, and a piece of Equipment, but you can get them all back with hard work! Good luck – you'll do great."
+                text: qsTr("Don’t despair, You lost a Level, your Gold, and a piece of Equipment, but you can get them all back with hard work! Good luck – you'll do great.")
             }
 
         }
@@ -57,7 +57,7 @@ Dialog {
                 Label {
                     id: connectStatus
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: "Refilling your health"
+                    text: qsTr("Refilling your health")
                     color: Theme.highlightColor
                 }
 

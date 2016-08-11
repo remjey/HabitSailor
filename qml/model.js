@@ -121,7 +121,7 @@ var signals = Qt.createQmlObject("\
 
     update = function (cb) {
         var cs = new Rpc.CallSeq(function (o) {
-            signals.showMessage("Bad or no response frome server: " + o.message)
+            signals.showMessage(qsTr("Bad or no response from server: %1").arg(o.message))
             if (cb) cb(false);
         });
         cs.autofail = true;
@@ -248,13 +248,17 @@ var signals = Qt.createQmlObject("\
     }
 
     function remindDead() {
-        signals.showMessage("You must first refill your health from the profile page before you can do this!");
+        signals.showMessage(qsTr("You must first refill your health from the profile page before you can do this!"));
     }
 
     function partialStatsUpdate(stats) {
         var msgs = [];
         var lvlChange = stats.hasOwnProperty("lvl") && stats.lvl !== data.stats.lvl;
-        [{p:"lvl", n:"Level"}, {p:"hp", n:"Health"}, {p:"mp", n:"Mana"}, {p:"exp", n:"Experience"}, {p:"gp", n:"Gold"}].every(function (item) {
+        [{p:"lvl", n:qsTr("Level")},
+        {p:"hp", n:qsTr("Health")},
+        {p:"mp", n:qsTr("Mana")},
+        {p:"exp", n:qsTr("Experience")},
+        {p:"gp", n:qsTr("Gold")}].every(function (item) {
             if (stats.hasOwnProperty(item.p)) {
                 if (item.p !== "exp" || !lvlChange)
                     addStatDiff(msgs, item.n, data.stats[item.p], stats[item.p]);
@@ -263,7 +267,7 @@ var signals = Qt.createQmlObject("\
             return true;
         });
         if (data.stats.hp === 0) {
-            signals.showMessage("Sorry, you ran out of health… Refill your health on the profile page to continue!");
+            signals.showMessage(qsTr("Sorry, you ran out of health... Refill your health on the profile page to continue!"));
         } else {
             if (msgs.length > 0) signals.showMessage(msgs.join(" ∙ "));
         }
@@ -290,7 +294,7 @@ var signals = Qt.createQmlObject("\
                 if (cb)
                     cb(true, colorForValue(habit.value));
             } else if (cb) {
-                signals.showMessage("Cannot update habit: " + o.message)
+                signals.showMessage(qsTr("Cannot update habit: %1").arg(o.message))
                 cb(false);
             }
         });
@@ -302,7 +306,7 @@ var signals = Qt.createQmlObject("\
             if (ok) {
                 update(cb);
             } else {
-                signals.showMessage("Cannot refill health: " + o.message)
+                signals.showMessage(qsTr("Cannot refill health: %1").arg(o.message))
                 if (cb) cb(false);
             }
         });
@@ -315,7 +319,7 @@ var signals = Qt.createQmlObject("\
                 partialStatsUpdate(o)
                 if (cb) cb(true)
             } else {
-                signals.showMessage("Cannot buy Health Potion: " + o.message)
+                signals.showMessage(qsTr("Cannot buy Health Potion: %1").arg(o.message))
                 if (cb) cb(false)
             }
         });
@@ -333,7 +337,7 @@ var signals = Qt.createQmlObject("\
                  { taskId: taskId, subtaskId: subtaskId },
                  function (ok, o) {
                      if (!ok) {
-                         signals.showMessage("Cannot update subtask: " + o.message)
+                         signals.showMessage(qsTr("Cannot update subtask: %1").arg(o.message))
                          if (cb) cb(false);
                          return;
                      }
@@ -361,7 +365,7 @@ var signals = Qt.createQmlObject("\
                 partialStatsUpdate(o);
                 if (cb) cb(true);
             } else if (cb) {
-                signals.showMessage("Cannot update task: " + o.message)
+                signals.showMessage(qsTr("Cannot update task: %1").arg(o.message))
                 if (cb) cb(false);
             }
         });

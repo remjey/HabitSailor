@@ -8,18 +8,18 @@ Dialog {
     acceptDestination: connectPage
 
     onAccepted: {
-        acceptDestinationInstance.setStatus("Connecting", true);
+        acceptDestinationInstance.setStatus(qsTr("Connecting"), true);
         if (useHabitica.checked) customHabitRpgUrl.text = ""
         Model.login(customHabitRpgUrl.text,
                     login.text,
                     password.text,
                     function () {
-                        acceptDestinationInstance.setStatus("Loading profile", true);
+                        acceptDestinationInstance.setStatus(qsTr("Loading Profile"), true);
                         Model.update(function (ok) {
                             if (ok) {
                                 pageStack.replaceAbove(null, Qt.resolvedUrl("Main.qml"));
                             } else {
-                                acceptDestinationInstance.setStatus("Impossible to retrieve profile data although the login and password are correct!", false)
+                                acceptDestinationInstance.setStatus(qsTr("Impossible to retrieve profile data although the login and password are correct!"), false)
                             }
                         });
                     },
@@ -52,7 +52,7 @@ Dialog {
                 width: parent.width - 2 * Theme.paddingLarge
                 wrapMode: Text.WordWrap
                 color: Theme.highlightColor
-                text: "Welcome to HabitSailor, an unofficial client for Habitica! Have fun making habits and get tasks done while collecting items and pets!"
+                text: qsTr("Welcome to HabitSailor, an unofficial client for Habitica! Have fun making habits and get tasks done while collecting items and pets!")
             }
 
             SectionHeader {
@@ -61,8 +61,8 @@ Dialog {
 
             TextSwitch {
                 id: useHabitica
-                text: "Use the Habitica.com server"
-                description: "Uncheck only if you want to use a custom Habitica server"
+                text: qsTr("Use the Habitica.com server")
+                description: qsTr("Uncheck only if you want to use a custom Habitica server")
                 checked: true
             }
 
@@ -70,7 +70,7 @@ Dialog {
                 id: customHabitRpgUrl
                 visible: !useHabitica.checked
                 width: parent.width
-                label: "URL of the custom Habitica server"
+                label: qsTr("URL of the custom Habitica server")
                 placeholderText: label
                 inputMethodHints: Qt.ImhUrlCharactersOnly
                 // TODO validator
@@ -82,7 +82,7 @@ Dialog {
             TextField {
                 id: login
                 width: parent.width
-                label: "Username or email"
+                label: qsTr("Username or email address")
                 placeholderText: label
                 inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
                 EnterKey.enabled: text.length > 2
@@ -93,7 +93,7 @@ Dialog {
             PasswordField {
                 id: password
                 width: parent.width
-                label: "Password"
+                label: qsTr("Password")
                 placeholderText: label
                 EnterKey.enabled: text.length > 2
                 EnterKey.iconSource: "image://theme/icon-m-enter-accept"
@@ -125,7 +125,7 @@ Dialog {
                     width: parent.width - 2 * Theme.horizontalPageMargin
                     horizontalAlignment: Text.AlignHCenter
                     wrapMode: Text.WordWrap
-                    text: "Connecting"
+                    text: qsTr("Connecting")
                     color: Theme.highlightColor
                 }
 

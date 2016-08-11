@@ -12,7 +12,7 @@ Page {
         anchors.fill: parent
 
         header: PageHeader {
-            title: mode == "todos" ? "To-Dos" : "Dailies"
+            title: mode == "todos" ? qsTr("To-Dos") : qsTr("Dailies")
         }
 
         VerticalScrollDecorator {}
@@ -26,7 +26,7 @@ Page {
             crossed: model.completed
             subLabel: model.cltotal === 0
                       ? ""
-                      : model.clcompleted + " / " + model.cltotal + " subtasks completed"
+                      : qsTr("%1 / %2 subtasks completed").arg(model.clcompleted).arg(model.cltotal)
 
             menu: ContextMenu {
                 id: contextMenu
@@ -91,7 +91,7 @@ Page {
                 }
 
                 MenuItem {
-                    text: model.completed ? "Uncheck Task" : "Check Task"
+                    text: model.completed ? qsTr("Uncheck Task") : qsTr("Check Task")
                     onClicked: {
                         var action = function () {
                             taskItem.enabled = false;
@@ -108,13 +108,16 @@ Page {
                         if (mode == "dailies")
                             action();
                         else
-                            taskItem.remorse("Check " + model.text, action);
+                            taskItem.remorse(qsTr("Check %1").arg(model.text), action);
                     }
                 }
 
                 MenuItem {
-                    visible: model.cltotal > 0 || !!model.notes.trim(); // && !!model.notes.trim()
-                    text: "View Details" + (model.cltotal > 0 ? " and Checklist" : "")
+                    visible: model.cltotal > 0 || !!model.notes.trim();
+                    text: model.cltotal > 0
+                          ? qsTr("View Details")
+                          : qsTr("View Details and Checklist");
+
                     onClicked: {
                         pageStack.push(Qt.resolvedUrl("Checklist.qml"),
                                        {
@@ -134,7 +137,7 @@ Page {
                     visible: false
 
                     SectionHeader {
-                        text: "Quick Checklist"
+                        text: qsTr("Quick Checklist")
                     }
                 }
 
