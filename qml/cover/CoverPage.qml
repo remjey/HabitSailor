@@ -8,7 +8,7 @@ CoverBackground {
     SignalConnect {
         signl: Model.signals.updateStats
         fun: function () {
-            state = "STATS";
+            if (state == "INIT") state = "STATS";
             name.text = Model.getName();
             profilePic.source = Qt.resolvedUrl(Model.getProfilePictureUrl());
             health.maximum = Model.getHpMax();
