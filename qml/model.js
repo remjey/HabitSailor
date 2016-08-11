@@ -132,7 +132,6 @@ var signals = Qt.createQmlObject("\
             data.balance = r.balance;
             data.name = r.profile.name;
             data.stats = r.stats;
-            signals.updateStats();
             return true;
         });
         cs.push("/tasks/user", "get", {}, function (ok, r) {
@@ -146,14 +145,16 @@ var signals = Qt.createQmlObject("\
                 item.missedDueDate = false;
                 switch (item.type) {
                 case "habit":
-                    data.habits.push(item); break;
+                    data.habits.push(item);
+                    break;
                 case "todo":
                     if (item.date) {
                         var dueDate = new Date(item.date);
                         item.missedDueDate = item.date && dueDate.getTime() < data.lastCron.getTime();
                         item.dueDateFormatted = dueDate.format(data.dateFormat);
                     }
-                    data.tasks.push(item); break;
+                    data.tasks.push(item);
+                    break;
                 case "daily":
                     if (item.startDate) {
                         var startDate = new Date(item.startDate);
@@ -172,13 +173,17 @@ var signals = Qt.createQmlObject("\
                         item.activeToday = false;
                     }
 
-                    data.tasks.push(item); break;
+                    data.tasks.push(item);
+                    break;
                 case "reward":
-                    data.rewards.push(item); break;
+                    data.rewards.push(item);
+                    break;
                 }
             }
             data.habits = sortTasks(data.tasksOrder.habits, data.habits)
             data.rewards = sortTasks(data.tasksOrder.rewards, data.rewards)
+
+            signals.updateStats();
             signals.updateTasks();
             if (cb) cb(true);
             return true;

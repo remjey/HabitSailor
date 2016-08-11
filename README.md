@@ -18,21 +18,21 @@ Already working:
 
 * Login/Logout
 * Show basic profile info
-* Display Habits, pressing on plus or minus
+* Habits list, than can be upped or downed
+* List of dailies and To-Dos with subtasks support, than can be all checked or unchecked
+* Dailies and To-Dos date constraints are shown
 * Detects death, and show revive action from profile page
-* Refresh action from pulley menu of profile screen
 * Buy Health Potion
-* To-Dos, Daily tasks with their subtasks, all checkable and uncheckable
-* Gray out tasks that are not due today or not active yes, and redflag tasks due in the past, display due date
+* Covers that shows profile info or remaining uncompleted dailies
 
 Most importantly and in approximate order:
 
 * Add more data in the detailed view of tasks
 * React gracefully when connection drops (already done to some extent)
 * Automatic refresh, interval to be decided (when app returns active after long time? 1 hour period?)
-* A useful cover
 * About page
 * Make it translation ready, with at least french translation
+* Display notifications (and discard them from server?)
 
 Some stuff that would be great in approximate order:
 
