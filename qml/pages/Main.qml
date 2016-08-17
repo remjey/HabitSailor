@@ -22,12 +22,17 @@ Page {
                 }
             }
             MenuItem {
-                id: sleepMenu
+                id: sleepMenuItem
                 property string remorseText: ""
                 text: ""
                 onClicked: {
                     globalRemorse.execute(remorseText, function () {
-                        Model.toggleSleep();
+                        sleepMenuItem.enabled = false;
+                        menu.busy = true;
+                        Model.toggleSleep(function () {
+                            sleepMenuItem.enabled = true;
+                            menu.busy = false;
+                        });
                     });
                 }
             }
@@ -218,8 +223,8 @@ Page {
         profileName.text = Model.getName();
 
         sleeping.visible = Model.isSleeping();
-        sleepMenu.text = Model.isSleeping() ? qsTr("Check Out of Inn") : qsTr("Rest in the Inn")
-        sleepMenu.remorseText = Model.isSleeping() ? qsTr("Checking out of inn") : qsTr("Resting in the inn")
+        sleepMenuItem.text = Model.isSleeping() ? qsTr("Check Out of Inn") : qsTr("Rest in the Inn")
+        sleepMenuItem.remorseText = Model.isSleeping() ? qsTr("Checking out of inn") : qsTr("Resting in the inn")
 
         gold.value = Model.getGold();
         gems.value = Model.getGems();

@@ -118,113 +118,113 @@
         <translation>Déconnexion</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="36"/>
+        <location filename="../qml/pages/Main.qml" line="41"/>
         <source>Refresh</source>
         <translation>Rafraîchir</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="59"/>
+        <location filename="../qml/pages/Main.qml" line="64"/>
         <source>Profile</source>
         <translation>Profil</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="98"/>
+        <location filename="../qml/pages/Main.qml" line="103"/>
         <source>Resting in the Inn</source>
         <comment>status</comment>
         <translation>Se repose à l&apos;auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="109"/>
+        <location filename="../qml/pages/Main.qml" line="114"/>
         <source>Gems</source>
         <translation>Gemmes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="115"/>
+        <location filename="../qml/pages/Main.qml" line="120"/>
         <source>Gold</source>
         <translation>Or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="121"/>
+        <location filename="../qml/pages/Main.qml" line="126"/>
         <source>Level</source>
         <translation>Niveau</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="136"/>
+        <location filename="../qml/pages/Main.qml" line="141"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="143"/>
+        <location filename="../qml/pages/Main.qml" line="148"/>
         <source>Experience</source>
         <translation>Expérience</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="150"/>
+        <location filename="../qml/pages/Main.qml" line="155"/>
         <source>Mana</source>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="159"/>
+        <location filename="../qml/pages/Main.qml" line="164"/>
         <source>Tasks</source>
         <translation>Tâches</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="166"/>
+        <location filename="../qml/pages/Main.qml" line="171"/>
         <source>Refill your health</source>
         <translation>Restaurez votre santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="175"/>
+        <location filename="../qml/pages/Main.qml" line="180"/>
         <source>Habits</source>
         <translation>Habitudes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="184"/>
+        <location filename="../qml/pages/Main.qml" line="189"/>
         <source>Dailies</source>
         <translation>Quotidiennes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="193"/>
+        <location filename="../qml/pages/Main.qml" line="198"/>
         <source>To-Dos</source>
         <translation>À faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="200"/>
+        <location filename="../qml/pages/Main.qml" line="205"/>
         <source>Rewards</source>
         <translation>Récompenses</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="206"/>
+        <location filename="../qml/pages/Main.qml" line="211"/>
         <source>Health Potion</source>
         <translation>Potion de santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="207"/>
+        <location filename="../qml/pages/Main.qml" line="212"/>
         <source>Costs %1 Gold</source>
         <translation>Coûte %1 pièce(s) d’or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="209"/>
+        <location filename="../qml/pages/Main.qml" line="214"/>
         <source>Buying Health Potion</source>
         <translation>Achat d’une Potion de Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="221"/>
+        <location filename="../qml/pages/Main.qml" line="226"/>
         <source>Check Out of Inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="221"/>
+        <location filename="../qml/pages/Main.qml" line="226"/>
         <source>Rest in the Inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="222"/>
+        <location filename="../qml/pages/Main.qml" line="227"/>
         <source>Checking out of inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="222"/>
+        <location filename="../qml/pages/Main.qml" line="227"/>
         <source>Resting in the inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
