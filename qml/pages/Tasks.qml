@@ -115,11 +115,11 @@ Page {
                 MenuItem {
                     visible: model.cltotal > 0 || !!model.notes.trim();
                     text: model.cltotal > 0
-                          ? qsTr("View Details")
-                          : qsTr("View Details and Checklist");
+                          ? qsTr("View Details and Checklist")
+                          : qsTr("View Details");
 
                     onClicked: {
-                        pageStack.push(Qt.resolvedUrl("Checklist.qml"),
+                        pageStack.push(Qt.resolvedUrl("TaskDetails.qml"),
                                        {
                                            taskMode: mode,
                                            taskName: model.text,

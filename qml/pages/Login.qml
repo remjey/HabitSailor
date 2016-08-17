@@ -43,7 +43,7 @@ Dialog {
 
             DialogHeader {
                 dialog: loginPage
-                acceptText: "Login"
+                acceptText: qsTr("Login")
                 title: "HabitSailor"
             }
 
@@ -56,7 +56,7 @@ Dialog {
             }
 
             SectionHeader {
-                text: "Login"
+                text: qsTr("Login")
             }
 
             TextSwitch {

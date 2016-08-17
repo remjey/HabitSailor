@@ -2,29 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>Checklist</name>
-    <message>
-        <source>Daily</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Extra Notes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Checklist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To-Do</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CoverPage</name>
     <message>
         <source>Dailies</source>
@@ -97,6 +74,10 @@
     </message>
     <message>
         <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -178,6 +159,26 @@
         <source>Buying Health Potion</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Resting in the Inn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check Out of Inn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rest in the Inn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checking out of inn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resting in the inn</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Revive</name>
@@ -199,6 +200,29 @@
     </message>
     <message>
         <source>Refilling your health</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TaskDetails</name>
+    <message>
+        <source>To-Do</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Daily</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Extra Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checklist</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -304,6 +328,10 @@
     </message>
     <message>
         <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot toggle sleeping status: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

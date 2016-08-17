@@ -67,6 +67,7 @@ DISTFILES += \
     rpm/harbour-HabitSailor.changes.in \
     qml/harbour-HabitSailor.qml \
     qml/components/TaskItem.qml \
-    qml/pages/Checklist.qml \
-    qml/pages/Tasks.qml
+    qml/cover/CoverPage.qml \
+    qml/pages/Tasks.qml \
+    qml/pages/TaskDetails.qml
 

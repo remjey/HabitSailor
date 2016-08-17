@@ -54,6 +54,8 @@ Page {
                 visible: !!taskNotes.trim()
             }
 
+            // TODO maybe add some elements from the task object here like due date etc
+
             SectionHeader {
                 text: qsTr("Checklist")
                 visible: model.count > 0

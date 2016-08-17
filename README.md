@@ -14,9 +14,10 @@ Also I don’t like very much the Android emulation stack.
 
 ## Roadmap
 
-Already working:
+Working:
 
 * Login/Logout
+* Stay at Inn
 * Show basic profile info
 * Habits list, than can be upped or downed
 * List of dailies and To-Dos with subtasks support, than can be all checked or unchecked
@@ -27,7 +28,7 @@ Already working:
 
 Most importantly and in approximate order:
 
-* Add more data in the detailed view of tasks
+* Add more data in the detailed view of tasks, edit, delete and create tasks
 * React gracefully when connection drops (already done to some extent)
 * Automatic refresh, interval to be decided (when app returns active after long time? 1 hour period?)
 * About page
@@ -40,7 +41,6 @@ Some stuff that would be great in approximate order:
 * Filter tasks by tag, completed/not completed
 * Sort tasks by color
 * Other rewards (at least custom rewards and spells)
-* Tasks editing, creation, deletion
 * Social (team, guilds)
 
 

@@ -12,14 +12,14 @@ var update;
 
 // Read local data
 var getName, getLevel, getHp, getHpMax, getMp, getMpMax, getXp, getXpNext,
-        getGold, getGems;
+        getGold, getGems, isSleeping;
 var listHabits, listTodos, listDailies;
 var getProfilePictureUrl;
 
 // Mutate local and remote data
 var habitClick;
 var setTask, setSubtask;
-var revive;
+var toggleSleep, revive;
 var buyHealthPotion;
 
 // Signals
@@ -126,6 +126,7 @@ var signals = Qt.createQmlObject("\
         });
         cs.autofail = true;
         cs.push("/user", "get", {}, function (ok, r) {
+            data.sleeping = r.preferences.sleep;
             data.dateFormat = r.preferences.dateFormat;
             data.lastCron = new Date(r.lastCron);
             data.tasksOrder = r.tasksOrder;
@@ -201,6 +202,8 @@ var signals = Qt.createQmlObject("\
     getXpNext = function () { return data.stats.toNextLevel; }
     getGold = function () { return data.stats.gp; }
     getGems = function () { return data.balance * 4; }
+
+    isSleeping = function () { return data.sleeping; }
 
     listHabits = function () { return data.habits; }
     listTodos = function () {
@@ -296,6 +299,19 @@ var signals = Qt.createQmlObject("\
             } else if (cb) {
                 signals.showMessage(qsTr("Cannot update habit: %1").arg(o.message))
                 cb(false);
+            }
+        });
+    }
+
+    toggleSleep = function (cb) {
+        Rpc.call("/user/sleep", "post-no-body", {}, function (ok, o) {
+            if (ok) {
+                data.sleeping = o;
+                signals.updateStats();
+                if (cb) cb(true, o);
+            } else {
+                signals.showMessage(qsTr("Cannot toggle sleeping status: %1").arg(o.message))
+                if (cb) cb(false);
             }
         });
     }

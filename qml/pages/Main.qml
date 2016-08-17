@@ -22,6 +22,16 @@ Page {
                 }
             }
             MenuItem {
+                id: sleepMenu
+                property string remorseText: ""
+                text: ""
+                onClicked: {
+                    globalRemorse.execute(remorseText, function () {
+                        Model.toggleSleep();
+                    });
+                }
+            }
+            MenuItem {
                 id: refreshMenuItem
                 text: qsTr("Refresh")
                 onClicked: {
@@ -80,6 +90,14 @@ Page {
                             font.pixelSize: Theme.fontSizeLarge
                             wrapMode: Text.WordWrap
                             horizontalAlignment: Text.AlignHCenter
+                        }
+
+                        Label {
+                            id: sleeping
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            text: qsTr("Resting in the Inn")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.secondaryHighlightColor
                         }
 
                         Row {
@@ -198,6 +216,15 @@ Page {
 
     function update() {
         profileName.text = Model.getName();
+
+        sleeping.visible = Model.isSleeping();
+        sleepMenu.text = Model.isSleeping() ? qsTr("Check Out of Inn") : qsTr("Rest in the Inn")
+        sleepMenu.remorseText = Model.isSleeping() ? qsTr("Checking out of inn") : qsTr("Resting in the inn")
+
+        gold.value = Model.getGold();
+        gems.value = Model.getGems();
+        level.value = Model.getLevel();
+
         health.value = Model.getHp();
         health.maximum = Model.getHpMax();
         mana.visible = Model.getLevel() >= 10;
@@ -205,9 +232,6 @@ Page {
         mana.value = Model.getMp();
         exp.maximum = Model.getXpNext();
         exp.value = Model.getXp();
-        gold.value = Model.getGold();
-        gems.value = Model.getGems();
-        level.value = Model.getLevel();
     }
 
     Component.onCompleted: {
