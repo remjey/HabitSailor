@@ -4,9 +4,14 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="145"/>
+        <location filename="../qml/cover/CoverPage.qml" line="153"/>
         <source>Dailies</source>
         <translation>Quotid.</translation>
+    </message>
+    <message>
+        <location filename="../qml/cover/CoverPage.qml" line="168"/>
+        <source>Resting</source>
+        <translation>Repos</translation>
     </message>
 </context>
 <context>
@@ -125,7 +130,8 @@
     <message>
         <location filename="../qml/pages/Main.qml" line="98"/>
         <source>Resting in the Inn</source>
-        <translation>Rester à l’auberge</translation>
+        <comment>status</comment>
+        <translation>Se repose à l&apos;auberge</translation>
     </message>
     <message>
         <location filename="../qml/pages/Main.qml" line="109"/>

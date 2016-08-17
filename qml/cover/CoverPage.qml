@@ -24,7 +24,14 @@ CoverBackground {
                 if (item.completed) completed++;
                 if (item.activeToday && !item.completed) dailiesList.model.append(item);
             });
-            completedDailies.text = completed + "/" + active;
+            if (Model.isSleeping()) {
+                sleeping.visible = true;
+                dailiesRow.visible = false;
+            } else {
+                sleeping.visible = false;
+                dailiesRow.visible = true;
+                completedDailies.text = completed + "/" + active;
+            }
         }
     }
 
@@ -139,6 +146,7 @@ CoverBackground {
         }
 
         Row {
+            id: dailiesRow
             x: Theme.paddingMedium
             spacing: Theme.paddingMedium
             Label {
@@ -152,6 +160,14 @@ CoverBackground {
                 text: ""
                 font.pixelSize: Theme.fontSizeSmall
             }
+        }
+
+        Label {
+            id: sleeping
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: qsTr("Resting")
+            color: Theme.secondaryColor
+            font.pixelSize: Theme.fontSizeSmall
         }
 
     }

@@ -7,6 +7,10 @@
         <source>Dailies</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Resting</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Habits</name>
@@ -160,10 +164,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Resting in the Inn</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Check Out of Inn</source>
         <translation type="unfinished"></translation>
     </message>
@@ -177,6 +177,11 @@
     </message>
     <message>
         <source>Resting in the inn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resting in the Inn</source>
+        <comment>status</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

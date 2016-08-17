@@ -95,7 +95,7 @@ Page {
                         Label {
                             id: sleeping
                             anchors.horizontalCenter: parent.horizontalCenter
-                            text: qsTr("Resting in the Inn")
+                            text: qsTr("Resting in the Inn", "status")
                             font.pixelSize: Theme.fontSizeSmall
                             color: Theme.secondaryHighlightColor
                         }
