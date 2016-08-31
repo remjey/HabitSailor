@@ -131,7 +131,6 @@ Dialog {
 
                 BusyIndicator {
                     id: connectBusy
-                    anchors.topMargin: Theme.paddingLarge
                     anchors.horizontalCenter: parent.horizontalCenter
                     running: true
                     size: BusyIndicatorSize.Large

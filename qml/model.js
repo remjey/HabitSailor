@@ -18,7 +18,7 @@ var getProfilePictureUrl;
 
 // Mutate local and remote data
 var habitClick;
-var setTask, setSubtask;
+var setTask, setSubtask, createTask;
 var toggleSleep, revive;
 var buyHealthPotion;
 
@@ -119,6 +119,41 @@ var signals = Qt.createQmlObject("\
         return !!(configGet("apiUser") && configGet("apiKey"));
     }
 
+    function prepareTask(item) {
+        item.color = colorForValue(item.value);
+        item.activeToday = true;
+        item.missedDueDate = false;
+        switch (item.type) {
+        case "todo":
+            if (item.date) {
+                var dueDate = new Date(item.date);
+                item.missedDueDate = item.date && dueDate.getTime() < data.lastCron.getTime();
+                item.dueDateFormatted = dueDate.format(data.dateFormat);
+            }
+            break;
+        case "daily":
+            if (item.startDate) {
+                var startDate = new Date(item.startDate);
+                item.activeToday = startDate <= data.lastCron;
+                if (item.activeToday) {
+                    if (item.everyX === 1) {
+                        item.activeToday = item.repeat[weekDays[data.lastCron.getDay()]]
+                    } else {
+                        var days = Math.floor((data.lastCron.getTime() - Date.parse(item.startDate)) / 86400000);
+                        item.activeToday = (days % item.everyX == 0);
+                    }
+                } else {
+                    item.startDateFormatted = startDate.format(data.dateFormat);
+                }
+            } else {
+                item.activeToday = false;
+            }
+            break;
+        default:
+        }
+        return item;
+    }
+
     update = function (cb) {
         var cs = new Rpc.CallSeq(function (o) {
             signals.showMessage(qsTr("Bad or no response from server: %1").arg(o.message))
@@ -140,40 +175,13 @@ var signals = Qt.createQmlObject("\
             data.tasks = [];
             data.rewards = [];
             for (var i in r) {
-                var item = r[i];
-                item.color = colorForValue(item.value);
-                item.activeToday = true;
-                item.missedDueDate = false;
+                var item = prepareTask(r[i]);
                 switch (item.type) {
                 case "habit":
                     data.habits.push(item);
                     break;
                 case "todo":
-                    if (item.date) {
-                        var dueDate = new Date(item.date);
-                        item.missedDueDate = item.date && dueDate.getTime() < data.lastCron.getTime();
-                        item.dueDateFormatted = dueDate.format(data.dateFormat);
-                    }
-                    data.tasks.push(item);
-                    break;
                 case "daily":
-                    if (item.startDate) {
-                        var startDate = new Date(item.startDate);
-                        item.activeToday = startDate <= data.lastCron;
-                        if (item.activeToday) {
-                            if (item.everyX === 1) {
-                                item.activeToday = item.repeat[weekDays[data.lastCron.getDay()]]
-                            } else {
-                                var days = Math.floor((data.lastCron.getTime() - Date.parse(item.startDate)) / 86400000);
-                                item.activeToday = (days % item.everyX == 0);
-                            }
-                        } else {
-                            item.startDateFormatted = startDate.format(data.dateFormat);
-                        }
-                    } else {
-                        item.activeToday = false;
-                    }
-
                     data.tasks.push(item);
                     break;
                 case "reward":
@@ -380,8 +388,43 @@ var signals = Qt.createQmlObject("\
                 else task.completed = checked
                 partialStatsUpdate(o);
                 if (cb) cb(true);
+            } else {
+                signals.showMessage(qsTr("Cannot update task: %1").arg(o.message));
+                if (cb) cb(false);
+            }
+        });
+    }
+
+    var taskPriorities = [ 0.1, 1, 1.5, 2 ];
+
+    createTask = function (type, o, cb) {
+        //TODO other types
+        var task = {
+            type: type,
+            text: o.title,
+            notes: o.notes,
+            priority: taskPriorities[o.difficulty],
+        };
+
+        if (type === "habit") {
+            task.up = o.up;
+            task.down = o.down;
+        } else {
+            //TODO runtime error
+            return;
+        }
+
+        Rpc.call("/tasks/user", "post", task, function (ok, o) {
+            if (ok) {
+                if (type === "habit") {
+                    prepareTask(o);
+                    data.tasksOrder.habits.unshift(o.id);
+                    data.habits.unshift(o);
+                }
+                signals.updateTasks();
+                if (cb) cb(true);
             } else if (cb) {
-                signals.showMessage(qsTr("Cannot update task: %1").arg(o.message))
+                signals.showMessage(qsTr("Cannot create new task: %1").arg(o.message));
                 if (cb) cb(false);
             }
         });

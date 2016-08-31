@@ -17,12 +17,17 @@
 <context>
     <name>Habits</name>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="15"/>
+        <location filename="../qml/pages/Habits.qml" line="16"/>
+        <source>New Habit</source>
+        <translation>Nouvelle habitude</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Habits.qml" line="24"/>
         <source>Habits</source>
         <translation>Habitudes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="63"/>
+        <location filename="../qml/pages/Habits.qml" line="72"/>
         <source>This item has no enabled buttons</source>
         <translation>Cet item n’a pas de bouton activé</translation>
     </message>
@@ -128,103 +133,103 @@
         <translation>Profil</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="103"/>
+        <location filename="../qml/pages/Main.qml" line="107"/>
         <source>Resting in the Inn</source>
         <comment>status</comment>
         <translation>Se repose à l&apos;auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="114"/>
+        <location filename="../qml/pages/Main.qml" line="119"/>
         <source>Gems</source>
         <translation>Gemmes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="120"/>
+        <location filename="../qml/pages/Main.qml" line="125"/>
         <source>Gold</source>
         <translation>Or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="126"/>
+        <location filename="../qml/pages/Main.qml" line="131"/>
         <source>Level</source>
         <translation>Niveau</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="141"/>
+        <location filename="../qml/pages/Main.qml" line="146"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="148"/>
+        <location filename="../qml/pages/Main.qml" line="153"/>
         <source>Experience</source>
         <translation>Expérience</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="155"/>
+        <location filename="../qml/pages/Main.qml" line="160"/>
         <source>Mana</source>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="164"/>
+        <location filename="../qml/pages/Main.qml" line="169"/>
         <source>Tasks</source>
         <translation>Tâches</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="171"/>
+        <location filename="../qml/pages/Main.qml" line="176"/>
         <source>Refill your health</source>
         <translation>Restaurez votre santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="180"/>
+        <location filename="../qml/pages/Main.qml" line="185"/>
         <source>Habits</source>
         <translation>Habitudes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="189"/>
+        <location filename="../qml/pages/Main.qml" line="194"/>
         <source>Dailies</source>
         <translation>Quotidiennes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="198"/>
+        <location filename="../qml/pages/Main.qml" line="203"/>
         <source>To-Dos</source>
         <translation>À faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="205"/>
+        <location filename="../qml/pages/Main.qml" line="210"/>
         <source>Rewards</source>
         <translation>Récompenses</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="211"/>
+        <location filename="../qml/pages/Main.qml" line="216"/>
         <source>Health Potion</source>
         <translation>Potion de santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="212"/>
+        <location filename="../qml/pages/Main.qml" line="217"/>
         <source>Costs %1 Gold</source>
         <translation>Coûte %1 pièce(s) d’or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="214"/>
+        <location filename="../qml/pages/Main.qml" line="219"/>
         <source>Buying Health Potion</source>
         <translation>Achat d’une Potion de Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="226"/>
+        <location filename="../qml/pages/Main.qml" line="231"/>
         <source>Check Out of Inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="226"/>
+        <location filename="../qml/pages/Main.qml" line="231"/>
         <source>Rest in the Inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="227"/>
+        <location filename="../qml/pages/Main.qml" line="232"/>
         <source>Checking out of inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="227"/>
+        <location filename="../qml/pages/Main.qml" line="232"/>
         <source>Resting in the inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
@@ -283,6 +288,84 @@
         <location filename="../qml/pages/TaskDetails.qml" line="60"/>
         <source>Checklist</source>
         <translation>Check-list</translation>
+    </message>
+</context>
+<context>
+    <name>TaskEdit</name>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="42"/>
+        <source>Cancel</source>
+        <translation>Annuler</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="43"/>
+        <source>Create</source>
+        <translation>Créer</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="44"/>
+        <source>New Habit</source>
+        <translation>Nouvelle habitude</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="50"/>
+        <source>Title</source>
+        <translation>Titre</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="62"/>
+        <source>Extra Notes</source>
+        <translation>Notes supplémentaires</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="67"/>
+        <source>Direction / Actions</source>
+        <translation>Direction / Actions</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="74"/>
+        <source>Up / Plus</source>
+        <translation>Haut / Plus</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="81"/>
+        <source>Down / Minus</source>
+        <translation>Bas / Moins</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="85"/>
+        <source>Advanced Options</source>
+        <translation>Options avancées</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="91"/>
+        <source>Difficulty</source>
+        <translation>Difficulté</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="95"/>
+        <source>trivial</source>
+        <translation>triviale</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="96"/>
+        <source>easy</source>
+        <translation>facile</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="97"/>
+        <source>medium</source>
+        <translation>moyenne</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="98"/>
+        <source>hard</source>
+        <translation>difficile</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="122"/>
+        <source>Creating Habit</source>
+        <translation>Création de l’habitude</translation>
     </message>
 </context>
 <context>
@@ -349,74 +432,79 @@
 <context>
     <name>model</name>
     <message>
-        <location filename="../qml/model.js" line="124"/>
+        <location filename="../qml/model.js" line="159"/>
         <source>Bad or no response from server: %1</source>
         <translation>Aucune ou mauvaise réponse du serveur: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="254"/>
+        <location filename="../qml/model.js" line="262"/>
         <source>You must first refill your health from the profile page before you can do this!</source>
         <translation>Vous devez d’abord récupérer votre santé depuis la page de profil avant de pouvoir faire ça !</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="260"/>
+        <location filename="../qml/model.js" line="268"/>
         <source>Level</source>
         <translation>Niveau</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="261"/>
+        <location filename="../qml/model.js" line="269"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="262"/>
+        <location filename="../qml/model.js" line="270"/>
         <source>Mana</source>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="263"/>
+        <location filename="../qml/model.js" line="271"/>
         <source>Experience</source>
         <translation>Expérience</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="264"/>
+        <location filename="../qml/model.js" line="272"/>
         <source>Gold</source>
         <translation>Or</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="273"/>
+        <location filename="../qml/model.js" line="281"/>
         <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
         <translation>Désolé, vous avez épuisé votre santé… Restaurez votre santé depuis la page de profil pour continuer !</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="300"/>
+        <location filename="../qml/model.js" line="308"/>
         <source>Cannot update habit: %1</source>
         <translation>Impossible de mettre à jour l’habitude: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="313"/>
+        <location filename="../qml/model.js" line="321"/>
         <source>Cannot toggle sleeping status: %1</source>
         <translation>Impossible de changer la présence à l’auberge: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="325"/>
+        <location filename="../qml/model.js" line="333"/>
         <source>Cannot refill health: %1</source>
         <translation>Impossible de restaurer la santé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="338"/>
+        <location filename="../qml/model.js" line="346"/>
         <source>Cannot buy Health Potion: %1</source>
         <translation>Impossible d’acheter une Potion de santé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="356"/>
+        <location filename="../qml/model.js" line="364"/>
         <source>Cannot update subtask: %1</source>
         <translation>Impossible de mettre à jour la sous-tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="384"/>
+        <location filename="../qml/model.js" line="392"/>
         <source>Cannot update task: %1</source>
         <translation>Impossible de mettre à jour la tâche: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/model.js" line="427"/>
+        <source>Cannot create new task: %1</source>
+        <translation>Impossible de créer la tâche: %1</translation>
     </message>
 </context>
 <context>
@@ -437,22 +525,22 @@
         <translation>Non authorisé, ou mauvais utilisateur ou mot de passe</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="46"/>
+        <location filename="../qml/rpc.js" line="48"/>
         <source>Invalid data or no data was received from server</source>
         <translation>Données invalides ou pas de données reçues du serveur</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="63"/>
+        <location filename="../qml/rpc.js" line="65"/>
         <source>Invalid method for rpc call</source>
         <translation>Méthode invalide pour le RPC</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="100"/>
+        <location filename="../qml/rpc.js" line="102"/>
         <source>Unexplained error: %1 (status: %2)</source>
         <translation>Erreur non explicite: %1 (statut: %2)</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="102"/>
+        <location filename="../qml/rpc.js" line="104"/>
         <source>Unknown error, status: %1</source>
         <translation>Erreur inconnue, statut: %1</translation>
     </message>

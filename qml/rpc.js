@@ -10,12 +10,12 @@ function populatePath(path, data) {
     return path.replace(/:(:|[a-zA-Z_0-9]+\b)/g, function (match, varname) {
         if (varname === "::") return ":";
         var r = data[varname];
-        if (typeof(r) == "string") return r;
+        if (r !== undefined && r !== null) return r.toString();
         return "";
     });
 }
 
-function call(path, method, data, onload) {
+function call(path, method, data, onload, debug) {
     var xhr = new XMLHttpRequest();
     var fullpath = populatePath(apiUrl + "/api/v3" + path, data);
     var noBody = method === "get";
@@ -31,8 +31,10 @@ function call(path, method, data, onload) {
     }
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
-            //print("XHR Status: ", xhr.status);
-            //print("XHR Response: ", xhr.responseText);
+            if (debug) {
+                print("XHR Status: ", xhr.status);
+                print("XHR Response: ", xhr.responseText);
+            }
             var o;
             try {
                 if (typeof(xhr.responseText) == "string")

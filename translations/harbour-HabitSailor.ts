@@ -22,6 +22,10 @@
         <source>This item has no enabled buttons</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>New Habit</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Init</name>
@@ -232,6 +236,69 @@
     </message>
 </context>
 <context>
+    <name>TaskEdit</name>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Habit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Extra Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Direction / Actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up / Plus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Down / Minus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Difficulty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Creating Habit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>trivial</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>easy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advanced Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TaskItem</name>
     <message>
         <source>Due Date: %1</source>
@@ -337,6 +404,10 @@
     </message>
     <message>
         <source>Cannot toggle sleeping status: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot create new task: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

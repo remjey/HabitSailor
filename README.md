@@ -38,7 +38,7 @@ Some stuff that would be great in approximate order:
 
 * Use data from user profile to build up-to-date profile picture instead of requesting a png profile picture (which may be old)
 * Bring back todos from the dead (aka completed) state
-* Filter tasks by tag, completed/not completed
+* Filter tasks by tag, completed/not completed, add tag in task edit/creation
 * Sort tasks by color
 * Other rewards (at least custom rewards and spells)
 * Social (team, guilds)

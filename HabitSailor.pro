@@ -69,5 +69,6 @@ DISTFILES += \
     qml/components/TaskItem.qml \
     qml/cover/CoverPage.qml \
     qml/pages/Tasks.qml \
-    qml/pages/TaskDetails.qml
+    qml/pages/TaskDetails.qml \
+    qml/pages/TaskEdit.qml
 

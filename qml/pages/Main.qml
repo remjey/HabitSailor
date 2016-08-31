@@ -73,7 +73,7 @@ Page {
                     spacing: Theme.paddingMedium
 
                     PanelBackground {
-                        width: Math.min(root.width / 3, Theme.itemSizeExtraLarge * 3)
+                        width: Math.min(root.width / 3.2, Theme.itemSizeExtraLarge * 3)
                         height: width
                         Image {
                             anchors.fill: parent
@@ -86,23 +86,28 @@ Page {
                     Column {
                         width: parent.width - profilePicture.width - parent.spacing
                         anchors.verticalCenter: parent.verticalCenter
+                        spacing: Theme.paddingMedium
 
-                        Label {
-                            id: profileName
+                        Column {
                             width: parent.width
 
-                            color: Theme.highlightColor
-                            font.pixelSize: Theme.fontSizeLarge
-                            wrapMode: Text.WordWrap
-                            horizontalAlignment: Text.AlignHCenter
-                        }
+                            Label {
+                                id: profileName
+                                width: parent.width
 
-                        Label {
-                            id: sleeping
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            text: qsTr("Resting in the Inn", "status")
-                            font.pixelSize: Theme.fontSizeSmall
-                            color: Theme.secondaryHighlightColor
+                                color: Theme.highlightColor
+                                font.pixelSize: Theme.fontSizeLarge
+                                wrapMode: Text.WordWrap
+                                horizontalAlignment: Text.AlignHCenter
+                            }
+
+                            Label {
+                                id: sleeping
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                text: qsTr("Resting in the Inn", "status")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.secondaryHighlightColor
+                            }
                         }
 
                         Row {

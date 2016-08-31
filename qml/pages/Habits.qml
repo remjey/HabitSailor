@@ -5,11 +5,20 @@ import "../model.js" as Model
 
 Page {
 
-    ListView {
+    SilicaListView {
         id: list
         anchors.fill: parent
 
         model: ListModel {}
+
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("New Habit")
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("TaskEdit.qml", { type: "habit" }));
+                }
+            }
+        }
 
         header: PageHeader {
             title: qsTr("Habits")
