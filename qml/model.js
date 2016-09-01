@@ -22,6 +22,9 @@ var setTask, setSubtask, createTask;
 var toggleSleep, revive;
 var buyHealthPotion;
 
+// Utils
+var formatDate, getLastCronDate
+
 // Signals
 var signals = Qt.createQmlObject("\
     import QtQuick 2.0;
@@ -80,6 +83,16 @@ var signals = Qt.createQmlObject("\
             }
         }
         return r;
+    }
+
+    formatDate = function (date) {
+        if (data && data.dateFormat) return date.format(data.dateFormat);
+        else return date.toLocaleDateString();
+    }
+
+    getLastCronDate = function (date) {
+        if (data && data.lastCron) return data.lastCron;
+        else return new Date();
     }
 
     init = function () {
@@ -398,6 +411,8 @@ var signals = Qt.createQmlObject("\
     }
 
     var taskPriorities = [ 0.1, 1, 1.5, 2 ];
+    var repeatEveryDay = { m: true, t: true, w: true, th: true, f: true, s: true, su: true };
+    var repeatNever = { m: false, t: false, w: false, th: false, f: false, s: false, su: false };
 
     createTask = function (type, o, cb) {
         //TODO other types
@@ -411,6 +426,25 @@ var signals = Qt.createQmlObject("\
         if (type === "habit") {
             task.up = o.up;
             task.down = o.down;
+        } else if (type === "daily") {
+            task.startDate = o.startDate;
+            if (o.repeatType === "daily") {
+                task.frequency = "weekly";
+                task.everyX = 1;
+                task.repeat = repeatEveryDay;
+            } else if (o.repeatType === "weekly") {
+                task.frequency = "weekly";
+                task.everyX = 1;
+                task.repeat = o.weekDays;
+            } else if (o.repeatType === "period") {
+                task.frequency = "daily";
+                task.everyX = o.period;
+                task.repeat = repeatEveryDay;
+            } else if (o.repeatType === "never") {
+                task.frequency = "weekly";
+                task.everyX = 1;
+                task.repeat = repeatNever;
+            }
         } else {
             //TODO runtime error
             return;
@@ -422,7 +456,12 @@ var signals = Qt.createQmlObject("\
                     prepareTask(o);
                     data.tasksOrder.habits.unshift(o.id);
                     data.habits.unshift(o);
+                } else if (type === "daily" || type === "todo") {
+                    prepareTask(o);
+                    data.tasksOrder[type + "s"].unshift(o.id);
+                    data.tasks.push(o);
                 }
+
                 signals.updateTasks();
                 if (cb) cb(true);
             } else if (cb) {

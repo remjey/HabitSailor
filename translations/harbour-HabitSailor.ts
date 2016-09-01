@@ -278,10 +278,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Creating Habit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>trivial</source>
         <translation type="unfinished"></translation>
     </message>
@@ -299,6 +295,86 @@
     </message>
     <message>
         <source>Advanced Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Repeat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>every day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>periodically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fri</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sun</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>never, make this daily optional</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Period length in days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Schedule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>on certain week days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New To-Do</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Daily</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Creating New Habit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Creating New Daily</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Creating New To-Do</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -349,6 +425,14 @@
     </message>
     <message>
         <source>Quick Checklist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add New To-Do</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add New Daily</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

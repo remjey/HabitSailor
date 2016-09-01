@@ -195,6 +195,8 @@ CoverBackground {
     }
 
     ListView {
+        // TODO When all dailies are done, display a nice message!
+
         id: dailiesList
         anchors.fill: parent
         anchors.margins: Theme.paddingSmall

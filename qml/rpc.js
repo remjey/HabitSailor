@@ -24,6 +24,7 @@ function call(path, method, data, onload, debug) {
         noBody = true;
     }
     print("XHR Query: " + method + " " + fullpath)
+    if (debug) print("XHR Query Data: " + JSON.stringify(data, null, 2));
     xhr.open(method, fullpath);
     if (apiKey && apiUser) {
         xhr.setRequestHeader("x-api-key", apiKey);

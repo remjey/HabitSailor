@@ -15,7 +15,7 @@ Page {
             MenuItem {
                 text: qsTr("New Habit")
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("TaskEdit.qml", { type: "habit" }));
+                    pageStack.push("TaskEdit.qml", { taskType: "habit" });
                 }
             }
         }

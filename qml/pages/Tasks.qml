@@ -7,9 +7,20 @@ Page {
 
     property string mode: "todos" // either "todos" or "dailies"
 
-    ListView {
+    SilicaListView {
         id: list
         anchors.fill: parent
+
+        PullDownMenu {
+            MenuItem {
+                text: mode == "todos"
+                      ? qsTr("Add New To-Do")
+                      : qsTr("Add New Daily")
+                onClicked: {
+                    pageStack.push("TaskEdit.qml", { taskType: mode == "todos" ? "todo" : "daily" });
+                }
+            }
+        }
 
         header: PageHeader {
             title: mode == "todos" ? qsTr("To-Dos") : qsTr("Dailies")

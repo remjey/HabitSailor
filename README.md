@@ -25,6 +25,7 @@ Working:
 * Detects death, and show revive action from profile page
 * Buy Health Potion
 * Covers that shows profile info or remaining uncompleted dailies
+* Partial support for adding habits and dailies
 
 Most importantly and in approximate order:
 
