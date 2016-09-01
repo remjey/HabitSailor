@@ -25,11 +25,11 @@ Working:
 * Detects death, and show revive action from profile page
 * Buy Health Potion
 * Covers that shows profile info or remaining uncompleted dailies
-* Partial support for adding habits and dailies
+* Creating new habits, dailies and todos with checklists (without tags though)
 
 Most importantly and in approximate order:
 
-* Add more data in the detailed view of tasks, edit, delete and create tasks
+* Add more data in the detailed view of tasks, edit, delete tasks
 * React gracefully when connection drops (already done to some extent)
 * Automatic refresh, interval to be decided (when app returns active after long time? 1 hour period?)
 * About page

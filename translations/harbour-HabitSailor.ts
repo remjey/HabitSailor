@@ -17,6 +17,13 @@
     </message>
 </context>
 <context>
+    <name>DatePickerButton</name>
+    <message>
+        <source>none</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Habits</name>
     <message>
         <source>Habits</source>
@@ -375,6 +382,18 @@
     </message>
     <message>
         <source>Creating New To-Do</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checklist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Checklist Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Due Date</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

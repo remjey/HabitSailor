@@ -20,6 +20,14 @@
     </message>
 </context>
 <context>
+    <name>DatePickerButton</name>
+    <message>
+        <location filename="../qml/components/DatePickerButton.qml" line="21"/>
+        <source>none</source>
+        <translation>aucune</translation>
+    </message>
+</context>
+<context>
     <name>Habits</name>
     <message>
         <location filename="../qml/pages/Habits.qml" line="16"/>
@@ -64,7 +72,7 @@
     <name>Login</name>
     <message>
         <location filename="../qml/pages/Login.qml" line="11"/>
-        <location filename="../qml/pages/Login.qml" line="129"/>
+        <location filename="../qml/pages/Login.qml" line="132"/>
         <source>Connecting</source>
         <translation>Connexion</translation>
     </message>
@@ -105,12 +113,12 @@
         <translation>URL du serveur Habitica</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="86"/>
+        <location filename="../qml/pages/Login.qml" line="89"/>
         <source>Username or email address</source>
         <translation>Nom d’utilisateur ou adresse e-mail</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="97"/>
+        <location filename="../qml/pages/Login.qml" line="100"/>
         <source>Password</source>
         <translation>Mot de passe</translation>
     </message>
@@ -298,12 +306,12 @@
 <context>
     <name>TaskEdit</name>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="78"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="93"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="79"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="94"/>
         <source>Create</source>
         <translation>Créer</translation>
     </message>
@@ -313,64 +321,70 @@
         <translation>Nouvelle habitude</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="86"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="101"/>
         <source>Title</source>
         <translation>Titre</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="96"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="111"/>
         <source>Extra Notes</source>
         <translation>Notes supplémentaires</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="105"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="120"/>
         <source>Direction / Actions</source>
         <translation>Direction / Actions</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="112"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="127"/>
         <source>Up / Plus</source>
         <translation>Haut / Plus</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="119"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="134"/>
         <source>Down / Minus</source>
         <translation>Bas / Moins</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="128"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="143"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="159"/>
         <source>Schedule</source>
         <translation>Planification</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="134"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="165"/>
         <source>Start Date</source>
         <translation>Date de début</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="140"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="171"/>
         <source>Repeat</source>
         <translation>Répéter</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="150"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="181"/>
         <source>every day</source>
         <translation>chaqe jour</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="152"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="183"/>
         <source>periodically</source>
         <translation>périodiquement</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="153"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="184"/>
         <source>never, make this daily optional</source>
-        <translation type="unfinished">jamais, cette tâche est optionnelle</translation>
+        <translation>jamais, cette tâche est optionnelle</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="170"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="201"/>
         <source>Period length in days</source>
         <translation>Longueur de la période en jours</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="348"/>
+        <source>New Checklist Item</source>
+        <translation>Nouvelle sous-tâche</translation>
     </message>
     <message>
         <location filename="../qml/pages/TaskEdit.qml" line="22"/>
@@ -423,37 +437,47 @@
         <translation>dim</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="151"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="148"/>
+        <source>Due Date</source>
+        <translation>Date d’échéance</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="182"/>
         <source>on certain week days</source>
         <translation>certains jours de la semaine</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="243"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="300"/>
+        <source>Checklist</source>
+        <translation>Check-list</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="378"/>
         <source>Advanced Options</source>
         <translation>Options avancées</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="249"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="384"/>
         <source>Difficulty</source>
         <translation>Difficulté</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="253"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="388"/>
         <source>trivial</source>
         <translation>triviale</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="254"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="389"/>
         <source>easy</source>
         <translation>facile</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="255"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="390"/>
         <source>medium</source>
         <translation>moyenne</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="256"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="391"/>
         <source>hard</source>
         <translation>difficile</translation>
     </message>
@@ -612,7 +636,7 @@
         <translation>Impossible de mettre à jour la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="468"/>
+        <location filename="../qml/model.js" line="474"/>
         <source>Cannot create new task: %1</source>
         <translation>Impossible de créer la tâche: %1</translation>
     </message>

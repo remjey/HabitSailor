@@ -4,11 +4,13 @@ import Sailfish.Silica 1.0
 import "../model.js" as Model
 
 ValueButton {
-    property date selectedDate
+    property var selectedDate: null
+    property var defaultDate: null
+    property bool canClear: false
 
     function openDateDialog() {
         var dialog = pageStack.push("Sailfish.Silica.DatePickerDialog", {
-                        date: selectedDate
+                        date: selectedDate || defaultDate
                      })
 
         dialog.accepted.connect(function() {
@@ -16,7 +18,18 @@ ValueButton {
         })
     }
 
-    value: selectedDate ? Model.formatDate(selectedDate) : "Select"
+    value: selectedDate ? Model.formatDate(selectedDate) : qsTr("none")
     width: parent.width
-    onClicked: openDateDialog()
+    onClicked: {
+        openDateDialog()
+    }
+
+    IconButton {
+        visible: canClear && selectedDate
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        icon.source: "image://theme/icon-m-clear"
+
+        onClicked: selectedDate = null
+    }
 }

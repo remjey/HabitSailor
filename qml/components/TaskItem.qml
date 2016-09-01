@@ -13,8 +13,8 @@ ListItem {
     Rectangle {
         anchors.fill: parent;
         gradient: Gradient {
-            GradientStop { position: 0.0; color: Theme.rgba("red", 0.1) }
-            GradientStop { position: 1.0; color: Theme.rgba("red", 0.2) }
+            GradientStop { position: 0.0; color: Theme.rgba("red", 0.15) }
+            GradientStop { position: 1.0; color: Theme.rgba("red", 0.3) }
         }
         visible: model.missedDueDate && !listItem.highlighted;
     }

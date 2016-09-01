@@ -445,9 +445,15 @@ var signals = Qt.createQmlObject("\
                 task.everyX = 1;
                 task.repeat = repeatNever;
             }
+        } else if (type === "todo") {
+            task.date = o.dueDate;
         } else {
             //TODO runtime error
             return;
+        }
+
+        if (type === "daily" || type === "todo") {
+            task.checklist = o.checklist;
         }
 
         Rpc.call("/tasks/user", "post", task, function (ok, o) {

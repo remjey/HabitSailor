@@ -69,12 +69,15 @@ Dialog {
 
             TextField {
                 id: customHabitRpgUrl
-                visible: !useHabitica.checked
+                height: useHabitica.checked ? 0 : implicitHeight
                 width: parent.width
                 label: qsTr("URL of the custom Habitica server")
                 placeholderText: label
                 inputMethodHints: Qt.ImhUrlCharactersOnly
                 // TODO validator
+
+                Behavior on height { NumberAnimation { duration: 200 } }
+
                 EnterKey.enabled: text.length > 2
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
                 EnterKey.onClicked: login.focus = true

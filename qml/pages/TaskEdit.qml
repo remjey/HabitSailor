@@ -43,6 +43,20 @@ Dialog {
         return r;
     }
 
+    function makeChecklist() {
+        var r = [];
+        for (var i = 0; i < checklistModel.count; i++) {
+            var item = checklistModel.get(i);
+            if (item.text.trim() !== "")
+                r.push({
+                           // TODO id
+                           completed: item.completed,
+                           text: item.text
+                       })
+        }
+        return r;
+    }
+
     onAccepted: {
         var task = {
             title: taskTitle.text,
@@ -54,6 +68,8 @@ Dialog {
             weekDays: makeRepeatMap(),
             period: parseInt(taskPeriod.text),
             difficulty: taskDifficulty.currentIndex,
+            checklist: makeChecklist(),
+            dueDate: taskDueDate.selectedDate,
         };
 
         Model.createTask(taskType, task, function (ok) {
@@ -117,6 +133,22 @@ Dialog {
                     width: parent.width
                     checked: true
                     text: qsTr("Down / Minus")
+                }
+            }
+
+            Column {
+                width: parent.width
+                visible: taskType == "todo"
+
+                SectionHeader {
+                    text: qsTr("Schedule")
+                }
+
+                DatePickerButton {
+                    id: taskDueDate
+                    label: qsTr("Due Date")
+                    defaultDate: Model.getLastCronDate()
+                    canClear: true
                 }
             }
 
@@ -237,6 +269,110 @@ Dialog {
                 }
 
 
+            }
+
+            Column {
+                id: checklist
+                height: implicitHeight
+                width: parent.width
+                visible: taskType == "daily" || taskType == "todo"
+
+                Behavior on height {
+                    NumberAnimation { duration: 100 }
+                }
+
+                move: Transition {
+                    NumberAnimation {
+                        properties: "x,y"
+                        duration: 100
+                    }
+                }
+
+                add: Transition {
+                    NumberAnimation {
+                        properties: "opacity"
+                        from: 0
+                        to: 1
+                        duration: 100
+                    }
+                }
+
+                SectionHeader {
+                    text: qsTr("Checklist")
+                }
+
+                ListModel {
+                    id: checklistModel
+                    ListElement { text: ""; completed: false; keep: false }
+
+                    function manageItems() {
+                        for (var i = checklistModel.count - 2; i >= 0; i--) {
+                            var item = checklistModel.get(i);
+                            if (item.text.trim() === "" && !item.keep) {
+                                checklistModel.remove(i);
+                            }
+                        }
+                    }
+                }
+
+                Repeater {
+                    id: checklistRepeater
+                    model: checklistModel
+                    delegate: Item {
+                        id: checklistItem
+                        width: checklist.width // used instead of parent.width to remove a warning when the item is removed from its parent
+                        height: field.height
+
+                        function takeFocus() { field.focus = true; }
+
+                        TextField {
+                            id: field
+                            width: parent.width
+                            text: model.text
+
+                            onTextChanged: {
+                                checklistModel.setProperty(model.index, "text", text.trim());
+                                if (text.trim() != "" && model.index === checklistModel.count - 1) {
+                                    checklistModel.insert(model.index + 1, { text: "", completed: false, keep: false });
+                                } else if (text.trim() == "" && model.index === checklistModel.count - 2) {
+                                    checklistModel.remove(model.index + 1);
+                                }
+                                updateEnterKeyIcon()
+                            }
+                            onFocusChanged: {
+                                checklistModel.setProperty(model.index, "keep", focus);
+                                checklistModel.manageItems();
+                                if (focus) updateEnterKeyIcon();
+                            }
+
+                            placeholderText: model.index === checklistModel.count - 1
+                                             ? qsTr("New Checklist Item")
+                                             : ""
+                            labelVisible: false
+
+                            function updateEnterKeyIcon() {
+                                if (model.index === checklistModel.count - 1)
+                                    EnterKey.iconSource = "image://theme/icon-m-enter-close";
+                                else if (model.index === checklistModel.count - 2)
+                                    EnterKey.iconSource = "image://theme/icon-m-enter-next";
+                                else if (text.trim() != "")
+                                    EnterKey.iconSource = "image://theme/icon-m-add";
+                                else
+                                    EnterKey.iconSource = "image://theme/icon-m-remove";
+                            }
+
+                            EnterKey.onClicked: {
+                                if (model.index === checklistModel.count - 1) {
+                                    focus = false;
+                                } else {
+                                    if (text.trim() != "" && model.index < checklistModel.count - 2)
+                                        checklistModel.insert(model.index + 1, { text: "", completed: false, keep: true })
+                                    checklistRepeater.itemAt(model.index + 1).takeFocus();
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             SectionHeader {
