@@ -80,9 +80,9 @@ Page {
                             });
                         }
 
-                        SignalConnect {
-                            signl: Model.signals.setSubtask
-                            fun: function (taskId, subtaskId, checked) {
+                        Connections {
+                            target: Model.signals
+                            onSetSubtask: {
                                 if (subtaskId === sbbg.subtaskId)
                                     sbswitch.checked = checked;
                             }
@@ -190,14 +190,10 @@ Page {
         update();
     }
 
-    SignalConnect {
-        signl: Model.signals.updateTasks
-        fun: update
-    }
-
-    SignalConnect {
-        signl: Model.signals.setSubtask
-        fun: function (taskId, subtaskId, checked) {
+    Connections {
+        target: Model.signals
+        onUpdateTasks: update();
+        onSetSubtask: {
             for (var i = 0; i < tasksModel.count; i++) {
                 var task = tasksModel.get(i);
                 if (task.id !== taskId) continue;

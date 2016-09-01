@@ -5,9 +5,14 @@ import "../model.js" as Model
 
 CoverBackground {
 
-    SignalConnect {
-        signl: Model.signals.updateStats
-        fun: function () {
+    Connections {
+        target: Model.signals
+
+        onLogout: {
+            state = "INIT";
+        }
+
+        onUpdateStats: {
             if (state == "INIT") state = "STATS";
             name.text = Model.getName();
             profilePic.source = Qt.resolvedUrl(Model.getProfilePictureUrl());
@@ -20,9 +25,11 @@ CoverBackground {
             var completed = 0, active = 0;
             dailiesList.model.clear();
             var c = list.forEach(function (item) {
-                if (item.activeToday) active++;
-                if (item.completed) completed++;
-                if (item.activeToday && !item.completed) dailiesList.model.append(item);
+                if (item.activeToday) {
+                    active++;
+                    if (item.completed) completed++;
+                    else dailiesList.model.append(item);
+                }
             });
             if (Model.isSleeping()) {
                 sleeping.visible = true;
@@ -38,21 +45,21 @@ CoverBackground {
     states: [
         State {
             name: "INIT"
-            PropertyChanges { target: placeHolderImage; visible: true }
+            PropertyChanges { target: placeHolder; visible: true }
             PropertyChanges { target: content; visible: false }
             PropertyChanges { target: actionList; enabled: false }
             PropertyChanges { target: dailiesList; visible: false }
         },
         State {
             name: "STATS"
-            PropertyChanges { target: placeHolderImage; visible: false }
+            PropertyChanges { target: placeHolder; visible: false }
             PropertyChanges { target: content; visible: true }
             PropertyChanges { target: actionList; enabled: true }
             PropertyChanges { target: dailiesList; visible: false }
         },
         State {
             name: "DAILIES"
-            PropertyChanges { target: placeHolderImage; visible: false }
+            PropertyChanges { target: placeHolder; visible: false }
             PropertyChanges { target: content; visible: false }
             PropertyChanges { target: actionList; enabled: true }
             PropertyChanges { target: dailiesList; visible: true }
@@ -64,11 +71,26 @@ CoverBackground {
         state = "INIT";
     }
 
-    Image {
-        id: placeHolderImage
+    Column {
+        id: placeHolder
         anchors.centerIn: parent
-        source: Qt.resolvedUrl("../assets/habitica.png")
-        opacity: 0.7
+        width: parent.width
+        spacing: Theme.paddingSmall
+
+        Image {
+            anchors.horizontalCenter: parent.horizontalCenter
+            source: Qt.resolvedUrl("../assets/habitica.png")
+            opacity: 0.7
+        }
+
+        Label {
+            width: parent.width - Theme.paddingSmall * 2
+            anchors.horizontalCenter: parent.horizontalCenter
+            horizontalAlignment: Text.AlignHCenter
+            text: qsTr("Not Connected")
+            color: Theme.secondaryColor
+        }
+
     }
 
     Column {

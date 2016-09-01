@@ -8,7 +8,7 @@ Dialog {
 
     property string type: "habit" // can be "daily" and "todo"
 
-    canAccept: taskTitle.acceptableInput
+    canAccept: taskTitle.text.trim() != ""
 
     acceptDestination: busyPage
 
@@ -49,8 +49,6 @@ Dialog {
                 width: parent.width
                 label: qsTr("Title")
                 placeholderText: label
-                validator: RegExpValidator { regExp: /.*\S.*/ }
-                EnterKey.enabled: acceptableInput
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
                 EnterKey.onClicked: taskNotes.focus = true
             }

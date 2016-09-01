@@ -97,9 +97,9 @@ ApplicationWindow
             hideTimer.restart();
         }
 
-        SignalConnect {
-            signl: Model.signals.showMessage
-            fun: messageBox.showMessage
+        Connections {
+            target: Model.signals
+            onShowMessage: messageBox.showMessage(msg)
         }
     }
 

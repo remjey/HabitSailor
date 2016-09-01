@@ -27,6 +27,7 @@ Dialog {
                         acceptDestinationInstance.setStatus(msg, false)
                     });
     }
+
     canAccept: true // TODO conditions
 
     SilicaFlickable {

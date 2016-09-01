@@ -249,8 +249,8 @@ Page {
         update();
     }
 
-    SignalConnect {
-        signl: Model.signals.updateStats
-        fun: update
+    Connections {
+        target: Model.signals
+        onUpdateStats: update();
     }
 }

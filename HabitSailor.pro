@@ -62,7 +62,6 @@ DISTFILES += \
     qml/components/MenuButton.qml \
     qml/pages/Revive.qml \
     qml/components/HabitButton.qml \
-    qml/components/SignalConnect.qml \
     rpm/harbour-HabitSailor.yaml \
     rpm/harbour-HabitSailor.changes.in \
     qml/harbour-HabitSailor.qml \

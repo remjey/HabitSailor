@@ -27,6 +27,7 @@ var signals = Qt.createQmlObject("\
     import QtQuick 2.0;
     QtObject {
         signal start()
+        signal logout()
         signal updateStats()
         signal updateTasks()
         signal showMessage(string msg)
@@ -251,6 +252,7 @@ var signals = Qt.createQmlObject("\
         configSet("apiUrl", null);
         configSet("apiUser", null);
         configSet("apiKey", null);
+        signals.logout();
     }
 
     function addStatDiff(list, name, a, b) {

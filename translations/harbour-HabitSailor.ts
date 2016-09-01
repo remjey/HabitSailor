@@ -11,6 +11,10 @@
         <source>Resting</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Not Connected</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Habits</name>

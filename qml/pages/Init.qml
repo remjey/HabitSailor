@@ -86,9 +86,9 @@ Page {
             pageStack.replace("Login.qml")
     }
 
-    SignalConnect {
-        signl: Model.signals.start
-        fun: connect
+    Connections {
+        target: Model.signals
+        onStart: connect()
     }
 
 }

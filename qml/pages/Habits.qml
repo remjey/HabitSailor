@@ -92,9 +92,9 @@ Page {
         update();
     }
 
-    SignalConnect {
-        signl: Model.signals.updateTasks
-        fun: update
+    Connections {
+        target: Model.signals
+        onUpdateTasks: update()
     }
 
 }
