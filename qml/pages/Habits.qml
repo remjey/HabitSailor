@@ -73,6 +73,34 @@ Page {
                         color: Theme.secondaryHighlightColor
                     }
                 }
+
+                MenuItem {
+                    text: qsTr("Edit")
+                    onClicked: {
+                        pageStack.push("TaskEdit.qml",
+                                       {
+                                           mode: "edit",
+                                           taskType: "habit",
+                                           taskId: model.id,
+                                       });
+                    }
+                }
+
+                MenuItem {
+                    text: qsTr("Delete")
+                    onClicked: {
+                        taskItem.remorse(qsTr("Deleting"), function () {
+                            taskItem.enabled = false;
+                            taskItem.busy = true;
+                            Model.deleteTask(model.id, function (ok) {
+                                if (!ok) {
+                                    taskItem.enabled = true;
+                                    taskItem.busy = false;
+                                }
+                            });
+                        });
+                    }
+                }
             }
 
             onClicked: { showMenu(); }
@@ -81,11 +109,10 @@ Page {
     }
 
     function update() {
-        var habits = Model.listHabits();
         list.model.clear();
-        for (var i in habits) {
-            list.model.append(habits[i]);
-        }
+        Model.listHabits().forEach(function (habit) {
+            list.model.append(habit);
+        });
     }
 
     Component.onCompleted: {

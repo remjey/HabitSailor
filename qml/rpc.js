@@ -15,10 +15,10 @@ function populatePath(path, data) {
     });
 }
 
-function call(path, method, data, onload, debug) {
+function call(path, method, data, onload, debug) { //debug = true;
     var xhr = new XMLHttpRequest();
     var fullpath = populatePath(apiUrl + "/api/v3" + path, data);
-    var noBody = method === "get";
+    var noBody = method === "get" || method === "delete"
     if (method === "post-no-body") {
         method = "post";
         noBody = true;
@@ -60,7 +60,7 @@ function call(path, method, data, onload, debug) {
         }
     }
     xhr.setRequestHeader("Content-Type", "application/json");
-    if (method === "post" || method === "get")
+    if (method === "post" || method === "get" || method === "put" || method === "delete")
         xhr.send(noBody ? "" : JSON.stringify(data));
     else
         throw qsTr("Invalid method for rpc call") // TODO notify callback instead of throwing
@@ -91,10 +91,8 @@ CallSeq.prototype.run = function () {
 function err(r, errorList) {
     errorList = errorList || defaultErrorList;
     var error = null, errorMessage = null;
-    print(r);
     if (r) print(r.hasOwnProperty("error"));
     if (r && r.hasOwnProperty("error")) {
-        print("ssss")
         error = r.error;
         errorMessage = r.message;
         if (errorList.hasOwnProperty(error)) return errorList[error];

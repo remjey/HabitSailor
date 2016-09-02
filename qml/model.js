@@ -14,11 +14,12 @@ var update;
 var getName, getLevel, getHp, getHpMax, getMp, getMpMax, getXp, getXpNext,
         getGold, getGems, isSleeping;
 var listHabits, listTodos, listDailies;
+var getTaskForEdit;
 var getProfilePictureUrl;
 
 // Mutate local and remote data
 var habitClick;
-var setTask, setSubtask, createTask;
+var setTask, setSubtask, saveTask, deleteTask;
 var toggleSleep, revive;
 var buyHealthPotion;
 
@@ -77,11 +78,11 @@ var signals = Qt.createQmlObject("\
 
     function sortTasks(ids, tasks) {
         var r = [];
-        for (var i in ids) {
-            for (var j in tasks) {
-                if (tasks[j].id === ids[i]) r.push(tasks[j]);
-            }
-        }
+        ids.forEach(function (id) {
+            tasks.forEach(function (task) {
+                if (task.id === id) r.push(task);
+            })
+        })
         return r;
     }
 
@@ -188,8 +189,8 @@ var signals = Qt.createQmlObject("\
             data.habits = [];
             data.tasks = [];
             data.rewards = [];
-            for (var i in r) {
-                var item = prepareTask(r[i]);
+            r.forEach(function (item) {
+                prepareTask(item);
                 switch (item.type) {
                 case "habit":
                     data.habits.push(item);
@@ -202,7 +203,7 @@ var signals = Qt.createQmlObject("\
                     data.rewards.push(item);
                     break;
                 }
-            }
+            });
             data.habits = sortTasks(data.tasksOrder.habits, data.habits)
             data.rewards = sortTasks(data.tasksOrder.rewards, data.rewards)
 
@@ -414,9 +415,49 @@ var signals = Qt.createQmlObject("\
     var repeatEveryDay = { m: true, t: true, w: true, th: true, f: true, s: true, su: true };
     var repeatNever = { m: false, t: false, w: false, th: false, f: false, s: false, su: false };
 
-    createTask = function (type, o, cb) {
+    function compareWeekdays(model, subject) {
+        for (var i in model) {
+            if (subject[i] !== model[i]) return false;
+        }
+        return true;
+    }
+
+    getTaskForEdit = function (taskId) {
+        function taskFinder(item) { return item.id === taskId; }
+        var task = data.habits.findItem(taskFinder) || data.tasks.findItem(taskFinder);
+        var r = {
+            type: task.type,
+            title: task.text,
+            notes: task.notes,
+            difficulty: taskPriorities.find(function (o) { return o === task.priority; }, 1),
+            up: !!task.up,
+            down: !!task.down,
+            startDate: new Date(task.startDate || 0),
+            dueDate: (task.date ? new Date(task.date) : null),
+            checklist: task.checklist || [],
+            repeatType: "daily",
+            period: 1,
+            weekDays: repeatEveryDay,
+        }
+
+        if (task.type === "daily") {
+            if (task.frequency === "daily") {
+                r.repeatType = "period";
+                r.period = task.everyX;
+            } else if (compareWeekdays(repeatNever, task.repeat)) {
+                r.repeatType = "never";
+            } else if (!compareWeekdays(repeatEveryDay, task.repeat)) {
+                r.repeatType = "weekly";
+                r.weekDays = task.repeat;
+            }
+        }
+        return r;
+    }
+
+    saveTask = function (type, o, cb) {
         //TODO other types
         var task = {
+            id: o.id,
             type: type,
             text: o.title,
             notes: o.notes,
@@ -456,22 +497,67 @@ var signals = Qt.createQmlObject("\
             task.checklist = o.checklist;
         }
 
-        Rpc.call("/tasks/user", "post", task, function (ok, o) {
-            if (ok) {
-                if (type === "habit") {
-                    prepareTask(o);
-                    data.tasksOrder.habits.unshift(o.id);
-                    data.habits.unshift(o);
-                } else if (type === "daily" || type === "todo") {
-                    prepareTask(o);
-                    data.tasksOrder[type + "s"].unshift(o.id);
-                    data.tasks.push(o);
+        if (task.id) {
+            // Save task
+            Rpc.call("/tasks/:id", "put", task, function (ok, o) {
+                if (ok) {
+                    if (type === "habit") {
+                        prepareTask(o);
+                        data.habits.some(function (item, i) {
+                            return item.id === o.id && (data.habits[i] = o);
+                        });
+                    } else if (type === "daily" || type === "todo") {
+                        prepareTask(o);
+                        data.tasks.some(function (item, i) {
+                            return item.id === o.id && (data.tasks[i] = o);
+                        });
+                    }
+
+                    signals.updateTasks();
+                    if (cb) cb(true);
+                } else {
+                    signals.showMessage(qsTr("Cannot update task: %1").arg(o.message));
+                    if (cb) cb(false);
                 }
+            });
+
+        } else {
+            // Create task
+            Rpc.call("/tasks/user", "post", task, function (ok, o) {
+                if (ok) {
+                    if (type === "habit") {
+                        prepareTask(o);
+                        data.tasksOrder.habits.unshift(o.id);
+                        data.habits.unshift(o);
+                    } else if (type === "daily" || type === "todo") {
+                        prepareTask(o);
+                        data.tasksOrder[type + "s"].unshift(o.id);
+                        data.tasks.push(o);
+                    }
+
+                    signals.updateTasks();
+                    if (cb) cb(true);
+                } else if (cb) {
+                    signals.showMessage(qsTr("Cannot create new task: %1").arg(o.message));
+                    if (cb) cb(false);
+                }
+            });
+        }
+    }
+
+    deleteTask = function (taskId, cb) {
+        function taskFinder(item) { return item.id === taskId; }
+        Rpc.call("/tasks/:id", "delete", { id: taskId }, function (ok, o) {
+            if (ok) {
+                [data.habits, data.tasks].forEach(function (list) {
+                    var idx = list.find(taskFinder);
+                    if (idx > -1) list.splice(idx, 1)
+                })
 
                 signals.updateTasks();
                 if (cb) cb(true);
-            } else if (cb) {
-                signals.showMessage(qsTr("Cannot create new task: %1").arg(o.message));
+            } else {
+                signals.showMessage(qsTr("Cannot delete task: %1").arg(o.message));
                 if (cb) cb(false);
             }
         });

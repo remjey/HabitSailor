@@ -37,6 +37,18 @@
         <source>New Habit</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Init</name>
@@ -373,18 +385,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Creating New Habit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Creating New Daily</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Creating New To-Do</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Checklist</source>
         <translation type="unfinished"></translation>
     </message>
@@ -394,6 +394,34 @@
     </message>
     <message>
         <source>Due Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Habit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving Habit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Daily</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving Daily</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving To-Do</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit To-Do</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -454,6 +482,18 @@
         <source>Add New Daily</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>model</name>
@@ -486,6 +526,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot update habit: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot toggle sleeping status: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Cannot refill health: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -502,19 +554,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cannot update habit: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cannot toggle sleeping status: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Cannot create new task: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot delete task: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

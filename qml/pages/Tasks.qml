@@ -130,7 +130,7 @@ Page {
                           : qsTr("View Details");
 
                     onClicked: {
-                        pageStack.push(Qt.resolvedUrl("TaskDetails.qml"),
+                        pageStack.push("TaskDetails.qml",
                                        {
                                            taskMode: mode,
                                            taskName: model.text,
@@ -139,6 +139,34 @@ Page {
                                            taskIndex: model.index,
                                            checklist: subtasks[model.id]
                                        });
+                    }
+                }
+
+                MenuItem {
+                    text: qsTr("Edit")
+                    onClicked: {
+                        pageStack.push("TaskEdit.qml",
+                                       {
+                                           mode: "edit",
+                                           taskType: (mode == "todos" ? "todo" : "daily"),
+                                           taskId: model.id,
+                                       });
+                    }
+                }
+
+                MenuItem {
+                    text: qsTr("Delete")
+                    onClicked: {
+                        taskItem.remorse(qsTr("Deleting"), function () {
+                            taskItem.enabled = false;
+                            taskItem.busy = true;
+                            Model.deleteTask(model.id, function (ok) {
+                                if (!ok) {
+                                    taskItem.enabled = true;
+                                    taskItem.busy = false;
+                                }
+                            });
+                        });
                     }
                 }
 
@@ -154,17 +182,16 @@ Page {
 
                 Component.onCompleted: {
                     if (model.cltotal > 0) {
-                        if (model.cltotal <= 6) {
+                        if (model.cltotal <= 5) {
                             subtaskItemList.visible = true;
-                            for (var i in subtasks[model.id]) {
-                                var item = subtasks[model.id][i];
+                            subtasks[model.id].forEach(function (item) {
                                 var citem = subtaskItem.createObject(subtaskItemList);
                                 citem.taskIndex = model.index;
                                 citem.taskId = model.id;
                                 citem.subtaskId = item.id;
                                 citem.checked = item.completed;
                                 citem.text = item.text;
-                            }
+                            });
                         }
                     }
                 }
@@ -185,15 +212,14 @@ Page {
         subtasks = {}
         list.model = null
         tasksModel.clear();
-        for (var i in tasks) {
-            var task = tasks[i];
+        tasks.forEach(function (task) {
             subtasks[task.id] = task.checklist;
             task.cltotal = task.checklist.length;
             var count = 0;
             task.checklist.forEach(function (item) { if (item.completed) count++; });
             task.clcompleted = count;
             tasksModel.append(task);
-        }
+        });
         list.model = tasksModel
     }
 

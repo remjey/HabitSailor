@@ -6,15 +6,22 @@ import "../model.js" as Model
 Dialog {
     id: root
 
-    property string taskType: "habit" // can be "daily" and "todo"
+    property string mode: "new" // can be "new" or "edit"
+    property string taskType: "habit" // can also be "daily" and "todo"
+    property string taskId: ""
 
     property var _TaskTitle: ({
                                   new_habit: qsTr("New Habit"),
-                                  create_habit: qsTr("Creating New Habit"),
+                                  edit_habit: qsTr("Edit Habit"),
+                                  save_habit: qsTr("Saving Habit"),
+
                                   new_daily: qsTr("New Daily"),
-                                  create_daily: qsTr("Creating New Daily"),
+                                  edit_daily: qsTr("Edit Daily"),
+                                  save_daily: qsTr("Saving Daily"),
+
                                   new_todo: qsTr("New To-Do"),
-                                  create_todo: qsTr("Creating New To-Do"),
+                                  edit_todo: qsTr("Edit To-Do"),
+                                  save_todo: qsTr("Saving To-Do"),
                               })
 
     property var _RepeatTypes: ["daily", "weekly", "period", "never"]
@@ -34,6 +41,24 @@ Dialog {
 
     acceptDestination: busyPage
 
+    function loadTask(task) {
+        taskTitle.text = task.title;
+        taskNotes.text = task.notes;
+        taskUp.checked = task.up;
+        taskDown.checked = task.down;
+        taskStartDate.selectedDate = task.startDate;
+        taskRepeatType.currentIndex = _RepeatTypes.find(function (o) { return o === task.repeatType; });
+        _WeekDays.forEach(function (w, i) {
+            weekDaysModel.setProperty(i, "checked", task.weekDays[w.key]);
+        })
+        taskPeriod.text = task.period;
+        taskDifficulty.currentIndex = task.difficulty;
+        task.checklist.forEach(function (item, i) {
+            checklistModel.insert(i, { subTaskId: item.id, completed: item.completed, text: item.text });
+        });
+        taskDueDate.selectedDate = task.dueDate;
+    }
+
     function makeRepeatMap() {
         var r = {};
         for (var i = 0; i < weekDaysModel.count; i++) {
@@ -49,7 +74,7 @@ Dialog {
             var item = checklistModel.get(i);
             if (item.text.trim() !== "")
                 r.push({
-                           // TODO id
+                           id: item.subTaskid || undefined,
                            completed: item.completed,
                            text: item.text
                        })
@@ -71,8 +96,9 @@ Dialog {
             checklist: makeChecklist(),
             dueDate: taskDueDate.selectedDate,
         };
+        if (taskId) task.id = taskId;
 
-        Model.createTask(taskType, task, function (ok) {
+        Model.saveTask(taskType, task, function (ok) {
             pageStack.completeAnimation();
             if (ok) pageStack.pop(pageStack.previousPage(root));
             else pageStack.pop(root);
@@ -92,8 +118,11 @@ Dialog {
             DialogHeader {
                 id: dialogHeader
                 cancelText: qsTr("Cancel")
-                acceptText: qsTr("Create")
-                title: _TaskTitle["new_" + taskType]
+                acceptText: mode == "new"
+                            ? qsTr("Create")
+                            : qsTr("Save")
+
+                title: _TaskTitle[mode + "_" + taskType]
             }
 
             TextField {
@@ -259,7 +288,7 @@ Dialog {
                             id: weekDaysModel
                             Component.onCompleted: {
                                 _WeekDays.forEach(function (day) {
-                                    day.checked = true; // TODO use preexisting data
+                                    day.checked = true;
                                     weekDaysModel.append(day)
                                 });
                             }
@@ -303,7 +332,7 @@ Dialog {
 
                 ListModel {
                     id: checklistModel
-                    ListElement { text: ""; completed: false; keep: false }
+                    ListElement { text: ""; completed: false; keep: false; subTaskId: "" }
 
                     function manageItems() {
                         for (var i = checklistModel.count - 2; i >= 0; i--) {
@@ -333,7 +362,7 @@ Dialog {
                             onTextChanged: {
                                 checklistModel.setProperty(model.index, "text", text.trim());
                                 if (text.trim() != "" && model.index === checklistModel.count - 1) {
-                                    checklistModel.insert(model.index + 1, { text: "", completed: false, keep: false });
+                                    checklistModel.insert(model.index + 1, { text: "", completed: false, keep: false, subTaskId: "" });
                                 } else if (text.trim() == "" && model.index === checklistModel.count - 2) {
                                     checklistModel.remove(model.index + 1);
                                 }
@@ -366,7 +395,7 @@ Dialog {
                                     focus = false;
                                 } else {
                                     if (text.trim() != "" && model.index < checklistModel.count - 2)
-                                        checklistModel.insert(model.index + 1, { text: "", completed: false, keep: true })
+                                        checklistModel.insert(model.index + 1, { text: "", completed: false, keep: true, subTaskId: "" })
                                     checklistRepeater.itemAt(model.index + 1).takeFocus();
                                 }
                             }
@@ -417,7 +446,7 @@ Dialog {
                     width: parent.width - 2 * Theme.horizontalPageMargin
                     horizontalAlignment: Text.AlignHCenter
                     wrapMode: Text.WordWrap
-                    text: _TaskTitle["create_" + taskType]
+                    text: _TaskTitle["save_" + taskType]
                     color: Theme.highlightColor
                 }
 
@@ -432,7 +461,8 @@ Dialog {
     }
 
     Component.onCompleted: {
-        //TODO should we? taskTitle.focus = true;
+        if (mode == "edit") loadTask(Model.getTaskForEdit(taskId));
+        if (mode == "new") taskTitle.focus = true;
     }
 
 }

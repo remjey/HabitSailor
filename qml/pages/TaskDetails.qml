@@ -48,7 +48,7 @@ Page {
                 width: parent.width - Theme.horizontalPageMargin * 2
                 x: Theme.horizontalPageMargin
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                color: Theme.secondaryHighlightColor
+                color: Theme.highlightColor
                 font.pixelSize: Theme.fontSizeSmall
                 text: taskNotes
                 visible: !!taskNotes.trim()
@@ -91,9 +91,9 @@ Page {
     }
 
     Component.onCompleted: {
-        for (var i in checklist) {
-            model.append(checklist[i]);
-        }
+        checklist.forEach(function (item) {
+            model.append(item);
+        });
         list.model = model;
     }
 
