@@ -7,6 +7,12 @@ It is meant to be imported int the QtCreator of the SailfishOS SDK.
 
 HabitSailor is free software, released under GPLv3. Artwork is CC-BY-SA 3.0. (see LICENCE file for details)
 
+You can help me work on this project by donating:
+
+* <a href="https://flattr.com/submit/auto?fid=mydw6m&amp;url=http%3A%2F%2Fjf.almel.fr%2Fflattr%2FHabitSailor" target="_blank"><img src="//button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
+* BitCoin: <a href="bitcoin:1EVSFUTPCVXuTXEaAkowggToZgAS7ReZg5?label=HabitSailor">1EVSFUTPCVXuTXEaAkowggToZgAS7ReZg5</a>
+* <a href="http://jf.almel.fr/paypal/HabitSailor">PayPal</a>
+
 ## Why
 
 Because the Android client is terribly slow and the website is too heavy for Jolla’s navigator.
