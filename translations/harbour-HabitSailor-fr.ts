@@ -83,22 +83,17 @@
         <translation>Habitudes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="91"/>
-        <source>This item has no enabled buttons</source>
-        <translation>Cet item n’a pas de bouton activé</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/Habits.qml" line="97"/>
+        <location filename="../qml/pages/Habits.qml" line="89"/>
         <source>Edit</source>
         <translation>Modifier</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="109"/>
+        <location filename="../qml/pages/Habits.qml" line="101"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="111"/>
+        <location filename="../qml/pages/Habits.qml" line="103"/>
         <source>Deleting</source>
         <translation>Suppression</translation>
     </message>
@@ -333,78 +328,78 @@
         <translation>Réponse du serveur incorrecte on manquante: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="489"/>
+        <location filename="../qml/Model.qml" line="503"/>
         <source>You must first refill your health from the profile page before you can do this!</source>
         <translation>Vous devez d’abord récupérer votre santé depuis la page de profil avant de pouvoir faire ça !</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="495"/>
+        <location filename="../qml/Model.qml" line="509"/>
         <source>Level</source>
         <translation>Niveau</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="496"/>
+        <location filename="../qml/Model.qml" line="510"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="497"/>
+        <location filename="../qml/Model.qml" line="511"/>
         <source>Mana</source>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="498"/>
+        <location filename="../qml/Model.qml" line="512"/>
         <source>Experience</source>
         <translation>Expérience</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="499"/>
+        <location filename="../qml/Model.qml" line="513"/>
         <source>Gold</source>
         <translation>Or</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="508"/>
+        <location filename="../qml/Model.qml" line="522"/>
         <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
         <translation>Désolé, vous avez épuisé votre santé… Restaurez votre santé depuis la page de profil pour continuer !</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="176"/>
+        <location filename="../qml/Model.qml" line="178"/>
         <source>Cannot update habit: %1</source>
         <translation>Impossible de mettre à jour l’habitude: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="189"/>
+        <location filename="../qml/Model.qml" line="191"/>
         <source>Cannot toggle sleeping status: %1</source>
         <translation>Impossible de modifier la présence à l’auberge: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="201"/>
+        <location filename="../qml/Model.qml" line="203"/>
         <source>Cannot refill health: %1</source>
         <translation>Impossible de restaurer la santé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="214"/>
+        <location filename="../qml/Model.qml" line="216"/>
         <source>Cannot buy Health Potion: %1</source>
         <translation>Impossible d’acheter une Potion de santé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="232"/>
+        <location filename="../qml/Model.qml" line="234"/>
         <source>Cannot update subtask: %1</source>
         <translation>Impossible de mettre à jour la sous-tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="265"/>
-        <location filename="../qml/Model.qml" line="363"/>
+        <location filename="../qml/Model.qml" line="267"/>
+        <location filename="../qml/Model.qml" line="365"/>
         <source>Cannot update task: %1</source>
         <translation>Impossible de mettre à jour la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="384"/>
+        <location filename="../qml/Model.qml" line="386"/>
         <source>Cannot create new task: %1</source>
         <translation>Impossible de créer la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="403"/>
+        <location filename="../qml/Model.qml" line="405"/>
         <source>Cannot delete task: %1</source>
         <translation>Impossible de supprimer la tâche: %1</translation>
     </message>

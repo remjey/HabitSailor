@@ -138,7 +138,7 @@ Page {
                         if (mode == "dailies")
                             action();
                         else
-                            taskItem.remorse(qsTr("Check %1").arg(model.text), action);
+                            taskItem.remorseAction(qsTr("Check %1").arg(model.text), action);
                     }
                 }
 
@@ -176,7 +176,7 @@ Page {
                 MenuItem {
                     text: qsTr("Delete")
                     onClicked: {
-                        taskItem.remorse(qsTr("Deleting"), function () {
+                        taskItem.remorseAction(qsTr("Deleting"), function () {
                             taskItem.enabled = false;
                             taskItem.busy = true;
                             Model.deleteTask(model.id, function (ok) {

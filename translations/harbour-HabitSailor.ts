@@ -61,15 +61,11 @@
 <context>
     <name>Habits</name>
     <message>
-        <source>Habits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This item has no enabled buttons</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>New Habit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Habits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -22,7 +22,7 @@ import Sailfish.Silica 1.0
 
 ListItem {
     id: listItem
-    contentHeight: Math.max(labels.height + 2 * Theme.paddingMedium, Theme.itemSizeSmall)
+    contentHeight: Math.max(labels.implicitHeight + 2 * Theme.paddingMedium, Theme.itemSizeSmall)
 
     property bool showColor: true
     property string subLabel: ""
@@ -109,14 +109,6 @@ ListItem {
                 return r.join("\n");
             }
         }
-    }
-
-    RemorseItem {
-        id: remorseItem
-    }
-
-    function remorse(msg, cb) {
-        remorseItem.execute(listItem, msg, cb);
     }
 
 }

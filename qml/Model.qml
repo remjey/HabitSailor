@@ -33,7 +33,7 @@ QtObject {
         return date.format(_dateFormat);
     }
 
-    function getLastCronDate(date) {
+    function getLastCronDate() {
         return _lastCron;
     }
 
@@ -81,7 +81,7 @@ QtObject {
             _tasks = [];
             _rewards = [];
             r.forEach(function (item) {
-                _prepareTask(item);
+                item = _prepareTask(item);
                 switch (item.type) {
                 case "habit":
                     _habits.push(item);
@@ -119,16 +119,18 @@ QtObject {
 
     function isSleeping() { return _sleeping; }
 
-    function listHabits() { return _habits; }
+    function listHabits() { return _habits.map(_filterTask); }
     function listTodos() {
         return Utils.sortTasks(
                     _tasksOrder.todos,
-                    _tasks.filter(function (item) { return item.type === "todo"; }));
+                    _tasks.filter(function (item) { return item.type === "todo"; }))
+        .map(_filterTask);
     }
     function listDailies() {
         return Utils.sortTasks(
                     _tasksOrder.dailys, // Yes this is dailys
-                    _tasks.filter(function (item) { return item.type === "daily"; }));
+                    _tasks.filter(function (item) { return item.type === "daily"; }))
+        .map(_filterTask);
     }
 
     function getProfilePictureUrl() {
@@ -346,7 +348,7 @@ QtObject {
             // Save task
             _rpc.call("/tasks/:id", "put", task, function (ok, o) {
                 if (ok) {
-                    _prepareTask(o);
+                    o = _prepareTask(o);
                     if (type === "habit") {
                         _habits.some(function (item, i) {
                             return item.id === o.id && (_habits[i] = o);
@@ -369,7 +371,7 @@ QtObject {
             // Create task
             _rpc.call("/tasks/user", "post", task, function (ok, o) {
                 if (ok) {
-                    _prepareTask(o);
+                    o = _prepareTask(o);
                     if (type === "habit") {
                         _tasksOrder.habits.unshift(o.id);
                         _habits.unshift(o);
@@ -478,6 +480,18 @@ QtObject {
         default:
         }
         return item;
+    }
+
+    function _filterTask(item) {
+        return Utils.filterObject([
+                                      "id", "type", "priority", "text", "notes",
+                                      "up", "down",
+                                      "completed",
+                                      "checklist",
+                                      "missedDueDate", "dueDateFormatted",
+                                      "activeToday", "startDateFormatted",
+                                      "color",
+                                  ], item);
     }
 
     function _addStatDiff(list, name, a, b) {

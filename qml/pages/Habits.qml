@@ -28,7 +28,7 @@ Page {
         id: list
         anchors.fill: parent
 
-        model: ListModel {}
+        model: ListModel { }
 
         PullDownMenu {
             MenuItem {
@@ -69,6 +69,7 @@ Page {
                 Row {
                     width: parent.width
                     height: Theme.itemSizeLarge
+                    visible: model.down || model.up
 
                     HabitButton {
                         width: model.up ? parent.width / 2 : parent.width
@@ -81,15 +82,6 @@ Page {
                         width: model.down ? parent.width / 2 : parent.width
                         visible: model.up
                         onClicked: contextMenu.clickItem("up");
-                    }
-
-                    Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        width: parent.width
-                        horizontalAlignment: Text.AlignHCenter
-                        visible: !model.down && !model.up
-                        text: qsTr("This item has no enabled buttons")
-                        color: Theme.secondaryHighlightColor
                     }
                 }
 
@@ -108,7 +100,7 @@ Page {
                 MenuItem {
                     text: qsTr("Delete")
                     onClicked: {
-                        taskItem.remorse(qsTr("Deleting"), function () {
+                        taskItem.remorseAction(qsTr("Deleting"), function () {
                             taskItem.enabled = false;
                             taskItem.busy = true;
                             Model.deleteTask(model.id, function (ok) {
