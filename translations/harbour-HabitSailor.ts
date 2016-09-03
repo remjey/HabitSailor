@@ -16,10 +16,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>HabitSailor is Free Software developped by Jérémy Farnaud and released under the GNU GPLv3 license.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Licenses</source>
         <translation type="unfinished"></translation>
     </message>
@@ -33,6 +29,14 @@
     </message>
     <message>
         <source>Habitica on GitHub</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HabitSailor is a Free Software developped by Jérémy Farnaud and released under the GNU GPLv3 license.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>For source code, bug reports and feature requests.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -48,6 +48,8 @@ BackgroundItem {
             id: labelItem
             anchors.left: imageItem.right
             anchors.leftMargin: Theme.paddingMedium
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.horizontalPageMargin
             anchors.verticalCenter: imageItem.verticalCenter
             text: root.label
             color: root.highlighted ? Theme.highlightColor : Theme.primaryColor
@@ -57,11 +59,13 @@ BackgroundItem {
             id: subLabelItem
             anchors.left: labelItem.left
             anchors.top: labelItem.bottom
+            anchors.right: labelItem.right
             text: root.subLabel
             visible: root.subLabel
             height: root.subLabel ? undefined : 0
             color: root.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
             font.pixelSize: Theme.fontSizeSmall
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
 
     }

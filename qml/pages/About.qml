@@ -34,20 +34,25 @@ Page {
                 title: qsTr("About HabitSailor")
             }
 
-            Label {
-                width: parent.width - Theme.horizontalPageMargin * 2
-                x: Theme.horizontalPageMargin
-                color: Theme.highlightColor
-                text: qsTr("HabitSailor is Free Software developped by Jérémy Farnaud and released under the GNU GPLv3 license.")
-                wrapMode: Text.WordWrap
-            }
+            Column {
+                width: parent.width
+                spacing: Theme.paddingLarge
 
-            Label {
-                width: parent.width - Theme.horizontalPageMargin * 2
-                x: Theme.horizontalPageMargin
-                color: Theme.highlightColor
-                text: qsTr("The Habitica logo and HabitSailor icon are licensed under the CC-BY-NC-SA 3.0. The HabitSailor icon is a derivative work of the Habitica logo.")
-                wrapMode: Text.WordWrap
+                Label {
+                    width: parent.width - Theme.horizontalPageMargin * 2
+                    x: Theme.horizontalPageMargin
+                    color: Theme.highlightColor
+                    text: qsTr("HabitSailor is a Free Software developped by Jérémy Farnaud and released under the GNU GPLv3 license.")
+                    wrapMode: Text.WordWrap
+                }
+
+                Label {
+                    width: parent.width - Theme.horizontalPageMargin * 2
+                    x: Theme.horizontalPageMargin
+                    color: Theme.highlightColor
+                    text: qsTr("The Habitica logo and HabitSailor icon are licensed under the CC-BY-NC-SA 3.0. The HabitSailor icon is a derivative work of the Habitica logo.")
+                    wrapMode: Text.WordWrap
+                }
             }
 
             SectionHeader {
@@ -57,6 +62,7 @@ Page {
             MenuButton {
                 imageSource: "image://theme/icon-m-link"
                 label: qsTr("HabitSailor GitHub Repository")
+                subLabel: qsTr("For source code, bug reports and feature requests.")
                 onClicked: Qt.openUrlExternally("https://github.com/remjey/HabitSailor")
             }
 

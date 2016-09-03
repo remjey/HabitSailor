@@ -9,37 +9,42 @@
         <translation>À propos de HabitSailor</translation>
     </message>
     <message>
-        <location filename="../qml/pages/About.qml" line="41"/>
-        <source>HabitSailor is Free Software developped by Jérémy Farnaud and released under the GNU GPLv3 license.</source>
+        <location filename="../qml/pages/About.qml" line="45"/>
+        <source>HabitSailor is a Free Software developped by Jérémy Farnaud and released under the GNU GPLv3 license.</source>
         <translation>HabitSailor est un Logiciel Libre développé par Jérémy Farnaud et distribué sous les termes de la licence GNU GPLv3.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/About.qml" line="49"/>
+        <location filename="../qml/pages/About.qml" line="53"/>
         <source>The Habitica logo and HabitSailor icon are licensed under the CC-BY-NC-SA 3.0. The HabitSailor icon is a derivative work of the Habitica logo.</source>
         <translation>Le logo de Habitica et l’icône de HabitSailor sont distribués sous la license CC-BY-NC-SA 3.0. L’icône de HabitSailor est un travail dérivé du logo de Habitica.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/About.qml" line="54"/>
+        <location filename="../qml/pages/About.qml" line="59"/>
         <source>Links</source>
         <translation>Liens</translation>
     </message>
     <message>
-        <location filename="../qml/pages/About.qml" line="59"/>
+        <location filename="../qml/pages/About.qml" line="64"/>
         <source>HabitSailor GitHub Repository</source>
         <translation>Dépôt GitHub de HabitSailor</translation>
     </message>
     <message>
         <location filename="../qml/pages/About.qml" line="65"/>
+        <source>For source code, bug reports and feature requests.</source>
+        <translation>Code source, rapports de bugs et proposition de fonctionnalités.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/About.qml" line="71"/>
         <source>Contact %1</source>
         <translation>Contacter %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/About.qml" line="71"/>
+        <location filename="../qml/pages/About.qml" line="77"/>
         <source>Habitica on GitHub</source>
         <translation>Habitica sur GitHub</translation>
     </message>
     <message>
-        <location filename="../qml/pages/About.qml" line="88"/>
+        <location filename="../qml/pages/About.qml" line="94"/>
         <source>Licenses</source>
         <translation>Licences</translation>
     </message>
@@ -125,7 +130,7 @@
     <name>Login</name>
     <message>
         <location filename="../qml/pages/Login.qml" line="31"/>
-        <location filename="../qml/pages/Login.qml" line="200"/>
+        <location filename="../qml/pages/Login.qml" line="174"/>
         <source>Connecting</source>
         <translation>Connexion</translation>
     </message>
@@ -176,17 +181,17 @@
         <translation>Mot de passe</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="159"/>
+        <location filename="../qml/pages/Login.qml" line="133"/>
         <source>About</source>
         <translation>À propos</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="165"/>
+        <location filename="../qml/pages/Login.qml" line="139"/>
         <source>HabitSailor is Free Software developped by Jérémy Farnaud and released under the GNU GPLv3 license.</source>
         <translation>HabitSailor est un Logiciel Libre développé par Jérémy Farnaud et distribué sous les termes de la licence GNU GPLv3.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="172"/>
+        <location filename="../qml/pages/Login.qml" line="146"/>
         <source>More Info</source>
         <translation>Plus d’informations</translation>
     </message>

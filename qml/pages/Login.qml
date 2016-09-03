@@ -87,7 +87,7 @@ Dialog {
                 checked: true
             }
 
-            Column {
+            Item {
                 width: parent.width
                 height: useHabitica.checked ? 0 : implicitHeight
                 clip: true
@@ -128,33 +128,7 @@ Dialog {
                 EnterKey.iconSource: "image://theme/icon-m-enter-accept"
                 EnterKey.onClicked: loginPage.accept()
             }
-/*
-            Column {
-                width: parent.width
-                height: useHabitica.checked ? implicitHeight : 0
-                Behavior on height { NumberAnimation { duration: 200 } }
-                clip: true
 
-                SectionHeader {
-                    text: qsTr("Sign-Up")
-                }
-
-                Label {
-                    width: parent.width - Theme.horizontalPageMargin * 2
-                    x: Theme.horizontalPageMargin
-                    color: Theme.highlightColor
-                    text: qsTr("Sign-up is not yet supported directly in HabitSailor, you must use the main site to create an account.")
-                    wrapMode: Text.WordWrap
-                }
-
-                MenuButton {
-                    imageSource: "image://theme/icon-m-link"
-                    label: qsTr("Sign-up on Habitica main site")
-                    onClicked: Qt.openUrlExternally("https://habitica.com")
-                }
-
-            }
-*/
             SectionHeader {
                 text: qsTr("About")
             }
