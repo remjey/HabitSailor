@@ -51,65 +51,67 @@ Page {
             id: taskItem
             showColor: model.up || model.down
 
-            menu: ContextMenu {
-                id: contextMenu
+            menu: Component {
+                ContextMenu {
+                    id: contextMenu
 
-                function clickItem(dir) {
-                    taskItem.enabled = false;
-                    taskItem.busy = true;
-                    Model.habitClick(model.id, dir, function (ok, c) {
-                        taskItem.enabled = true;
-                        taskItem.busy = false;
-                        if (ok)
-                            list.model.setProperty(model.index, "color", c)
-                    });
-                    hideMenu();
-                }
-
-                Row {
-                    width: parent.width
-                    height: Theme.itemSizeLarge
-                    visible: model.down || model.up
-
-                    HabitButton {
-                        width: model.up ? parent.width / 2 : parent.width
-                        imageDown: true
-                        visible: model.down
-                        onClicked: contextMenu.clickItem("down");
-                    }
-
-                    HabitButton {
-                        width: model.down ? parent.width / 2 : parent.width
-                        visible: model.up
-                        onClicked: contextMenu.clickItem("up");
-                    }
-                }
-
-                MenuItem {
-                    text: qsTr("Edit")
-                    onClicked: {
-                        pageStack.push("TaskEdit.qml",
-                                       {
-                                           mode: "edit",
-                                           taskType: "habit",
-                                           taskId: model.id,
-                                       });
-                    }
-                }
-
-                MenuItem {
-                    text: qsTr("Delete")
-                    onClicked: {
-                        taskItem.remorseAction(qsTr("Deleting"), function () {
-                            taskItem.enabled = false;
-                            taskItem.busy = true;
-                            Model.deleteTask(model.id, function (ok) {
-                                if (!ok) {
-                                    taskItem.enabled = true;
-                                    taskItem.busy = false;
-                                }
-                            });
+                    function clickItem(dir) {
+                        taskItem.enabled = false;
+                        taskItem.busy = true;
+                        Model.habitClick(model.id, dir, function (ok, c) {
+                            taskItem.enabled = true;
+                            taskItem.busy = false;
+                            if (ok)
+                                list.model.setProperty(model.index, "color", c)
                         });
+                        hideMenu();
+                    }
+
+                    Row {
+                        width: parent.width
+                        height: Theme.itemSizeLarge
+                        visible: model.down || model.up
+
+                        HabitButton {
+                            width: model.up ? parent.width / 2 : parent.width
+                            imageDown: true
+                            visible: model.down
+                            onClicked: contextMenu.clickItem("down");
+                        }
+
+                        HabitButton {
+                            width: model.down ? parent.width / 2 : parent.width
+                            visible: model.up
+                            onClicked: contextMenu.clickItem("up");
+                        }
+                    }
+
+                    MenuItem {
+                        text: qsTr("Edit")
+                        onClicked: {
+                            pageStack.push("TaskEdit.qml",
+                                           {
+                                               mode: "edit",
+                                               taskType: "habit",
+                                               taskId: model.id,
+                                           });
+                        }
+                    }
+
+                    MenuItem {
+                        text: qsTr("Delete")
+                        onClicked: {
+                            taskItem.remorseAction(qsTr("Deleting"), function () {
+                                taskItem.enabled = false;
+                                taskItem.busy = true;
+                                Model.deleteTask(model.id, function (ok) {
+                                    if (!ok) {
+                                        taskItem.enabled = true;
+                                        taskItem.busy = false;
+                                    }
+                                });
+                            });
+                        }
                     }
                 }
             }

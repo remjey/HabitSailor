@@ -58,162 +58,163 @@ Page {
                       ? ""
                       : qsTr("%1 / %2 subtasks completed").arg(model.clcompleted).arg(model.cltotal)
 
-            menu: ContextMenu {
-                id: contextMenu
+            menu: Component {
+                ContextMenu {
+                    id: contextMenu
 
-                Component {
-                    id: subtaskItem
-                    BackgroundItem {
-                        id: sbbg
-                        width: parent.width
-                        height: Theme.itemSizeExtraSmall
+                    MenuItem {
+                        text: model.completed ? qsTr("Uncheck Task") : qsTr("Check Task")
+                        onClicked: taskItem.checkMe()
+                    }
 
-                        property int taskIndex
-                        property string taskId
-                        property string subtaskId
-                        property string text
-                        property bool checked
-
-                        Item {
-                            id: sbswitchItem
-                            anchors.left: parent.left
-                            anchors.top: parent.top
-                            width: Theme.itemSizeSmall
-                            height: parent.height
-                            enabled: false
-
-                            Switch {
-                                id: sbswitch
-                                anchors.fill: parent
-                                checked: sbbg.checked
-                            }
-                        }
-
-                        Label {
-                            id: label
-                            anchors.left: sbswitchItem.right
-                            anchors.verticalCenter: parent.verticalCenter
-                            width: parent.width - x - Theme.horizontalPageMargin
-                            color: sbbg.highlighted ? Theme.highlightColor : Theme.primaryColor
-                            text: sbbg.text
-                            opacity: sbbg.enabled ? 1 : 0.4
-                            truncationMode: TruncationMode.Fade
-                        }
+                    MenuItem {
+                        visible: model.cltotal > 0 || !!model.notes.trim();
+                        text: model.cltotal > 0
+                              ? qsTr("View Details and Checklist")
+                              : qsTr("View Details");
 
                         onClicked: {
-                            enabled = false;
-                            sbswitch.busy = true;
-                            Model.setSubtask(taskId, subtaskId, function (ok, value) {
-                                sbswitch.busy = false;
-                                enabled = true;
-                                // Update of the value will get taken care of by signal
-                            });
+                            pageStack.push("TaskDetails.qml",
+                                           {
+                                               taskMode: mode,
+                                               taskName: model.text,
+                                               taskNotes: model.notes,
+                                               taskId: model.id,
+                                               checklist: subtasks[model.id]
+                                           });
+                        }
+                    }
+
+                    MenuItem {
+                        text: qsTr("Edit")
+                        onClicked: {
+                            pageStack.push("TaskEdit.qml",
+                                           {
+                                               mode: "edit",
+                                               taskType: (mode == "todos" ? "todo" : "daily"),
+                                               taskId: model.id,
+                                           });
+                        }
+                    }
+
+                    MenuItem {
+                        text: qsTr("Delete")
+                        onClicked: taskItem.deleteMe()
+                    }
+
+                    Column {
+                        id: subtaskListContainer
+                        width: parent.width
+                        visible: false
+
+                        SectionHeader {
+                            text: qsTr("Quick Checklist")
                         }
 
-                        Connections {
-                            target: Signals
-                            onSetSubtask: {
-                                if (subtaskId === sbbg.subtaskId)
-                                    sbswitch.checked = checked;
+                        Repeater {
+                            id: subtasksList
+                            model: ListModel {}
+                            delegate: Component {
+                                BackgroundItem {
+                                    id: stbg
+                                    width: parent.width
+                                    height: Theme.itemSizeExtraSmall
+
+                                    Item {
+                                        id: sbswitchItem
+                                        anchors.left: parent.left
+                                        anchors.top: parent.top
+                                        width: Theme.itemSizeSmall
+                                        height: parent.height
+                                        enabled: false
+
+                                        Switch {
+                                            id: sbswitch
+                                            anchors.fill: parent
+                                            checked: model.checked
+                                        }
+                                    }
+
+                                    Label {
+                                        id: label
+                                        anchors.left: sbswitchItem.right
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        width: parent.width - x - Theme.horizontalPageMargin
+                                        color: stbg.highlighted ? Theme.highlightColor : Theme.primaryColor
+                                        text: model.text
+                                        opacity: stbg.enabled ? 1 : 0.4
+                                        truncationMode: TruncationMode.Fade
+                                    }
+
+                                    onClicked: {
+                                        enabled = false;
+                                        sbswitch.busy = true;
+                                        Model.setSubtask(model.taskId, model.subtaskId, function (ok, value) {
+                                            sbswitch.busy = false;
+                                            enabled = true;
+                                            // Update of the value will get taken care of by signal
+                                        });
+                                    }
+
+                                    Connections {
+                                        target: Signals
+                                        onSetSubtask: {
+                                            if (subtaskId === model.subtaskId)
+                                                sbswitch.checked = checked;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
-                }
 
-                MenuItem {
-                    text: model.completed ? qsTr("Uncheck Task") : qsTr("Check Task")
-                    onClicked: {
-                        var action = function () {
-                            taskItem.enabled = false;
-                            taskItem.busy = true;
-                            Model.setTask(model.id, !model.completed, function (ok) {
-                                taskItem.enabled = true;
-                                taskItem.busy = false;
-                                if (ok) {
-                                    if (mode == "todos") list.model.remove(model.index, 1);
-                                    else list.model.setProperty(model.index, "completed", !model.completed);
-                                }
-                            });
-                        };
-                        if (mode == "dailies")
-                            action();
-                        else
-                            taskItem.remorseAction(qsTr("Check %1").arg(model.text), action);
-                    }
-                }
-
-                MenuItem {
-                    visible: model.cltotal > 0 || !!model.notes.trim();
-                    text: model.cltotal > 0
-                          ? qsTr("View Details and Checklist")
-                          : qsTr("View Details");
-
-                    onClicked: {
-                        pageStack.push("TaskDetails.qml",
-                                       {
-                                           taskMode: mode,
-                                           taskName: model.text,
-                                           taskNotes: model.notes,
-                                           taskId: model.id,
-                                           taskIndex: model.index,
-                                           checklist: subtasks[model.id]
-                                       });
-                    }
-                }
-
-                MenuItem {
-                    text: qsTr("Edit")
-                    onClicked: {
-                        pageStack.push("TaskEdit.qml",
-                                       {
-                                           mode: "edit",
-                                           taskType: (mode == "todos" ? "todo" : "daily"),
-                                           taskId: model.id,
-                                       });
-                    }
-                }
-
-                MenuItem {
-                    text: qsTr("Delete")
-                    onClicked: {
-                        taskItem.remorseAction(qsTr("Deleting"), function () {
-                            taskItem.enabled = false;
-                            taskItem.busy = true;
-                            Model.deleteTask(model.id, function (ok) {
-                                if (!ok) {
-                                    taskItem.enabled = true;
-                                    taskItem.busy = false;
-                                }
-                            });
-                        });
-                    }
-                }
-
-                Column {
-                    id: subtaskItemList
-                    width: parent.width
-                    visible: false
-
-                    SectionHeader {
-                        text: qsTr("Quick Checklist")
-                    }
-                }
-
-                Component.onCompleted: {
-                    if (model.cltotal > 0) {
-                        if (model.cltotal <= 5) {
-                            subtaskItemList.visible = true;
+                    Component.onCompleted: {
+                        if (model.cltotal > 0 && model.cltotal <= 5) {
+                            subtaskListContainer.visible = true;
                             subtasks[model.id].forEach(function (item) {
-                                var citem = subtaskItem.createObject(subtaskItemList);
-                                citem.taskIndex = model.index;
-                                citem.taskId = model.id;
-                                citem.subtaskId = item.id;
-                                citem.checked = item.completed;
-                                citem.text = item.text;
+                                var subtask = {
+                                    taskId: model.id,
+                                    subtaskId: item.id,
+                                    checked: item.completed,
+                                    text: item.text,
+                                };
+                                subtasksList.model.append(subtask);
                             });
                         }
                     }
                 }
+            }
+
+            function checkMe() {
+                var action = function () {
+                    enabled = false;
+                    busy = true;
+                    Model.setTask(model.id, !model.completed, function (ok) {
+                        enabled = true;
+                        busy = false;
+                        if (ok) {
+                            if (mode == "todos") list.model.remove(model.index, 1);
+                            else list.model.setProperty(model.index, "completed", !model.completed);
+                        }
+                    });
+                };
+                if (mode == "dailies")
+                    action();
+                else
+                    remorseAction(qsTr("Check %1").arg(model.text), action);
+            }
+
+            function deleteMe() {
+                remorseAction(qsTr("Deleting"), function () {
+                    enabled = false;
+                    busy = true;
+                    Model.deleteTask(model.id, function (ok) {
+                        if (!ok) {
+                            enabled = true;
+                            busy = false;
+                        }
+                    });
+                })
             }
 
             onClicked: {
@@ -237,6 +238,7 @@ Page {
             var count = 0;
             task.checklist.forEach(function (item) { if (item.completed) count++; });
             task.clcompleted = count;
+            delete task.checklist;
             tasksModel.append(task);
         });
         list.model = tasksModel

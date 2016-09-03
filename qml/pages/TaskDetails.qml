@@ -29,7 +29,6 @@ Page {
     property string taskName
     property string taskNotes
     property string taskId
-    property int taskIndex
     property var checklist
 
     SilicaListView {

@@ -29,13 +29,24 @@ ListItem {
     property bool busy: false
     property bool crossed: false
 
-    Rectangle {
-        anchors.fill: parent;
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: Theme.rgba("red", 0.15) }
-            GradientStop { position: 1.0; color: Theme.rgba("red", 0.3) }
+    Component.onCompleted: {
+        if (model.missedDueDate) {
+            redBackground.createObject(listItem);
         }
-        visible: model.missedDueDate && !listItem.highlighted;
+    }
+
+    Component {
+        id: redBackground
+        Rectangle {
+            z: -1;
+            anchors.fill: parent;
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: Theme.rgba("red", 0.15) }
+                GradientStop { position: 1.0; color: Theme.rgba("red", 0.3) }
+            }
+            visible: model.missedDueDate && !listItem.highlighted
+        }
+
     }
 
     Item {
@@ -57,7 +68,7 @@ ListItem {
 
         Image {
             source: "image://theme/icon-s-clear-opaque-cross"
-            anchors.centerIn: parent
+            anchors.centerIn: colorIndicator
             opacity: crossed ? 1 : 0
             Behavior on opacity { NumberAnimation { duration: 200 } }
         }
@@ -75,10 +86,9 @@ ListItem {
 
     Column {
         id: labels
-        anchors.left: colorIndicatorWrapper.right
-        anchors.right: parent.right
-        anchors.rightMargin: Theme.horizontalPageMargin
         anchors.verticalCenter: parent.verticalCenter
+        x: Theme.itemSizeSmall
+        width: parent.width - Theme.itemSizeSmall - Theme.horizontalPageMargin
 
         opacity: listItem.enabled ? (showColor ? 1 : 0.7) : 0.4 // Same as in TextSwitch
 
