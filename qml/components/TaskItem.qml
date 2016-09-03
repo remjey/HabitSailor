@@ -103,7 +103,7 @@ ListItem {
 
         Label {
             width: parent.width
-            visible: text
+            visible: !!text
             color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
             text: makeText(subLabel, model.dueDateFormatted, model.startDateFormatted)
             wrapMode: Text.WordWrap

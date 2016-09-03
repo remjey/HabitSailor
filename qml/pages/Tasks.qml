@@ -29,6 +29,7 @@ Page {
     SilicaListView {
         id: list
         anchors.fill: parent
+        model: tasksModel
 
         PullDownMenu {
             MenuItem {
@@ -230,7 +231,6 @@ Page {
     function update() {
         var tasks = mode == "todos" ? Model.listTodos() : Model.listDailies();
         subtasks = {}
-        list.model = null
         tasksModel.clear();
         tasks.forEach(function (task) {
             subtasks[task.id] = task.checklist;
@@ -241,7 +241,6 @@ Page {
             delete task.checklist;
             tasksModel.append(task);
         });
-        list.model = tasksModel
     }
 
     Component.onCompleted: {
