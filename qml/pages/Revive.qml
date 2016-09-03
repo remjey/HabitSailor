@@ -19,7 +19,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import "../model.js" as Model
+import ".."
 
 Dialog {
     id: root

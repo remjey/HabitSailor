@@ -47,7 +47,6 @@ TRANSLATIONS += \
 DISTFILES += \
     qml/pages/Main.qml \
     qml/assets/habitica.png \
-    qml/model.js \
     qml/pages/Init.qml \
     qml/pages/Login.qml \
     qml/rpc.js \
@@ -73,5 +72,8 @@ DISTFILES += \
     qml/components/DatePickerButton.qml \
     qml/pages/About.qml \
     qml/assets/gpl-3.0-standalone.html \
-    qml/assets/gpl-3.0.txt
+    qml/assets/gpl-3.0.txt \
+    qml/Model.qml \
+    qml/qmldir \
+    qml/Signals.qml
 

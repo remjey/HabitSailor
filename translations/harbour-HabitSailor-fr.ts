@@ -34,7 +34,12 @@
         <translation>Contacter %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/About.qml" line="82"/>
+        <location filename="../qml/pages/About.qml" line="71"/>
+        <source>Habitica on GitHub</source>
+        <translation>Habitica sur GitHub</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/About.qml" line="88"/>
         <source>Licenses</source>
         <translation>Licences</translation>
     </message>
@@ -125,7 +130,7 @@
     <name>Login</name>
     <message>
         <location filename="../qml/pages/Login.qml" line="31"/>
-        <location filename="../qml/pages/Login.qml" line="169"/>
+        <location filename="../qml/pages/Login.qml" line="200"/>
         <source>Connecting</source>
         <translation>Connexion</translation>
     </message>
@@ -161,32 +166,32 @@
         <translation>Décochez uniquement si vous voulez utiliser un serveur autre server Habitica</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="94"/>
+        <location filename="../qml/pages/Login.qml" line="99"/>
         <source>URL of the custom Habitica server</source>
         <translation>URL du serveur Habitica</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="109"/>
+        <location filename="../qml/pages/Login.qml" line="114"/>
         <source>Username or email address</source>
         <translation>Nom d’utilisateur ou adresse e-mail</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="120"/>
+        <location filename="../qml/pages/Login.qml" line="125"/>
         <source>Password</source>
         <translation>Mot de passe</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="128"/>
+        <location filename="../qml/pages/Login.qml" line="159"/>
         <source>About</source>
         <translation>À propos</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="134"/>
+        <location filename="../qml/pages/Login.qml" line="165"/>
         <source>HabitSailor is Free Software developped by Jérémy Farnaud and released under the GNU GPLv3 license.</source>
         <translation>HabitSailor est un Logiciel Libre développé par Jérémy Farnaud et distribué sous les termes de la licence GNU GPLv3.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="141"/>
+        <location filename="../qml/pages/Login.qml" line="172"/>
         <source>More Info</source>
         <translation>Plus d’informations</translation>
     </message>
@@ -318,6 +323,90 @@
         <location filename="../qml/pages/Main.qml" line="256"/>
         <source>Resting in the inn</source>
         <translation>Se reposer à l’auberge</translation>
+    </message>
+</context>
+<context>
+    <name>Model</name>
+    <message>
+        <location filename="../qml/Model.qml" line="65"/>
+        <source>Bad or no response from server: %1</source>
+        <translation>Réponse du serveur incorrecte on manquante: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="489"/>
+        <source>You must first refill your health from the profile page before you can do this!</source>
+        <translation>Vous devez d’abord récupérer votre santé depuis la page de profil avant de pouvoir faire ça !</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="495"/>
+        <source>Level</source>
+        <translation>Niveau</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="496"/>
+        <source>Health</source>
+        <translation>Santé</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="497"/>
+        <source>Mana</source>
+        <translation>Mana</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="498"/>
+        <source>Experience</source>
+        <translation>Expérience</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="499"/>
+        <source>Gold</source>
+        <translation>Or</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="508"/>
+        <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
+        <translation>Désolé, vous avez épuisé votre santé… Restaurez votre santé depuis la page de profil pour continuer !</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="176"/>
+        <source>Cannot update habit: %1</source>
+        <translation>Impossible de mettre à jour l’habitude: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="189"/>
+        <source>Cannot toggle sleeping status: %1</source>
+        <translation>Impossible de modifier la présence à l’auberge: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="201"/>
+        <source>Cannot refill health: %1</source>
+        <translation>Impossible de restaurer la santé: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="214"/>
+        <source>Cannot buy Health Potion: %1</source>
+        <translation>Impossible d’acheter une Potion de santé: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="232"/>
+        <source>Cannot update subtask: %1</source>
+        <translation>Impossible de mettre à jour la sous-tâche: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="265"/>
+        <location filename="../qml/Model.qml" line="363"/>
+        <source>Cannot update task: %1</source>
+        <translation>Impossible de mettre à jour la tâche: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="384"/>
+        <source>Cannot create new task: %1</source>
+        <translation>Impossible de créer la tâche: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="403"/>
+        <source>Cannot delete task: %1</source>
+        <translation>Impossible de supprimer la tâche: %1</translation>
     </message>
 </context>
 <context>
@@ -672,123 +761,39 @@
     </message>
 </context>
 <context>
-    <name>model</name>
-    <message>
-        <location filename="../qml/model.js" line="193"/>
-        <source>Bad or no response from server: %1</source>
-        <translation>Réponse du serveur incorrecte on manquante: %1</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="297"/>
-        <source>You must first refill your health from the profile page before you can do this!</source>
-        <translation>Vous devez d’abord récupérer votre santé depuis la page de profil avant de pouvoir faire ça !</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="303"/>
-        <source>Level</source>
-        <translation>Niveau</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="304"/>
-        <source>Health</source>
-        <translation>Santé</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="305"/>
-        <source>Mana</source>
-        <translation>Mana</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="306"/>
-        <source>Experience</source>
-        <translation>Expérience</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="307"/>
-        <source>Gold</source>
-        <translation>Or</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="316"/>
-        <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
-        <translation>Désolé, vous avez épuisé votre santé… Restaurez votre santé depuis la page de profil pour continuer !</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="343"/>
-        <source>Cannot update habit: %1</source>
-        <translation>Impossible de mettre à jour l’habitude: %1</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="356"/>
-        <source>Cannot toggle sleeping status: %1</source>
-        <translation>Impossible de modifier la présence à l’auberge: %1</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="368"/>
-        <source>Cannot refill health: %1</source>
-        <translation>Impossible de restaurer la santé: %1</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="381"/>
-        <source>Cannot buy Health Potion: %1</source>
-        <translation>Impossible d’acheter une Potion de santé: %1</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="399"/>
-        <source>Cannot update subtask: %1</source>
-        <translation>Impossible de mettre à jour la sous-tâche: %1</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="427"/>
-        <location filename="../qml/model.js" line="538"/>
-        <source>Cannot update task: %1</source>
-        <translation>Impossible de mettre à jour la tâche: %1</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="560"/>
-        <source>Cannot create new task: %1</source>
-        <translation>Impossible de créer la tâche: %1</translation>
-    </message>
-    <message>
-        <location filename="../qml/model.js" line="579"/>
-        <source>Cannot delete task: %1</source>
-        <translation>Impossible de supprimer la tâche: %1</translation>
-    </message>
-</context>
-<context>
     <name>rpc</name>
     <message>
-        <location filename="../qml/rpc.js" line="22"/>
+        <location filename="../qml/rpc.js" line="33"/>
         <source>Invalid URL</source>
         <translation>URL invalide</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="22"/>
+        <location filename="../qml/rpc.js" line="33"/>
         <source>Bad request</source>
         <translation>Requête mal formée</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="22"/>
+        <location filename="../qml/rpc.js" line="33"/>
         <source>Unauthorized or bad login and password</source>
         <translation>Non authorisé, ou mauvais utilisateur ou mot de passe</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="68"/>
+        <location filename="../qml/rpc.js" line="70"/>
         <source>Invalid data or no data was received from server</source>
         <translation>Données invalides ou pas de données reçues du serveur</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="85"/>
+        <location filename="../qml/rpc.js" line="87"/>
         <source>Invalid method for rpc call</source>
         <translation>Méthode invalide pour le RPC</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="120"/>
+        <location filename="../qml/rpc.js" line="100"/>
         <source>Unexplained error: %1 (status: %2)</source>
         <translation>Erreur non explicite: %1 (statut: %2)</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="122"/>
+        <location filename="../qml/rpc.js" line="102"/>
         <source>Unknown error, status: %1</source>
         <translation>Erreur inconnue, statut: %1</translation>
     </message>

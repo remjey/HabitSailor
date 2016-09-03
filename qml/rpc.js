@@ -19,13 +19,9 @@
 
 .pragma library
 
-var defaultErrorList = { 0: qsTr("Invalid URL"), 400: qsTr("Bad request"), 401: qsTr("Unauthorized or bad login and password") };
+function Service() {}
 
-var apiUrl = null;
-var apiKey = null;
-var apiUser = null;
-
-function populatePath(path, data) {
+function formatPath(path, data) {
     return path.replace(/:(:|[a-zA-Z_0-9]+\b)/g, function (match, varname) {
         if (varname === "::") return ":";
         var r = data[varname];
@@ -34,9 +30,15 @@ function populatePath(path, data) {
     });
 }
 
-function call(path, method, data, onload, debug) { //debug = true;
+Service.prototype.defaultErrorList = { 0: qsTr("Invalid URL"), 400: qsTr("Bad request"), 401: qsTr("Unauthorized or bad login and password") };
+Service.prototype.apiUrl = null;
+Service.prototype.apiKey = null;
+Service.prototype.apiUser = null;
+
+Service.prototype.call = function (path, method, data, onload, debug) {
+
     var xhr = new XMLHttpRequest();
-    var fullpath = populatePath(apiUrl + "/api/v3" + path, data);
+    var fullpath = formatPath(this.apiUrl + "/api/v3" + path, data);
     var noBody = method === "get" || method === "delete"
     if (method === "post-no-body") {
         method = "post";
@@ -45,9 +47,9 @@ function call(path, method, data, onload, debug) { //debug = true;
     print("XHR Query: " + method + " " + fullpath)
     if (debug) print("XHR Query Data: " + JSON.stringify(data, null, 2));
     xhr.open(method, fullpath);
-    if (apiKey && apiUser) {
-        xhr.setRequestHeader("x-api-key", apiKey);
-        xhr.setRequestHeader("x-api-user", apiUser);
+    if (this.apiKey && this.apiUser) {
+        xhr.setRequestHeader("x-api-key", this.apiKey);
+        xhr.setRequestHeader("x-api-user", this.apiUser);
     }
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
@@ -85,30 +87,8 @@ function call(path, method, data, onload, debug) { //debug = true;
         throw qsTr("Invalid method for rpc call") // TODO notify callback instead of throwing
 }
 
-function CallSeq(onfail) {
-    this.onfail = onfail;
-    this.autofail = false;
-    this.list = [];
-    this.index = 0;
-}
-CallSeq.prototype.push = function (path, method, data, onload) {
-    this.list.push({ path: path, method: method, data: data, onload: onload });
-    return this;
-}
-CallSeq.prototype.run = function () {
-    if (this.index >= this.list.length) return;
-    var c = this.list[this.index];
-    this.index++;
-    call(c.path, c.method, c.data, (function (ok, r) {
-        if ((!this.autofail || ok) && c.onload(ok, r))
-            return this.run();
-        this.index = 0;
-        if (this.onfail) this.onfail(r);
-    }).bind(this));
-}
-
-function err(r, errorList) {
-    errorList = errorList || defaultErrorList;
+Service.prototype.err = function (r, errorList) {
+    errorList = errorList || this.defaultErrorList;
     var error = null, errorMessage = null;
     if (r) print(r.hasOwnProperty("error"));
     if (r && r.hasOwnProperty("error")) {
@@ -121,3 +101,33 @@ function err(r, errorList) {
     if (errorList.hasOwnProperty(r.httpStatus)) return errorList[r.httpStatus];
     return qsTr("Unknown error, status: %1").arg(r.httpStatus);
 }
+
+Service.prototype.callSeq = function (onfail) {
+    return new CallSeq(this, onfail);
+}
+
+function CallSeq(service, onfail) {
+    this.service = service
+    this.onfail = onfail;
+    this.autofail = false;
+    this.list = [];
+    this.index = 0;
+}
+
+CallSeq.prototype.push = function (path, method, data, onload) {
+    this.list.push({ path: path, method: method, data: data, onload: onload });
+    return this;
+}
+
+CallSeq.prototype.run = function () {
+    if (this.index >= this.list.length) return;
+    var c = this.list[this.index];
+    this.index++;
+    this.service.call(c.path, c.method, c.data, (function (ok, r) {
+        if ((!this.autofail || ok) && c.onload(ok, r))
+            return this.run();
+        this.index = 0;
+        if (this.onfail) this.onfail(r);
+    }).bind(this));
+}
+

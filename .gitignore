@@ -1,4 +1,5 @@
 harbour-HabitSailor.pro.user
 rpm/harbour-HabitSailor.spec
 translations/*.qm
+*.autosave
 tmp

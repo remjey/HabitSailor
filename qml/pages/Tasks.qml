@@ -20,7 +20,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../components"
-import "../model.js" as Model
+import ".."
 
 Page {
 
@@ -111,7 +111,7 @@ Page {
                         }
 
                         Connections {
-                            target: Model.signals
+                            target: Signals
                             onSetSubtask: {
                                 if (subtaskId === sbbg.subtaskId)
                                     sbswitch.checked = checked;
@@ -247,7 +247,7 @@ Page {
     }
 
     Connections {
-        target: Model.signals
+        target: Signals
         onUpdateTasks: update();
         onSetSubtask: {
             for (var i = 0; i < tasksModel.count; i++) {

@@ -20,7 +20,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../components"
-import "../model.js" as Model
+import ".."
 
 Page {
 
@@ -139,7 +139,7 @@ Page {
     }
 
     Connections {
-        target: Model.signals
+        target: Signals
         onUpdateTasks: update()
     }
 

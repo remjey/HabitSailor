@@ -19,6 +19,47 @@
 
 .pragma library
 
+var weekDays = [ "su", "m", "t", "w", "th", "f", "s", ]
+var taskPriorities = [ 0.1, 1, 1.5, 2 ];
+var repeatEveryDay = { m: true, t: true, w: true, th: true, f: true, s: true, su: true };
+var repeatNever = { m: false, t: false, w: false, th: false, f: false, s: false, su: false };
+
+function compareWeekdays(model, subject) {
+    for (var i in model) {
+        if (subject[i] !== model[i]) return false;
+    }
+    return true;
+}
+
+function colorForValue(value) {
+    // Colors inspired by those used in HabitRPG/common/script/libs/taskClasses.js
+    if (value < -20) {
+        return "#cc5f49"; // "#e6b8af";
+    } else if (value < -10) {
+        return "#db6060"; // "#f4cccc";
+    } else if (value < -1) {
+        return "#e2a25d"; // "#fce5cd";
+    } else if (value < 1) {
+        return "#e5c35b"; // "#fff2cc";
+    } else if (value < 5) {
+        return "#84d168"; // "#d9ead3";
+    } else if (value < 10) {
+        return "#68bac9"; // "#d0e0e3";
+    } else {
+        return "#5a8add"; // "#c9daf8";
+    }
+}
+
+function sortTasks(ids, tasks) {
+    var r = [];
+    ids.forEach(function (id) {
+        tasks.forEach(function (task) {
+            if (task.id === id) r.push(task);
+        })
+    })
+    return r;
+}
+
 Date.prototype.format = function (format) {
     var date = this;
     var replacements = {

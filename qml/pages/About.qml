@@ -68,6 +68,12 @@ Page {
 
             MenuButton {
                 imageSource: "image://theme/icon-m-link"
+                label: qsTr("Habitica on GitHub")
+                onClicked: Qt.openUrlExternally("https://github.com/habitrpg")
+            }
+
+            MenuButton {
+                imageSource: "image://theme/icon-m-link"
                 label: "GNU GPLv3"
                 onClicked: Qt.openUrlExternally("http://www.gnu.org/licenses/gpl-3.0-standalone.html")
             }

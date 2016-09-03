@@ -31,6 +31,10 @@
         <source>Contact %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Habitica on GitHub</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>
@@ -256,6 +260,73 @@
     </message>
     <message>
         <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Model</name>
+    <message>
+        <source>Bad or no response from server: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot update habit: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot toggle sleeping status: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot refill health: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot buy Health Potion: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot update subtask: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot update task: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot create new task: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot delete task: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You must first refill your health from the profile page before you can do this!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Health</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mana</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Experience</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Gold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -539,73 +610,6 @@
     </message>
     <message>
         <source>Deleting</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>model</name>
-    <message>
-        <source>Bad or no response from server: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You must first refill your health from the profile page before you can do this!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Level</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Health</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Mana</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Experience</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Gold</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cannot update habit: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cannot toggle sleeping status: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cannot refill health: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cannot buy Health Potion: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cannot update subtask: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cannot update task: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cannot create new task: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cannot delete task: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

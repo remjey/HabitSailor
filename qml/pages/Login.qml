@@ -20,7 +20,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../components"
-import "../model.js" as Model
+import ".."
 
 Dialog {
     id: loginPage
@@ -87,20 +87,25 @@ Dialog {
                 checked: true
             }
 
-            TextField {
-                id: customHabitRpgUrl
-                height: useHabitica.checked ? 0 : implicitHeight
+            Column {
                 width: parent.width
-                label: qsTr("URL of the custom Habitica server")
-                placeholderText: label
-                inputMethodHints: Qt.ImhUrlCharactersOnly
-                // TODO validator
-
+                height: useHabitica.checked ? 0 : implicitHeight
+                clip: true
                 Behavior on height { NumberAnimation { duration: 200 } }
 
-                EnterKey.enabled: text.length > 2
-                EnterKey.iconSource: "image://theme/icon-m-enter-next"
-                EnterKey.onClicked: login.focus = true
+                TextField {
+                    id: customHabitRpgUrl
+                    width: parent.width
+                    label: qsTr("URL of the custom Habitica server")
+                    placeholderText: label
+                    inputMethodHints: Qt.ImhUrlCharactersOnly
+                    // TODO validator
+
+                    EnterKey.enabled: text.length > 2
+                    EnterKey.iconSource: "image://theme/icon-m-enter-next"
+                    EnterKey.onClicked: login.focus = true
+                }
+
             }
 
             TextField {
@@ -123,7 +128,33 @@ Dialog {
                 EnterKey.iconSource: "image://theme/icon-m-enter-accept"
                 EnterKey.onClicked: loginPage.accept()
             }
+/*
+            Column {
+                width: parent.width
+                height: useHabitica.checked ? implicitHeight : 0
+                Behavior on height { NumberAnimation { duration: 200 } }
+                clip: true
 
+                SectionHeader {
+                    text: qsTr("Sign-Up")
+                }
+
+                Label {
+                    width: parent.width - Theme.horizontalPageMargin * 2
+                    x: Theme.horizontalPageMargin
+                    color: Theme.highlightColor
+                    text: qsTr("Sign-up is not yet supported directly in HabitSailor, you must use the main site to create an account.")
+                    wrapMode: Text.WordWrap
+                }
+
+                MenuButton {
+                    imageSource: "image://theme/icon-m-link"
+                    label: qsTr("Sign-up on Habitica main site")
+                    onClicked: Qt.openUrlExternally("https://habitica.com")
+                }
+
+            }
+*/
             SectionHeader {
                 text: qsTr("About")
             }
