@@ -2,6 +2,37 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>About</name>
+    <message>
+        <source>About HabitSailor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HabitSailor GitHub Repository</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HabitSailor is Free Software developped by Jérémy Farnaud and released under the GNU GPLv3 license.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Licenses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Habitica logo and HabitSailor icon are licensed under the CC-BY-NC-SA 3.0. The HabitSailor icon is a derivative work of the Habitica logo.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contact %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CoverPage</name>
     <message>
         <source>Dailies</source>
@@ -84,10 +115,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Welcome to HabitSailor, an unofficial client for Habitica! Have fun making habits and get tasks done while collecting items and pets!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Use the Habitica.com server</source>
         <translation type="unfinished"></translation>
     </message>
@@ -109,6 +136,22 @@
     </message>
     <message>
         <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Welcome to HabitSailor, an unofficial client for Habitica!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HabitSailor is Free Software developped by Jérémy Farnaud and released under the GNU GPLv3 license.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>More Info</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -209,6 +252,10 @@
     <message>
         <source>Resting in the Inn</source>
         <comment>status</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

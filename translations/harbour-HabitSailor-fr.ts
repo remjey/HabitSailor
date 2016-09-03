@@ -2,19 +2,57 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr_FR">
 <context>
+    <name>About</name>
+    <message>
+        <location filename="../qml/pages/About.qml" line="34"/>
+        <source>About HabitSailor</source>
+        <translation>À propos de HabitSailor</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/About.qml" line="41"/>
+        <source>HabitSailor is Free Software developped by Jérémy Farnaud and released under the GNU GPLv3 license.</source>
+        <translation>HabitSailor est un Logiciel Libre développé par Jérémy Farnaud et distribué sous les termes de la licence GNU GPLv3.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/About.qml" line="49"/>
+        <source>The Habitica logo and HabitSailor icon are licensed under the CC-BY-NC-SA 3.0. The HabitSailor icon is a derivative work of the Habitica logo.</source>
+        <translation>Le logo de Habitica et l’icône de HabitSailor sont distribués sous la license CC-BY-NC-SA 3.0. L’icône de HabitSailor est un travail dérivé du logo de Habitica.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/About.qml" line="54"/>
+        <source>Links</source>
+        <translation>Liens</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/About.qml" line="59"/>
+        <source>HabitSailor GitHub Repository</source>
+        <translation>Dépôt GitHub de HabitSailor</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/About.qml" line="65"/>
+        <source>Contact %1</source>
+        <translation>Contacter %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/About.qml" line="82"/>
+        <source>Licenses</source>
+        <translation>Licences</translation>
+    </message>
+</context>
+<context>
     <name>CoverPage</name>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="90"/>
+        <location filename="../qml/cover/CoverPage.qml" line="109"/>
         <source>Not Connected</source>
         <translation>Déconnecté</translation>
     </message>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="175"/>
+        <location filename="../qml/cover/CoverPage.qml" line="194"/>
         <source>Dailies</source>
         <translation>Quotid.</translation>
     </message>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="190"/>
+        <location filename="../qml/cover/CoverPage.qml" line="209"/>
         <source>Resting</source>
         <translation>Repos</translation>
     </message>
@@ -22,7 +60,7 @@
 <context>
     <name>DatePickerButton</name>
     <message>
-        <location filename="../qml/components/DatePickerButton.qml" line="21"/>
+        <location filename="../qml/components/DatePickerButton.qml" line="40"/>
         <source>none</source>
         <translation>aucune</translation>
     </message>
@@ -30,32 +68,32 @@
 <context>
     <name>Habits</name>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="16"/>
+        <location filename="../qml/pages/Habits.qml" line="35"/>
         <source>New Habit</source>
         <translation>Nouvelle habitude</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="24"/>
+        <location filename="../qml/pages/Habits.qml" line="43"/>
         <source>Habits</source>
         <translation>Habitudes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="72"/>
+        <location filename="../qml/pages/Habits.qml" line="91"/>
         <source>This item has no enabled buttons</source>
         <translation>Cet item n’a pas de bouton activé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="78"/>
+        <location filename="../qml/pages/Habits.qml" line="97"/>
         <source>Edit</source>
         <translation>Modifier</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="90"/>
+        <location filename="../qml/pages/Habits.qml" line="109"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="92"/>
+        <location filename="../qml/pages/Habits.qml" line="111"/>
         <source>Deleting</source>
         <translation>Suppression</translation>
     </message>
@@ -63,22 +101,22 @@
 <context>
     <name>Init</name>
     <message>
-        <location filename="../qml/pages/Init.qml" line="12"/>
+        <location filename="../qml/pages/Init.qml" line="31"/>
         <source>HabitSailor Loading...</source>
         <translation>Chargement de HabitSailor…</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Init.qml" line="18"/>
+        <location filename="../qml/pages/Init.qml" line="37"/>
         <source>HabitSailor could not connect to the server or received an unexpected error!</source>
         <translation>HabitSailor n’a pas pu se connecter au serveur ou a reçu une erreur inattendue!</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Init.qml" line="58"/>
+        <location filename="../qml/pages/Init.qml" line="77"/>
         <source>Retry</source>
         <translation>Réessayer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Init.qml" line="66"/>
+        <location filename="../qml/pages/Init.qml" line="85"/>
         <source>Change Login</source>
         <translation>Changer d’identifiant</translation>
     </message>
@@ -86,178 +124,198 @@
 <context>
     <name>Login</name>
     <message>
-        <location filename="../qml/pages/Login.qml" line="11"/>
-        <location filename="../qml/pages/Login.qml" line="132"/>
+        <location filename="../qml/pages/Login.qml" line="31"/>
+        <location filename="../qml/pages/Login.qml" line="169"/>
         <source>Connecting</source>
         <translation>Connexion</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="17"/>
+        <location filename="../qml/pages/Login.qml" line="37"/>
         <source>Loading Profile</source>
         <translation>Chargement du profil</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="22"/>
+        <location filename="../qml/pages/Login.qml" line="42"/>
         <source>Impossible to retrieve profile data although the login and password are correct!</source>
         <translation>Impossible de récupérer le profil même si les informations de connexion sont correctes!</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="47"/>
-        <location filename="../qml/pages/Login.qml" line="60"/>
+        <location filename="../qml/pages/Login.qml" line="67"/>
+        <location filename="../qml/pages/Login.qml" line="80"/>
         <source>Login</source>
         <translation>Identification</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="56"/>
-        <source>Welcome to HabitSailor, an unofficial client for Habitica! Have fun making habits and get tasks done while collecting items and pets!</source>
-        <translation>Bienvenue dans HabitSailer, un client Habitica non officiel! Amusez-vous à former de nouvelles habitudes et réalisez vos tâches tout en collectant des objets et des familiers!</translation>
+        <location filename="../qml/pages/Login.qml" line="76"/>
+        <source>Welcome to HabitSailor, an unofficial client for Habitica!</source>
+        <translation>Bienvenue dans HabitSailor, un client non-officiel pour Habitica !</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="65"/>
+        <location filename="../qml/pages/Login.qml" line="85"/>
         <source>Use the Habitica.com server</source>
         <translation>Utiliser le serveur Habitica.com</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="66"/>
+        <location filename="../qml/pages/Login.qml" line="86"/>
         <source>Uncheck only if you want to use a custom Habitica server</source>
         <translation>Décochez uniquement si vous voulez utiliser un serveur autre server Habitica</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="74"/>
+        <location filename="../qml/pages/Login.qml" line="94"/>
         <source>URL of the custom Habitica server</source>
         <translation>URL du serveur Habitica</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="89"/>
+        <location filename="../qml/pages/Login.qml" line="109"/>
         <source>Username or email address</source>
         <translation>Nom d’utilisateur ou adresse e-mail</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="100"/>
+        <location filename="../qml/pages/Login.qml" line="120"/>
         <source>Password</source>
         <translation>Mot de passe</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Login.qml" line="128"/>
+        <source>About</source>
+        <translation>À propos</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Login.qml" line="134"/>
+        <source>HabitSailor is Free Software developped by Jérémy Farnaud and released under the GNU GPLv3 license.</source>
+        <translation>HabitSailor est un Logiciel Libre développé par Jérémy Farnaud et distribué sous les termes de la licence GNU GPLv3.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Login.qml" line="141"/>
+        <source>More Info</source>
+        <translation>Plus d’informations</translation>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
-        <location filename="../qml/pages/Main.qml" line="16"/>
+        <location filename="../qml/pages/Main.qml" line="35"/>
+        <source>About</source>
+        <translation>À propos</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Main.qml" line="40"/>
         <source>Log out</source>
         <translation>Déconnexion</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="18"/>
+        <location filename="../qml/pages/Main.qml" line="42"/>
         <source>Logging out</source>
         <translation>Déconnexion</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="41"/>
+        <location filename="../qml/pages/Main.qml" line="65"/>
         <source>Refresh</source>
         <translation>Rafraîchir</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="64"/>
+        <location filename="../qml/pages/Main.qml" line="88"/>
         <source>Profile</source>
         <translation>Profil</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="107"/>
+        <location filename="../qml/pages/Main.qml" line="131"/>
         <source>Resting in the Inn</source>
         <comment>status</comment>
         <translation>Se repose à l&apos;auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="119"/>
+        <location filename="../qml/pages/Main.qml" line="143"/>
         <source>Gems</source>
         <translation>Gemmes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="125"/>
+        <location filename="../qml/pages/Main.qml" line="149"/>
         <source>Gold</source>
         <translation>Or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="131"/>
+        <location filename="../qml/pages/Main.qml" line="155"/>
         <source>Level</source>
         <translation>Niveau</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="146"/>
+        <location filename="../qml/pages/Main.qml" line="170"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="153"/>
+        <location filename="../qml/pages/Main.qml" line="177"/>
         <source>Experience</source>
         <translation>Expérience</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="160"/>
+        <location filename="../qml/pages/Main.qml" line="184"/>
         <source>Mana</source>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="169"/>
+        <location filename="../qml/pages/Main.qml" line="193"/>
         <source>Tasks</source>
         <translation>Tâches</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="176"/>
+        <location filename="../qml/pages/Main.qml" line="200"/>
         <source>Refill your health</source>
         <translation>Restaurez votre santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="185"/>
+        <location filename="../qml/pages/Main.qml" line="209"/>
         <source>Habits</source>
         <translation>Habitudes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="194"/>
+        <location filename="../qml/pages/Main.qml" line="218"/>
         <source>Dailies</source>
         <translation>Quotidiennes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="203"/>
+        <location filename="../qml/pages/Main.qml" line="227"/>
         <source>To-Dos</source>
         <translation>À faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="210"/>
+        <location filename="../qml/pages/Main.qml" line="234"/>
         <source>Rewards</source>
         <translation>Récompenses</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="216"/>
+        <location filename="../qml/pages/Main.qml" line="240"/>
         <source>Health Potion</source>
         <translation>Potion de santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="217"/>
+        <location filename="../qml/pages/Main.qml" line="241"/>
         <source>Costs %1 Gold</source>
         <translation>Coûte %1 pièce(s) d’or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="219"/>
+        <location filename="../qml/pages/Main.qml" line="243"/>
         <source>Buying Health Potion</source>
         <translation>Achat d’une Potion de Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="231"/>
+        <location filename="../qml/pages/Main.qml" line="255"/>
         <source>Check Out of Inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="231"/>
+        <location filename="../qml/pages/Main.qml" line="255"/>
         <source>Rest in the Inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="232"/>
+        <location filename="../qml/pages/Main.qml" line="256"/>
         <source>Checking out of inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="232"/>
+        <location filename="../qml/pages/Main.qml" line="256"/>
         <source>Resting in the inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
@@ -265,27 +323,27 @@
 <context>
     <name>Revive</name>
     <message>
-        <location filename="../qml/pages/Revive.qml" line="25"/>
+        <location filename="../qml/pages/Revive.qml" line="44"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Revive.qml" line="26"/>
+        <location filename="../qml/pages/Revive.qml" line="45"/>
         <source>Continue</source>
         <translation>Continuer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Revive.qml" line="35"/>
+        <location filename="../qml/pages/Revive.qml" line="54"/>
         <source>You ran out of Health!</source>
         <translation>Vous avez épuisé votre santé !</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Revive.qml" line="43"/>
+        <location filename="../qml/pages/Revive.qml" line="62"/>
         <source>Don’t despair, You lost a Level, your Gold, and a piece of Equipment, but you can get them all back with hard work! Good luck – you&apos;ll do great.</source>
         <translation>Ne désespérez pas ! Vous avez perdu un niveau, tout votre or, et une pièce d&apos;équipement, mais vous pouvez tous les récupérer en travaillant dur ! Bonne chance – vous y arriverez.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Revive.qml" line="60"/>
+        <location filename="../qml/pages/Revive.qml" line="79"/>
         <source>Refilling your health</source>
         <translation>Restauration de votre santé</translation>
     </message>
@@ -293,27 +351,27 @@
 <context>
     <name>TaskDetails</name>
     <message>
-        <location filename="../qml/pages/TaskDetails.qml" line="25"/>
+        <location filename="../qml/pages/TaskDetails.qml" line="44"/>
         <source>To-Do</source>
         <translation>À faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskDetails.qml" line="26"/>
+        <location filename="../qml/pages/TaskDetails.qml" line="45"/>
         <source>Daily</source>
         <translation>Quotidienne</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskDetails.qml" line="30"/>
+        <location filename="../qml/pages/TaskDetails.qml" line="49"/>
         <source>Title</source>
         <translation>Titre</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskDetails.qml" line="42"/>
+        <location filename="../qml/pages/TaskDetails.qml" line="61"/>
         <source>Extra Notes</source>
         <translation>Notes supplémentaires</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskDetails.qml" line="60"/>
+        <location filename="../qml/pages/TaskDetails.qml" line="79"/>
         <source>Checklist</source>
         <translation>Check-list</translation>
     </message>
@@ -321,208 +379,208 @@
 <context>
     <name>TaskEdit</name>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="120"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="139"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="122"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="141"/>
         <source>Create</source>
         <translation>Créer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="14"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="33"/>
         <source>New Habit</source>
         <translation>Nouvelle habitude</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="15"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="34"/>
         <source>Edit Habit</source>
         <translation>Modifier l’habitude</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="16"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="35"/>
         <source>Saving Habit</source>
         <translation>Sauvegarde de l’habitude</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="19"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="38"/>
         <source>Edit Daily</source>
         <translation>Modifier la quotidienne</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="20"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="39"/>
         <source>Saving Daily</source>
         <translation>Sauvegarde de la quotidienne</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="24"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="43"/>
         <source>Saving To-Do</source>
         <translation>Sauvegarde de la tâche à faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="123"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="142"/>
         <source>Save</source>
         <translation>Sauvegarder</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="131"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="150"/>
         <source>Title</source>
         <translation>Titre</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="141"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="160"/>
         <source>Extra Notes</source>
         <translation>Notes supplémentaires</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="150"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="169"/>
         <source>Direction / Actions</source>
         <translation>Direction / Actions</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="157"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="176"/>
         <source>Up / Plus</source>
         <translation>Haut / Plus</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="164"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="183"/>
         <source>Down / Minus</source>
         <translation>Bas / Moins</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="173"/>
-        <location filename="../qml/pages/TaskEdit.qml" line="189"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="192"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="208"/>
         <source>Schedule</source>
         <translation>Planification</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="195"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="214"/>
         <source>Start Date</source>
         <translation>Date de début</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="201"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="220"/>
         <source>Repeat</source>
         <translation>Répéter</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="211"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="230"/>
         <source>every day</source>
         <translation>chaqe jour</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="213"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="232"/>
         <source>periodically</source>
         <translation>périodiquement</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="214"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="233"/>
         <source>never, make this daily optional</source>
         <translation>jamais, cette tâche est optionnelle</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="231"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="250"/>
         <source>Period length in days</source>
         <translation>Longueur de la période en jours</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="378"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="397"/>
         <source>New Checklist Item</source>
         <translation>Nouvelle sous-tâche</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="29"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="48"/>
         <source>Mon</source>
         <translation>lun</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="23"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="42"/>
         <source>Edit To-Do</source>
         <translation>Modifier la tâche à faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="30"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="49"/>
         <source>Tue</source>
         <translation>mar</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="31"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="50"/>
         <source>Wed</source>
         <translation>mer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="32"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="51"/>
         <source>Thu</source>
         <translation>jeu</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="33"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="52"/>
         <source>Fri</source>
         <translation>ven</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="34"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="53"/>
         <source>Sat</source>
         <translation>sam</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="35"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="54"/>
         <source>Sun</source>
         <translation>dim</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="178"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="197"/>
         <source>Due Date</source>
         <translation>Date d’échéance</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="212"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="231"/>
         <source>on certain week days</source>
         <translation>certains jours de la semaine</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="330"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="349"/>
         <source>Checklist</source>
         <translation>Check-list</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="408"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="427"/>
         <source>Advanced Options</source>
         <translation>Options avancées</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="414"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="433"/>
         <source>Difficulty</source>
         <translation>Difficulté</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="418"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="437"/>
         <source>trivial</source>
         <translation>triviale</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="419"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="438"/>
         <source>easy</source>
         <translation>facile</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="420"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="439"/>
         <source>medium</source>
         <translation>moyenne</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="421"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="440"/>
         <source>hard</source>
         <translation>difficile</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="22"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="41"/>
         <source>New To-Do</source>
         <translation>Nouvelle tâche à faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="18"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="37"/>
         <source>New Daily</source>
         <translation>Nouvelle quotidienne</translation>
     </message>
@@ -530,12 +588,12 @@
 <context>
     <name>TaskItem</name>
     <message>
-        <location filename="../qml/components/TaskItem.qml" line="88"/>
+        <location filename="../qml/components/TaskItem.qml" line="107"/>
         <source>Due Date: %1</source>
         <translation>Date d’échéance: %1</translation>
     </message>
     <message>
-        <location filename="../qml/components/TaskItem.qml" line="89"/>
+        <location filename="../qml/components/TaskItem.qml" line="108"/>
         <source>Start Date: %1</source>
         <translation>Date de début: %1</translation>
     </message>
@@ -543,72 +601,72 @@
 <context>
     <name>Tasks</name>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="26"/>
+        <location filename="../qml/pages/Tasks.qml" line="45"/>
         <source>To-Dos</source>
         <translation>À faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="26"/>
+        <location filename="../qml/pages/Tasks.qml" line="45"/>
         <source>Dailies</source>
         <translation>Quotidiennes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="40"/>
+        <location filename="../qml/pages/Tasks.qml" line="59"/>
         <source>%1 / %2 subtasks completed</source>
         <translation>%1 / %2 sous-tâches complétées</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="105"/>
+        <location filename="../qml/pages/Tasks.qml" line="124"/>
         <source>Uncheck Task</source>
         <translation>Décocher la tâche</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="105"/>
+        <location filename="../qml/pages/Tasks.qml" line="124"/>
         <source>Check Task</source>
         <translation>Cocher la tâche</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="122"/>
+        <location filename="../qml/pages/Tasks.qml" line="141"/>
         <source>Check %1</source>
         <translation>Cocher %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="130"/>
+        <location filename="../qml/pages/Tasks.qml" line="149"/>
         <source>View Details</source>
         <translation>Vue détaillée</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="146"/>
+        <location filename="../qml/pages/Tasks.qml" line="165"/>
         <source>Edit</source>
         <translation>Modifier</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="129"/>
+        <location filename="../qml/pages/Tasks.qml" line="148"/>
         <source>View Details and Checklist</source>
         <translation>Vue détaillée et check-list</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="17"/>
+        <location filename="../qml/pages/Tasks.qml" line="36"/>
         <source>Add New To-Do</source>
         <translation>Ajouter une tâche à faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="18"/>
+        <location filename="../qml/pages/Tasks.qml" line="37"/>
         <source>Add New Daily</source>
         <translation>Ajouter une quotidienne</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="158"/>
+        <location filename="../qml/pages/Tasks.qml" line="177"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="160"/>
+        <location filename="../qml/pages/Tasks.qml" line="179"/>
         <source>Deleting</source>
         <translation>Suppression</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="179"/>
+        <location filename="../qml/pages/Tasks.qml" line="198"/>
         <source>Quick Checklist</source>
         <translation>Mini check-list</translation>
     </message>
@@ -616,83 +674,83 @@
 <context>
     <name>model</name>
     <message>
-        <location filename="../qml/model.js" line="174"/>
+        <location filename="../qml/model.js" line="193"/>
         <source>Bad or no response from server: %1</source>
         <translation>Réponse du serveur incorrecte on manquante: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="278"/>
+        <location filename="../qml/model.js" line="297"/>
         <source>You must first refill your health from the profile page before you can do this!</source>
         <translation>Vous devez d’abord récupérer votre santé depuis la page de profil avant de pouvoir faire ça !</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="284"/>
+        <location filename="../qml/model.js" line="303"/>
         <source>Level</source>
         <translation>Niveau</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="285"/>
+        <location filename="../qml/model.js" line="304"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="286"/>
+        <location filename="../qml/model.js" line="305"/>
         <source>Mana</source>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="287"/>
+        <location filename="../qml/model.js" line="306"/>
         <source>Experience</source>
         <translation>Expérience</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="288"/>
+        <location filename="../qml/model.js" line="307"/>
         <source>Gold</source>
         <translation>Or</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="297"/>
+        <location filename="../qml/model.js" line="316"/>
         <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
         <translation>Désolé, vous avez épuisé votre santé… Restaurez votre santé depuis la page de profil pour continuer !</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="324"/>
+        <location filename="../qml/model.js" line="343"/>
         <source>Cannot update habit: %1</source>
         <translation>Impossible de mettre à jour l’habitude: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="337"/>
+        <location filename="../qml/model.js" line="356"/>
         <source>Cannot toggle sleeping status: %1</source>
         <translation>Impossible de modifier la présence à l’auberge: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="349"/>
+        <location filename="../qml/model.js" line="368"/>
         <source>Cannot refill health: %1</source>
         <translation>Impossible de restaurer la santé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="362"/>
+        <location filename="../qml/model.js" line="381"/>
         <source>Cannot buy Health Potion: %1</source>
         <translation>Impossible d’acheter une Potion de santé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="380"/>
+        <location filename="../qml/model.js" line="399"/>
         <source>Cannot update subtask: %1</source>
         <translation>Impossible de mettre à jour la sous-tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="408"/>
-        <location filename="../qml/model.js" line="519"/>
+        <location filename="../qml/model.js" line="427"/>
+        <location filename="../qml/model.js" line="538"/>
         <source>Cannot update task: %1</source>
         <translation>Impossible de mettre à jour la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="541"/>
+        <location filename="../qml/model.js" line="560"/>
         <source>Cannot create new task: %1</source>
         <translation>Impossible de créer la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/model.js" line="560"/>
+        <location filename="../qml/model.js" line="579"/>
         <source>Cannot delete task: %1</source>
         <translation>Impossible de supprimer la tâche: %1</translation>
     </message>
@@ -700,37 +758,37 @@
 <context>
     <name>rpc</name>
     <message>
-        <location filename="../qml/rpc.js" line="3"/>
+        <location filename="../qml/rpc.js" line="22"/>
         <source>Invalid URL</source>
         <translation>URL invalide</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="3"/>
+        <location filename="../qml/rpc.js" line="22"/>
         <source>Bad request</source>
         <translation>Requête mal formée</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="3"/>
+        <location filename="../qml/rpc.js" line="22"/>
         <source>Unauthorized or bad login and password</source>
         <translation>Non authorisé, ou mauvais utilisateur ou mot de passe</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="49"/>
+        <location filename="../qml/rpc.js" line="68"/>
         <source>Invalid data or no data was received from server</source>
         <translation>Données invalides ou pas de données reçues du serveur</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="66"/>
+        <location filename="../qml/rpc.js" line="85"/>
         <source>Invalid method for rpc call</source>
         <translation>Méthode invalide pour le RPC</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="101"/>
+        <location filename="../qml/rpc.js" line="120"/>
         <source>Unexplained error: %1 (status: %2)</source>
         <translation>Erreur non explicite: %1 (statut: %2)</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="103"/>
+        <location filename="../qml/rpc.js" line="122"/>
         <source>Unknown error, status: %1</source>
         <translation>Erreur inconnue, statut: %1</translation>
     </message>

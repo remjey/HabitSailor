@@ -1,5 +1,25 @@
+/*
+  Copyright 2016 Jérémy Farnaud
+
+  This file is part of HabitSailor.
+
+  HabitSailor is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  HabitSailor is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Foobar.  If not, see <http://www.gnu.org/licenses/>
+*/
+
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "../components"
 import "../model.js" as Model
 
 Dialog {
@@ -49,11 +69,11 @@ Dialog {
             }
 
             Label {
-                anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width - 2 * Theme.paddingLarge
+                width: parent.width - 2 * Theme.horizontalPageMargin
+                x: Theme.horizontalPageMargin
                 wrapMode: Text.WordWrap
                 color: Theme.highlightColor
-                text: qsTr("Welcome to HabitSailor, an unofficial client for Habitica! Have fun making habits and get tasks done while collecting items and pets!")
+                text: qsTr("Welcome to HabitSailor, an unofficial client for Habitica!")
             }
 
             SectionHeader {
@@ -104,6 +124,23 @@ Dialog {
                 EnterKey.onClicked: loginPage.accept()
             }
 
+            SectionHeader {
+                text: qsTr("About")
+            }
+
+            Label {
+                width: parent.width - Theme.horizontalPageMargin
+                x: Theme.horizontalPageMargin
+                text: qsTr("HabitSailor is Free Software developped by Jérémy Farnaud and released under the GNU GPLv3 license.")
+                color: Theme.highlightColor
+                wrapMode: Text.WordWrap
+            }
+
+            MenuButton {
+                imageSource: "image://theme/icon-m-about"
+                label: qsTr("More Info")
+                onClicked: pageStack.push("About.qml")
+            }
         }
     }
 

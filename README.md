@@ -2,7 +2,7 @@
 
 ## Intro
 
-HabitSailor is a work-in-progress Habitica client for SailfishOS.
+HabitSailor is a work-in-progress Habitica client for SailfishOS developped by Jérémy Farnaud.
 It will progressively implement features of the API starting with the most important ones.
 As it is not yet complete, it can be seen as a sidekick to the main web application.
 
