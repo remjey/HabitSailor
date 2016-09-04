@@ -51,19 +51,23 @@ Page {
             id: taskItem
             showColor: model.up || model.down
 
+            function clickMe(dir) {
+                enabled = false;
+                busy = true;
+                Model.habitClick(model.id, dir, function (ok, c) {
+                    enabled = true;
+                    busy = false;
+                    if (ok)
+                        list.model.setProperty(index, "color", c)
+                });
+            }
+
             menu: Component {
                 ContextMenu {
                     id: contextMenu
 
                     function clickItem(dir) {
-                        taskItem.enabled = false;
-                        taskItem.busy = true;
-                        Model.habitClick(model.id, dir, function (ok, c) {
-                            taskItem.enabled = true;
-                            taskItem.busy = false;
-                            if (ok)
-                                list.model.setProperty(model.index, "color", c)
-                        });
+                        taskItem.clickMe(dir);
                         hideMenu();
                     }
 

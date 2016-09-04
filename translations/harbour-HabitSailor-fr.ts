@@ -88,17 +88,17 @@
         <translation>Habitudes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="90"/>
+        <location filename="../qml/pages/Habits.qml" line="94"/>
         <source>Edit</source>
         <translation>Modifier</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="102"/>
+        <location filename="../qml/pages/Habits.qml" line="106"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="104"/>
+        <location filename="../qml/pages/Habits.qml" line="108"/>
         <source>Deleting</source>
         <translation>Suppression</translation>
     </message>

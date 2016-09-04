@@ -1,5 +1,5 @@
 Name: harbour-HabitSailor
-Summary: SailfishOS basic client for Habitica
+Summary: Habitica basic unofficial client for SailfishOS
 Version: 0.1
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
@@ -12,7 +12,9 @@ License: GPLv3
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |
-  Short description of my SailfishOS Application
+  Habitica unofficial client for SailfishOS implementing essetial features
+  like showing profile and status, checking, editing, deleting tasks and
+  their checklists.
 Configure: none
 # The qtc5 builder inserts macros to allow QtCreator to have fine
 # control over qmake/make execution

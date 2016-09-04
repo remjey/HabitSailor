@@ -46,6 +46,7 @@ ValueButton {
     IconButton {
         visible: canClear && selectedDate
         anchors.right: parent.right
+        anchors.rightMargin: Theme.paddingSmall
         anchors.verticalCenter: parent.verticalCenter
         icon.source: "image://theme/icon-m-clear"
 
