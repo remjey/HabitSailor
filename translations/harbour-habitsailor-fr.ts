@@ -130,7 +130,7 @@
     <name>Login</name>
     <message>
         <location filename="../qml/pages/Login.qml" line="31"/>
-        <location filename="../qml/pages/Login.qml" line="174"/>
+        <location filename="../qml/pages/Login.qml" line="177"/>
         <source>Connecting</source>
         <translation>Connexion</translation>
     </message>
@@ -145,53 +145,53 @@
         <translation>Impossible de récupérer le profil même si les informations de connexion sont correctes!</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="67"/>
-        <location filename="../qml/pages/Login.qml" line="80"/>
+        <location filename="../qml/pages/Login.qml" line="70"/>
+        <location filename="../qml/pages/Login.qml" line="83"/>
         <source>Login</source>
         <translation>Identification</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="76"/>
+        <location filename="../qml/pages/Login.qml" line="79"/>
         <source>Welcome to HabitSailor, an unofficial client for Habitica!</source>
         <translation>Bienvenue dans HabitSailor, un client non-officiel pour Habitica !</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="85"/>
+        <location filename="../qml/pages/Login.qml" line="88"/>
         <source>Use the Habitica.com server</source>
         <translation>Utiliser le serveur Habitica.com</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="86"/>
+        <location filename="../qml/pages/Login.qml" line="89"/>
         <source>Uncheck only if you want to use a custom Habitica server</source>
         <translation>Décochez uniquement si vous voulez utiliser un serveur autre server Habitica</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="99"/>
+        <location filename="../qml/pages/Login.qml" line="102"/>
         <source>URL of the custom Habitica server</source>
         <translation>URL du serveur Habitica</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="114"/>
+        <location filename="../qml/pages/Login.qml" line="117"/>
         <source>Username or email address</source>
         <translation>Nom d’utilisateur ou adresse e-mail</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="125"/>
+        <location filename="../qml/pages/Login.qml" line="128"/>
         <source>Password</source>
         <translation>Mot de passe</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="133"/>
+        <location filename="../qml/pages/Login.qml" line="136"/>
         <source>About</source>
         <translation>À propos</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="139"/>
+        <location filename="../qml/pages/Login.qml" line="142"/>
         <source>HabitSailor is Free Software developped by Jérémy Farnaud and released under the GNU GPLv3 license.</source>
         <translation>HabitSailor est un Logiciel Libre développé par Jérémy Farnaud et distribué sous les termes de la licence GNU GPLv3.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Login.qml" line="146"/>
+        <location filename="../qml/pages/Login.qml" line="149"/>
         <source>More Info</source>
         <translation>Plus d’informations</translation>
     </message>

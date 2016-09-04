@@ -150,7 +150,7 @@ QtObject {
                          _setupRpc();
                          success();
                      } else {
-                         error(Rpc.err(r));
+                         error(_rpc.err(r));
                      }
                  });
     }

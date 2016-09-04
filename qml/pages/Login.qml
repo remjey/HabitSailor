@@ -48,7 +48,10 @@ Dialog {
                     });
     }
 
-    canAccept: true // TODO conditions
+    canAccept: (login.text.trim() != ""
+                && password.text != ""
+                && (useHabitica || customHabitRpgUrl.text != "")
+                )
 
     SilicaFlickable {
 
@@ -89,7 +92,7 @@ Dialog {
 
             Item {
                 width: parent.width
-                height: useHabitica.checked ? 0 : implicitHeight
+                height: useHabitica.checked ? 0 : customHabitRpgUrl.implicitHeight
                 clip: true
                 Behavior on height { NumberAnimation { duration: 200 } }
 
