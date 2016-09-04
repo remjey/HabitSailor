@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
 X-Nemo-Application-Type=silica-qt5
-Icon=harbour-HabitSailor
-Exec=harbour-HabitSailor
+Icon=harbour-habitsailor
+Exec=harbour-habitsailor
 Name=HabitSailor

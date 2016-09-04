@@ -10,12 +10,12 @@
 #   - translation filenames have to be changed
 
 # The name of your application
-TARGET = harbour-HabitSailor
+TARGET = harbour-habitsailor
 
 CONFIG += sailfishapp
 
 SOURCES += \
-    src/HabitSailor.cpp
+    src/habitsailor.cpp
 
 CODECFORSRC = UTF-8
 
@@ -32,7 +32,7 @@ SOURCES += \
 
 OTHER_FILES += \
     translations/*.ts \
-    harbour-HabitSailor.desktop
+    harbour-habitsailor.desktop
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 
@@ -41,8 +41,8 @@ SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 CONFIG += sailfishapp_i18n
 
 TRANSLATIONS += \
-    translations/harbour-HabitSailor-fr.ts \
-    translations/harbour-HabitSailor.ts
+    translations/harbour-habitsailor-fr.ts \
+    translations/harbour-habitsailor.ts
 
 DISTFILES += \
     qml/pages/Main.qml \
@@ -51,9 +51,7 @@ DISTFILES += \
     qml/pages/Login.qml \
     qml/rpc.js \
     README.md \
-    HabitSailor.desktop \
-    rpm/HabitSailor.yaml \
-    rpm/HabitSailor.spec \
+    habitsailor.desktop \
     qml/pages/Habits.qml \
     qml/utils.js \
     qml/components/Bar.qml \
@@ -61,9 +59,9 @@ DISTFILES += \
     qml/components/MenuButton.qml \
     qml/pages/Revive.qml \
     qml/components/HabitButton.qml \
-    rpm/harbour-HabitSailor.yaml \
-    rpm/harbour-HabitSailor.changes.in \
-    qml/harbour-HabitSailor.qml \
+    rpm/harbour-habitsailor.yaml \
+    rpm/harbour-habitsailor.changes.in \
+    qml/harbour-habitsailor.qml \
     qml/components/TaskItem.qml \
     qml/cover/CoverPage.qml \
     qml/pages/Tasks.qml \
