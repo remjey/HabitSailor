@@ -63,6 +63,17 @@
     </message>
 </context>
 <context>
+    <name>EmptyListHint</name>
+    <message>
+        <source>Pull down to create a new one</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Habits</name>
     <message>
         <source>New Habit</source>
@@ -82,6 +93,10 @@
     </message>
     <message>
         <source>Deleting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No habits</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -610,6 +625,14 @@
     </message>
     <message>
         <source>Deleting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No To-Dos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Dailies</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

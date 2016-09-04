@@ -24,6 +24,11 @@ import ".."
 
 Page {
 
+    EmptyListHint {
+        visible: list.model.count === 0
+        label: qsTr("No habits")
+    }
+
     SilicaListView {
         id: list
         anchors.fill: parent

@@ -73,5 +73,6 @@ DISTFILES += \
     qml/assets/gpl-3.0.txt \
     qml/Model.qml \
     qml/qmldir \
-    qml/Signals.qml
+    qml/Signals.qml \
+    qml/components/EmptyListHint.qml
 

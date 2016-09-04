@@ -26,6 +26,13 @@ Page {
 
     property string mode: "todos" // either "todos" or "dailies"
 
+    EmptyListHint {
+        visible: list.model.count === 0
+        label: mode == "todos"
+               ? qsTr("No To-Dos")
+               : qsTr("No Dailies")
+    }
+
     SilicaListView {
         id: list
         anchors.fill: parent

@@ -76,29 +76,47 @@
     </message>
 </context>
 <context>
+    <name>EmptyListHint</name>
+    <message>
+        <location filename="../qml/components/EmptyListHint.qml" line="17"/>
+        <source>No Items</source>
+        <translation>Aucune tâche</translation>
+    </message>
+    <message>
+        <location filename="../qml/components/EmptyListHint.qml" line="25"/>
+        <source>Pull down to create a new one</source>
+        <translation>Glissez vers le bas pour en ajouter une</translation>
+    </message>
+</context>
+<context>
     <name>Habits</name>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="35"/>
+        <location filename="../qml/pages/Habits.qml" line="40"/>
         <source>New Habit</source>
         <translation>Nouvelle habitude</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="43"/>
+        <location filename="../qml/pages/Habits.qml" line="48"/>
         <source>Habits</source>
         <translation>Habitudes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="94"/>
+        <location filename="../qml/pages/Habits.qml" line="29"/>
+        <source>No habits</source>
+        <translation>Aucune habitude</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Habits.qml" line="99"/>
         <source>Edit</source>
         <translation>Modifier</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="106"/>
+        <location filename="../qml/pages/Habits.qml" line="111"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="108"/>
+        <location filename="../qml/pages/Habits.qml" line="113"/>
         <source>Deleting</source>
         <translation>Suppression</translation>
     </message>
@@ -690,72 +708,82 @@
 <context>
     <name>Tasks</name>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="46"/>
+        <location filename="../qml/pages/Tasks.qml" line="53"/>
         <source>To-Dos</source>
         <translation>À faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="46"/>
+        <location filename="../qml/pages/Tasks.qml" line="53"/>
         <source>Dailies</source>
         <translation>Quotidiennes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="60"/>
+        <location filename="../qml/pages/Tasks.qml" line="67"/>
         <source>%1 / %2 subtasks completed</source>
         <translation>%1 / %2 sous-tâches complétées</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="67"/>
+        <location filename="../qml/pages/Tasks.qml" line="74"/>
         <source>Uncheck Task</source>
         <translation>Décocher la tâche</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="67"/>
+        <location filename="../qml/pages/Tasks.qml" line="74"/>
         <source>Check Task</source>
         <translation>Cocher la tâche</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="205"/>
+        <location filename="../qml/pages/Tasks.qml" line="212"/>
         <source>Check %1</source>
         <translation>Cocher %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="75"/>
+        <location filename="../qml/pages/Tasks.qml" line="82"/>
         <source>View Details</source>
         <translation>Vue détaillée</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="90"/>
+        <location filename="../qml/pages/Tasks.qml" line="97"/>
         <source>Edit</source>
         <translation>Modifier</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="74"/>
+        <location filename="../qml/pages/Tasks.qml" line="81"/>
         <source>View Details and Checklist</source>
         <translation>Vue détaillée et check-list</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="37"/>
+        <location filename="../qml/pages/Tasks.qml" line="32"/>
+        <source>No To-Dos</source>
+        <translation>Aucune tâche à faire</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Tasks.qml" line="33"/>
+        <source>No Dailies</source>
+        <translation>Aucune quotidienne</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Tasks.qml" line="44"/>
         <source>Add New To-Do</source>
         <translation>Ajouter une tâche à faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="38"/>
+        <location filename="../qml/pages/Tasks.qml" line="45"/>
         <source>Add New Daily</source>
         <translation>Ajouter une quotidienne</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="102"/>
+        <location filename="../qml/pages/Tasks.qml" line="109"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="209"/>
+        <location filename="../qml/pages/Tasks.qml" line="216"/>
         <source>Deleting</source>
         <translation>Suppression</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="112"/>
+        <location filename="../qml/pages/Tasks.qml" line="119"/>
         <source>Quick Checklist</source>
         <translation>Mini check-list</translation>
     </message>
