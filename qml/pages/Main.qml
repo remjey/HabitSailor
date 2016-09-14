@@ -92,12 +92,11 @@ Page {
                 width: parent.width
                 spacing: Theme.paddingLarge
                 Row {
-                    x: Theme.horizontalPageMargin
-                    width: parent.width - Theme.horizontalPageMargin * 2
+                    width: parent.width - Theme.horizontalPageMargin
                     spacing: Theme.paddingMedium
 
                     PanelBackground {
-                        width: Math.min(root.width / 3.2, Theme.itemSizeExtraLarge * 3)
+                        width: Math.min(root.width / 3, Theme.itemSizeExtraLarge * 3)
                         height: width
                         Image {
                             anchors.fill: parent
@@ -163,7 +162,7 @@ Page {
                     id: stats
                     anchors.horizontalCenter: parent.horizontalCenter
 
-                    property int itemSize: parent.width / 3 - Theme.horizontalPageMargin
+                    property int itemSize: (parent.width - Theme.horizontalPageMargin) / 3
                     Stat {
                         id: health
                         width: parent.itemSize

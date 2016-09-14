@@ -54,6 +54,11 @@
         <source>Not Connected</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Congrats!
+All dailies completed!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DatePickerButton</name>

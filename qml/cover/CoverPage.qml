@@ -40,27 +40,31 @@ CoverBackground {
             exp.maximum = Model.getXpNext();
             exp.value = Model.getXp();
             gp.text = Math.floor(Model.getGold());
-            var list = Model.listDailies();
-            var completed = 0, active = 0;
-            dailiesList.model.clear();
-            var c = list.forEach(function (item) {
-                if (item.activeToday) {
-                    active++;
-                    if (item.completed) completed++;
-                    else dailiesList.model.append(item);
-                }
-            });
             if (Model.isSleeping()) {
                 sleeping.visible = true;
                 dailiesRow.visible = false;
             } else {
                 sleeping.visible = false;
                 dailiesRow.visible = true;
-                completedDailies.text = completed + "/" + active;
             }
+        }
+
+        onUpdateTasks: {
+            var list = Model.listDailies();
+            var completed = 0, active = 0;
+            dailiesList.model.clear();
+            list.forEach(function (item) {
+                if (item.activeToday) {
+                    active++;
+                    if (item.completed) completed++;
+                    else dailiesList.model.append(item);
+                }
+            });
+            completedDailies.text = completed + "/" + active;
         }
     }
 
+    // I think I didn’t understand how states should be used
     states: [
         State {
             name: "INIT"
@@ -117,15 +121,18 @@ CoverBackground {
         width: parent.width - Theme.paddingSmall * 2
         y: Theme.paddingMedium
         anchors.horizontalCenter: parent.horizontalCenter
-        spacing: Theme.paddingSmall
+        spacing: Theme.paddingSmall / 2
 
         Label {
             id: name
             width: parent.width
+
             color: Theme.primaryColor
-            horizontalAlignment: Image.AlignHCenter
+            horizontalAlignment: Text.AlignHCenter
             elide: Text.ElideRight
+            truncationMode: TruncationMode.Fade
             font.pixelSize: Theme.fontSizeSmall
+            maximumLineCount: 1
         }
 
         Image {
@@ -133,8 +140,7 @@ CoverBackground {
             anchors.horizontalCenter: parent.horizontalCenter
             height: parent.width / 2.4
             width: height
-            asynchronous: true
-            opacity: 0.7
+            opacity: 0.8
         }
 
         Grid {
@@ -211,6 +217,17 @@ CoverBackground {
             font.pixelSize: Theme.fontSizeSmall
         }
 
+    }
+
+    Label {
+        anchors.fill: parent
+        anchors.margins: Theme.paddingSmall
+        visible: dailiesList.visible && dailiesList.model.count === 0
+        wrapMode: Text.WordWrap
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        color: Theme.secondaryColor
+        text: qsTr("Congrats!\nAll dailies completed!")
     }
 
     ListView {

@@ -52,19 +52,26 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="109"/>
+        <location filename="../qml/cover/CoverPage.qml" line="113"/>
         <source>Not Connected</source>
         <translation>Déconnecté</translation>
     </message>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="194"/>
+        <location filename="../qml/cover/CoverPage.qml" line="200"/>
         <source>Dailies</source>
         <translation>Quotid.</translation>
     </message>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="209"/>
+        <location filename="../qml/cover/CoverPage.qml" line="215"/>
         <source>Resting</source>
         <translation>Repos</translation>
+    </message>
+    <message>
+        <location filename="../qml/cover/CoverPage.qml" line="230"/>
+        <source>Congrats!
+All dailies completed!</source>
+        <translation>Bravo!
+Toutes vos quotidiennes sont faites!</translation>
     </message>
 </context>
 <context>
@@ -242,103 +249,103 @@
         <translation>Profil</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="131"/>
+        <location filename="../qml/pages/Main.qml" line="130"/>
         <source>Resting in the Inn</source>
         <comment>status</comment>
         <translation>Se repose à l&apos;auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="143"/>
+        <location filename="../qml/pages/Main.qml" line="142"/>
         <source>Gems</source>
         <translation>Gemmes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="149"/>
+        <location filename="../qml/pages/Main.qml" line="148"/>
         <source>Gold</source>
         <translation>Or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="155"/>
+        <location filename="../qml/pages/Main.qml" line="154"/>
         <source>Level</source>
         <translation>Niveau</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="170"/>
+        <location filename="../qml/pages/Main.qml" line="169"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="177"/>
+        <location filename="../qml/pages/Main.qml" line="176"/>
         <source>Experience</source>
         <translation>Expérience</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="184"/>
+        <location filename="../qml/pages/Main.qml" line="183"/>
         <source>Mana</source>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="193"/>
+        <location filename="../qml/pages/Main.qml" line="192"/>
         <source>Tasks</source>
         <translation>Tâches</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="200"/>
+        <location filename="../qml/pages/Main.qml" line="199"/>
         <source>Refill your health</source>
         <translation>Restaurez votre santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="209"/>
+        <location filename="../qml/pages/Main.qml" line="208"/>
         <source>Habits</source>
         <translation>Habitudes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="218"/>
+        <location filename="../qml/pages/Main.qml" line="217"/>
         <source>Dailies</source>
         <translation>Quotidiennes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="227"/>
+        <location filename="../qml/pages/Main.qml" line="226"/>
         <source>To-Dos</source>
         <translation>À faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="234"/>
+        <location filename="../qml/pages/Main.qml" line="233"/>
         <source>Rewards</source>
         <translation>Récompenses</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="240"/>
+        <location filename="../qml/pages/Main.qml" line="239"/>
         <source>Health Potion</source>
         <translation>Potion de santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="241"/>
+        <location filename="../qml/pages/Main.qml" line="240"/>
         <source>Costs %1 Gold</source>
         <translation>Coûte %1 pièce(s) d’or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="243"/>
+        <location filename="../qml/pages/Main.qml" line="242"/>
         <source>Buying Health Potion</source>
         <translation>Achat d’une Potion de Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="255"/>
+        <location filename="../qml/pages/Main.qml" line="254"/>
         <source>Check Out of Inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="255"/>
+        <location filename="../qml/pages/Main.qml" line="254"/>
         <source>Rest in the Inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="256"/>
+        <location filename="../qml/pages/Main.qml" line="255"/>
         <source>Checking out of inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="256"/>
+        <location filename="../qml/pages/Main.qml" line="255"/>
         <source>Resting in the inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
