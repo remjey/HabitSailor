@@ -108,6 +108,7 @@ ApplicationWindow
         }
 
         function showMessage(msg) {
+            // TODO show message at the top instead of the bottom?
             msgLabel.text = msg;
             if (opacity != 1) {
                 hideAnim.stop();

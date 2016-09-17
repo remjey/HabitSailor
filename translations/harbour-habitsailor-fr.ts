@@ -581,7 +581,7 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/pages/TaskEdit.qml" line="230"/>
         <source>every day</source>
-        <translation>chaqe jour</translation>
+        <translation>chaque jour</translation>
     </message>
     <message>
         <location filename="../qml/pages/TaskEdit.qml" line="232"/>
