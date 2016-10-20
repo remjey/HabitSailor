@@ -262,6 +262,7 @@ QtObject {
                 if (task.type === "todo") _tasks.splice(taskIndex, 1);
                 else task.completed = checked
                 _partialStatsUpdate(o);
+                Signals.setTask(taskId, checked);
                 if (cb) cb(true);
             } else {
                 Signals.showMessage(qsTr("Cannot update task: %1").arg(o.message));

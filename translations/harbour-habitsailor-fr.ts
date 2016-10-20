@@ -52,22 +52,22 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="113"/>
+        <location filename="../qml/cover/CoverPage.qml" line="116"/>
         <source>Not Connected</source>
         <translation>Déconnecté</translation>
     </message>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="200"/>
+        <location filename="../qml/cover/CoverPage.qml" line="203"/>
         <source>Dailies</source>
         <translation>Quotid.</translation>
     </message>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="215"/>
+        <location filename="../qml/cover/CoverPage.qml" line="218"/>
         <source>Resting</source>
         <translation>Repos</translation>
     </message>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="230"/>
+        <location filename="../qml/cover/CoverPage.qml" line="233"/>
         <source>Congrats!
 All dailies completed!</source>
         <translation>Bravo!
@@ -358,37 +358,37 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Réponse du serveur incorrecte on manquante: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="503"/>
+        <location filename="../qml/Model.qml" line="504"/>
         <source>You must first refill your health from the profile page before you can do this!</source>
         <translation>Vous devez d’abord récupérer votre santé depuis la page de profil avant de pouvoir faire ça !</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="509"/>
+        <location filename="../qml/Model.qml" line="510"/>
         <source>Level</source>
         <translation>Niveau</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="510"/>
+        <location filename="../qml/Model.qml" line="511"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="511"/>
+        <location filename="../qml/Model.qml" line="512"/>
         <source>Mana</source>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="512"/>
+        <location filename="../qml/Model.qml" line="513"/>
         <source>Experience</source>
         <translation>Expérience</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="513"/>
+        <location filename="../qml/Model.qml" line="514"/>
         <source>Gold</source>
         <translation>Or</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="522"/>
+        <location filename="../qml/Model.qml" line="523"/>
         <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
         <translation>Désolé, vous avez épuisé votre santé… Restaurez votre santé depuis la page de profil pour continuer !</translation>
     </message>
@@ -418,18 +418,18 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Impossible de mettre à jour la sous-tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="267"/>
-        <location filename="../qml/Model.qml" line="365"/>
+        <location filename="../qml/Model.qml" line="268"/>
+        <location filename="../qml/Model.qml" line="366"/>
         <source>Cannot update task: %1</source>
         <translation>Impossible de mettre à jour la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="386"/>
+        <location filename="../qml/Model.qml" line="387"/>
         <source>Cannot create new task: %1</source>
         <translation>Impossible de créer la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="405"/>
+        <location filename="../qml/Model.qml" line="406"/>
         <source>Cannot delete task: %1</source>
         <translation>Impossible de supprimer la tâche: %1</translation>
     </message>
@@ -659,32 +659,32 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Check-list</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="427"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="430"/>
         <source>Advanced Options</source>
         <translation>Options avancées</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="433"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="436"/>
         <source>Difficulty</source>
         <translation>Difficulté</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="437"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="440"/>
         <source>trivial</source>
         <translation>triviale</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="438"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="441"/>
         <source>easy</source>
         <translation>facile</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="439"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="442"/>
         <source>medium</source>
         <translation>moyenne</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="440"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="443"/>
         <source>hard</source>
         <translation>difficile</translation>
     </message>

@@ -49,19 +49,22 @@ CoverBackground {
             }
         }
 
-        onUpdateTasks: {
-            var list = Model.listDailies();
-            var completed = 0, active = 0;
-            dailiesList.model.clear();
-            list.forEach(function (item) {
-                if (item.activeToday) {
-                    active++;
-                    if (item.completed) completed++;
-                    else dailiesList.model.append(item);
-                }
-            });
-            completedDailies.text = completed + "/" + active;
-        }
+        onSetTask: updateTasksList();
+        onUpdateTasks: updateTasksList();
+    }
+
+    function updateTasksList() {
+        var list = Model.listDailies();
+        var completed = 0, active = 0;
+        dailiesList.model.clear();
+        list.forEach(function (item) {
+            if (item.activeToday) {
+                active++;
+                if (item.completed) completed++;
+                else dailiesList.model.append(item);
+            }
+        });
+        completedDailies.text = completed + "/" + active;
     }
 
     // I think I didn’t understand how states should be used
@@ -231,8 +234,6 @@ CoverBackground {
     }
 
     ListView {
-        // TODO When all dailies are done, display a nice message!
-
         id: dailiesList
         anchors.fill: parent
         anchors.margins: Theme.paddingSmall
@@ -284,6 +285,12 @@ CoverBackground {
                 else state = "STATS";
             }
         }
+        /* TODO
+        CoverAction {
+            nSource: "image://theme/icon-cover-new"
+            onTriggered: Signals.bringToFront("new-task")
+        }
+        */
     }
 }
 

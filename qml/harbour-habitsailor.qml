@@ -37,11 +37,25 @@ ApplicationWindow
         // TODO refresh if we’ve been out too long?
     }
 
+    Connections {
+        target: Signals
+        onShowMessage: messageBox.showMessage(msg)
+        onBringToFront: {
+            activate();
+            if (action && pageStack.currentPage.stable) {
+                pageStack.replaceAbove()
+                if (action == "") {
+
+                }
+            }
+        }
+    }
+
     Item {
         id: messageBox
         width: parent.width
         height: Theme.itemSizeMedium
-        anchors.bottom: parent.bottom
+        anchors.top: parent.top
         visible: false
         opacity: 0
 
@@ -54,7 +68,7 @@ ApplicationWindow
         Rectangle {
             width: parent.width
             height: Theme.paddingSmall
-            anchors.top: parent.top
+            anchors.bottom: parent.bottom
             color: Theme.highlightBackgroundColor;
         }
 
@@ -115,11 +129,6 @@ ApplicationWindow
                 showAnim.start();
             }
             hideTimer.restart();
-        }
-
-        Connections {
-            target: Signals
-            onShowMessage: messageBox.showMessage(msg)
         }
     }
 

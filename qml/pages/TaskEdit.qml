@@ -413,8 +413,11 @@ Dialog {
                                 if (model.index === checklistModel.count - 1) {
                                     focus = false;
                                 } else {
-                                    if (text.trim() != "" && model.index < checklistModel.count - 2)
-                                        checklistModel.insert(model.index + 1, { text: "", completed: false, keep: true, subTaskId: "" })
+                                    if (text.trim() != "" && model.index < checklistModel.count - 2) {
+                                        var pos = model.index;
+                                        if (field.cursorPosition > 0) pos++;
+                                        checklistModel.insert(pos, { text: "", completed: false, keep: true, subTaskId: "" })
+                                    }
                                     checklistRepeater.itemAt(model.index + 1).takeFocus();
                                 }
                             }

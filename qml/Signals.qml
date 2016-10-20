@@ -23,11 +23,14 @@ import QtQuick 2.0
 
 QtObject {
 
+    signal bringToFront(string action)
+
     signal start()
     signal logout()
     signal updateStats()
     signal updateTasks()
     signal showMessage(string msg)
+    signal setTask(string taskId, bool checked)
     signal setSubtask(string taskId, string subtaskId, bool checked)
 
 }

@@ -74,5 +74,6 @@ DISTFILES += \
     qml/Model.qml \
     qml/qmldir \
     qml/Signals.qml \
-    qml/components/EmptyListHint.qml
+    qml/components/EmptyListHint.qml \
+    qml/pages/TaskNewFromCover.qml
 
