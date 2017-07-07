@@ -285,67 +285,82 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="192"/>
+        <location filename="../qml/pages/Main.qml" line="205"/>
+        <source>Cron</source>
+        <translation>Cron</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Main.qml" line="212"/>
+        <source>The last cron ran yesterday or earlier. To start a new day, touch the button below. Before doing so, you may still check yesterday’s dailies.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Main.qml" line="221"/>
+        <source>Start new day</source>
+        <translation type="unfinished">Commencer la journée</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Main.qml" line="234"/>
         <source>Tasks</source>
         <translation>Tâches</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="199"/>
+        <location filename="../qml/pages/Main.qml" line="241"/>
         <source>Refill your health</source>
         <translation>Restaurez votre santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="208"/>
+        <location filename="../qml/pages/Main.qml" line="250"/>
         <source>Habits</source>
         <translation>Habitudes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="217"/>
+        <location filename="../qml/pages/Main.qml" line="259"/>
         <source>Dailies</source>
         <translation>Quotidiennes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="226"/>
+        <location filename="../qml/pages/Main.qml" line="268"/>
         <source>To-Dos</source>
         <translation>À faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="233"/>
+        <location filename="../qml/pages/Main.qml" line="275"/>
         <source>Rewards</source>
         <translation>Récompenses</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="239"/>
+        <location filename="../qml/pages/Main.qml" line="281"/>
         <source>Health Potion</source>
         <translation>Potion de santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="240"/>
+        <location filename="../qml/pages/Main.qml" line="282"/>
         <source>Costs %1 Gold</source>
         <translation>Coûte %1 pièce(s) d’or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="242"/>
+        <location filename="../qml/pages/Main.qml" line="284"/>
         <source>Buying Health Potion</source>
         <translation>Achat d’une Potion de Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="254"/>
+        <location filename="../qml/pages/Main.qml" line="296"/>
         <source>Check Out of Inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="254"/>
+        <location filename="../qml/pages/Main.qml" line="296"/>
         <source>Rest in the Inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="255"/>
+        <location filename="../qml/pages/Main.qml" line="297"/>
         <source>Checking out of inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="255"/>
+        <location filename="../qml/pages/Main.qml" line="297"/>
         <source>Resting in the inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
@@ -353,83 +368,88 @@ Toutes vos quotidiennes sont faites!</translation>
 <context>
     <name>Model</name>
     <message>
-        <location filename="../qml/Model.qml" line="65"/>
+        <location filename="../qml/Model.qml" line="69"/>
         <source>Bad or no response from server: %1</source>
         <translation>Réponse du serveur incorrecte on manquante: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="504"/>
+        <location filename="../qml/Model.qml" line="120"/>
+        <source>Impossible to run cron: %1</source>
+        <translation>Impossible de lancer le cron: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="522"/>
         <source>You must first refill your health from the profile page before you can do this!</source>
         <translation>Vous devez d’abord récupérer votre santé depuis la page de profil avant de pouvoir faire ça !</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="510"/>
+        <location filename="../qml/Model.qml" line="528"/>
         <source>Level</source>
         <translation>Niveau</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="511"/>
+        <location filename="../qml/Model.qml" line="529"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="512"/>
+        <location filename="../qml/Model.qml" line="530"/>
         <source>Mana</source>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="513"/>
+        <location filename="../qml/Model.qml" line="531"/>
         <source>Experience</source>
         <translation>Expérience</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="514"/>
+        <location filename="../qml/Model.qml" line="532"/>
         <source>Gold</source>
         <translation>Or</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="523"/>
+        <location filename="../qml/Model.qml" line="541"/>
         <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
         <translation>Désolé, vous avez épuisé votre santé… Restaurez votre santé depuis la page de profil pour continuer !</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="178"/>
+        <location filename="../qml/Model.qml" line="195"/>
         <source>Cannot update habit: %1</source>
         <translation>Impossible de mettre à jour l’habitude: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="191"/>
+        <location filename="../qml/Model.qml" line="208"/>
         <source>Cannot toggle sleeping status: %1</source>
         <translation>Impossible de modifier la présence à l’auberge: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="203"/>
+        <location filename="../qml/Model.qml" line="220"/>
         <source>Cannot refill health: %1</source>
         <translation>Impossible de restaurer la santé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="216"/>
+        <location filename="../qml/Model.qml" line="233"/>
         <source>Cannot buy Health Potion: %1</source>
         <translation>Impossible d’acheter une Potion de santé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="234"/>
+        <location filename="../qml/Model.qml" line="251"/>
         <source>Cannot update subtask: %1</source>
         <translation>Impossible de mettre à jour la sous-tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="268"/>
-        <location filename="../qml/Model.qml" line="366"/>
+        <location filename="../qml/Model.qml" line="285"/>
+        <location filename="../qml/Model.qml" line="383"/>
         <source>Cannot update task: %1</source>
         <translation>Impossible de mettre à jour la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="387"/>
+        <location filename="../qml/Model.qml" line="404"/>
         <source>Cannot create new task: %1</source>
         <translation>Impossible de créer la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="406"/>
+        <location filename="../qml/Model.qml" line="423"/>
         <source>Cannot delete task: %1</source>
         <translation>Impossible de supprimer la tâche: %1</translation>
     </message>

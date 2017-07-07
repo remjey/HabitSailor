@@ -282,6 +282,18 @@ All dailies completed!</source>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Cron</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start new day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The last cron ran yesterday or earlier. To start a new day, touch the button below. Before doing so, you may still check yesterday’s dailies.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Model</name>
@@ -347,6 +359,10 @@ All dailies completed!</source>
     </message>
     <message>
         <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Impossible to run cron: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

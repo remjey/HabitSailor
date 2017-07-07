@@ -37,6 +37,10 @@ QtObject {
         return _lastCron;
     }
 
+    function getNeedsCron() {
+        return _needsCron;
+    }
+
     function init() {
         _db = Sql.LocalStorage.openDatabaseSync("HabitSailor", "", "HabitSailor", 1000000);
         print("DB: version: " + _db.version)
@@ -70,6 +74,7 @@ QtObject {
             _sleeping = r.preferences.sleep;
             _dateFormat = r.preferences.dateFormat;
             _lastCron = new Date(r.lastCron);
+            _needsCron = r.needsCron;
             _tasksOrder = r.tasksOrder;
             _balance = r.balance;
             _name = r.profile.name;
@@ -104,6 +109,18 @@ QtObject {
             return true;
         });
         cs.run();
+    }
+
+    function cron(cb) {
+        _rpc.call("/cron", "post", {},
+                  function (ok, o) {
+                      if (ok) {
+                          update(cb);
+                      } else {
+                          Signals.showMessage(qsTr("Impossible to run cron: %1").arg(o.message))
+                          if (cb) cb(false);
+                      }
+                  });
     }
 
     function getName() { return _name; }
@@ -418,6 +435,7 @@ QtObject {
 
     property string _dateFormat: "dd/MM/YYYY"
     property date _lastCron: new Date()
+    property bool _needsCron: false
     property bool _sleeping
     property var _tasksOrder
     property real _balance // gems

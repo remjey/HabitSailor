@@ -188,6 +188,48 @@ Page {
 
             }
 
+            Column {
+                id: startANewDay
+                width: parent.width
+                spacing: Theme.paddingMedium
+                clip: true
+
+                property bool _visible: false;
+                height: _visible ? implicitHeight : 0
+
+                Behavior on height {
+                    NumberAnimation { duration: 200 }
+                }
+
+                SectionHeader {
+                    text: qsTr("Cron")
+                }
+
+                Label {
+                    width: parent.width - Theme.horizontalPageMargin * 2
+                    x: Theme.horizontalPageMargin
+                    color: Theme.highlightColor
+                    text: qsTr("The last cron ran yesterday or earlier. To start a new day, touch the button below. Before doing so, you may still check yesterday’s dailies.")
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    horizontalAlignment: Text.AlignHCenter
+                }
+
+                Button {
+                    width: parent.width - Theme.horizontalPageMargin * 2
+                    enabled: !menu.busy
+                    x: Theme.horizontalPageMargin
+                    text: qsTr("Start new day");
+                    onClicked: {
+                        refreshMenuItem.enabled = false;
+                        menu.busy = true
+                        Model.cron(function () {
+                            refreshMenuItem.enabled = true;
+                            menu.busy = false;
+                        });
+                    }
+                }
+            }
+
             SectionHeader {
                 text: qsTr("Tasks")
             }
@@ -265,6 +307,8 @@ Page {
         mana.value = Model.getMp();
         exp.maximum = Model.getXpNext();
         exp.value = Model.getXp();
+
+        startANewDay._visible = Model.getNeedsCron();
     }
 
     Component.onCompleted: {
