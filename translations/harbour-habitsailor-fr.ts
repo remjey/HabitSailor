@@ -292,12 +292,12 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/pages/Main.qml" line="212"/>
         <source>The last cron ran yesterday or earlier. To start a new day, touch the button below. Before doing so, you may still check yesterday’s dailies.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le dernier cron a eu lieu hier ou avant. Pour commencer une nouvelle journée, touchez le bouton ci-dessous. Avant cela, vous pouvez encore cocher vos quotidiennes d’hier.</translation>
     </message>
     <message>
         <location filename="../qml/pages/Main.qml" line="221"/>
         <source>Start new day</source>
-        <translation type="unfinished">Commencer la journée</translation>
+        <translation>Commencer ma journée</translation>
     </message>
     <message>
         <location filename="../qml/pages/Main.qml" line="234"/>
