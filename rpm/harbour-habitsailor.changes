@@ -8,8 +8,9 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* Sun Apr 13 2014 Jack Tar <jack.tar@example.com> 0.0.1-1
-- Scrubbed the deck
-- Hoisted the sails
+* Sat Jul 8 2017 Jérémy Farnaud <jf@almel.fr> 0.2-1
+- Manual cron (as in new Habitica apps)
+- Notifications are now on top instead of bottom
+- Little aesthetic changes and fixes
 
 

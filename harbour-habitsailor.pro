@@ -60,7 +60,6 @@ DISTFILES += \
     qml/pages/Revive.qml \
     qml/components/HabitButton.qml \
     rpm/harbour-habitsailor.yaml \
-    rpm/harbour-habitsailor.changes.in \
     qml/harbour-habitsailor.qml \
     qml/components/TaskItem.qml \
     qml/cover/CoverPage.qml \
@@ -75,5 +74,6 @@ DISTFILES += \
     qml/qmldir \
     qml/Signals.qml \
     qml/components/EmptyListHint.qml \
-    qml/pages/TaskNewFromCover.qml
+    qml/pages/TaskNewFromCover.qml \
+    rpm/harbour-habitsailor.changes
 
