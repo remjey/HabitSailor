@@ -137,6 +137,7 @@ QtObject {
     function isSleeping() { return _sleeping; }
 
     function listHabits() { return _habits.map(_filterTask); }
+    function listRewards() { return _rewards.map(_filterReward); }
     function listTodos() {
         return Utils.sortTasks(
                     _tasksOrder.todos,
@@ -189,11 +190,34 @@ QtObject {
             if (ok) {
                 habit.value += o.delta;
                 _partialStatsUpdate(o);
+                if (orientation == "up") habit.counterUp++;
+                else habit.counterDown++;
                 if (cb)
-                    cb(true, Utils.colorForValue(habit.value));
+                    cb(true, Utils.colorForValue(habit.value), habit.counterUp, habit.counterDown);
             } else if (cb) {
                 Signals.showMessage(qsTr("Cannot update habit: %1").arg(o.message))
                 cb(false);
+            }
+        });
+    }
+
+    function customRewardClick(tid, cb) {
+        var reward;
+        if (_rewards.every(function (item) { return item.id !== tid || !(reward = item); })) return;
+
+        if (_stats.gp < reward.value) {
+            Signals.showMessage(qsTr("Not enough gold to buy this custom reward!"));
+            if (cb) cb(false);
+            return;
+        }
+
+        _rpc.call("/tasks/:tid/score/down", "post-no-body", { tid: tid }, function (ok, o) {
+            if (ok) {
+                _partialStatsUpdate(o);
+                if (cb) cb(true);
+            } else if (cb) {
+                Signals.showMessage(qsTr("Cannot buy custom reward: %1").arg(o.message))
+                if (cb) cb(false);
             }
         });
     }
@@ -290,7 +314,7 @@ QtObject {
 
     function getTaskForEdit(taskId) {
         function taskFinder(item) { return item.id === taskId; }
-        var task = _habits.findItem(taskFinder) || _tasks.findItem(taskFinder);
+        var task = _habits.findItem(taskFinder) || _tasks.findItem(taskFinder) || _rewards.findItem(taskFinder);
         var r = {
             type: task.type,
             title: task.text,
@@ -302,19 +326,32 @@ QtObject {
             dueDate: (task.date ? new Date(task.date) : null),
             checklist: task.checklist || [],
             repeatType: "daily",
-            period: 1,
+            everyX: 1,
             weekDays: Utils.repeatEveryDay,
+            value: task.value || 0,
         }
 
         if (task.type === "daily") {
+            r.weekDays = task.repeat;
+            r.everyX = task.everyX;
             if (task.frequency === "daily") {
-                r.repeatType = "period";
-                r.period = task.everyX;
-            } else if (Utils.compareWeekdays(Utils.repeatNever, task.repeat)) {
-                r.repeatType = "never";
-            } else if (!Utils.compareWeekdays(Utils.repeatEveryDay, task.repeat)) {
+                if (r.everyX === 0) {
+                    r.repeatType = "never";
+                    r.everyX = 1;
+                } else {
+                    r.repeatType = "daily";
+                }
+            } else if (task.frequency === "monthly") {
+                r.repeatType = "monthly"
+                r.monthlyWeekDay = task.weeksOfMonth && task.weeksOfMonth.length > 0;
+            } else if (task.frequency === "yearly") {
+                r.repeatType = "yearly";
+            } else if (task.frequency === "weekly") {
                 r.repeatType = "weekly";
-                r.weekDays = task.repeat;
+            } else {
+                r.repeatType = "never";
+                r.everyX = 1;
+                r.repeat = Utils.repeatNever;
             }
         }
         return r;
@@ -329,28 +366,30 @@ QtObject {
             priority: Utils.taskPriorities[o.difficulty],
         };
 
-        if (type === "habit") {
+        if (type === "reward") {
+            task.value = o.value;
+        } else if (type === "habit") {
             task.up = o.up;
             task.down = o.down;
         } else if (type === "daily") {
             task.startDate = o.startDate;
-            if (o.repeatType === "daily") {
-                task.frequency = "weekly";
-                task.everyX = 1;
-                task.repeat = Utils.repeatEveryDay;
-            } else if (o.repeatType === "weekly") {
-                task.frequency = "weekly";
-                task.everyX = 1;
-                task.repeat = o.weekDays;
-            } else if (o.repeatType === "period") {
+            task.everyX = o.everyX;
+            if (o.repeatType === "never") {
                 task.frequency = "daily";
-                task.everyX = o.period;
-                task.repeat = Utils.repeatEveryDay;
-            } else if (o.repeatType === "never") {
-                task.frequency = "weekly";
-                task.everyX = 1;
+                task.everyX = 0;
                 task.repeat = Utils.repeatNever;
+            } else {
+                task.frequency = o.repeatType;
+                task.everyX = o.everyX;
+                if (o.repeatType === "monthly" && o.monthlyWeekDay) {
+                    task.repeat = Object.sclone(Utils.repeatNever);
+                    task.repeat[Utils.weekDays[task.startDate.getDay()]] = true;
+                    task.weeksOfMonth = [Math.floor((task.startDate.getDate() - 1) / 7)];
+                } else {
+                    task.repeat = o.weekDays;
+                }
             }
+
         } else if (type === "todo") {
             task.date = o.dueDate;
         } else {
@@ -363,10 +402,11 @@ QtObject {
         }
 
         if (task.id) {
-            // Save task
+            // Save existing task
             _rpc.call("/tasks/:id", "put", task, function (ok, o) {
                 if (ok) {
                     o = _prepareTask(o);
+                    // TODO code copy
                     if (type === "habit") {
                         _habits.some(function (item, i) {
                             return item.id === o.id && (_habits[i] = o);
@@ -374,6 +414,10 @@ QtObject {
                     } else if (type === "daily" || type === "todo") {
                         _tasks.some(function (item, i) {
                             return item.id === o.id && (_tasks[i] = o);
+                        });
+                    } else if (type === "reward") {
+                        _rewards.some(function (item, i) {
+                            return item.id === o.id && (_rewards[i] = o);
                         });
                     }
 
@@ -396,6 +440,9 @@ QtObject {
                     } else if (type === "daily" || type === "todo") {
                         _tasksOrder[type + "s"].unshift(o.id);
                         _tasks.push(o);
+                    } else if (type === "reward") {
+                        _tasksOrder.rewards.unshift(o.id);
+                        _rewards.unshift(o);
                     }
 
                     Signals.updateTasks();
@@ -412,7 +459,7 @@ QtObject {
         function taskFinder(item) { return item.id === taskId; }
         _rpc.call("/tasks/:id", "delete", { id: taskId }, function (ok, o) {
             if (ok) {
-                [_habits, _tasks].forEach(function (list) {
+                [_habits, _tasks, _rewards].forEach(function (list) {
                     var idx = list.find(taskFinder);
                     if (idx > -1) list.splice(idx, 1)
                 })
@@ -468,37 +515,36 @@ QtObject {
 
     function _prepareTask(item) {
         item.color = Utils.colorForValue(item.value);
-        item.activeToday = true;
         item.missedDueDate = false;
         switch (item.type) {
+        case "daily":
+            if (item.startDate) {
+                var startDate = new Date(item.startDate);
+                if (startDate.getTime() > getLastCronDate().getTime())
+                    item.startDateFormatted = startDate.format(_dateFormat);
+            } else {
+                item.startDateFormatted = false;
+            }
+            break;
         case "todo":
             if (item.date) {
                 var dueDate = new Date(item.date);
                 item.missedDueDate = item.date && dueDate.getTime() < _lastCron.getTime();
                 item.dueDateFormatted = dueDate.format(_dateFormat);
             }
-            break;
-        case "daily":
-            if (item.startDate) {
-                var startDate = new Date(item.startDate);
-                item.activeToday = startDate <= _lastCron;
-                if (item.activeToday) {
-                    if (item.everyX === 1) {
-                        item.activeToday = item.repeat[Utils.weekDays[_lastCron.getDay()]]
-                    } else {
-                        var days = Math.floor((_lastCron.getTime() - Date.parse(item.startDate)) / 86400000);
-                        item.activeToday = (days % item.everyX == 0);
-                    }
-                } else {
-                    item.startDateFormatted = startDate.format(_dateFormat);
-                }
-            } else {
-                item.activeToday = false;
-            }
+            item.isDue = true;
             break;
         default:
+            item.isDue = true;
         }
         return item;
+    }
+
+    function _filterReward(item) {
+        return Utils.filterObject([
+                                      "id", "type", "text", "notes",
+                                      "value",
+                                  ], item);
     }
 
     function _filterTask(item) {
@@ -508,8 +554,9 @@ QtObject {
                                       "completed",
                                       "checklist",
                                       "missedDueDate", "dueDateFormatted",
-                                      "activeToday", "startDateFormatted",
+                                      "isDue", "startDateFormatted",
                                       "color",
+                                      "counterUp", "counterDown",
                                   ], item);
     }
 

@@ -294,6 +294,10 @@ All dailies completed!</source>
         <source>The last cron ran yesterday or earlier. To start a new day, touch the button below. Before doing so, you may still check yesterday’s dailies.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Custom Rewards</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Model</name>
@@ -365,6 +369,14 @@ All dailies completed!</source>
         <source>Impossible to run cron: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Not enough gold to buy this custom reward!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot buy custom reward: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Revive</name>
@@ -386,6 +398,45 @@ All dailies completed!</source>
     </message>
     <message>
         <source>Refilling your health</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Rewards</name>
+    <message>
+        <source>No custom rewards</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Reward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom Rewards</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Costs %1 Gold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Buy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You currently have %1 Gold</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -475,14 +526,6 @@ All dailies completed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>every day</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>periodically</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Mon</source>
         <translation type="unfinished"></translation>
     </message>
@@ -511,23 +554,11 @@ All dailies completed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>never, make this daily optional</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Period length in days</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>on certain week days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -578,6 +609,74 @@ All dailies completed!</source>
         <source>Edit To-Do</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>New Reward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Reward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving Reward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>months</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>years</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>every month or few months</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>every year or few years</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>never, make this daily optional</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>the same day of the month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>the same weekday of the month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Due</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>weeks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>every day or few days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>every week or few weeks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Period in %1 (0 to disable)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TaskItem</name>
@@ -587,6 +686,10 @@ All dailies completed!</source>
     </message>
     <message>
         <source>Start Date: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Streak: +%1 / −%2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

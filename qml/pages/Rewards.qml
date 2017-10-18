@@ -26,7 +26,7 @@ Page {
 
     EmptyListHint {
         visible: list.model.count === 0
-        label: qsTr("No habits")
+        label: qsTr("No custom rewards")
     }
 
     SilicaListView {
@@ -37,15 +37,24 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: qsTr("New Habit")
+                text: qsTr("New Reward")
                 onClicked: {
-                    pageStack.push("TaskEdit.qml", { taskType: "habit" });
+                    pageStack.push("TaskEdit.qml", { taskType: "reward" });
                 }
             }
         }
 
-        header: PageHeader {
-            title: qsTr("Habits")
+        header: Column {
+            width: parent.width
+            PageHeader {
+                title: qsTr("Custom Rewards")
+            }
+            Label {
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: Theme.secondaryHighlightColor
+                font.pixelSize: Theme.fontSizeSmall
+                text: qsTr("You currently have %1 Gold").arg(Math.floor(Model.getGold()))
+            }
         }
 
         VerticalScrollDecorator {}
@@ -54,20 +63,15 @@ Page {
 
         delegate: TaskItem {
             id: taskItem
-            showColor: model.up || model.down
-            counters: model.up || model.down
+            reward: true
+            subLabel: qsTr("Costs %1 Gold").arg(model.value)
 
-            function clickMe(dir) {
-                enabled = false;
-                busy = true;
-                Model.habitClick(model.id, dir, function (ok, c, cUp, cDown) {
-                    enabled = true;
-                    busy = false;
-                    if (ok) {
-                        list.model.setProperty(index, "color", c);
-                        list.model.setProperty(index, "counterUp", cUp);
-                        list.model.setProperty(index, "counterDown", cDown);
-                    }
+            function clickMe() {
+                taskItem.enabled = false;
+                taskItem.busy = true;
+                Model.customRewardClick(model.id, function (ok) {
+                    taskItem.enabled = true;
+                    taskItem.busy = false;
                 });
             }
 
@@ -88,28 +92,9 @@ Page {
                 ContextMenu {
                     id: contextMenu
 
-                    function clickItem(dir) {
-                        taskItem.clickMe(dir);
-                        hideMenu();
-                    }
-
-                    Row {
-                        width: parent.width
-                        height: Theme.itemSizeLarge
-                        visible: model.down || model.up
-
-                        HabitButton {
-                            width: model.up ? parent.width / 2 : parent.width
-                            imageDown: true
-                            visible: model.down
-                            onClicked: contextMenu.clickItem("down");
-                        }
-
-                        HabitButton {
-                            width: model.down ? parent.width / 2 : parent.width
-                            visible: model.up
-                            onClicked: contextMenu.clickItem("up");
-                        }
+                    MenuItem {
+                        text: qsTr("Buy")
+                        onClicked: taskItem.clickMe();
                     }
 
                     MenuItem {
@@ -118,7 +103,7 @@ Page {
                             pageStack.push("TaskEdit.qml",
                                            {
                                                mode: "edit",
-                                               taskType: "habit",
+                                               taskType: "reward",
                                                taskId: model.id,
                                            });
                         }
@@ -132,14 +117,13 @@ Page {
             }
 
             onClicked: { showMenu(); }
-
         }
     }
 
     function update() {
         list.model.clear();
-        Model.listHabits().forEach(function (habit) {
-            list.model.append(habit);
+        Model.listRewards().forEach(function (reward) {
+            list.model.append(reward);
         });
     }
 

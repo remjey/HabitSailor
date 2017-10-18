@@ -26,7 +26,7 @@ Dialog {
     id: root
 
     property string mode: "new" // can be "new" or "edit"
-    property string taskType: "habit" // can also be "daily" and "todo"
+    property string taskType: "habit" // can also be "daily" and "todo" and "reward"
     property string taskId: ""
 
     property var _TaskTitle: ({
@@ -41,9 +41,14 @@ Dialog {
                                   new_todo: qsTr("New To-Do"),
                                   edit_todo: qsTr("Edit To-Do"),
                                   save_todo: qsTr("Saving To-Do"),
+
+                                  new_reward: qsTr("New Reward"),
+                                  edit_reward: qsTr("Edit Reward"),
+                                  save_reward: qsTr("Saving Reward"),
                               })
 
-    property var _RepeatTypes: ["daily", "weekly", "period", "never"]
+    property var _RepeatTypes: ["daily", "weekly", "monthly", "yearly", "never"]
+    property var _PeriodUnit:  [qsTr("days"), qsTr("weeks"), qsTr("months"), qsTr("years"), false]
     property var _WeekDays: [
         { name: qsTr("Mon"), key: "m"  },
         { name: qsTr("Tue"), key: "t"  },
@@ -55,7 +60,8 @@ Dialog {
     ]
 
     canAccept: (taskTitle.text.trim() != ""
-                && (taskRepeatType.currentIndex != 2 || taskPeriod.acceptableInput)
+                && (taskRepeatType.currentIndex < 2 && taskRepeatType.currentIndex > 4 || taskPeriod.acceptableInput)
+                && (taskType != "reward" || taskValue.acceptableInput)
                 )
 
     acceptDestination: busyPage
@@ -63,14 +69,16 @@ Dialog {
     function loadTask(task) {
         taskTitle.text = task.title;
         taskNotes.text = task.notes;
+        taskValue.text = task.value;
         taskUp.checked = task.up;
         taskDown.checked = task.down;
         taskStartDate.selectedDate = task.startDate;
-        taskRepeatType.currentIndex = _RepeatTypes.find(function (o) { return o === task.repeatType; });
+        taskRepeatType.set(task.repeatType);
         _WeekDays.forEach(function (w, i) {
             weekDaysModel.setProperty(i, "checked", task.weekDays[w.key]);
         })
-        taskPeriod.text = task.period;
+        taskPeriod.text = task.everyX;
+        taskMonthlyType.currentIndex = task.monthlyWeekDay ? 1 : 0;
         taskDifficulty.currentIndex = task.difficulty;
         task.checklist.forEach(function (item, i) {
             checklistModel.insert(i, { subTaskId: item.id, completed: item.completed, text: item.text });
@@ -96,7 +104,7 @@ Dialog {
                            id: item.subTaskid || undefined,
                            completed: item.completed,
                            text: item.text
-                       })
+                       });
         }
         return r;
     }
@@ -108,12 +116,14 @@ Dialog {
             up: taskUp.checked,
             down: taskDown.checked,
             startDate: taskStartDate.selectedDate,
-            repeatType: _RepeatTypes[taskRepeatType.currentIndex],
+            repeatType: taskRepeatType.enumValue,
+            monthlyWeekDay: taskMonthlyType.currentIndex == 1,
             weekDays: makeRepeatMap(),
-            period: parseInt(taskPeriod.text),
+            everyX: parseInt(taskPeriod.text),
             difficulty: taskDifficulty.currentIndex,
             checklist: makeChecklist(),
             dueDate: taskDueDate.selectedDate,
+            value: parseInt(taskValue.text),
         };
         if (taskId) task.id = taskId;
 
@@ -184,6 +194,18 @@ Dialog {
                 }
             }
 
+            TextField {
+                id: taskValue
+                width: parent.width
+                label: qsTr("Price")
+                placeholderText: label
+                inputMethodHints: Qt.ImhDigitsOnly
+                EnterKey.iconSource: "image://theme/icon-m-enter-close"
+                EnterKey.onClicked: taskValue.focus = false
+                visible: taskType == "reward"
+                validator: IntValidator { bottom: 1 }
+            }
+
             Column {
                 width: parent.width
                 visible: taskType == "todo"
@@ -220,16 +242,17 @@ Dialog {
                     label: qsTr("Repeat")
                     currentIndex: 0
 
-                    menu: ContextMenu {
-                        onActiveChanged: {
-                            if (parent.currentIndex == 2) {
-                                taskPeriod.focus = true
-                            }
-                        }
+                    property string enumValue: _RepeatTypes[currentIndex];
 
-                        MenuItem { text: qsTr("every day") }
-                        MenuItem { text: qsTr("on certain week days") }
-                        MenuItem { text: qsTr("periodically") }
+                    function set(s) {
+                        currentIndex = _RepeatTypes.find(function (o) { return o === s; });
+                    }
+
+                    menu: ContextMenu {
+                        MenuItem { text: qsTr("every day or few days") }
+                        MenuItem { text: qsTr("every week or few weeks") }
+                        MenuItem { text: qsTr("every month or few months") }
+                        MenuItem { text: qsTr("every year or few years") }
                         MenuItem { text: qsTr("never, make this daily optional") }
                     }
                 }
@@ -237,7 +260,7 @@ Dialog {
                 TextField {
                     id: taskPeriod
                     width: parent.width
-                    height: taskRepeatType.currentIndex == 2 ? implicitHeight : 0
+                    height: taskRepeatType.enumValue != "never" ? implicitHeight : 0
                     clip: true
 
                     Behavior on height {
@@ -246,19 +269,36 @@ Dialog {
                         }
                     }
 
+                    text: "1"
                     inputMethodHints: Qt.ImhDigitsOnly
-                    label: qsTr("Period length in days")
+                    label: qsTr("Period in %1 (0 to disable)").arg(_PeriodUnit[taskRepeatType.currentIndex])
                     placeholderText: label
-                    validator: IntValidator { bottom: 1 }
+                    validator: IntValidator { bottom: 0 }
 
                     EnterKey.onClicked: taskPeriod.focus = false
                     EnterKey.enabled: acceptableInput
                     EnterKey.iconSource: "image://theme/icon-m-enter-close"
                 }
 
+                ComboBox {
+                    id: taskMonthlyType
+                    width: parent.width
+                    label: qsTr("Due")
+                    visible: taskRepeatType.enumValue == "monthly"
+
+                    menu: ContextMenu {
+                        MenuItem {
+                            text: qsTr("the same day of the month")
+                        }
+                        MenuItem {
+                            text: qsTr("the same weekday of the month")
+                        }
+                    }
+                }
+
                 Row {
                     id: taskWeekDays
-                    height: taskRepeatType.currentIndex == 1 ? implicitHeight : 0
+                    height: taskRepeatType.enumValue == "weekly" ? implicitHeight : 0
                     clip: true
                     x: Theme.horizontalPageMargin
 
@@ -313,10 +353,7 @@ Dialog {
                             }
                         }
                     }
-
                 }
-
-
             }
 
             Column {
@@ -426,26 +463,29 @@ Dialog {
                 }
             }
 
-            SectionHeader {
-                text: qsTr("Advanced Options")
-            }
-
-            ComboBox {
-                id: taskDifficulty
+            Column {
                 width: parent.width
-                label: qsTr("Difficulty")
-                currentIndex: 1
+                visible: taskType != "reward"
 
-                menu: ContextMenu {
-                    MenuItem { text: qsTr("trivial") }
-                    MenuItem { text: qsTr("easy") }
-                    MenuItem { text: qsTr("medium") }
-                    MenuItem { text: qsTr("hard") }
+                SectionHeader {
+                    text: qsTr("Advanced Options")
+                }
+
+                ComboBox {
+                    id: taskDifficulty
+                    width: parent.width
+                    label: qsTr("Difficulty")
+                    currentIndex: 1
+
+                    menu: ContextMenu {
+                        MenuItem { text: qsTr("trivial") }
+                        MenuItem { text: qsTr("easy") }
+                        MenuItem { text: qsTr("medium") }
+                        MenuItem { text: qsTr("hard") }
+                    }
                 }
             }
-
         }
-
     }
 
     Component {

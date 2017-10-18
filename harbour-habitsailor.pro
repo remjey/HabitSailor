@@ -75,5 +75,8 @@ DISTFILES += \
     qml/Signals.qml \
     qml/components/EmptyListHint.qml \
     qml/pages/TaskNewFromCover.qml \
-    rpm/harbour-habitsailor.changes
+    rpm/harbour-habitsailor.changes \
+    qml/pages/Rewards.qml \
+    qml/assets/icon-m-custom-reward.png \
+    qml/assets/icon-m-reward.svg
 

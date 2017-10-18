@@ -58,7 +58,7 @@ CoverBackground {
         var completed = 0, active = 0;
         dailiesList.model.clear();
         list.forEach(function (item) {
-            if (item.activeToday) {
+            if (item.isDue) {
                 active++;
                 if (item.completed) completed++;
                 else dailiesList.model.append(item);

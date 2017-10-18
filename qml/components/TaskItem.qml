@@ -24,10 +24,12 @@ ListItem {
     id: listItem
     contentHeight: Math.max(labels.implicitHeight + 2 * Theme.paddingMedium, Theme.itemSizeSmall)
 
-    property bool showColor: true
+    property bool reward: false
+    property bool showColor: !reward
     property string subLabel: ""
     property bool busy: false
     property bool crossed: false
+    property bool counters: false
 
     Component.onCompleted: {
         if (model.missedDueDate) {
@@ -54,14 +56,17 @@ ListItem {
         anchors.verticalCenter: parent.verticalCenter
         width: Theme.itemSizeSmall
         height: Theme.itemSizeSmall / 3
+        visible: !reward
 
         Rectangle {
             id: colorIndicator
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.height
             height: parent.height
-            color: showColor ? model.color : Theme.highlightColor
+            color: showColor ? model.color : Qt.rgba(0, 0, 0, 0);
             opacity: showColor ? 0.8 : 0.4
+            border.width: showColor ? 0 : 2
+            border.color: Theme.highlightColor
             Behavior on color { ColorAnimation { duration: 200 } }
             Behavior on opacity { NumberAnimation { duration: 200 } }
         }
@@ -87,10 +92,10 @@ ListItem {
     Column {
         id: labels
         anchors.verticalCenter: parent.verticalCenter
-        x: Theme.itemSizeSmall
-        width: parent.width - Theme.itemSizeSmall - Theme.horizontalPageMargin
+        x: reward ? Theme.horizontalPageMargin : Theme.itemSizeSmall
+        width: parent.width - x - Theme.horizontalPageMargin
 
-        opacity: listItem.enabled ? (showColor ? 1 : 0.7) : 0.4 // Same as in TextSwitch
+        opacity: listItem.enabled ? ((reward || showColor) ? 1 : 0.7) : 0.4 // Same as in TextSwitch
 
         Label {
             text: model.text
@@ -105,17 +110,20 @@ ListItem {
             width: parent.width
             visible: !!text
             color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
-            text: makeText(subLabel, model.dueDateFormatted, model.startDateFormatted)
+            text: makeText(
+                      subLabel, model.dueDateFormatted, model.startDateFormatted,
+                      model.counterUp, model.counterDown)
             wrapMode: Text.WordWrap
             maximumLineCount: 2
             elide: Text.ElideRight
             font.pixelSize: Theme.fontSizeSmall
 
-            function makeText(subLabel, dueDate, startDate) {
+            function makeText(subLabel, dueDate, startDate, cUp, cDown) {
                 var r = []
                 if (subLabel) r.push(subLabel);
                 if (dueDate) r.push(qsTr("Due Date: %1").arg(dueDate));
                 if (startDate) r.push(qsTr("Start Date: %1").arg(startDate));
+                if (counters) r.push(qsTr("Streak: +%1 / −%2").arg(cUp).arg(cDown));
                 return r.join("\n");
             }
         }

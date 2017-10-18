@@ -101,3 +101,9 @@ Array.prototype.findItem = function (fun, defaultValue) {
     if (i >= 0) return this[i];
     return defaultValue;
 }
+
+Object.sclone = function (o) {
+    var r = {};
+    for (var i in o) r[i] = o[i];
+    return r;
+}

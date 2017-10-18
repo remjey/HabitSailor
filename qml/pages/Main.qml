@@ -264,7 +264,7 @@ Page {
 
             MenuButton {
                 enabled: !menu.busy
-                imageSource: "image://theme/icon-m-acknowledge"
+                imageSource: Qt.resolvedUrl("../assets/icon-m-todo.svg")
                 label: qsTr("To-Dos")
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("Tasks.qml"), { mode: "todos" });
@@ -284,6 +284,15 @@ Page {
                     remorse(qsTr("Buying Health Potion"), function () {
                         Model.buyHealthPotion()
                     });
+                }
+            }
+
+            MenuButton {
+                enabled: !menu.busy
+                imageSource: Qt.resolvedUrl("../assets/icon-m-reward.svg")
+                label: qsTr("Custom Rewards")
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("Rewards.qml"));
                 }
             }
         }

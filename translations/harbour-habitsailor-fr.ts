@@ -113,17 +113,17 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Aucune habitude</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="99"/>
+        <location filename="../qml/pages/Habits.qml" line="116"/>
         <source>Edit</source>
         <translation>Modifier</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="111"/>
+        <location filename="../qml/pages/Habits.qml" line="128"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="113"/>
+        <location filename="../qml/pages/Habits.qml" line="75"/>
         <source>Deleting</source>
         <translation>Suppression</translation>
     </message>
@@ -345,22 +345,27 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Achat d’une Potion de Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="296"/>
+        <location filename="../qml/pages/Main.qml" line="293"/>
+        <source>Custom Rewards</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Main.qml" line="305"/>
         <source>Check Out of Inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="296"/>
+        <location filename="../qml/pages/Main.qml" line="305"/>
         <source>Rest in the Inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="297"/>
+        <location filename="../qml/pages/Main.qml" line="306"/>
         <source>Checking out of inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="297"/>
+        <location filename="../qml/pages/Main.qml" line="306"/>
         <source>Resting in the inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
@@ -378,78 +383,88 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Impossible de lancer le cron: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="522"/>
+        <location filename="../qml/Model.qml" line="209"/>
+        <source>Not enough gold to buy this custom reward!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="219"/>
+        <source>Cannot buy custom reward: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="569"/>
         <source>You must first refill your health from the profile page before you can do this!</source>
         <translation>Vous devez d’abord récupérer votre santé depuis la page de profil avant de pouvoir faire ça !</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="528"/>
+        <location filename="../qml/Model.qml" line="575"/>
         <source>Level</source>
         <translation>Niveau</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="529"/>
+        <location filename="../qml/Model.qml" line="576"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="530"/>
+        <location filename="../qml/Model.qml" line="577"/>
         <source>Mana</source>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="531"/>
+        <location filename="../qml/Model.qml" line="578"/>
         <source>Experience</source>
         <translation>Expérience</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="532"/>
+        <location filename="../qml/Model.qml" line="579"/>
         <source>Gold</source>
         <translation>Or</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="541"/>
+        <location filename="../qml/Model.qml" line="588"/>
         <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
         <translation>Désolé, vous avez épuisé votre santé… Restaurez votre santé depuis la page de profil pour continuer !</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="195"/>
+        <location filename="../qml/Model.qml" line="198"/>
         <source>Cannot update habit: %1</source>
         <translation>Impossible de mettre à jour l’habitude: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="208"/>
+        <location filename="../qml/Model.qml" line="232"/>
         <source>Cannot toggle sleeping status: %1</source>
         <translation>Impossible de modifier la présence à l’auberge: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="220"/>
+        <location filename="../qml/Model.qml" line="244"/>
         <source>Cannot refill health: %1</source>
         <translation>Impossible de restaurer la santé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="233"/>
+        <location filename="../qml/Model.qml" line="257"/>
         <source>Cannot buy Health Potion: %1</source>
         <translation>Impossible d’acheter une Potion de santé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="251"/>
+        <location filename="../qml/Model.qml" line="275"/>
         <source>Cannot update subtask: %1</source>
         <translation>Impossible de mettre à jour la sous-tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="285"/>
-        <location filename="../qml/Model.qml" line="383"/>
+        <location filename="../qml/Model.qml" line="309"/>
+        <location filename="../qml/Model.qml" line="427"/>
         <source>Cannot update task: %1</source>
         <translation>Impossible de mettre à jour la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="404"/>
+        <location filename="../qml/Model.qml" line="451"/>
         <source>Cannot create new task: %1</source>
         <translation>Impossible de créer la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="423"/>
+        <location filename="../qml/Model.qml" line="470"/>
         <source>Cannot delete task: %1</source>
         <translation>Impossible de supprimer la tâche: %1</translation>
     </message>
@@ -483,6 +498,54 @@ Toutes vos quotidiennes sont faites!</translation>
     </message>
 </context>
 <context>
+    <name>Rewards</name>
+    <message>
+        <location filename="../qml/pages/Rewards.qml" line="29"/>
+        <source>No custom rewards</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Rewards.qml" line="40"/>
+        <source>New Reward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Rewards.qml" line="50"/>
+        <source>Custom Rewards</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Rewards.qml" line="56"/>
+        <source>You currently have %1 Gold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Rewards.qml" line="67"/>
+        <source>Costs %1 Gold</source>
+        <translation type="unfinished">Coûte %1 pièce(s) d’or</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Rewards.qml" line="96"/>
+        <source>Buy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Rewards.qml" line="101"/>
+        <source>Edit</source>
+        <translation type="unfinished">Modifier</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Rewards.qml" line="113"/>
+        <source>Delete</source>
+        <translation type="unfinished">Supprimer</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Rewards.qml" line="79"/>
+        <source>Deleting</source>
+        <translation type="unfinished">Suppression</translation>
+    </message>
+</context>
+<context>
     <name>TaskDetails</name>
     <message>
         <location filename="../qml/pages/TaskDetails.qml" line="43"/>
@@ -513,12 +576,12 @@ Toutes vos quotidiennes sont faites!</translation>
 <context>
     <name>TaskEdit</name>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="139"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="149"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="141"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="151"/>
         <source>Create</source>
         <translation>Créer</translation>
     </message>
@@ -553,78 +616,138 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Sauvegarde de la tâche à faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="142"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="45"/>
+        <source>New Reward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="46"/>
+        <source>Edit Reward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="47"/>
+        <source>Saving Reward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="51"/>
+        <source>days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="51"/>
+        <source>months</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="51"/>
+        <source>years</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="51"/>
+        <source>weeks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="152"/>
         <source>Save</source>
         <translation>Sauvegarder</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="150"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="160"/>
         <source>Title</source>
         <translation>Titre</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="160"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="170"/>
         <source>Extra Notes</source>
         <translation>Notes supplémentaires</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="169"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="179"/>
         <source>Direction / Actions</source>
         <translation>Direction / Actions</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="176"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="186"/>
         <source>Up / Plus</source>
         <translation>Haut / Plus</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="183"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="193"/>
         <source>Down / Minus</source>
         <translation>Bas / Moins</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="192"/>
-        <location filename="../qml/pages/TaskEdit.qml" line="208"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="200"/>
+        <source>Price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="214"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="230"/>
         <source>Schedule</source>
         <translation>Planification</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="214"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="236"/>
         <source>Start Date</source>
         <translation>Date de début</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="220"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="242"/>
         <source>Repeat</source>
         <translation>Répéter</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="230"/>
-        <source>every day</source>
-        <translation>chaque jour</translation>
+        <location filename="../qml/pages/TaskEdit.qml" line="252"/>
+        <source>every day or few days</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="232"/>
-        <source>periodically</source>
-        <translation>périodiquement</translation>
+        <location filename="../qml/pages/TaskEdit.qml" line="253"/>
+        <source>every week or few weeks</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="233"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="254"/>
+        <source>every month or few months</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="255"/>
+        <source>every year or few years</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="256"/>
         <source>never, make this daily optional</source>
-        <translation>jamais, cette tâche est optionnelle</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="250"/>
-        <source>Period length in days</source>
-        <translation>Longueur de la période en jours</translation>
+        <location filename="../qml/pages/TaskEdit.qml" line="286"/>
+        <source>Due</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="397"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="291"/>
+        <source>the same day of the month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="294"/>
+        <source>the same weekday of the month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TaskEdit.qml" line="434"/>
         <source>New Checklist Item</source>
         <translation>Nouvelle sous-tâche</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="48"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="53"/>
         <source>Mon</source>
         <translation>lun</translation>
     </message>
@@ -634,77 +757,77 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Modifier la tâche à faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="49"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="54"/>
         <source>Tue</source>
         <translation>mar</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="50"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="55"/>
         <source>Wed</source>
         <translation>mer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="51"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="56"/>
         <source>Thu</source>
         <translation>jeu</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="52"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="57"/>
         <source>Fri</source>
         <translation>ven</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="53"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="58"/>
         <source>Sat</source>
         <translation>sam</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="54"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="59"/>
         <source>Sun</source>
         <translation>dim</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="197"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="219"/>
         <source>Due Date</source>
         <translation>Date d’échéance</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="231"/>
-        <source>on certain week days</source>
-        <translation>certains jours de la semaine</translation>
+        <location filename="../qml/pages/TaskEdit.qml" line="274"/>
+        <source>Period in %1 (0 to disable)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="349"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="386"/>
         <source>Checklist</source>
         <translation>Check-list</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="430"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="471"/>
         <source>Advanced Options</source>
         <translation>Options avancées</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="436"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="477"/>
         <source>Difficulty</source>
         <translation>Difficulté</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="440"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="481"/>
         <source>trivial</source>
         <translation>triviale</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="441"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="482"/>
         <source>easy</source>
         <translation>facile</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="442"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="483"/>
         <source>medium</source>
         <translation>moyenne</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEdit.qml" line="443"/>
+        <location filename="../qml/pages/TaskEdit.qml" line="484"/>
         <source>hard</source>
         <translation>difficile</translation>
     </message>
@@ -722,14 +845,19 @@ Toutes vos quotidiennes sont faites!</translation>
 <context>
     <name>TaskItem</name>
     <message>
-        <location filename="../qml/components/TaskItem.qml" line="117"/>
+        <location filename="../qml/components/TaskItem.qml" line="124"/>
         <source>Due Date: %1</source>
         <translation>Date d’échéance: %1</translation>
     </message>
     <message>
-        <location filename="../qml/components/TaskItem.qml" line="118"/>
+        <location filename="../qml/components/TaskItem.qml" line="125"/>
         <source>Start Date: %1</source>
         <translation>Date de début: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/components/TaskItem.qml" line="126"/>
+        <source>Streak: +%1 / −%2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

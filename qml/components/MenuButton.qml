@@ -42,6 +42,8 @@ BackgroundItem {
             anchors.topMargin: (Theme.itemSizeSmall - height) / 2
             anchors.leftMargin: Theme.horizontalPageMargin
             source: root.imageSource
+            width: Theme.iconSizeMedium
+            height: Theme.iconSizeMedium
         }
 
         Label {
