@@ -34,7 +34,8 @@ CoverBackground {
         onUpdateStats: {
             if (state == "INIT") state = "STATS";
             name.text = Model.getName();
-            profilePic.source = Qt.resolvedUrl(Model.getProfilePictureUrl());
+            //profilePic.source = Qt.resolvedUrl(Model.getProfilePictureUrl());
+            profilePic.source = Qt.resolvedUrl("../assets/habitica.png");
             health.maximum = Model.getHpMax();
             health.value = Model.getHp();
             exp.maximum = Model.getXpNext();

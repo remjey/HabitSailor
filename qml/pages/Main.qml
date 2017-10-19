@@ -100,6 +100,7 @@ Page {
                         height: width
                         Image {
                             anchors.fill: parent
+                            anchors.margins: 5
                             id: profilePicture
                             anchors.verticalCenter: parent.verticalCenter
                             asynchronous: true;
@@ -321,7 +322,8 @@ Page {
     }
 
     Component.onCompleted: {
-        profilePicture.source = Qt.resolvedUrl(Model.getProfilePictureUrl())
+        //profilePicture.source = Qt.resolvedUrl(Model.getProfilePictureUrl())
+        profilePicture.source = Qt.resolvedUrl("../assets/habitica.png")
         update();
     }
 

@@ -8,6 +8,12 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Thu Oct 19 2017 Jérémy Farnaud <jf@almel.fr> 0.3-1
+- Custom rewards
+- Change daily periodic options according to latest Habitica
+- Show habit streaks
+- Remove avatar until fixed
+
 * Sat Jul 8 2017 Jérémy Farnaud <jf@almel.fr> 0.2-1
 - Manual cron (as in new Habitica apps)
 - Notifications are now on top instead of bottom
