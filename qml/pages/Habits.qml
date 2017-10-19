@@ -54,7 +54,7 @@ Page {
 
         delegate: TaskItem {
             id: taskItem
-            showColor: model.up || model.down
+            isDue: model.up || model.down
             counters: model.up || model.down
 
             function clickMe(dir) {

@@ -60,7 +60,7 @@ Page {
         delegate: TaskItem {
 
             id: taskItem
-            showColor: !model.completed && model.isDue
+            isDue: model.isDue
             crossed: model.completed
             subLabel: model.cltotal === 0
                       ? ""

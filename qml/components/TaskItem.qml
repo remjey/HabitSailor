@@ -25,7 +25,7 @@ ListItem {
     contentHeight: Math.max(labels.implicitHeight + 2 * Theme.paddingMedium, Theme.itemSizeSmall)
 
     property bool reward: false
-    property bool showColor: !reward
+    property bool isDue: !reward
     property string subLabel: ""
     property bool busy: false
     property bool crossed: false
@@ -63,9 +63,9 @@ ListItem {
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.height
             height: parent.height
-            color: showColor ? model.color : Qt.rgba(0, 0, 0, 0);
-            opacity: showColor ? 0.8 : 0.4
-            border.width: showColor ? 0 : 2
+            color: isDue ? model.color : Qt.rgba(0, 0, 0, 0);
+            opacity: !crossed && isDue ? 0.8 : 0.4
+            border.width: isDue ? 0 : 2
             border.color: Theme.highlightColor
             Behavior on color { ColorAnimation { duration: 200 } }
             Behavior on opacity { NumberAnimation { duration: 200 } }
@@ -95,7 +95,7 @@ ListItem {
         x: reward ? Theme.horizontalPageMargin : Theme.itemSizeSmall
         width: parent.width - x - Theme.horizontalPageMargin
 
-        opacity: listItem.enabled ? ((reward || showColor) ? 1 : 0.7) : 0.4 // Same as in TextSwitch
+        opacity: listItem.enabled ? ((reward || isDue && !crossed) ? 1 : 0.7) : 0.4 // Same as in TextSwitch
 
         Label {
             text: model.text
