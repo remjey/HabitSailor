@@ -34,8 +34,6 @@ CoverBackground {
         onUpdateStats: {
             if (state == "INIT") state = "STATS";
             name.text = Model.getName();
-            //profilePic.source = Qt.resolvedUrl(Model.getProfilePictureUrl());
-            profilePic.source = Qt.resolvedUrl("../assets/habitica.png");
             health.maximum = Model.getHpMax();
             health.value = Model.getHp();
             exp.maximum = Model.getXpNext();
@@ -52,6 +50,11 @@ CoverBackground {
 
         onSetTask: updateTasksList();
         onUpdateTasks: updateTasksList();
+
+        onAvatarPainted: {
+            avatarPicture.imageData = imageData;
+            avatarPicture.requestPaint();
+        }
     }
 
     function updateTasksList() {
@@ -163,12 +166,21 @@ CoverBackground {
             maximumLineCount: 1
         }
 
-        Image {
-            id: profilePic
-            anchors.horizontalCenter: parent.horizontalCenter
-            height: parent.width / 2.4
-            width: height
+        Canvas {
+            id: avatarPicture
+            anchors.horizontalCenter: parent.horizontalCenter;
+            width: parent.width / 2.4
+            height: width
             opacity: 0.8
+
+            property var imageData;
+
+            onPaint: {
+                var ctx = getContext("2d");
+                ctx.clearRect(0, 0, width, height);
+                if (imageData)
+                    ctx.drawImage(imageData, 0, 0, width, height);
+            }
         }
 
         Grid {

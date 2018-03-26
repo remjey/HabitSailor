@@ -75,7 +75,7 @@ Service.prototype.call = function (path, method, data, onload, debug) {
                 ok = true;
                 o = o.data;
             } else if (!o.hasOwnProperty("message")) {
-                o.message = err(o);
+                o.message = err(o); // FIXME this seems to be broken
             }
             onload(ok, o);
         }

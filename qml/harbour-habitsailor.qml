@@ -35,6 +35,7 @@ ApplicationWindow
 
     onApplicationActiveChanged: {
         // TODO refresh if we’ve been out too long?
+        if (applicationActive) Signals.applicationActive();
     }
 
     Connections {

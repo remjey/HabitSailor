@@ -79,6 +79,7 @@ QtObject {
             _balance = r.balance;
             _name = r.profile.name;
             _stats = r.stats;
+            _makeAvatarDetails(r);
             return true;
         });
         cs.push("/tasks/user", "get", {}, function (ok, r) {
@@ -190,7 +191,7 @@ QtObject {
             if (ok) {
                 habit.value += o.delta;
                 _partialStatsUpdate(o);
-                if (orientation == "up") habit.counterUp++;
+                if (orientation === "up") habit.counterUp++;
                 else habit.counterDown++;
                 if (cb)
                     cb(true, Utils.colorForValue(habit.value), habit.counterUp, habit.counterDown);
@@ -226,6 +227,7 @@ QtObject {
         _rpc.call("/user/sleep", "post-no-body", {}, function (ok, o) {
             if (ok) {
                 _sleeping = o;
+                _makeAvatarDetails();
                 Signals.updateStats();
                 if (cb) cb(true, o);
             } else {
@@ -473,6 +475,10 @@ QtObject {
         });
     }
 
+    function getAvatarParts() {
+        return Object.sclone(_avatarDetails.parts);
+    }
+
     /**** Private Functions and Data ****/
 
     property var _db
@@ -491,6 +497,7 @@ QtObject {
     property var _habits
     property var _tasks
     property var _rewards
+    property var _avatarDetails
 
     function _setupRpc() {
         if (_configGet("apiUser")) {
@@ -596,4 +603,132 @@ QtObject {
         }
     }
 
+    function _makeAvatarDetails(r) {
+        if (r) {
+            _avatarDetails = {
+                bodyType: r.preferences.size,
+                class: r.stats.class || "warrior",
+                hairColor: r.preferences.hair.color,
+                background: r.preferences.background,
+                mount: r.items.currentMount,
+                chair: r.preferences.chair,
+                shirt: r.preferences.shirt,
+                skin: r.preferences.skin,
+                hair: r.preferences.hair,
+                costume: (r.preferences.costume ? r.items.gear.costume : r.items.gear.equipped),
+                pet: r.items.currentPet,
+                parts: {},
+            };
+        } else {
+            _avatarDetails.parts = {};
+        }
+        _avatarDetails.parts.background = _avatarBgUrl(_avatarDetails.background);
+        _avatarDetails.parts.zzz = _avatarZzzUrl();
+        _avatarDetails.parts.pet = _avatarPetUrl(_avatarDetails.pet);
+        _avatarDetails.parts.mountBody = _avatarMountUrl(_avatarDetails.mount, "body");
+        _avatarDetails.parts.mountHead = _avatarMountUrl(_avatarDetails.mount, "head");
+        [ "armor", "back", "body", "eyewear", "head", "headAccessory", "shield", "weapon" ].every(function (part) {
+            _avatarDetails.parts[part] = _avatarGearUrl(_avatarDetails.costume[part]);
+            return true;
+        });
+        [ "chair", "shirt", "skin" ].every(function (part) {
+            _avatarDetails.parts[part] = _avatarBodyUrl(part, _avatarDetails[part]);
+            return true;
+        });
+        [ "bangs", "base", "mustache", "beard", "flower" ].every(function (part) {
+            _avatarDetails.parts[part] = _avatarHairUrl(part, _avatarDetails.hair[part]);
+            return true;
+        });
+        //for (var i in _avatarDetails.parts) print(i, _avatarDetails.parts[i]);
+    }
+
+    function _avatarPetUrl(name) {
+        if (!name || name === "none") return false;
+        return _avatarPictureBaseUrl + "stable/pets/Pet-" + name + ".png";
+    }
+
+    function _avatarMountUrl(name, type) {
+        if (!name || name === "none") return false;
+        return _avatarPictureBaseUrl + "stable/mounts/" + type + "/Mount_"
+                + type[0].toUpperCase() + type.substr(1) + "_" + name + ".png";
+    }
+
+    function _avatarBgUrl(name) {
+        if (!name || name === "none") return false;
+        return _avatarPictureBaseUrl + "backgrounds/background_" + name + ".png";
+    }
+
+    function _avatarZzzUrl() {
+        if (!_sleeping) return false;
+        else return _avatarPictureBaseUrl + "misc/zzz.png"
+    }
+
+    function _avatarHairUrl(name, value, color) {
+        if (value === 0) return false;
+        var base = _avatarPictureBaseUrl + "customize/";
+        if ((name === "beard" || name === "mustache") && !color.match(/^p.*2$/)) {
+            base += "beards/";
+        } else if (name === "flower") {
+            base += "flowers/";
+        } else {
+            base += "hair/";
+        }
+        base += "hair_" + name + "_" + value;
+        if (name !== "flower") base += "_" + _avatarDetails.hairColor;
+        return base + ".png";
+    }
+
+    function _avatarGearUrl(name) {
+        if (!name) return false;
+        var ne = name.split("_");
+
+        if (ne[1] === "base") {
+            if (ne[2] === "0") return false;
+            ne[1] = _avatarDetails.class;
+        }
+
+        var base = _avatarPictureBaseUrl + "gear/";
+        if (ne[1] === "armoire") {
+            base += "armoire/";
+        } else if (ne[1] === "special" && _isEventGear(ne[2])) {
+            base += "events/" + _isEventGear(ne[2]) + "/";
+        } else if (ne[1] === "mystery") {
+            base += "events/mystery_" + ne[2] + "/";
+        } else {
+            base += ne[0] + "/";
+        }
+        if (ne[0] === "armor") base += _avatarDetails.bodyType + "_";
+        return base + name + ".png";
+    }
+
+    function _avatarBodyUrl(type, name) {
+        if (!name || name === "none") return false;
+
+        var base = _avatarPictureBaseUrl + "customize/";
+        if (type === "skin") base += "skin/";
+        else base += type + "s/";
+        if (type === "shirt") base += _avatarDetails.bodyType + "_";
+        base += type + "_" + name;
+        if (type === "skin" && _sleeping) base += "_sleep";
+        return base + ".png";
+    }
+
+    function _isEventGear(s) {
+        var r = false;
+        _eventNamePrefixes.some(function (p) {
+            if (s.substr(0, p.length) === p) {
+                r = p;
+                return true;
+            }
+        });
+        return r;
+    }
+
+    property string _avatarPictureBaseUrl: "https://raw.githubusercontent.com/HabitRPG/habitica/release/website/raw_sprites/spritesmith/";
+
+    property var _eventNamePrefixes: [
+        "birthday", "fall", "gaymerx", "spring", "summer", "takeThis", "winter", "wondercon",
+    ]
+
 }
+

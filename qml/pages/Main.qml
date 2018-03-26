@@ -98,12 +98,65 @@ Page {
                     PanelBackground {
                         width: Math.min(root.width / 3, Theme.itemSizeExtraLarge * 3)
                         height: width
-                        Image {
-                            anchors.fill: parent
-                            anchors.margins: 5
+
+                        Canvas {
                             id: profilePicture
-                            anchors.verticalCenter: parent.verticalCenter
-                            asynchronous: true;
+                            anchors.fill: parent
+                            opacity: 0.0
+
+                            Behavior on opacity {
+                                NumberAnimation { duration: 200 }
+                            }
+
+                            onImageLoaded: requestPaint();
+
+                            onPaint: {
+                                // TODO unload images maybe some day
+                                var parts = Model.getAvatarParts();
+                                var imagesLoaded = 0, imagesCount = 0;
+                                for (var part in parts) {
+                                    ++imagesCount;
+                                    var partUrl = parts[part];
+                                    if (!isImageLoaded(partUrl) && !isImageLoading(partUrl) && !isImageError(partUrl)) {
+                                        loadImage(partUrl);
+                                    } else if (isImageLoaded(partUrl) || isImageError(partUrl)) {
+                                        ++imagesLoaded;
+                                    }
+                                }
+
+                                if (imagesLoaded !== imagesCount) return;
+                                if (opacity == 0.0) opacity = 1.0;
+                                var ctx = getContext("2d");
+                                if (!available || !ctx) {
+                                    print("Impossible to draw: ", available, "/", ctx)
+                                    return;
+                                }
+
+                                context.setTransform(width / 140, 0, 0, height / 147, 0, 0);
+                                ctx.clearRect(0, 0, 140, 147);
+
+                                drawImageIfAvailable(ctx, parts["background"]);
+                                if (parts.mountBody) drawImageIfAvailable(ctx, parts["mountBody"], 24, 18);
+
+                                [ "chair", "back", "skin", "shirt", "armor", "body", "bangs", "base", "mustache",
+                                  "beard", "eyewear", "head", "headAccessory", "flower", "shield", "weapon", "zzz",
+                                ].every(function (part) {
+                                    drawImageIfAvailable(ctx, parts[part], 24, parts.mountBody ? 0 : 24);
+                                    return true;
+                                });
+
+                                if (parts.mountHead) drawImageIfAvailable(ctx, parts["mountHead"], 24, 18);
+
+                                drawImageIfAvailable(ctx, parts["pet"], 0, 48);
+
+                                Signals.avatarPainted(context.getImageData(0, 0, width, height));
+                            }
+
+                            function drawImageIfAvailable(ctx, url, x, y) {
+                                if (url && isImageLoaded(url)) {
+                                    ctx.drawImage(url, x || 0, y || 0);
+                                }
+                            }
                         }
                     }
 
@@ -322,13 +375,17 @@ Page {
     }
 
     Component.onCompleted: {
-        //profilePicture.source = Qt.resolvedUrl(Model.getProfilePictureUrl())
-        profilePicture.source = Qt.resolvedUrl("../assets/habitica.png")
         update();
     }
 
     Connections {
         target: Signals
-        onUpdateStats: update();
+        onUpdateStats: {
+            profilePicture.requestPaint();
+            update();
+        }
+        onApplicationActive: {
+            profilePicture.requestPaint();
+        }
     }
 }
