@@ -249,123 +249,123 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Profil</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="184"/>
+        <location filename="../qml/pages/Main.qml" line="214"/>
         <source>Resting in the Inn</source>
         <comment>status</comment>
         <translation>Se repose à l&apos;auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="196"/>
+        <location filename="../qml/pages/Main.qml" line="226"/>
         <source>Gems</source>
         <translation>Gemmes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="202"/>
+        <location filename="../qml/pages/Main.qml" line="232"/>
         <source>Gold</source>
         <translation>Or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="208"/>
+        <location filename="../qml/pages/Main.qml" line="238"/>
         <source>Level</source>
         <translation>Niveau</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="223"/>
+        <location filename="../qml/pages/Main.qml" line="253"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="230"/>
+        <location filename="../qml/pages/Main.qml" line="260"/>
         <source>Experience</source>
         <translation>Expérience</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="237"/>
+        <location filename="../qml/pages/Main.qml" line="267"/>
         <source>Mana</source>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="259"/>
+        <location filename="../qml/pages/Main.qml" line="289"/>
         <source>Cron</source>
         <translation>Cron</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="266"/>
+        <location filename="../qml/pages/Main.qml" line="296"/>
         <source>The last cron ran yesterday or earlier. To start a new day, touch the button below. Before doing so, you may still check yesterday’s dailies.</source>
         <translation>Le dernier cron a eu lieu hier ou avant. Pour commencer une nouvelle journée, touchez le bouton ci-dessous. Avant cela, vous pouvez encore cocher vos quotidiennes d’hier.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="275"/>
+        <location filename="../qml/pages/Main.qml" line="305"/>
         <source>Start new day</source>
         <translation>Commencer ma journée</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="288"/>
+        <location filename="../qml/pages/Main.qml" line="318"/>
         <source>Tasks</source>
         <translation>Tâches</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="295"/>
+        <location filename="../qml/pages/Main.qml" line="325"/>
         <source>Refill your health</source>
         <translation>Restaurez votre santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="304"/>
+        <location filename="../qml/pages/Main.qml" line="334"/>
         <source>Habits</source>
         <translation>Habitudes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="313"/>
+        <location filename="../qml/pages/Main.qml" line="343"/>
         <source>Dailies</source>
         <translation>Quotidiennes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="322"/>
+        <location filename="../qml/pages/Main.qml" line="352"/>
         <source>To-Dos</source>
         <translation>À faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="329"/>
+        <location filename="../qml/pages/Main.qml" line="359"/>
         <source>Rewards</source>
         <translation>Récompenses</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="335"/>
+        <location filename="../qml/pages/Main.qml" line="365"/>
         <source>Health Potion</source>
         <translation>Potion de santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="336"/>
+        <location filename="../qml/pages/Main.qml" line="366"/>
         <source>Costs %1 Gold</source>
         <translation>Coûte %1 pièce(s) d’or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="338"/>
+        <location filename="../qml/pages/Main.qml" line="368"/>
         <source>Buying Health Potion</source>
         <translation>Achat d’une Potion de Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="347"/>
+        <location filename="../qml/pages/Main.qml" line="377"/>
         <source>Custom Rewards</source>
         <translation>Récompenses personnalisées</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="359"/>
+        <location filename="../qml/pages/Main.qml" line="389"/>
         <source>Check Out of Inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="359"/>
+        <location filename="../qml/pages/Main.qml" line="389"/>
         <source>Rest in the Inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="360"/>
+        <location filename="../qml/pages/Main.qml" line="390"/>
         <source>Checking out of inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="360"/>
+        <location filename="../qml/pages/Main.qml" line="390"/>
         <source>Resting in the inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>

@@ -99,6 +99,11 @@ Page {
                         width: Math.min(root.width / 3, Theme.itemSizeExtraLarge * 3)
                         height: width
 
+                        BusyIndicator {
+                            anchors.centerIn: parent
+                            running: profilePicture.opacity != 1.0 || !profilePicture.available;
+                        }
+
                         Canvas {
                             id: profilePicture
                             anchors.fill: parent
@@ -110,22 +115,46 @@ Page {
 
                             onImageLoaded: requestPaint();
 
+                            property var imageCollection: ({})
+
                             onPaint: {
-                                // TODO unload images maybe some day
                                 var parts = Model.getAvatarParts();
                                 var imagesLoaded = 0, imagesCount = 0;
+
+                                // Mark all images as unused
+                                for (var imageUrl in imageCollection) imageCollection[imageUrl] = false;
+
+                                // Load images that are necessary, mark images still used
                                 for (var part in parts) {
-                                    ++imagesCount;
                                     var partUrl = parts[part];
+                                    if (!partUrl) continue;
+                                    ++imagesCount;
+                                    imageCollection[partUrl] = true;
                                     if (!isImageLoaded(partUrl) && !isImageLoading(partUrl) && !isImageError(partUrl)) {
                                         loadImage(partUrl);
-                                    } else if (isImageLoaded(partUrl) || isImageError(partUrl)) {
+                                    }
+                                    if (isImageLoaded(partUrl) || isImageError(partUrl)) {
                                         ++imagesLoaded;
                                     }
                                 }
 
-                                if (imagesLoaded !== imagesCount) return;
-                                if (opacity == 0.0) opacity = 1.0;
+                                // Unload unused images
+                                Object.keys(imageCollection).forEach(function (url) {
+                                    if (imageCollection[url] === false) {
+                                        unloadImage(url);
+                                        delete imageCollection[url];
+                                    }
+                                });
+
+                                // If images are still not loaded, do not display
+                                if (imagesLoaded !== imagesCount) {
+                                    opacity = 0.0;
+                                    return;
+                                }
+
+                                // Render the avatar, show it
+                                opacity = 1.0;
+
                                 var ctx = getContext("2d");
                                 if (!available || !ctx) {
                                     print("Impossible to draw: ", available, "/", ctx)
@@ -135,9 +164,10 @@ Page {
                                 context.setTransform(width / 140, 0, 0, height / 147, 0, 0);
                                 ctx.clearRect(0, 0, 140, 147);
 
-                                drawImageIfAvailable(ctx, parts["background"]);
-                                if (parts.mountBody) drawImageIfAvailable(ctx, parts["mountBody"], 24, 18);
+                                drawImageIfAvailable(ctx, parts.background, 0, 0);
+                                drawImageIfAvailable(ctx, parts.mountBody, 24, 18);
 
+                                // Draw parts in order
                                 [ "chair", "back", "skin", "shirt", "armor", "body", "bangs", "base", "mustache",
                                   "beard", "eyewear", "head", "headAccessory", "flower", "shield", "weapon", "zzz",
                                 ].every(function (part) {
@@ -145,7 +175,7 @@ Page {
                                     return true;
                                 });
 
-                                if (parts.mountHead) drawImageIfAvailable(ctx, parts["mountHead"], 24, 18);
+                                drawImageIfAvailable(ctx, parts["mountHead"], 24, 18);
 
                                 drawImageIfAvailable(ctx, parts["pet"], 0, 48);
 
@@ -154,7 +184,7 @@ Page {
 
                             function drawImageIfAvailable(ctx, url, x, y) {
                                 if (url && isImageLoaded(url)) {
-                                    ctx.drawImage(url, x || 0, y || 0);
+                                    ctx.drawImage(url, x, y);
                                 }
                             }
                         }
