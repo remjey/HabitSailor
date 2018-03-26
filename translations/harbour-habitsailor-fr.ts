@@ -971,12 +971,12 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Méthode invalide pour le RPC</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="100"/>
+        <location filename="../qml/rpc.js" line="99"/>
         <source>Unexplained error: %1 (status: %2)</source>
         <translation>Erreur non explicite: %1 (statut: %2)</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="102"/>
+        <location filename="../qml/rpc.js" line="101"/>
         <source>Unknown error, status: %1</source>
         <translation>Erreur inconnue, statut: %1</translation>
     </message>

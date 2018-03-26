@@ -30,7 +30,7 @@ function formatPath(path, data) {
     });
 }
 
-Service.prototype.defaultErrorList = { 0: qsTr("Invalid URL"), 400: qsTr("Bad request"), 401: qsTr("Unauthorized or bad login and password") };
+Service.defaultErrorList = { 0: qsTr("Invalid URL"), 400: qsTr("Bad request"), 401: qsTr("Unauthorized or bad login and password") };
 Service.prototype.apiUrl = null;
 Service.prototype.apiKey = null;
 Service.prototype.apiUser = null;
@@ -75,7 +75,7 @@ Service.prototype.call = function (path, method, data, onload, debug) {
                 ok = true;
                 o = o.data;
             } else if (!o.hasOwnProperty("message")) {
-                o.message = err(o); // FIXME this seems to be broken
+                o.message = Service.err(o);
             }
             onload(ok, o);
         }
@@ -87,10 +87,9 @@ Service.prototype.call = function (path, method, data, onload, debug) {
         throw qsTr("Invalid method for rpc call") // TODO notify callback instead of throwing
 }
 
-Service.prototype.err = function (r, errorList) {
-    errorList = errorList || this.defaultErrorList;
+Service.err = function (r, errorList) {
+    errorList = errorList || Service.defaultErrorList;
     var error = null, errorMessage = null;
-    if (r) print(r.hasOwnProperty("error"));
     if (r && r.hasOwnProperty("error")) {
         error = r.error;
         errorMessage = r.message;
