@@ -52,22 +52,22 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="117"/>
+        <location filename="../qml/cover/CoverPage.qml" line="141"/>
         <source>Not Connected</source>
         <translation>Déconnecté</translation>
     </message>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="204"/>
+        <location filename="../qml/cover/CoverPage.qml" line="228"/>
         <source>Dailies</source>
         <translation>Quotid.</translation>
     </message>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="219"/>
+        <location filename="../qml/cover/CoverPage.qml" line="243"/>
         <source>Resting</source>
         <translation>Repos</translation>
     </message>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="234"/>
+        <location filename="../qml/cover/CoverPage.qml" line="258"/>
         <source>Congrats!
 All dailies completed!</source>
         <translation>Bravo!

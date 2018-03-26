@@ -55,8 +55,8 @@ CoverBackground {
     }
 
     function updateTasksList() {
-        var list = Model.listDailies();
         var completed = 0, active = 0;
+        var list = Model.listDailies();
         dailiesList.model.clear();
         list.forEach(function (item) {
             if (item.isDue) {
@@ -66,6 +66,12 @@ CoverBackground {
             }
         });
         completedDailies.text = completed + "/" + active;
+
+        list = Model.listTodos();
+        todosList.model.clear();
+        list.forEach(function (item) {
+            todosList.model.append(item);
+        });
     }
 
     // I think I didn’t understand how states should be used
@@ -76,6 +82,9 @@ CoverBackground {
             PropertyChanges { target: content; visible: false }
             PropertyChanges { target: actionList; enabled: false }
             PropertyChanges { target: dailiesList; visible: false }
+            PropertyChanges { target: todosList; visible: false }
+            PropertyChanges { target: backgroundDailyIcon; visible: false }
+            PropertyChanges { target: backgroundTodoIcon; visible: false }
         },
         State {
             name: "STATS"
@@ -83,6 +92,9 @@ CoverBackground {
             PropertyChanges { target: content; visible: true }
             PropertyChanges { target: actionList; enabled: true }
             PropertyChanges { target: dailiesList; visible: false }
+            PropertyChanges { target: todosList; visible: false }
+            PropertyChanges { target: backgroundDailyIcon; visible: false }
+            PropertyChanges { target: backgroundTodoIcon; visible: false }
         },
         State {
             name: "DAILIES"
@@ -90,8 +102,20 @@ CoverBackground {
             PropertyChanges { target: content; visible: false }
             PropertyChanges { target: actionList; enabled: true }
             PropertyChanges { target: dailiesList; visible: true }
+            PropertyChanges { target: todosList; visible: false }
+            PropertyChanges { target: backgroundDailyIcon; visible: true }
+            PropertyChanges { target: backgroundTodoIcon; visible: false }
+        },
+        State {
+            name: "TODOS"
+            PropertyChanges { target: placeHolder; visible: false }
+            PropertyChanges { target: content; visible: false }
+            PropertyChanges { target: actionList; enabled: true }
+            PropertyChanges { target: dailiesList; visible: false }
+            PropertyChanges { target: todosList; visible: true }
+            PropertyChanges { target: backgroundDailyIcon; visible: false }
+            PropertyChanges { target: backgroundTodoIcon; visible: true }
         }
-
     ]
 
     Component.onCompleted: {
@@ -234,6 +258,22 @@ CoverBackground {
         text: qsTr("Congrats!\nAll dailies completed!")
     }
 
+    Image {
+        id: backgroundDailyIcon
+        source: Qt.resolvedUrl("../assets/icon-m-clock.svg")
+        sourceSize.width: parent.width
+        sourceSize.height: parent.width
+        opacity: 0.3
+    }
+
+    Image {
+        id: backgroundTodoIcon
+        source: Qt.resolvedUrl("../assets/icon-m-todo.svg")
+        sourceSize.width: parent.width
+        sourceSize.height: parent.width
+        opacity: 0.3
+    }
+
     ListView {
         id: dailiesList
         anchors.fill: parent
@@ -243,10 +283,10 @@ CoverBackground {
 
         delegate: Item {
             width: parent.width
-            height: itemLabel.height + Theme.paddingSmall
+            height: dailiesItemLabel.height + Theme.paddingSmall
 
             Rectangle {
-                id: rect
+                id: dailiesRect
                 anchors.verticalCenter: parent.verticalCenter
                 height: Theme.paddingMedium
                 width: height
@@ -255,9 +295,57 @@ CoverBackground {
             }
 
             Label {
-                id: itemLabel
+                id: dailiesItemLabel
                 text: model.text;
-                anchors.left: rect.right
+                anchors.left: dailiesRect.right
+                anchors.leftMargin: Theme.paddingMedium
+                width: parent.width - x
+                font.pixelSize: Theme.fontSizeSmall
+                elide: Text.ElideRight
+                color: Theme.primaryColor
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                maximumLineCount: 2
+                lineHeight: 0.8
+            }
+        }
+    }
+
+    ListView {
+        id: todosList
+        anchors.fill: parent
+        anchors.margins: Theme.paddingSmall
+
+        model: ListModel {}
+
+        delegate: Item {
+            width: parent.width
+            height: todosItemLabel.height + Theme.paddingSmall
+
+            Rectangle {
+                id: todosRect
+                anchors.verticalCenter: parent.verticalCenter
+                height: Theme.paddingMedium
+                width: height
+                color: model.color
+                opacity: 0.7
+            }
+
+            Rectangle {
+                height: parent.height - Theme.paddingSmall / 2
+                y: Theme.paddingSmall / 4
+                anchors.right: parent.right
+                anchors.left: todosRect.right
+                anchors.leftMargin: Theme.paddingMedium / 2
+                color: "red"
+                visible: model.missedDueDate
+                radius: Theme.paddingSmall
+                opacity: 0.3
+            }
+
+            Label {
+                id: todosItemLabel
+                text: model.text;
+                anchors.left: todosRect.right
                 anchors.leftMargin: Theme.paddingMedium
                 width: parent.width - x
                 font.pixelSize: Theme.fontSizeSmall
@@ -277,12 +365,20 @@ CoverBackground {
         slope: 1 / (1 - offset)
     }
 
+    OpacityRampEffect {
+        sourceItem: todosList
+        direction: OpacityRamp.TopToBottom
+        offset: 0.7
+        slope: 1 / (1 - offset)
+    }
+
     CoverActionList {
         id: actionList
         CoverAction {
             iconSource: "image://theme/icon-cover-subview"
             onTriggered: {
                 if (state == "STATS") state = "DAILIES";
+                else if (state == "DAILIES") state = "TODOS";
                 else state = "STATS";
             }
         }
