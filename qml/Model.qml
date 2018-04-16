@@ -70,7 +70,33 @@ QtObject {
             Signals.showMessage(qsTr("Bad or no response from server: %1").arg(o.message))
             if (cb) cb(false);
         });
-        cs.autofail = true;
+        if (!_habiticaContent) {
+            cs.push("/content", "get", {}, function (ok, r, xhr) {
+                if (ok) {
+                    print("Habitica content updated");
+                    _habiticaContent = r;
+                    _configSet("habiticaContent", JSON.stringify(r));
+                    var etag = xhr.getResponseHeader("ETag");
+                    if (etag) _configSet("habiticaContentEtag", etag);
+                } else if (r.httpStatus === 304) {
+                    print("Habitica content has not changed since last retrieval");
+                    _habiticaContent = JSON.parse(_configGet("habiticaContent"));
+                } else {
+                    print("Failed to retrieve Habitica content, trying to used cached content anyway.")
+                    var cachedContent = _configGet("habiticaContent");
+                    if (cachedContent) {
+                        _habiticaContent = JSON.parse(cachedContent);
+                    } else {
+                        Signals.showMessage(qsTr("Could not load Habitica content: %1").arg(r.message));
+                        return false;
+                    }
+                }
+                cs.autofail = true;
+                return true;
+            }, _configGet("habiticaContentEtag") ? { headers: { "If-None-Match": _configGet("habiticaContentEtag") }} : undefined);
+        } else {
+            cs.autofail = true;
+        }
         cs.push("/user", "get", {}, function (ok, r) {
             _sleeping = r.preferences.sleep;
             _dateFormat = r.preferences.dateFormat;
@@ -162,7 +188,7 @@ QtObject {
                     name: o.name,
                     chat: [],
                 };
-                for (var i = 0; i < o.chat.length && i < 50; ++i) {
+                for (var i = 0; i < o.chat.length && i < 200; ++i) {
                     r.chat.push(_transformGroupMessage(o.chat[i]));
                 }
                 if (cb) cb(true, r);
@@ -532,6 +558,7 @@ QtObject {
     property var _avatarDetails
     property string _myUuid
     property string _party: ""
+    property var _habiticaContent: null
 
     function _setupRpc() {
         if (_configGet("apiUser")) {

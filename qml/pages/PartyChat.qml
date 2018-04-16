@@ -4,16 +4,18 @@ import Sailfish.Silica 1.0
 import ".."
 
 Page {
+    id: root
 
     SilicaFlickable {
         id: page
         anchors.fill: parent
+        contentHeight: parent.height
 
-        PullDownMenu {
-            id: pullDownMenu
+        PushUpMenu {
+            id: pageMenu
             MenuItem {
                 text: "Refresh"
-                onClicked: update();
+                onClicked: updateData();
             }
         }
 
@@ -21,6 +23,12 @@ Page {
             id: pageHeader
             width: parent.width
             title: "Your party’s chat"
+        }
+
+        BusyIndicator {
+            anchors.centerIn: parent
+            running: pageMenu.busy && chatModel.count == 0
+            size: BusyIndicatorSize.Large
         }
 
         SilicaListView {
@@ -103,6 +111,7 @@ Page {
         Item {
             id: chatSendItem
             anchors.bottom: parent.bottom
+            anchors.bottomMargin: Theme.paddingMedium
             width: parent.width
             height: chatTextField.implicitHeight
 
@@ -140,7 +149,7 @@ Page {
 
     ListModel { id: chatModel }
 
-    Component.onCompleted: update();
+    Component.onCompleted: updateData();
 
     function sendMessage() {
         if (!chatTextField.validMessage) return;
@@ -153,15 +162,38 @@ Page {
         chatTextField.text = "";
     }
 
-    function update() {
-        pullDownMenu.busy = true;
+    function updateData() {
+        pageMenu.busy = true;
         chatModel.clear();
         Model.getGroupData("party", function (ok, o) {
-            pullDownMenu.busy = false;
+            pageMenu.busy = false;
             pageHeader.title = o.name;
             o.chat.forEach(function (msg) {
                 chatModel.append(msg);
             })
+            details = {
+                title: o.name,
+            };
+            updateDetailsPage();
         })
+    }
+
+    property var details: null;
+    property var detailsPage: null;
+
+    function updateDetailsPage() {
+        if (!details) return;
+
+        if (!detailsPage) detailsPage = pageStack.pushAttached("PartyDetails.qml", { details: details });
+        else detailsPage.updateData(details);
+    }
+
+    Connections {
+        target: pageStack
+        onBusyChanged: {
+            if (!busy && pageStack.currentPage === root && !detailsPage) {
+                updateDetailsPage();
+            }
+        }
     }
 }

@@ -35,7 +35,8 @@ Service.prototype.apiUrl = null;
 Service.prototype.apiKey = null;
 Service.prototype.apiUser = null;
 
-Service.prototype.call = function (path, method, data, onload, debug) {
+Service.prototype.call = function (path, method, data, onload, options) {
+    options = options || {};
 
     var xhr = new XMLHttpRequest();
     var fullpath = formatPath(this.apiUrl + "/api/v3" + path, data);
@@ -45,15 +46,21 @@ Service.prototype.call = function (path, method, data, onload, debug) {
         noBody = true;
     }
     print("XHR Query: " + method + " " + fullpath)
-    if (debug) print("XHR Query Data: " + JSON.stringify(data, null, 2));
+    if (options.debug) print("XHR Query Data: " + JSON.stringify(data, null, 2));
     xhr.open(method, fullpath);
     if (this.apiKey && this.apiUser) {
         xhr.setRequestHeader("x-api-key", this.apiKey);
         xhr.setRequestHeader("x-api-user", this.apiUser);
     }
+    if (typeof(options.headers) == 'object') {
+        for (var header in options.headers) {
+            xhr.setRequestHeader(header, options.headers[header]);
+        }
+    }
+
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
-            if (debug) {
+            if (options.debug) {
                 print("XHR Status: ", xhr.status);
                 print("XHR Response: ", xhr.responseText);
             }
@@ -77,7 +84,7 @@ Service.prototype.call = function (path, method, data, onload, debug) {
             } else if (!o.hasOwnProperty("message")) {
                 o.message = Service.err(o);
             }
-            onload(ok, o);
+            onload(ok, o, xhr);
         }
     }
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -113,8 +120,8 @@ function CallSeq(service, onfail) {
     this.index = 0;
 }
 
-CallSeq.prototype.push = function (path, method, data, onload) {
-    this.list.push({ path: path, method: method, data: data, onload: onload });
+CallSeq.prototype.push = function (path, method, data, onload, options) {
+    this.list.push({ path: path, method: method, data: data, onload: onload, options: options });
     return this;
 }
 
@@ -122,11 +129,11 @@ CallSeq.prototype.run = function () {
     if (this.index >= this.list.length) return;
     var c = this.list[this.index];
     this.index++;
-    this.service.call(c.path, c.method, c.data, (function (ok, r) {
-        if ((!this.autofail || ok) && c.onload(ok, r))
+    this.service.call(c.path, c.method, c.data, (function (ok, r, xhr) {
+        if ((!this.autofail || ok) && c.onload(ok, r, xhr))
             return this.run();
         this.index = 0;
         if (this.onfail) this.onfail(r);
-    }).bind(this));
+    }).bind(this), c.options);
 }
 

@@ -393,6 +393,10 @@ All dailies completed!</source>
         <source>Cannot post chat message: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Could not load Habitica content: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PartyChat</name>

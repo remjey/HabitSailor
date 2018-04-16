@@ -388,103 +388,108 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Réponse du serveur incorrecte on manquante: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="123"/>
+        <location filename="../qml/Model.qml" line="149"/>
         <source>Impossible to run cron: %1</source>
         <translation>Impossible de lancer le cron: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="170"/>
+        <location filename="../qml/Model.qml" line="196"/>
         <source>Cannot get chat messages: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="181"/>
+        <location filename="../qml/Model.qml" line="207"/>
         <source>Cannot post chat message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="242"/>
+        <location filename="../qml/Model.qml" line="268"/>
         <source>Not enough gold to buy this custom reward!</source>
         <translation>Pas assez d’or pour acheter cette récompense !</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="252"/>
+        <location filename="../qml/Model.qml" line="278"/>
         <source>Cannot buy custom reward: %1</source>
         <translation>Impossible d’acheter la récompense: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="610"/>
+        <location filename="../qml/Model.qml" line="637"/>
         <source>You must first refill your health from the profile page before you can do this!</source>
         <translation>Vous devez d’abord récupérer votre santé depuis la page de profil avant de pouvoir faire ça !</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="616"/>
+        <location filename="../qml/Model.qml" line="643"/>
         <source>Level</source>
         <translation>Niveau</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="617"/>
+        <location filename="../qml/Model.qml" line="644"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="618"/>
+        <location filename="../qml/Model.qml" line="645"/>
         <source>Mana</source>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="619"/>
+        <location filename="../qml/Model.qml" line="646"/>
         <source>Experience</source>
         <translation>Expérience</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="620"/>
+        <location filename="../qml/Model.qml" line="647"/>
         <source>Gold</source>
         <translation>Or</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="629"/>
+        <location filename="../qml/Model.qml" line="656"/>
         <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
         <translation>Désolé, vous avez épuisé votre santé… Restaurez votre santé depuis la page de profil pour continuer !</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="231"/>
+        <location filename="../qml/Model.qml" line="257"/>
         <source>Cannot update habit: %1</source>
         <translation>Impossible de mettre à jour l’habitude: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="266"/>
+        <location filename="../qml/Model.qml" line="90"/>
+        <source>Could not load Habitica content: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="292"/>
         <source>Cannot toggle sleeping status: %1</source>
         <translation>Impossible de modifier la présence à l’auberge: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="278"/>
+        <location filename="../qml/Model.qml" line="304"/>
         <source>Cannot refill health: %1</source>
         <translation>Impossible de restaurer la santé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="291"/>
+        <location filename="../qml/Model.qml" line="317"/>
         <source>Cannot buy Health Potion: %1</source>
         <translation>Impossible d’acheter une Potion de santé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="309"/>
+        <location filename="../qml/Model.qml" line="335"/>
         <source>Cannot update subtask: %1</source>
         <translation>Impossible de mettre à jour la sous-tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="343"/>
-        <location filename="../qml/Model.qml" line="461"/>
+        <location filename="../qml/Model.qml" line="369"/>
+        <location filename="../qml/Model.qml" line="487"/>
         <source>Cannot update task: %1</source>
         <translation>Impossible de mettre à jour la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="485"/>
+        <location filename="../qml/Model.qml" line="511"/>
         <source>Cannot create new task: %1</source>
         <translation>Impossible de créer la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="504"/>
+        <location filename="../qml/Model.qml" line="530"/>
         <source>Cannot delete task: %1</source>
         <translation>Impossible de supprimer la tâche: %1</translation>
     </message>
@@ -492,7 +497,7 @@ Toutes vos quotidiennes sont faites!</translation>
 <context>
     <name>PartyChat</name>
     <message>
-        <location filename="../qml/pages/PartyChat.qml" line="115"/>
+        <location filename="../qml/pages/PartyChat.qml" line="124"/>
         <source>Type your message here</source>
         <translation type="unfinished"></translation>
     </message>
@@ -989,22 +994,22 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Non authorisé, ou mauvais utilisateur ou mot de passe</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="70"/>
+        <location filename="../qml/rpc.js" line="77"/>
         <source>Invalid data or no data was received from server</source>
         <translation>Données invalides ou pas de données reçues du serveur</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="87"/>
+        <location filename="../qml/rpc.js" line="94"/>
         <source>Invalid method for rpc call</source>
         <translation>Méthode invalide pour le RPC</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="99"/>
+        <location filename="../qml/rpc.js" line="106"/>
         <source>Unexplained error: %1 (status: %2)</source>
         <translation>Erreur non explicite: %1 (statut: %2)</translation>
     </message>
     <message>
-        <location filename="../qml/rpc.js" line="101"/>
+        <location filename="../qml/rpc.js" line="108"/>
         <source>Unknown error, status: %1</source>
         <translation>Erreur inconnue, statut: %1</translation>
     </message>
