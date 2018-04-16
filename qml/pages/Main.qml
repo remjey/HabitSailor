@@ -379,6 +379,27 @@ Page {
                     pageStack.push(Qt.resolvedUrl("Rewards.qml"));
                 }
             }
+
+            SectionHeader {
+                text: qsTr("Social")
+            }
+
+            MenuButton {
+                id: partyButton
+                enabled: !menu.busy
+                imageSource: Qt.resolvedUrl("../assets/icon-m-team.svg")
+                label: qsTr("Party")
+                visible: height != 0
+
+                Behavior on height {
+                    NumberAnimation { duration: 200 }
+                }
+
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("PartyChat.qml"));
+                }
+            }
+
         }
     }
 
@@ -400,6 +421,7 @@ Page {
         mana.value = Model.getMp();
         exp.maximum = Model.getXpNext();
         exp.value = Model.getXp();
+        partyButton.height = Model.hasParty() ? partyButton.implicitHeight : 0;
 
         startANewDay._visible = Model.getNeedsCron();
     }

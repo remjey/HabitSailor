@@ -45,6 +45,7 @@ QtObject {
         _db = Sql.LocalStorage.openDatabaseSync("HabitSailor", "", "HabitSailor", 1000000);
         print("DB: version: " + _db.version)
         if (_db.version === "") {
+            // FIXME this version update code doesn’t scale!!! FIXME
             _db.changeVersion(_db.version, "0.0.1", function (tx) {
                 print("DB: updating to 0.0.1")
                 tx.executeSql("create table config (k text primary key, v text)");
@@ -79,6 +80,7 @@ QtObject {
             _balance = r.balance;
             _name = r.profile.name;
             _stats = r.stats;
+            _party = r.party._id || "";
             _makeAvatarDetails(r);
             return true;
         });
@@ -134,6 +136,7 @@ QtObject {
     function getXpNext() { return _stats.toNextLevel; }
     function getGold() { return _stats.gp; }
     function getGems() { return _balance * 4; }
+    function hasParty() { return !!_party; }
 
     function isSleeping() { return _sleeping; }
 
@@ -498,6 +501,7 @@ QtObject {
     property var _tasks
     property var _rewards
     property var _avatarDetails
+    property string _party: ""
 
     function _setupRpc() {
         if (_configGet("apiUser")) {

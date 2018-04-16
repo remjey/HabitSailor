@@ -298,6 +298,14 @@ All dailies completed!</source>
         <source>Custom Rewards</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Social</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Party</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Model</name>
@@ -375,6 +383,13 @@ All dailies completed!</source>
     </message>
     <message>
         <source>Cannot buy custom reward: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PartyChat</name>
+    <message>
+        <source>Your party’s chat</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

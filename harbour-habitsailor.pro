@@ -78,5 +78,9 @@ DISTFILES += \
     rpm/harbour-habitsailor.changes \
     qml/pages/Rewards.qml \
     qml/assets/icon-m-custom-reward.png \
-    qml/assets/icon-m-reward.svg
+    qml/assets/icon-m-reward.svg \
+    qml/assets/icon-m-clock.svg \
+    qml/assets/icon-m-team.svg \
+    qml/assets/icon-m-todo.svg \
+    qml/pages/PartyChat.qml
 
