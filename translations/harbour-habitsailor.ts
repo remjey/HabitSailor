@@ -385,11 +385,19 @@ All dailies completed!</source>
         <source>Cannot buy custom reward: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Cannot get chat messages: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot post chat message: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PartyChat</name>
     <message>
-        <source>Your party’s chat</source>
+        <source>Type your message here</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -155,6 +155,35 @@ QtObject {
         .map(_filterTask);
     }
 
+    function getGroupData(gid, cb) {
+        _rpc.call("/groups/:gid", "get", { gid: gid }, function (ok, o) {
+            if (ok) {
+                var r = {
+                    name: o.name,
+                    chat: [],
+                };
+                for (var i = 0; i < o.chat.length && i < 50; ++i) {
+                    r.chat.push(_transformGroupMessage(o.chat[i]));
+                }
+                if (cb) cb(true, r);
+            } else {
+                Signals.showMessage(qsTr("Cannot get chat messages: %1").arg(o.message))
+                if (cb) cb(false);
+            }
+        });
+    }
+
+    function postChatMessage(gid, msg, cb) {
+        _rpc.call("/groups/:gid/chat", "post", { gid: gid, message: msg }, function (ok, o) {
+            if (ok) {
+                cb(true, _transformGroupMessage(o.message));
+            } else {
+                Signals.showMessage(qsTr("Cannot post chat message: %1").arg(o.message))
+                if (cb) cb(false);
+            }
+        });
+    }
+
     function getProfilePictureUrl() {
         return _configGet("apiUrl") + "/export/avatar-" + _configGet("apiUser") + ".png"
     }
@@ -219,7 +248,7 @@ QtObject {
             if (ok) {
                 _partialStatsUpdate(o);
                 if (cb) cb(true);
-            } else if (cb) {
+            } else {
                 Signals.showMessage(qsTr("Cannot buy custom reward: %1").arg(o.message))
                 if (cb) cb(false);
             }
@@ -501,6 +530,7 @@ QtObject {
     property var _tasks
     property var _rewards
     property var _avatarDetails
+    property string _myUuid
     property string _party: ""
 
     function _setupRpc() {
@@ -726,6 +756,17 @@ QtObject {
             }
         });
         return r;
+    }
+
+    function _transformGroupMessage(omsg) {
+        var rmsg = {
+            name: omsg.user || "(no name)",
+            text: omsg.text || "",
+        };
+        if (omsg.uuid === "system") rmsg.fromType = "system";
+        else if (omsg.uuid === _configGet("apiUser")) rmsg.fromType = "me";
+        else rmsg.fromType = "friend";
+        return rmsg;
     }
 
     property string _avatarPictureBaseUrl: "https://raw.githubusercontent.com/HabitRPG/habitica/release/website/raw_sprites/spritesmith/";
