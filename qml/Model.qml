@@ -71,6 +71,7 @@ QtObject {
             if (cb) cb(false);
         });
         if (!_habiticaContent) {
+            //TODO get content in correct language
             cs.push("/content", "get", {}, function (ok, r, xhr) {
                 if (ok) {
                     print("Habitica content updated");
@@ -191,6 +192,40 @@ QtObject {
                 for (var i = 0; i < o.chat.length && i < 200; ++i) {
                     r.chat.push(_transformGroupMessage(o.chat[i]));
                 }
+                if (o.quest && o.quest.key) {
+                    var qc = _habiticaContent.quests[o.quest.key];
+                    r.quest = {
+                        key: o.quest.key,
+                        name: qc.text,
+                        iconSource: _avatarPictureBaseUrl + "/quests/bosses/quest_" + o.quest.key + ".png",
+                        active: o.quest.active,
+                    }
+
+                    if (o.quest.active) {
+                        if (qc.boss) {
+                            r.quest.type = "boss";
+                            r.quest.maxHp = qc.boss.hp;
+                            r.quest.hp = Math.ceil(o.quest.progress.hp);
+                        } else if (qc.collect) {
+                            r.quest.type = "collect";
+                            r.quest.collect = [];
+                            for (var key in qc.collect) {
+                                var oc = qc.collect[key];
+                                var rc = {
+                                    key: key,
+                                    name: oc.text,
+                                    max: oc.count,
+                                    count: o.quest.progress.collect[key],
+                                };
+                                r.quest.collect.push(rc);
+                            }
+                            r.quest.collect.sort(function (a, b) { return a.name.localeCompare(b.name); });
+                        } else {
+                            r.quest.type = "other";
+                        }
+                    }
+                }
+
                 if (cb) cb(true, r);
             } else {
                 Signals.showMessage(qsTr("Cannot get chat messages: %1").arg(o.message))

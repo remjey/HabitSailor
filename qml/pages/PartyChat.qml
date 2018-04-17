@@ -173,6 +173,7 @@ Page {
             })
             details = {
                 title: o.name,
+                quest: o.quest,
             };
             updateDetailsPage();
         })

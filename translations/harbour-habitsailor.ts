@@ -406,6 +406,17 @@ All dailies completed!</source>
     </message>
 </context>
 <context>
+    <name>PartyDetails</name>
+    <message>
+        <source>Not started yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Health</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Revive</name>
     <message>
         <source>Cancel</source>
