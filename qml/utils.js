@@ -121,11 +121,13 @@ function md(text) {
             case ">": return "&gt;";
             }
         });
+        tcl = tcl.replace(/(^|[^\\~])~~(|.*?[^\\~])~~/g, "$1<s>$2</s>");
         tcl = tcl.replace(/(^|[^\\*])\*\*(|.*?[^\\*])\*\*/g, "$1<b>$2</b>");
         tcl = tcl.replace(/(^|[^\\_])\_\_(|.*?[^\\_])\_\_/g, "$1<b>$2</b>");
         tcl = tcl.replace(/(^|[^\\*])\*(|.*?[^\\*])\*/g, "$1<i>$2</i>");
         tcl = tcl.replace(/(^|[^\\_])\_(|.*?[^\\_])\_/g, "$1<i>$2</i>");
         tcl = tcl.replace(/(^|[^\\`])\`(|.*?[^\\`])\`/g, "$1<font size=\"2\"><code>$2</code></font>");
+        tcl = tcl.replace(/\\([*_~#])/g, "$1")
         if (clt.match(/h[1-6]/)) out += "<" + clt + ">" + tcl + "</" + clt + ">";
         if (clt == "p") out += "<p>" + tcl + "</p>";
         if (clt == "li") out += "<li>" + tcl + "</li>";
