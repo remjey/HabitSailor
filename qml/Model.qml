@@ -823,7 +823,7 @@ QtObject {
     function _transformGroupMessage(omsg) {
         var rmsg = {
             name: omsg.user || "(no name)",
-            text: omsg.text || "",
+            text: Utils.md(omsg.text || ""),
         };
         if (omsg.uuid === "system") rmsg.fromType = "system";
         else if (omsg.uuid === _configGet("apiUser")) rmsg.fromType = "me";

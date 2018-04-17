@@ -32,11 +32,18 @@ Page {
         }
 
         SilicaListView {
+            id: chatListView
             anchors.top: pageHeader.bottom
             anchors.bottom: chatSendItem.top
+            anchors.bottomMargin: Theme.paddingMedium
             anchors.left: parent.left
             anchors.right: parent.right
             clip: true
+            opacity: 0
+
+            Behavior on opacity {
+                NumberAnimation { duration: 200 }
+            }
 
             VerticalScrollDecorator {}
 
@@ -70,12 +77,13 @@ Page {
                         font.pixelSize: Theme.fontSizeExtraSmall
                     }
 
-                    Label {
+                    Text {
                         id: chatListContentText
                         width: parent.width - Theme.itemSizeMedium
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         text: model.text
                         font.pixelSize: model.fromType === "friend" ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                        textFormat: Text.RichText
                         x: {
                             switch (model.fromType) {
                             case "friend": return Theme.itemSizeMedium
@@ -164,8 +172,8 @@ Page {
 
     function updateData() {
         pageMenu.busy = true;
-        chatModel.clear();
         Model.getGroupData("party", function (ok, o) {
+            chatModel.clear();
             pageMenu.busy = false;
             pageHeader.title = o.name;
             o.chat.forEach(function (msg) {
@@ -175,6 +183,7 @@ Page {
                 title: o.name,
                 quest: o.quest,
             };
+            chatListView.opacity = true;
             updateDetailsPage();
         })
     }

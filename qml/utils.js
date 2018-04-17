@@ -107,3 +107,51 @@ Object.sclone = function (o) {
     for (var i in o) r[i] = o[i];
     return r;
 }
+
+function md(text) {
+    var lines = text.split(/\n/)
+    var out = "";
+    var cl = "", clt = "";
+
+    function commit(nclt) {
+        var tcl = cl.replace(/&<>/g, function (c) {
+            switch (c) {
+            case "&": return "&amp;";
+            case "<": return "&lt;";
+            case ">": return "&gt;";
+            }
+        });
+        tcl = tcl.replace(/(^|[^\\*])\*\*(|.*?[^\\*])\*\*/g, "$1<b>$2</b>");
+        tcl = tcl.replace(/(^|[^\\_])\_\_(|.*?[^\\_])\_\_/g, "$1<b>$2</b>");
+        tcl = tcl.replace(/(^|[^\\*])\*(|.*?[^\\*])\*/g, "$1<i>$2</i>");
+        tcl = tcl.replace(/(^|[^\\_])\_(|.*?[^\\_])\_/g, "$1<i>$2</i>");
+        tcl = tcl.replace(/(^|[^\\`])\`(|.*?[^\\`])\`/g, "$1<font size=\"2\"><code>$2</code></font>");
+        if (clt.match(/h[1-6]/)) out += "<" + clt + ">" + tcl + "</" + clt + ">";
+        if (clt == "p") out += "<p>" + tcl + "</p>";
+        if (clt == "li") out += "<li>" + tcl + "</li>";
+        if (clt != "li" && nclt === "li") out += "<ul>";
+        if (clt == "li" && nclt !== "li") out += "</ul>";
+        clt = nclt;
+        cl = "";
+    }
+
+    for (var i = 0; i < lines.length; ++i) {
+        var line = lines[i].trim();
+        var m;
+        if ((m = line.match(/^(#+) (.+)/))) {
+            commit("h" + Math.max(2, Math.min(m[1].length + 1, 5)));
+            cl = m[2];
+        } else if (line.substr(0, 2) === "* " || line.substr(0, 2) === "- ") {
+            commit("li");
+            cl = line.substr(2).trim();
+        } else if (line === "") {
+            commit("empty-line");
+        } else {
+            if (clt !== "p") commit("p");
+            cl += line + " ";
+        }
+    }
+    commit("end");
+
+    return out;
+}

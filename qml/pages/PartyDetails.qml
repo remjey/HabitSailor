@@ -68,6 +68,8 @@ Page {
                     x: Theme.itemSizeMedium
                 }
 
+                Item { height: Theme.paddingLarge; width: 1 }
+
                 Label {
                     id: questName
                     width: parent.width - Theme.horizontalPageMargin * 2
