@@ -125,6 +125,11 @@ CallSeq.prototype.push = function (path, method, data, onload, options) {
     return this;
 }
 
+CallSeq.prototype.insert = function (path, method, data, onload, options) {
+    this.list.splice(this.index, 0, { path: path, method: method, data: data, onload: onload, options: options });
+    return this;
+}
+
 CallSeq.prototype.run = function () {
     if (this.index >= this.list.length) return;
     var c = this.list[this.index];
