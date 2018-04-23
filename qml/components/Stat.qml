@@ -32,8 +32,9 @@ Column {
         text: Math.floor(value) + (maximum <= 0 ? "" : " / " + Math.floor(maximum))
     }
     Bar {
+        anchors.horizontalCenter: parent.horizontalCenter
         visible: maximum > 0
-        width: parent.width
+        width: parent.width - Theme.paddingLarge
         value: parent.value
         maximum: parent.maximum
         color: barColor

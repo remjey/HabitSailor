@@ -186,8 +186,9 @@ CoverBackground {
         Grid {
             id: statsGrid
             x: Theme.paddingMedium
-            width: parent.width - x
+            width: parent.width - Theme.paddingMedium * 2
             columns: 2
+            columnSpacing: Theme.paddingMedium
 
             Label {
                 id: healthLabel
@@ -220,15 +221,11 @@ CoverBackground {
                 color: Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeSmall
             }
-            Item {
-                height: gp.height;
-                width: gp.width + gp.x
-                Label {
-                    id: gp
-                    x: Theme.paddingMedium
-                    color: Theme.primaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                }
+            Label {
+                id: gp
+                x: Theme.paddingMedium
+                color: Theme.primaryColor
+                font.pixelSize: Theme.fontSizeSmall
             }
         }
 

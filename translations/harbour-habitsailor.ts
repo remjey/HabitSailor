@@ -397,6 +397,10 @@ All dailies completed!</source>
         <source>Could not load Habitica content: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Cannot load members of group: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PartyChat</name>
@@ -413,6 +417,10 @@ All dailies completed!</source>
     </message>
     <message>
         <source>Health</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Party members</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

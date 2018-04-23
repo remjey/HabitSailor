@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import "../components"
+import ".."
 
 Page {
     id: root
@@ -159,6 +160,81 @@ Page {
                         }
                     }
                 }
+            }
+
+            SectionHeader {
+                text: qsTr("Party members")
+            }
+
+            Repeater {
+                id: membersRepeater
+                model: ListModel {}
+                delegate: Item {
+                    width: parent.width - Theme.horizontalPageMargin
+                    height: Theme.itemSizeLarge
+
+                    Avatar {
+                        id: memberAvatar
+                        parts: model.parts
+                        height: parent.height
+                        width: parent.height
+                        small: true
+
+                        opacity: loaded ? 1.0 : 0.0
+
+                        Behavior on opacity {
+                            NumberAnimation { duration: 200 }
+                        }
+                    }
+
+                    Column {
+                        anchors.left: memberAvatar.right
+                        anchors.leftMargin: Theme.paddingSmall
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        Label {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            text: model.name
+                            truncationMode: TruncationMode.Elide
+                        }
+
+                        Bar {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            color: "#da5353"
+                            value: model.hp
+                            maximum: model.hpMax
+                        }
+                    }
+                }
+            }
+
+            BusyIndicator {
+                id: membersBusy
+                running: false
+                anchors.horizontalCenter: parent.horizontalCenter
+                size: BusyIndicatorSize.Medium
+            }
+        }
+    }
+
+    function updateMembers() {
+        membersBusy.running = true;
+        membersRepeater.model.clear();
+        Model.getGroupMembers(details.id, function (ok, o) {
+            membersBusy.running = false;
+            if (ok)
+                o.forEach(function (item) { membersRepeater.model.append(item); });
+        });
+    }
+
+    Connections {
+        target: pageStack
+        onBusyChanged: {
+            if (!busy && pageStack.currentPage === root) {
+                updateMembers();
             }
         }
     }

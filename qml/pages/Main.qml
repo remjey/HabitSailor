@@ -104,89 +104,18 @@ Page {
                             running: profilePicture.opacity != 1.0 || !profilePicture.available;
                         }
 
-                        Canvas {
+                        Avatar {
                             id: profilePicture
                             anchors.fill: parent
-                            opacity: 0.0
+                            opacity: loaded ? 1.0 : 0.0
 
                             Behavior on opacity {
                                 NumberAnimation { duration: 200 }
                             }
 
-                            onImageLoaded: requestPaint();
+                            parts: Model.getAvatarParts()
 
-                            property var imageCollection: ({})
-
-                            onPaint: {
-                                var parts = Model.getAvatarParts();
-                                var imagesLoaded = 0, imagesCount = 0;
-
-                                // Mark all images as unused
-                                for (var imageUrl in imageCollection) imageCollection[imageUrl] = false;
-
-                                // Load images that are necessary, mark images still used
-                                for (var part in parts) {
-                                    var partUrl = parts[part];
-                                    if (!partUrl) continue;
-                                    ++imagesCount;
-                                    imageCollection[partUrl] = true;
-                                    if (!isImageLoaded(partUrl) && !isImageLoading(partUrl) && !isImageError(partUrl)) {
-                                        loadImage(partUrl);
-                                    }
-                                    if (isImageLoaded(partUrl) || isImageError(partUrl)) {
-                                        ++imagesLoaded;
-                                    }
-                                }
-
-                                // Unload unused images
-                                Object.keys(imageCollection).forEach(function (url) {
-                                    if (imageCollection[url] === false) {
-                                        unloadImage(url);
-                                        delete imageCollection[url];
-                                    }
-                                });
-
-                                // If images are still not loaded, do not display
-                                if (imagesLoaded !== imagesCount) {
-                                    opacity = 0.0;
-                                    return;
-                                }
-
-                                // Render the avatar, show it
-                                opacity = 1.0;
-
-                                var ctx = getContext("2d");
-                                if (!available || !ctx) {
-                                    print("Impossible to draw: ", available, "/", ctx)
-                                    return;
-                                }
-
-                                context.setTransform(width / 140, 0, 0, height / 147, 0, 0);
-                                ctx.clearRect(0, 0, 140, 147);
-
-                                drawImageIfAvailable(ctx, parts.background, 0, 0);
-                                drawImageIfAvailable(ctx, parts.mountBody, 24, 18);
-
-                                // Draw parts in order
-                                [ "chair", "back", "skin", "shirt", "armor", "body", "bangs", "base", "mustache",
-                                  "beard", "eyewear", "head", "headAccessory", "flower", "shield", "weapon", "zzz",
-                                ].every(function (part) {
-                                    drawImageIfAvailable(ctx, parts[part], 24, parts.mountBody ? 0 : 24);
-                                    return true;
-                                });
-
-                                drawImageIfAvailable(ctx, parts["mountHead"], 24, 18);
-
-                                drawImageIfAvailable(ctx, parts["pet"], 0, 48);
-
-                                Signals.avatarPainted(context.getImageData(0, 0, width, height));
-                            }
-
-                            function drawImageIfAvailable(ctx, url, x, y) {
-                                if (url && isImageLoaded(url)) {
-                                    ctx.drawImage(url, x, y);
-                                }
-                            }
+                            onPaint: Signals.avatarPainted(context.getImageData(0, 0, width, height));
                         }
                     }
 
@@ -433,11 +362,8 @@ Page {
     Connections {
         target: Signals
         onUpdateStats: {
-            profilePicture.requestPaint();
+            profilePicture.parts = Model.getAvatarParts();
             update();
-        }
-        onApplicationActive: {
-            profilePicture.requestPaint();
         }
     }
 }

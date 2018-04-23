@@ -31,7 +31,7 @@ Item {
     GlassItem {
         id: track
         anchors.centerIn: parent
-        width: parent.width - Theme.paddingSmall
+        width: parent.width + parent.height - radius * 4
         height: parent.height
 
         color: root.color
@@ -44,6 +44,7 @@ Item {
         GlassItem {
             anchors.top: parent.top
             anchors.left: parent.left
+
             height: parent.height
             width: barWidth(track.width, track.height, root.value, root.maximum) // To trigger the change of width through binding
             visible: root.value > 0

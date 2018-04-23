@@ -180,6 +180,7 @@ Page {
                 chatModel.append(msg);
             })
             details = {
+                id: o.id,
                 title: o.name,
                 quest: o.quest,
             };
