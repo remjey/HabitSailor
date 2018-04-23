@@ -423,6 +423,10 @@ All dailies completed!</source>
         <source>Party members</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Lv. %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Revive</name>

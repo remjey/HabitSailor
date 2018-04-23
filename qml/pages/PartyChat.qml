@@ -173,6 +173,8 @@ Page {
     function updateData() {
         pageMenu.busy = true;
         Model.getGroupData("party", function (ok, o) {
+            if (!ok) return;
+
             chatModel.clear();
             pageMenu.busy = false;
             pageHeader.title = o.name;

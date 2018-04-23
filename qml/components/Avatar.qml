@@ -85,6 +85,8 @@ Canvas {
             drawImageIfAvailable(ctx, parts.mountHead, 24, 18);
             drawImageIfAvailable(ctx, parts.pet, 0, 48);
         }
+
+        painted(ctx);
     }
 
     function drawImageIfAvailable(ctx, url, x, y) {
@@ -99,5 +101,7 @@ Canvas {
         target: Signals
         onApplicationActive: requestPaint();
     }
+
+    signal painted(var context)
 
 }

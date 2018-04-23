@@ -240,11 +240,16 @@ QtObject {
             if (ok) {
                 o.forEach(function (op) {
                     r.push({
-                        id: op.id,
-                        name: op.profile.name,
-                        parts: _makeAvatarParts(op),
-                        hp: op.stats.hp,
-                        hpMax: op.stats.maxHealth,
+                               id: op.id,
+                               name: op.profile.name,
+                               parts: _makeAvatarParts(op),
+                               hp: op.stats.hp,
+                               hpMax: op.stats.maxHealth,
+                               mp: op.stats.mp,
+                               mpMax: op.stats.maxMP,
+                               xp: op.stats.exp,
+                               xpNext: op.stats.toNextLevel,
+                               level: op.stats.lvl,
                     });
                 });
                 print(JSON.stringify(r, null, "  "));

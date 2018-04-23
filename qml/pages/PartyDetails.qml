@@ -171,13 +171,14 @@ Page {
                 model: ListModel {}
                 delegate: Item {
                     width: parent.width - Theme.horizontalPageMargin
-                    height: Theme.itemSizeLarge
+                    height: Math.max(memberAvatar.height, memberDetails.height)
 
                     Avatar {
                         id: memberAvatar
+                        anchors.verticalCenter: parent.verticalCenter
                         parts: model.parts
-                        height: parent.height
-                        width: parent.height
+                        height: Theme.itemSizeLarge
+                        width: height
                         small: true
 
                         opacity: loaded ? 1.0 : 0.0
@@ -187,25 +188,64 @@ Page {
                         }
                     }
 
-                    Column {
+                    Item {
+                        id: memberDetails
                         anchors.left: memberAvatar.right
-                        anchors.leftMargin: Theme.paddingSmall
+                        anchors.leftMargin: Theme.paddingMedium
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
 
+                        height: memberName.implicitHeight + barRow.implicitHeight
+
                         Label {
+                            id: memberName
                             anchors.left: parent.left
-                            anchors.right: parent.right
-                            text: model.name
+                            anchors.right: memberLevel.right
+                            anchors.rightMargin: Theme.paddingMedium
                             truncationMode: TruncationMode.Elide
+                            text: model.name
+                            color: Theme.highlightColor
                         }
 
-                        Bar {
-                            anchors.left: parent.left
+                        Label {
+                            id: memberLevel
                             anchors.right: parent.right
-                            color: "#da5353"
-                            value: model.hp
-                            maximum: model.hpMax
+                            anchors.verticalCenter: memberName.verticalCenter
+                            font.pixelSize: Theme.fontSizeSmall
+                            text: qsTr("Lv. %1").arg(model.level)
+                            color: Theme.secondaryHighlightColor
+                        }
+
+                        Row {
+                            id: barRow
+                            anchors.top: memberName.bottom
+                            anchors.left: parent.left
+
+                            spacing: Theme.paddingMedium
+
+                            Bar {
+                                width: (memberDetails.width - barRow.spacing * 2) / 3
+                                color: "#da5353"
+                                value: model.hp
+                                maximum: model.hpMax
+                                height: Theme.itemSizeSmall / 3
+                            }
+
+                            Bar {
+                                width: (memberDetails.width - barRow.spacing * 2) / 3
+                                color: "#ffcc35"
+                                value: model.xp
+                                maximum: model.xpNext
+                                height: Theme.itemSizeSmall / 3
+                            }
+
+                            Bar {
+                                width: (memberDetails.width - barRow.spacing * 2) / 3
+                                color: "#4781e7"
+                                value: model.mp
+                                maximum: model.mpMax
+                                height: Theme.itemSizeSmall / 3
+                            }
                         }
                     }
                 }

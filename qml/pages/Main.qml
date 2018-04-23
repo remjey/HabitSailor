@@ -115,7 +115,7 @@ Page {
 
                             parts: Model.getAvatarParts()
 
-                            onPaint: Signals.avatarPainted(context.getImageData(0, 0, width, height));
+                            onPainted: Signals.avatarPainted(context.getImageData(0, 0, width, height));
                         }
                     }
 
