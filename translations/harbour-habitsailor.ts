@@ -427,6 +427,34 @@ All dailies completed!</source>
         <source>Lv. %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Quest members</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other party members</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Join</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Decline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Abort</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Begin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Joining quest</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Revive</name>

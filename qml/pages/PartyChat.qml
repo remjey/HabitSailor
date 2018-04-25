@@ -56,7 +56,7 @@ Page {
                 Rectangle {
                     anchors.fill: parent
                     color: "black"
-                    opacity: 0.4
+                    opacity: 0.3
                     visible: !chatListContentName.visible
                 }
 
@@ -185,6 +185,7 @@ Page {
                 id: o.id,
                 title: o.name,
                 quest: o.quest,
+                leader: o.leader,
             };
             chatListView.opacity = true;
             updateDetailsPage();

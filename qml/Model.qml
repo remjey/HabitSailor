@@ -152,6 +152,7 @@ QtObject {
                   });
     }
 
+    function getMyId() { return _configGet("apiUser"); }
     function getName() { return _name; }
     function getLevel() { return _stats.lvl; }
     function getHp() { return _stats.hp; }
@@ -188,6 +189,7 @@ QtObject {
                     id: o._id,
                     name: o.name,
                     chat: [],
+                    leader:  (o.leader && o.leader.id ? o.leader.id : null),
                 };
                 for (var i = 0; i < o.chat.length && i < 200; ++i) {
                     r.chat.push(_transformGroupMessage(o.chat[i]));
@@ -199,6 +201,8 @@ QtObject {
                         name: qc.text,
                         iconSource: _avatarPictureBaseUrl + "/quests/bosses/quest_" + o.quest.key + ".png",
                         active: o.quest.active,
+                        members: o.quest.members, // Map of (memberId(string) -> memberOfQuest(bool))
+                        leader: o.quest.leader,
                     }
 
                     if (o.quest.active) {
@@ -252,7 +256,6 @@ QtObject {
                                level: op.stats.lvl,
                     });
                 });
-                print(JSON.stringify(r, null, "  "));
                 if (cb) cb(true, r);
             } else {
                 Signals.showMessage(qsTr("Cannot load members of group: %1").arg(o.message))
@@ -618,7 +621,6 @@ QtObject {
     property var _tasks
     property var _rewards
     property var _avatarParts
-    property string _myUuid
     property string _party: ""
     property var _habiticaContent: null
 
