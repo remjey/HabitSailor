@@ -7,17 +7,18 @@ import ".."
 Page {
     id: root
 
-    RemorsePopup {
-        id: remorsePopup
-    }
-
     property var details: null
+    property var members: []
     property bool reloadMembers: true
 
     property bool amLeader: false
     property bool amQuestLeader: false
     property bool amQuester: false
     property bool haveDeclinedQuest: false
+    property bool hasQuest: false
+    property bool questActive: false
+    property bool questCollect: false
+    property bool questBoss: false
 
     Component.onCompleted: updateData();
 
@@ -29,35 +30,8 @@ Page {
 
         pageHeader.title = details.title;
         amLeader = details.leader === Model.getMyId();
-        print(JSON.stringify(details, null, "  "), Model.getMyId())
 
-        questItem.visible = !!details.quest;
-        if (!!details.quest) {
-            questName.text = details.quest.name;
-            questPicture.source = details.quest.iconSource;
-
-            questNotStarted.visible = !details.quest.active;
-            collectRepeater.visible = details.quest.active && details.quest.type === "collect";
-            health.visible = details.quest.active && details.quest.type === "boss";
-
-            collectRepeater.model.clear();
-            if (details.quest.active) {
-                if (details.quest.type === "collect") {
-                    details.quest.collect.forEach(function (ci) { collectRepeater.model.append(ci); });
-                } else if (details.quest.type === "boss") {
-                    health.value = details.quest.hp;
-                    health.maximum = details.quest.maxHp;
-                }
-            }
-
-            amQuestLeader = details.quest.leader === Model.getMyId();
-            amQuester = details.quest.members[Model.getMyId()] === true;
-            haveDeclinedQuest = details.quest.members[Model.getMyId()] === false;
-        } else {
-            amQuestLeader = false;
-            amQuester = false;
-            haveDeclinedQuest = false;
-        }
+        _updateQuestData(details.quest);
     }
 
     SilicaFlickable {
@@ -80,6 +54,8 @@ Page {
             Column {
                 id: questItem
                 width: parent.width
+
+                visible: hasQuest
 
                 SectionHeader {
                     text: "Quest"
@@ -108,6 +84,7 @@ Page {
                     id: questNotStarted
                     width: parent.width
                     height: Theme.itemSizeMedium
+                    visible: !questActive
 
                     Label {
                         anchors.fill: parent
@@ -124,13 +101,15 @@ Page {
                 Item {
                     height: Theme.paddingLarge
                     width: 1
-                    visible: health.visible
+                    visible: questActive
                 }
 
                 Stat {
                     id: health
                     width: parent.width - Theme.paddingMedium * 2
                     anchors.horizontalCenter: parent.horizontalCenter
+
+                    visible: questActive && questBoss
                     label: qsTr("Health")
                     barColor: "#da5353"
                 }
@@ -138,6 +117,8 @@ Page {
                 Repeater {
                     id: collectRepeater
                     model: ListModel {}
+
+                    visible: questActive && questCollect
 
                     delegate: Item {
                         width: parent.width - Theme.horizontalPageMargin * 2
@@ -167,44 +148,69 @@ Page {
                     }
                 }
 
-                Grid {
+                Item {
+                    height: Theme.paddingLarge
+                    width: 1
+                    visible: questActive
+                }
+
+                Flow {
+                    id: questButtonsFlow
                     width: parent.width - Theme.horizontalPageMargin * 2
                     x: Theme.horizontalPageMargin
                     spacing: Theme.paddingMedium
 
-                    columns: 2
-                    property int itemWidth: (width - spacing * (columns - 1)) / columns
+                    opacity: enabled ? 1.0 : 0.5
+                    Behavior on opacity { NumberAnimation { duration: 200 } }
+
+                    property int itemWidth: (width - spacing) / 2
 
                     Button {
                         width: parent.itemWidth
-                        text: qsTr("Join")
-                        visible: !amQuester && !haveDeclinedQuest
-                        onClicked: remorsePopup.execute(qsTr("Joining quest"), function () {
-                            Model.joinQuest();
-                        })
+                        text: qsTr("Accept")
+                        visible: !amQuester && !haveDeclinedQuest && !questActive
+                        onClicked: questActionRemorsePopup.show(qsTr("Accepting quest"), "accept")
                     }
 
                     Button {
                         width: parent.itemWidth
                         text: qsTr("Decline")
-                        visible: !amQuester && !haveDeclinedQuest
+                        visible: !amQuester && !haveDeclinedQuest && !questActive
+                        onClicked: questActionRemorsePopup.show(qsTr("Declining quest"), "reject")
                     }
 
                     Button {
                         width: parent.itemWidth
-                        text: qsTr("Begin")
-                        visible: amLeader || amQuestLeader
+                        text: qsTr("Start")
+                        visible: (amLeader || amQuestLeader) && !questActive
+                        onClicked: questActionRemorsePopup.show(qsTr("Starting quest"), "force-start")
                     }
 
                     Button {
                         width: parent.itemWidth
+                        text: qsTr("Cancel")
+                        visible: (amLeader || amQuestLeader) && !questActive
+                        onClicked: questActionRemorsePopup.show(qsTr("Cancelling quest"), "cancel")
+                    }
+
+                    Button {
+                        width: parent.itemWidth * 2 + parent.spacing
+                        text: qsTr("Leave")
+                        visible: questActive && amQuester && !amQuestLeader
+                        onClicked: questActionRemorsePopup.show(qsTr("Leaving quest"), "leave")
+                    }
+
+                    Button {
+                        width: parent.itemWidth * 2 + parent.spacing
                         text: qsTr("Abort")
-                        visible: amLeader || amQuestLeader
+                        visible: (amLeader || amQuestLeader) && questActive
+                        onClicked: questActionRemorsePopup.show(qsTr("Aborting quest"), "abort")
                     }
                 }
 
                 SectionHeader {
                     text: qsTr("Quest members")
+                    visible: questersRepeater.model.count !== 0
                 }
 
                 Repeater {
@@ -215,7 +221,9 @@ Page {
             }
 
             SectionHeader {
-                text: questItem.visible ? qsTr("Other party members") : qsTr("Party members")
+                text: (questItem.visible && questersRepeater.model.count !== 0
+                       ? qsTr("Other party members")
+                       : qsTr("Party members"))
             }
 
             Repeater {
@@ -233,22 +241,11 @@ Page {
         }
     }
 
-    function updateMembers() {
-        membersBusy.running = true;
-        membersRepeater.model.clear();
-        Model.getGroupMembers(details.id, function (ok, o) {
-            membersBusy.running = false;
-            if (ok) o.forEach(function (item) {
-                (details.quest && details.quest.members[item.id] ? questersRepeater : membersRepeater).model.append(item);
-            });
-        });
-    }
-
     Connections {
         target: pageStack
         onBusyChanged: {
-            if (!busy && reloadMembers && pageStack.currentPage === root) {
-                updateMembers();
+            if (!busy && pageStack.currentPage === root) {
+                _updateMembers();
             }
         }
     }
@@ -262,9 +259,20 @@ Page {
 
             Rectangle {
                 opacity: 0.3
-                visible: details.leader === model.id
+                visible: Model.getMyId() === model.id
                 anchors.fill: parent
                 color: "black"
+            }
+
+            Rectangle {
+                height: parent.height
+                width: Theme.paddingSmall
+                opacity: 0.5
+                color: "#" +
+                       (model.id === details.leader ? "ff" : "00") +
+                       (details.quest && model.id === details.quest.leader ? "ff" : "00") +
+                       "00"
+                visible: color != "#000000"
             }
 
             Avatar {
@@ -343,6 +351,75 @@ Page {
                     }
                 }
             }
+        }
+    }
+
+    RemorsePopup {
+        id: questActionRemorsePopup
+        function show(msg, action) {
+            questButtonsFlow.enabled = false;
+            execute(msg, function () {
+                Model.questAction(details.id, action, function (ok, r) {
+                    if (ok) {
+                        details.quest = r;
+                        _updateQuestData();
+                        _populateMembers();
+                    }
+                    questButtonsFlow.enabled = true;
+                });
+            });
+        }
+        onCanceled: questButtonsFlow.enabled = true
+    }
+
+    function _updateMembers() {
+        if (!reloadMembers) return;
+        reloadMembers = false;
+        membersBusy.running = true;
+        Model.getGroupMembers(details.id, function (ok, o) {
+            membersBusy.running = false;
+            if (ok) members = o;
+            else members = [];
+            _populateMembers();
+        });
+    }
+
+    function _populateMembers() {
+        questersRepeater.model.clear();
+        membersRepeater.model.clear();
+        members.forEach(function (item) {
+            (details.quest && details.quest.members[item.id] ? questersRepeater : membersRepeater)
+            .model.append(item);
+        });
+    }
+
+    function _updateQuestData() {
+        hasQuest = !!details.quest;
+        if (!!details.quest) {
+            questName.text = details.quest.name;
+            questPicture.source = details.quest.iconSource;
+
+            questActive = details.quest.active;
+            questCollect = questActive && details.quest.type === "collect";
+            questBoss = questActive && details.quest.type === "boss";
+
+            collectRepeater.model.clear();
+            if (questActive) {
+                if (details.quest.type === "collect") {
+                    details.quest.collect.forEach(function (ci) { collectRepeater.model.append(ci); });
+                } else if (details.quest.type === "boss") {
+                    health.value = details.quest.hp;
+                    health.maximum = details.quest.maxHp;
+                }
+            }
+
+            amQuestLeader = details.quest.leader === Model.getMyId();
+            amQuester = details.quest.members[Model.getMyId()] === true;
+            haveDeclinedQuest = details.quest.members[Model.getMyId()] === false;
+        } else {
+            amQuestLeader = false;
+            amQuester = false;
+            haveDeclinedQuest = false;
         }
     }
 }

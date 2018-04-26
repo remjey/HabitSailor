@@ -152,7 +152,7 @@ QtObject {
                   });
     }
 
-    function getMyId() { return _configGet("apiUser"); }
+    function getMyId() { return _myId; }
     function getName() { return _name; }
     function getLevel() { return _stats.lvl; }
     function getHp() { return _stats.hp; }
@@ -194,41 +194,7 @@ QtObject {
                 for (var i = 0; i < o.chat.length && i < 200; ++i) {
                     r.chat.push(_transformGroupMessage(o.chat[i]));
                 }
-                if (o.quest && o.quest.key) {
-                    var qc = _habiticaContent.quests[o.quest.key];
-                    r.quest = {
-                        key: o.quest.key,
-                        name: qc.text,
-                        iconSource: _avatarPictureBaseUrl + "/quests/bosses/quest_" + o.quest.key + ".png",
-                        active: o.quest.active,
-                        members: o.quest.members, // Map of (memberId(string) -> memberOfQuest(bool))
-                        leader: o.quest.leader,
-                    }
-
-                    if (o.quest.active) {
-                        if (qc.boss) {
-                            r.quest.type = "boss";
-                            r.quest.maxHp = qc.boss.hp;
-                            r.quest.hp = Math.ceil(o.quest.progress.hp);
-                        } else if (qc.collect) {
-                            r.quest.type = "collect";
-                            r.quest.collect = [];
-                            for (var key in qc.collect) {
-                                var oc = qc.collect[key];
-                                var rc = {
-                                    key: key,
-                                    name: oc.text,
-                                    max: oc.count,
-                                    count: o.quest.progress.collect[key],
-                                };
-                                r.quest.collect.push(rc);
-                            }
-                            r.quest.collect.sort(function (a, b) { return a.name.localeCompare(b.name); });
-                        } else {
-                            r.quest.type = "other";
-                        }
-                    }
-                }
+                r.quest = _transformQuestData(o.quest);
 
                 if (cb) cb(true, r);
             } else {
@@ -264,19 +230,36 @@ QtObject {
         });
     }
 
-    function postChatMessage(gid, msg, cb) {
-        _rpc.call("/groups/:gid/chat", "post", { gid: gid, message: msg }, function (ok, o) {
+    function questAction(gid, action, cb) {
+        switch (action) {
+        default: throw "invalid quest action";
+        case "abort":
+        case "accept":
+        case "cancel":
+        case "force-start":
+        case "leave":
+        case "reject":
+        }
+
+        _rpc.call("/groups/:gid/quests/:action", "post-no-body", { gid: gid, action: action }, function (ok, o) {
             if (ok) {
-                cb(true, _transformGroupMessage(o.message));
+                if (cb) cb(true, _transformQuestData(o));
             } else {
-                Signals.showMessage(qsTr("Cannot post chat message: %1").arg(o.message))
+                Signals.showMessage(qsTr("Could not update quest: %1").arg(o.message))
                 if (cb) cb(false);
             }
         });
     }
 
-    function getProfilePictureUrl() {
-        return _configGet("apiUrl") + "/export/avatar-" + _configGet("apiUser") + ".png"
+    function postChatMessage(gid, msg, cb) {
+        _rpc.call("/groups/:gid/chat", "post", { gid: gid, message: msg }, function (ok, o) {
+            if (ok) {
+                if (cb) cb(true, _transformGroupMessage(o.message));
+            } else {
+                Signals.showMessage(qsTr("Cannot post chat message: %1").arg(o.message))
+                if (cb) cb(false);
+            }
+        });
     }
 
     function login(url, login, password, success, error) {
@@ -289,6 +272,7 @@ QtObject {
                          _configSet("apiUrl", url);
                          _configSet("apiUser", r.id);
                          _configSet("apiKey", r.apiToken);
+                         _myId = r.id;
                          _setupRpc();
                          success();
                      } else {
@@ -301,6 +285,7 @@ QtObject {
         _configSet("apiUrl", null);
         _configSet("apiUser", null);
         _configSet("apiKey", null);
+        _myId = "";
         Signals.logout();
     }
 
@@ -609,6 +594,7 @@ QtObject {
     property var _configCache: ({})
     property var _configDefaults: ({ apiUrl: "https://habitica.com", })
 
+    property string _myId: ""
     property string _dateFormat: "dd/MM/YYYY"
     property date _lastCron: new Date()
     property bool _needsCron: false
@@ -629,6 +615,7 @@ QtObject {
             _rpc.apiUrl = _configGet("apiUrl");
             _rpc.apiUser = _configGet("apiUser");
             _rpc.apiKey = _configGet("apiKey");
+            _myId = _configGet("apiUser");
         }
     }
 
@@ -841,9 +828,47 @@ QtObject {
             text: Utils.md(omsg.text || ""),
         };
         if (omsg.uuid === "system") rmsg.fromType = "system";
-        else if (omsg.uuid === _configGet("apiUser")) rmsg.fromType = "me";
+        else if (omsg.uuid === _myId) rmsg.fromType = "me";
         else rmsg.fromType = "friend";
         return rmsg;
+    }
+
+    function _transformQuestData(quest) {
+        if (!quest || !quest.key) return null;
+        var qc = _habiticaContent.quests[quest.key];
+        var r = {
+            key: quest.key,
+            name: qc.text,
+            iconSource: _avatarPictureBaseUrl + "/quests/bosses/quest_" + quest.key + ".png",
+            active: quest.active,
+            members: quest.members, // Map of (memberId(string) -> memberOfQuest(bool))
+            leader: quest.leader,
+        }
+
+        if (quest.active) {
+            if (qc.boss) {
+                r.type = "boss";
+                r.maxHp = qc.boss.hp;
+                r.hp = Math.ceil(quest.progress.hp);
+            } else if (qc.collect) {
+                r.type = "collect";
+                r.collect = [];
+                for (var key in qc.collect) {
+                    var oc = qc.collect[key];
+                    var rc = {
+                        key: key,
+                        name: oc.text,
+                        max: oc.count,
+                        count: quest.progress.collect[key],
+                    };
+                    r.collect.push(rc);
+                }
+                r.collect.sort(function (a, b) { return a.name.localeCompare(b.name); });
+            } else {
+                r.type = "other";
+            }
+        }
+        return r;
     }
 
     property string _avatarPictureBaseUrl: "https://raw.githubusercontent.com/HabitRPG/habitica/release/website/raw_sprites/spritesmith/";

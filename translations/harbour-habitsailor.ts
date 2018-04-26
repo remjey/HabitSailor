@@ -401,6 +401,10 @@ All dailies completed!</source>
         <source>Cannot load members of group: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Could not act on quest: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PartyChat</name>
@@ -436,10 +440,6 @@ All dailies completed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Join</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Decline</source>
         <translation type="unfinished"></translation>
     </message>
@@ -448,11 +448,43 @@ All dailies completed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Begin</source>
+        <source>Aborting quest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Joining quest</source>
+        <source>Accept</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accepting quest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Declining quest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting quest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Leave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Leaving quest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancelling quest</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
