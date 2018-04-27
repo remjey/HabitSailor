@@ -402,7 +402,7 @@ All dailies completed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not act on quest: %1</source>
+        <source>Could not update quest: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -410,6 +410,14 @@ All dailies completed!</source>
     <name>PartyChat</name>
     <message>
         <source>Type your message here</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your party’s chat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -429,10 +437,6 @@ All dailies completed!</source>
     </message>
     <message>
         <source>Lv. %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Quest members</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -485,6 +489,18 @@ All dailies completed!</source>
     </message>
     <message>
         <source>Cancelling quest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Party members who accepted the quest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Party members who declined the quest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quest</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

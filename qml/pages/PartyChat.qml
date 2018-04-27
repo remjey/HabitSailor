@@ -14,7 +14,7 @@ Page {
         PushUpMenu {
             id: pageMenu
             MenuItem {
-                text: "Refresh"
+                text: qsTr("Refresh")
                 onClicked: updateData();
             }
         }
@@ -22,7 +22,7 @@ Page {
         PageHeader {
             id: pageHeader
             width: parent.width
-            title: "Your party’s chat"
+            title: qsTr("Your party’s chat")
         }
 
         BusyIndicator {

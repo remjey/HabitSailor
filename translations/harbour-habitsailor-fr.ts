@@ -352,12 +352,12 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/pages/Main.qml" line="313"/>
         <source>Social</source>
-        <translation type="unfinished"></translation>
+        <translation>Social</translation>
     </message>
     <message>
         <location filename="../qml/pages/Main.qml" line="320"/>
         <source>Party</source>
-        <translation type="unfinished"></translation>
+        <translation>Équipe</translation>
     </message>
     <message>
         <location filename="../qml/pages/Main.qml" line="339"/>
@@ -395,22 +395,17 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/Model.qml" line="201"/>
         <source>Cannot get chat messages: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d’obtenir la discussion: %1</translation>
     </message>
     <message>
         <location filename="../qml/Model.qml" line="227"/>
         <source>Cannot load members of group: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/Model.qml" line="248"/>
-        <source>Could not act on quest: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de charger les membres du groupe: %1</translation>
     </message>
     <message>
         <location filename="../qml/Model.qml" line="259"/>
         <source>Cannot post chat message: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d’envoyer le message: %1</translation>
     </message>
     <message>
         <location filename="../qml/Model.qml" line="318"/>
@@ -465,7 +460,12 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/Model.qml" line="103"/>
         <source>Could not load Habitica content: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de charger le contenu Habitica: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="248"/>
+        <source>Could not update quest: %1</source>
+        <translation>Impossible de mettre à jour la quête: %1</translation>
     </message>
     <message>
         <location filename="../qml/Model.qml" line="342"/>
@@ -507,102 +507,122 @@ Toutes vos quotidiennes sont faites!</translation>
 <context>
     <name>PartyChat</name>
     <message>
+        <location filename="../qml/pages/PartyChat.qml" line="17"/>
+        <source>Refresh</source>
+        <translation>Rafraîchir</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PartyChat.qml" line="25"/>
+        <source>Your party’s chat</source>
+        <translation>Discussion de votre équipe</translation>
+    </message>
+    <message>
         <location filename="../qml/pages/PartyChat.qml" line="132"/>
         <source>Type your message here</source>
-        <translation type="unfinished"></translation>
+        <translation>Saisissez votre message ici</translation>
     </message>
 </context>
 <context>
     <name>PartyDetails</name>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="97"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="98"/>
         <source>Not started yet</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas encore commencée</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="113"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="114"/>
         <source>Health</source>
-        <translation type="unfinished">Santé</translation>
+        <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="177"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="178"/>
         <source>Decline</source>
-        <translation type="unfinished"></translation>
+        <translation>Décliner</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="205"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="206"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Interrompre</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="207"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="208"/>
         <source>Aborting quest</source>
-        <translation type="unfinished"></translation>
+        <translation>Interruption de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="212"/>
-        <source>Quest members</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="226"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="239"/>
         <source>Party members</source>
-        <translation type="unfinished"></translation>
+        <translation>Membres de l’équipe</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="225"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="238"/>
         <source>Other party members</source>
-        <translation type="unfinished"></translation>
+        <translation>Autres membres de l’équipe</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="170"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="62"/>
+        <source>Quest</source>
+        <translation>Quête</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PartyDetails.qml" line="171"/>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Accepter</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="172"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="173"/>
         <source>Accepting quest</source>
-        <translation type="unfinished"></translation>
+        <translation>Acceptation de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="179"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="180"/>
         <source>Declining quest</source>
-        <translation type="unfinished"></translation>
+        <translation>Déclinement de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="184"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="185"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Commencer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="186"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="187"/>
         <source>Starting quest</source>
-        <translation type="unfinished"></translation>
+        <translation>Commencement de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="191"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="192"/>
         <source>Cancel</source>
-        <translation type="unfinished">Annuler</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="193"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="194"/>
         <source>Cancelling quest</source>
-        <translation type="unfinished"></translation>
+        <translation>Annulation de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="198"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="199"/>
         <source>Leave</source>
-        <translation type="unfinished"></translation>
+        <translation>Abandonner</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="200"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="201"/>
         <source>Leaving quest</source>
-        <translation type="unfinished"></translation>
+        <translation>Abandon de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="318"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="213"/>
+        <source>Party members who accepted the quest</source>
+        <translation>Membres de l’équipe participant à la quête</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PartyDetails.qml" line="224"/>
+        <source>Party members who declined the quest</source>
+        <translation>Membres de l’équipe ayant décliné la quête</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PartyDetails.qml" line="331"/>
         <source>Lv. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Lv: %1</translation>
     </message>
 </context>
 <context>

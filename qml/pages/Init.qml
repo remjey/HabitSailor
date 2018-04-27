@@ -69,7 +69,7 @@ Page {
             id: retryBlock
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width - Theme.horizontalPageMargin * 2
-            spacing: Theme.paddingSmall
+            spacing: Theme.paddingMedium
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter

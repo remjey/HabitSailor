@@ -27,6 +27,7 @@ Page {
         reloadMembers = true;
         membersRepeater.model.clear();
         questersRepeater.model.clear();
+        questDeclinersRepeater.model.clear();
 
         pageHeader.title = details.title;
         amLeader = details.leader === Model.getMyId();
@@ -58,7 +59,7 @@ Page {
                 visible: hasQuest
 
                 SectionHeader {
-                    text: "Quest"
+                    text: qsTr("Quest")
                 }
 
                 Image {
@@ -209,7 +210,7 @@ Page {
                 }
 
                 SectionHeader {
-                    text: qsTr("Quest members")
+                    text: qsTr("Party members who accepted the quest")
                     visible: questersRepeater.model.count !== 0
                 }
 
@@ -218,10 +219,22 @@ Page {
                     model: ListModel {}
                     delegate: memberItemComponent
                 }
+
+                SectionHeader {
+                    text: qsTr("Party members who declined the quest")
+                    visible: questDeclinersRepeater.model.count !== 0
+                }
+
+                Repeater {
+                    id: questDeclinersRepeater
+                    model: ListModel {}
+                    delegate: memberItemComponent
+                }
             }
 
             SectionHeader {
-                text: (questItem.visible && questersRepeater.model.count !== 0
+                text: (questItem.visible
+                       && questersRepeater.model.count + questDeclinersRepeater.model.count != 0
                        ? qsTr("Other party members")
                        : qsTr("Party members"))
             }
@@ -386,9 +399,12 @@ Page {
 
     function _populateMembers() {
         questersRepeater.model.clear();
+        questDeclinersRepeater.model.clear();
         membersRepeater.model.clear();
         members.forEach(function (item) {
-            (details.quest && details.quest.members[item.id] ? questersRepeater : membersRepeater)
+            (details.quest && typeof(details.quest.members[item.id]) === "boolean"
+             ? (details.quest.members[item.id] ? questersRepeater : questDeclinersRepeater)
+             : membersRepeater)
             .model.append(item);
         });
     }
