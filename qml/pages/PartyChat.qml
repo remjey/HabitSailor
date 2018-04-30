@@ -121,15 +121,18 @@ Page {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: Theme.paddingMedium
             width: parent.width
-            height: chatTextField.implicitHeight
+            height: chatTextField.height
 
-            TextField {
+            TextArea {
                 id: chatTextField
                 anchors.left: parent.left
                 anchors.right: chatSendButton.left
+                height: Math.min(Theme.itemSizeHuge, implicitHeight)
 
                 labelVisible: false
                 placeholderText: qsTr("Type your message here")
+
+                wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere
 
                 property bool validMessage: text.trim().length > 0
 
@@ -141,7 +144,8 @@ Page {
                 id: chatSendButton
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.paddingSmall
-                anchors.verticalCenter: parent.verticalCenter
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: -Theme.paddingSmall
                 icon.source: "image://theme/icon-m-message?" + (pressed
                   ? Theme.highlightColor
                   : Theme.primaryColor)
@@ -181,12 +185,7 @@ Page {
             o.chat.forEach(function (msg) {
                 chatModel.append(msg);
             })
-            details = {
-                id: o.id,
-                title: o.name,
-                quest: o.quest,
-                leader: o.leader,
-            };
+            details = o;
             chatListView.opacity = true;
             updateDetailsPage();
         })

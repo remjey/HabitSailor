@@ -190,6 +190,7 @@ QtObject {
                     name: o.name,
                     chat: [],
                     leader:  (o.leader && o.leader.id ? o.leader.id : null),
+                    memberCount: o.memberCount,
                 };
                 for (var i = 0; i < o.chat.length && i < 200; ++i) {
                     r.chat.push(_transformGroupMessage(o.chat[i]));
@@ -204,10 +205,21 @@ QtObject {
         });
     }
 
-    function getGroupMembers(gid, cb) {
-        _rpc.call("/groups/:gid/members?includeAllPublicFields=true", "get", { gid: gid }, function (ok, o) {
-            var r = [];
-            if (ok) {
+    /* If mode is an positive integer, try to load at least mode members
+      If mode is 0, load all members
+      If mode is an uuid, load some members whose uuid is strictly superior to mode */
+    function getGroupMembers(gid, mode, cb) {
+        var cs = _rpc.callSeq(function (o) {
+            Signals.showMessage(qsTr("Cannot load members of group: %1").arg(o.message))
+            if (cb) cb(false);
+        });
+        cs.autofail = true;
+
+        var r = [];
+        var membersRpcCb = function (ok, o) {
+            if (o.length === 0) {
+                if (cb) cb(true, r);
+            } else {
                 o.forEach(function (op) {
                     r.push({
                                id: op.id,
@@ -222,12 +234,21 @@ QtObject {
                                level: op.stats.lvl,
                     });
                 });
-                if (cb) cb(true, r);
-            } else {
-                Signals.showMessage(qsTr("Cannot load members of group: %1").arg(o.message))
-                if (cb) cb(false);
+                if (typeof(mode) == "number" && mode > 0 && r.length >= mode
+                        || typeof(mode) == "string")
+                    cb(true, r)
+                else
+                    cs.push("/groups/:gid/members?includeAllPublicFields=true&lastId=:lastId",
+                            "get", { gid: gid, lastId: r[r.length - 1].id }, membersRpcCb);
             }
-        });
+            return true;
+        };
+
+        cs.push("/groups/:gid/members?includeAllPublicFields=true"
+                + (typeof(mode) == "string" ? "&lastId=:lastId" : ""),
+                "get", { gid: gid, lastId: mode },
+                membersRpcCb);
+        cs.run();
     }
 
     function questAction(gid, action, cb) {

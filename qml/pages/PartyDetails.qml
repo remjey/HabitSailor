@@ -29,7 +29,7 @@ Page {
         questersRepeater.model.clear();
         questDeclinersRepeater.model.clear();
 
-        pageHeader.title = details.title;
+        pageHeader.title = details.name;
         amLeader = details.leader === Model.getMyId();
 
         _updateQuestData(details.quest);
@@ -208,28 +208,28 @@ Page {
                         onClicked: questActionRemorsePopup.show(qsTr("Aborting quest"), "abort")
                     }
                 }
+            }
 
-                SectionHeader {
-                    text: qsTr("Party members who accepted the quest")
-                    visible: questersRepeater.model.count !== 0
-                }
+            SectionHeader {
+                text: qsTr("Party members who accepted the quest")
+                visible: questersRepeater.model.count !== 0
+            }
 
-                Repeater {
-                    id: questersRepeater
-                    model: ListModel {}
-                    delegate: memberItemComponent
-                }
+            Repeater {
+                id: questersRepeater
+                model: ListModel {}
+                delegate: memberItemComponent
+            }
 
-                SectionHeader {
-                    text: qsTr("Party members who declined the quest")
-                    visible: questDeclinersRepeater.model.count !== 0
-                }
+            SectionHeader {
+                text: qsTr("Party members who declined the quest")
+                visible: questDeclinersRepeater.model.count !== 0
+            }
 
-                Repeater {
-                    id: questDeclinersRepeater
-                    model: ListModel {}
-                    delegate: memberItemComponent
-                }
+            Repeater {
+                id: questDeclinersRepeater
+                model: ListModel {}
+                delegate: memberItemComponent
             }
 
             SectionHeader {
@@ -389,7 +389,7 @@ Page {
         if (!reloadMembers) return;
         reloadMembers = false;
         membersBusy.running = true;
-        Model.getGroupMembers(details.id, function (ok, o) {
+        Model.getGroupMembers(details.id, details.memberCount, function (ok, o) {
             membersBusy.running = false;
             if (ok) members = o;
             else members = [];
