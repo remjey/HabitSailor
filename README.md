@@ -31,10 +31,11 @@ Also I don’t like very much the Android emulation stack, and I love the way Sa
 * View the lists of your habits, dailies and active todos with their status and checklists
 * Click plus, minus on your habits, check your dailies and todos, update their checklists
 * Create, edit and delete habits, dailies, todos (although setting value, tags and aliases is not yet implemented)
-* The cover shows your stats and remaining dailies
+* The cover shows your stats and remaining dailies and todos
 * Rest in the inn
 * Buy health potion, revive if you run out of health
 * Buy custom reward
+* Party: chat, list of members, actions on current quest
 * Use a custom Habitica server
 
 ## Roadmap
@@ -48,11 +49,10 @@ Also I don’t like very much the Android emulation stack, and I love the way Sa
 
 ### Lower Priority
 
-* Use data from user profile to build up-to-date profile picture instead of requesting a png profile picture (which may be old)
 * Bring back todos from the dead (aka completed) state
 * Filter tasks by tag, completed/not completed, add tag in task edition/creation
 * Sort tasks by color
-* Other rewards (at least custom rewards & personal spells)
+* Other rewards
 * Team, team spells
 * More languages
 
