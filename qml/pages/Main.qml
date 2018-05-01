@@ -328,7 +328,6 @@ Page {
                     pageStack.push(Qt.resolvedUrl("PartyChat.qml"));
                 }
             }
-
         }
     }
 

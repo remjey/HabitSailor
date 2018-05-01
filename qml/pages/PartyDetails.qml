@@ -38,7 +38,7 @@ Page {
     SilicaFlickable {
         id: page
         anchors.fill: parent
-        contentHeight: pageContent.implicitHeight
+        contentHeight: pageContent.implicitHeight + Theme.paddingLarge
 
         VerticalScrollDecorator {}
 
@@ -248,6 +248,7 @@ Page {
             BusyIndicator {
                 id: membersBusy
                 running: false
+                visible: running
                 anchors.horizontalCenter: parent.horizontalCenter
                 size: BusyIndicatorSize.Medium
             }
@@ -268,7 +269,12 @@ Page {
 
         Item {
             width: parent.width
-            height: Math.max(memberAvatar.height, memberDetails.height)
+            height: Math.max(memberAvatarPanel.height, memberDetails.height)
+            opacity: 0
+
+            Behavior on opacity { NumberAnimation { duration: 200 } }
+
+            Component.onCompleted: opacity = 1
 
             Rectangle {
                 opacity: 0.3
@@ -288,24 +294,34 @@ Page {
                 visible: color != "#000000"
             }
 
-            Avatar {
-                id: memberAvatar
-                anchors.verticalCenter: parent.verticalCenter
-                parts: model.parts
+            PanelBackground {
+                id: memberAvatarPanel
                 height: Theme.itemSizeLarge
-                width: height
-                small: true
+                width: Theme.itemSizeLarge
 
-                opacity: loaded ? 1.0 : 0.0
+                BusyIndicator {
+                    anchors.centerIn: parent
+                    running: !memberAvatar.loaded
+                    size: BusyIndicatorSize.Small
+                }
 
-                Behavior on opacity {
-                    NumberAnimation { duration: 200 }
+                Avatar {
+                    id: memberAvatar
+                    anchors.fill: parent
+                    parts: model.parts
+                    small: true
+
+                    opacity: loaded ? 1.0 : 0.0
+
+                    Behavior on opacity {
+                        NumberAnimation { duration: 200 }
+                    }
                 }
             }
 
             Item {
                 id: memberDetails
-                anchors.left: memberAvatar.right
+                anchors.left: memberAvatarPanel.right
                 anchors.leftMargin: Theme.paddingMedium
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
