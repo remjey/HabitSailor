@@ -52,160 +52,165 @@ Page {
                 title: "Party Details"
             }
 
-            Column {
+            ExpandBox {
                 id: questItem
-                width: parent.width
+                contentHeight: questItemContent.height
 
-                visible: hasQuest
+                expanded: hasQuest
 
-                SectionHeader {
-                    text: qsTr("Quest")
-                }
-
-                Image {
-                    id: questPicture
-                    width: parent.width - Theme.itemSizeMedium * 2
-                    height: implicitHeight * width / implicitWidth
-                    x: Theme.itemSizeMedium
-                }
-
-                Item { height: Theme.paddingLarge; width: 1 }
-
-                Label {
-                    id: questName
-                    width: parent.width - Theme.horizontalPageMargin * 2
-                    x: Theme.horizontalPageMargin
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                    color: Theme.highlightColor
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: Theme.fontSizeSmall
-                }
-
-                Item {
-                    id: questNotStarted
+                Column {
+                    id: questItemContent
                     width: parent.width
-                    height: Theme.itemSizeMedium
-                    visible: !questActive
+
+                    SectionHeader {
+                        text: qsTr("Quest")
+                    }
+
+                    Image {
+                        id: questPicture
+                        width: parent.width - Theme.itemSizeMedium * 2
+                        height: implicitHeight * width / implicitWidth
+                        x: Theme.itemSizeMedium
+                    }
+
+                    Item { height: Theme.paddingLarge; width: 1 }
 
                     Label {
-                        anchors.fill: parent
-                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                        verticalAlignment: Text.AlignVCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        color: Theme.secondaryHighlightColor
-                        font.pixelSize: Theme.fontSizeSmall
-                        font.italic: true
-                        text: qsTr("Not started yet")
-                    }
-                }
-
-                Item {
-                    height: Theme.paddingLarge
-                    width: 1
-                    visible: questActive
-                }
-
-                Stat {
-                    id: health
-                    width: parent.width - Theme.paddingMedium * 2
-                    anchors.horizontalCenter: parent.horizontalCenter
-
-                    visible: questActive && questBoss
-                    label: qsTr("Health")
-                    barColor: "#da5353"
-                }
-
-                Repeater {
-                    id: collectRepeater
-                    model: ListModel {}
-
-                    visible: questActive && questCollect
-
-                    delegate: Item {
+                        id: questName
                         width: parent.width - Theme.horizontalPageMargin * 2
                         x: Theme.horizontalPageMargin
-                        height: collectItemName.implicitHeight
+                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                        color: Theme.highlightColor
+                        horizontalAlignment: Text.AlignHCenter
+                        font.pixelSize: Theme.fontSizeSmall
+                    }
+
+                    Item {
+                        id: questNotStarted
+                        width: parent.width
+                        height: Theme.itemSizeMedium
+                        visible: !questActive
 
                         Label {
-                            id: collectItemName
-                            width: parent.width / 2 - Theme.paddingSmall
+                            anchors.fill: parent
                             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
                             color: Theme.secondaryHighlightColor
                             font.pixelSize: Theme.fontSizeSmall
-                            horizontalAlignment: Text.AlignRight
-                            text: model.name
-                        }
-
-                        Label {
-                            id: collectItemCount
-                            anchors.right: parent.right
-                            anchors.verticalCenter: parent.verticalCenter
-                            width: parent.width / 2 - Theme.paddingSmall
-                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                            color: Theme.highlightColor
-                            font.pixelSize: Theme.fontSizeMedium
-                            text: model.count + " / " + model.max
+                            font.italic: true
+                            text: qsTr("Not started yet")
                         }
                     }
-                }
 
-                Item {
-                    height: Theme.paddingLarge
-                    width: 1
-                    visible: questActive
-                }
-
-                Flow {
-                    id: questButtonsFlow
-                    width: parent.width - Theme.horizontalPageMargin * 2
-                    x: Theme.horizontalPageMargin
-                    spacing: Theme.paddingMedium
-
-                    opacity: enabled ? 1.0 : 0.5
-                    Behavior on opacity { NumberAnimation { duration: 200 } }
-
-                    property int itemWidth: (width - spacing) / 2
-
-                    Button {
-                        width: parent.itemWidth
-                        text: qsTr("Accept")
-                        visible: !amQuester && !haveDeclinedQuest && !questActive
-                        onClicked: questActionRemorsePopup.show(qsTr("Accepting quest"), "accept")
+                    Item {
+                        height: Theme.paddingLarge
+                        width: 1
+                        visible: questActive
                     }
 
-                    Button {
-                        width: parent.itemWidth
-                        text: qsTr("Decline")
-                        visible: !amQuester && !haveDeclinedQuest && !questActive
-                        onClicked: questActionRemorsePopup.show(qsTr("Declining quest"), "reject")
+                    Stat {
+                        id: health
+                        width: parent.width - Theme.paddingMedium * 2
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                        visible: questActive && questBoss
+                        label: qsTr("Health")
+                        barColor: "#da5353"
                     }
 
-                    Button {
-                        width: parent.itemWidth
-                        text: qsTr("Start")
-                        visible: (amLeader || amQuestLeader) && !questActive
-                        onClicked: questActionRemorsePopup.show(qsTr("Starting quest"), "force-start")
+                    Repeater {
+                        id: collectRepeater
+                        model: ListModel {}
+
+                        visible: questActive && questCollect
+
+                        delegate: Item {
+                            width: parent.width - Theme.horizontalPageMargin * 2
+                            x: Theme.horizontalPageMargin
+                            height: collectItemName.implicitHeight
+
+                            Label {
+                                id: collectItemName
+                                width: parent.width / 2 - Theme.paddingSmall
+                                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                                color: Theme.secondaryHighlightColor
+                                font.pixelSize: Theme.fontSizeSmall
+                                horizontalAlignment: Text.AlignRight
+                                text: model.name
+                            }
+
+                            Label {
+                                id: collectItemCount
+                                anchors.right: parent.right
+                                anchors.verticalCenter: parent.verticalCenter
+                                width: parent.width / 2 - Theme.paddingSmall
+                                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                                color: Theme.highlightColor
+                                font.pixelSize: Theme.fontSizeMedium
+                                text: model.count + " / " + model.max
+                            }
+                        }
                     }
 
-                    Button {
-                        width: parent.itemWidth
-                        text: qsTr("Cancel")
-                        visible: (amLeader || amQuestLeader) && !questActive
-                        onClicked: questActionRemorsePopup.show(qsTr("Cancelling quest"), "cancel")
+                    Item {
+                        height: Theme.paddingLarge
+                        width: 1
+                        visible: questActive
                     }
 
-                    Button {
-                        width: parent.itemWidth * 2 + parent.spacing
-                        text: qsTr("Leave")
-                        visible: questActive && amQuester && !amQuestLeader
-                        onClicked: questActionRemorsePopup.show(qsTr("Leaving quest"), "leave")
-                    }
+                    Flow {
+                        id: questButtonsFlow
+                        width: parent.width - Theme.horizontalPageMargin * 2
+                        x: Theme.horizontalPageMargin
+                        spacing: Theme.paddingMedium
 
-                    Button {
-                        width: parent.itemWidth * 2 + parent.spacing
-                        text: qsTr("Abort")
-                        visible: (amLeader || amQuestLeader) && questActive
-                        onClicked: questActionRemorsePopup.show(qsTr("Aborting quest"), "abort")
+                        opacity: enabled ? 1.0 : 0.5
+                        Behavior on opacity { NumberAnimation { duration: 200 } }
+
+                        property int itemWidth: (width - spacing) / 2
+
+                        Button {
+                            width: parent.itemWidth
+                            text: qsTr("Accept")
+                            visible: !amQuester && !haveDeclinedQuest && !questActive
+                            onClicked: questActionRemorsePopup.show(qsTr("Accepting quest"), "accept")
+                        }
+
+                        Button {
+                            width: parent.itemWidth
+                            text: qsTr("Decline")
+                            visible: !amQuester && !haveDeclinedQuest && !questActive
+                            onClicked: questActionRemorsePopup.show(qsTr("Declining quest"), "reject")
+                        }
+
+                        Button {
+                            width: parent.itemWidth
+                            text: qsTr("Start")
+                            visible: (amLeader || amQuestLeader) && !questActive
+                            onClicked: questActionRemorsePopup.show(qsTr("Starting quest"), "force-start")
+                        }
+
+                        Button {
+                            width: parent.itemWidth
+                            text: qsTr("Cancel")
+                            visible: (amLeader || amQuestLeader) && !questActive
+                            onClicked: questActionRemorsePopup.show(qsTr("Cancelling quest"), "cancel")
+                        }
+
+                        Button {
+                            width: parent.itemWidth * 2 + parent.spacing
+                            text: qsTr("Leave")
+                            visible: questActive && amQuester && !amQuestLeader
+                            onClicked: questActionRemorsePopup.show(qsTr("Leaving quest"), "leave")
+                        }
+
+                        Button {
+                            width: parent.itemWidth * 2 + parent.spacing
+                            text: qsTr("Abort")
+                            visible: (amLeader || amQuestLeader) && questActive
+                            onClicked: questActionRemorsePopup.show(qsTr("Aborting quest"), "abort")
+                        }
                     }
                 }
             }
@@ -233,7 +238,7 @@ Page {
             }
 
             SectionHeader {
-                text: (questItem.visible
+                text: (hasQuest
                        && questersRepeater.model.count + questDeclinersRepeater.model.count != 0
                        ? qsTr("Other party members")
                        : qsTr("Party members"))
@@ -283,21 +288,21 @@ Page {
                 color: "black"
             }
 
-            Rectangle {
-                height: parent.height
-                width: Theme.paddingSmall
-                opacity: 0.5
-                color: "#" +
-                       (model.id === details.leader ? "ff" : "00") +
-                       (details.quest && model.id === details.quest.leader ? "ff" : "00") +
-                       "00"
-                visible: color != "#000000"
-            }
-
             PanelBackground {
                 id: memberAvatarPanel
                 height: Theme.itemSizeLarge
                 width: Theme.itemSizeLarge
+
+                Rectangle {
+                    height: parent.height
+                    width: Theme.paddingSmall
+                    opacity: 0.5
+                    color: "#" +
+                           (model.id === details.leader ? "ff" : "00") +
+                           (details.quest && model.id === details.quest.leader ? "ff" : "00") +
+                           "00"
+                    visible: color != "#000000"
+                }
 
                 BusyIndicator {
                     anchors.centerIn: parent

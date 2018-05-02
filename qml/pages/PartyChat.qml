@@ -56,8 +56,17 @@ Page {
                 Rectangle {
                     anchors.fill: parent
                     color: "black"
-                    opacity: 0.3
-                    visible: !chatListContentName.visible
+                    opacity: !chatListContentName.visible || model.loadId !== 0 ? 0.3 : 0
+                    visible: opacity != 0
+                    Behavior on opacity { NumberAnimation { duration: 200 } }
+                }
+
+                BusyIndicator {
+                    running: model.loadId !== 0
+                    anchors.right: parent.right
+                    anchors.rightMargin: Theme.horizontalPageMargin
+                    anchors.verticalCenter: parent.verticalCenter
+                    size: BusyIndicatorSize.Small
                 }
 
                 Column {
@@ -166,10 +175,37 @@ Page {
     function sendMessage() {
         if (!chatTextField.validMessage) return;
 
+        var msgText = chatTextField.text.trim();
+        var msgLoadId = ++_msgLoadIdCounter;
+
         chatSendButton.currentlyPosting = true;
-        Model.postChatMessage("party", chatTextField.text.trim(), function (ok, msg) {
+        chatModel.insert(0, {
+                             name: Model.getName(),
+                             text: msgText,
+                             fromType: "me",
+                             loadId: msgLoadId,
+                         });
+
+        Model.postChatMessage("party", msgText, function (ok, msg) {
             chatSendButton.currentlyPosting = false;
-            if (ok) chatModel.insert(0, msg);
+            if (ok) {
+                var found = false;
+                for (var i = 0; i < chatModel.count; ++i) {
+                    if (chatModel.get(i).loadId === msgLoadId) {
+                        found = true;
+                        chatModel.setProperty(i, "loadId", 0);
+                        break;
+                    }
+                }
+                if (!found) chatModel.insert(0, msg);
+            } else {
+                for (var i = 0; i < chatModel.count; ++i) {
+                    if (chatModel.get(i).loadId === msgLoadId) {
+                        chatModel.remove(i);
+                        break;
+                    }
+                }
+            }
         });
         chatTextField.text = "";
     }
@@ -183,6 +219,7 @@ Page {
             pageMenu.busy = false;
             pageHeader.title = o.name;
             o.chat.forEach(function (msg) {
+                msg.loadId = 0;
                 chatModel.append(msg);
             })
             details = o;
@@ -193,6 +230,7 @@ Page {
 
     property var details: null;
     property var detailsPage: null;
+    property int _msgLoadIdCounter: 0;
 
     function updateDetailsPage() {
         if (!details) return;

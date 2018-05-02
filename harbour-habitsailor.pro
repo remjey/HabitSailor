@@ -83,5 +83,6 @@ DISTFILES += \
     qml/assets/icon-m-team.svg \
     qml/assets/icon-m-todo.svg \
     qml/pages/PartyChat.qml \
-    qml/pages/PartyDetails.qml
+    qml/pages/PartyDetails.qml \
+    qml/components/ExpandBox.qml
 
