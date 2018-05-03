@@ -620,7 +620,7 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Membres de l’équipe ayant décliné la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="352"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="353"/>
         <source>Lv. %1</source>
         <translation>Lv: %1</translation>
     </message>

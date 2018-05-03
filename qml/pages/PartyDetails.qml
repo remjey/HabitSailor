@@ -242,6 +242,7 @@ Page {
                        && questersRepeater.model.count + questDeclinersRepeater.model.count != 0
                        ? qsTr("Other party members")
                        : qsTr("Party members"))
+                visible: membersRepeater.model.count !== 0 || membersBusy.visible
             }
 
             Repeater {
