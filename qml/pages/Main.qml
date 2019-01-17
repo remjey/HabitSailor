@@ -314,15 +314,21 @@ Page {
             }
 
             MenuButton {
+                id: messagesButton
+                enabled: !menu.busy
+                imageSource: "image://theme/icon-m-mail"
+                label: qsTr("Messages")
+
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("Penpals.qml"));
+                }
+            }
+
+            MenuButton {
                 id: partyButton
                 enabled: !menu.busy
                 imageSource: Qt.resolvedUrl("../assets/icon-m-team.svg")
                 label: qsTr("Party")
-                visible: height != 0
-
-                Behavior on height {
-                    NumberAnimation { duration: 200 }
-                }
 
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("PartyChat.qml"));
@@ -349,9 +355,17 @@ Page {
         mana.value = Model.getMp();
         exp.maximum = Model.getXpNext();
         exp.value = Model.getXp();
-        partyButton.height = Model.hasParty() ? partyButton.implicitHeight : 0;
+        partyButton.hidden = !Model.hasParty();
+        messagesButton.hidden = !Model.hasInbox();
 
         startANewDay._visible = Model.getNeedsCron();
+
+        updateMessageBadges();
+    }
+
+    function updateMessageBadges() {
+        messagesButton.badge = Model.hasNewMessages();
+        partyButton.badge = Model.hasNewPartyMessages();
     }
 
     Component.onCompleted: {
@@ -363,6 +377,9 @@ Page {
         onUpdateStats: {
             profilePicture.parts = Model.getAvatarParts();
             update();
+        }
+        onUpdateNewMessages: {
+            updateMessageBadges();
         }
     }
 }

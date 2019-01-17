@@ -306,6 +306,10 @@ All dailies completed!</source>
         <source>Party</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Model</name>
@@ -405,13 +409,17 @@ All dailies completed!</source>
         <source>Could not update quest: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Cannot update messages: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot post private message: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PartyChat</name>
-    <message>
-        <source>Type your message here</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Your party’s chat</source>
         <translation type="unfinished"></translation>
@@ -505,6 +513,21 @@ All dailies completed!</source>
     </message>
 </context>
 <context>
+    <name>Penpals</name>
+    <message>
+        <source>Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start a new conversation by selecting a member of your party</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Revive</name>
     <message>
         <source>Cancel</source>
@@ -563,6 +586,13 @@ All dailies completed!</source>
     </message>
     <message>
         <source>You currently have %1 Gold</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SendMessageBox</name>
+    <message>
+        <source>Type your message here</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

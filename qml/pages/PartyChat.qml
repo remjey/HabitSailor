@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../utils.js" as Utils
+import "../components"
 import ".."
 
 Page {
@@ -125,46 +127,11 @@ Page {
             }
         }
 
-        Item {
+        SendMessageBox {
             id: chatSendItem
             anchors.bottom: parent.bottom
             anchors.bottomMargin: Theme.paddingMedium
-            width: parent.width
-            height: chatTextField.height
-
-            TextArea {
-                id: chatTextField
-                anchors.left: parent.left
-                anchors.right: chatSendButton.left
-                height: Math.min(Theme.itemSizeHuge, implicitHeight)
-
-                labelVisible: false
-                placeholderText: qsTr("Type your message here")
-
-                wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere
-
-                property bool validMessage: text.trim().length > 0
-
-                EnterKey.onClicked: sendMessage();
-                EnterKey.iconSource: "image://theme/icon-m-enter-accept"
-            }
-
-            IconButton {
-                id: chatSendButton
-                anchors.right: parent.right
-                anchors.rightMargin: Theme.paddingSmall
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: -Theme.paddingSmall
-                icon.source: "image://theme/icon-m-message?" + (pressed
-                  ? Theme.highlightColor
-                  : Theme.primaryColor)
-
-                enabled: chatTextField.validMessage && !currentlyPosting
-
-                property bool currentlyPosting: false
-
-                onClicked: sendMessage();
-            }
+            onSendMessage: doSendMessage()
         }
     }
 
@@ -172,22 +139,20 @@ Page {
 
     Component.onCompleted: updateData();
 
-    function sendMessage() {
-        if (!chatTextField.validMessage) return;
-
-        var msgText = chatTextField.text.trim();
+    function doSendMessage() {
+        var msgText = chatSendItem.text.trim();
         var msgLoadId = ++_msgLoadIdCounter;
 
-        chatSendButton.currentlyPosting = true;
+        chatSendItem.currentlyPosting = true;
         chatModel.insert(0, {
                              name: Model.getName(),
-                             text: msgText,
+                             text: Utils.md(msgText),
                              fromType: "me",
                              loadId: msgLoadId,
                          });
 
         Model.postChatMessage("party", msgText, function (ok, msg) {
-            chatSendButton.currentlyPosting = false;
+            chatSendItem.currentlyPosting = false;
             if (ok) {
                 var found = false;
                 for (var i = 0; i < chatModel.count; ++i) {
@@ -207,7 +172,7 @@ Page {
                 }
             }
         });
-        chatTextField.text = "";
+        chatSendItem.text = "";
     }
 
     function updateData() {

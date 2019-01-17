@@ -29,6 +29,7 @@ QtObject {
     signal logout()
     signal updateStats()
     signal updateTasks()
+    signal updateNewMessages()
     signal showMessage(string msg)
     signal setTask(string taskId, bool checked)
     signal setSubtask(string taskId, string subtaskId, bool checked)

@@ -24,13 +24,25 @@ import Sailfish.Silica 1.0
 BackgroundItem {
     id: root
     width: parent.width
-    height: root.subLabel ? (subLabelItem.y + subLabelItem.height + Theme.paddingMedium) : Theme.itemSizeSmall
+    height: (hidden
+             ? 0
+             : (root.subLabel
+                ? (subLabelItem.y + subLabelItem.height + Theme.paddingMedium)
+                : Theme.itemSizeSmall))
+
+    visible: height != 0
+
+    Behavior on height {
+        NumberAnimation { duration: 200 }
+    }
 
     opacity: enabled ? 1 : 0.4
 
+    property bool hidden: false
     property url imageSource
     property string label
     property string subLabel
+    property bool badge: false
 
     property bool themeImageSource: imageSource.toString().substring(0, 8) === "image://"
 
@@ -80,6 +92,19 @@ BackgroundItem {
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
 
+    }
+
+    GlassItem {
+        id: unreadMessagesGlassItem
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        width: Theme.itemSizeExtraSmall
+        height: Theme.itemSizeExtraSmall
+        radius: 1.0
+        opacity: badge ? 1.0 : 0.0
+        visible: opacity != 0
+        Behavior on opacity { NumberAnimation { duration: 200 } }
+        color: parent.highlighted ? Theme.highlightColor : Theme.primaryColor
     }
 
     function remorse(message, cb) {

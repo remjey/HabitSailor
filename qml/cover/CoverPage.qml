@@ -55,6 +55,11 @@ CoverBackground {
             avatarPicture.imageData = imageData;
             avatarPicture.requestPaint();
         }
+
+        onUpdateNewMessages: {
+            newMessagesIndicator.visible =
+                    Model.hasNewMessages() || Model.hasNewPartyMessages();
+        }
     }
 
     function updateTasksList() {
@@ -166,20 +171,30 @@ CoverBackground {
             maximumLineCount: 1
         }
 
-        Canvas {
-            id: avatarPicture
+        Row {
             anchors.horizontalCenter: parent.horizontalCenter;
-            width: parent.width / 2.4
-            height: width
-            opacity: 0.8
+            width: implicitWidth
 
-            property var imageData;
+            Canvas {
+                id: avatarPicture
+                width: content.width / 2.4
+                height: width
+                opacity: 0.8
 
-            onPaint: {
-                var ctx = getContext("2d");
-                ctx.clearRect(0, 0, width, height);
-                if (imageData)
-                    ctx.drawImage(imageData, 0, 0, width, height);
+                property var imageData;
+
+                onPaint: {
+                    var ctx = getContext("2d");
+                    ctx.clearRect(0, 0, width, height);
+                    if (imageData)
+                        ctx.drawImage(imageData, 0, 0, width, height);
+                }
+            }
+
+            Image {
+                anchors.verticalCenter: parent.verticalCenter
+                id: newMessagesIndicator
+                source: "image://theme/icon-m-chat"
             }
         }
 

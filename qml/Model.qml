@@ -72,6 +72,8 @@ QtObject {
         });
         cs.autofail = true;
         cs.push("/user", "get", {}, function (ok, r) {
+            _inboxEnabled = !r.inbox.optOut;
+            _newMessages = _inboxEnabled ? r.inbox.newMessages : 0;
             _sleeping = r.preferences.sleep;
             _dateFormat = r.preferences.dateFormat;
             _lastCron = new Date(r.lastCron);
@@ -134,10 +136,63 @@ QtObject {
 
             Signals.updateStats();
             Signals.updateTasks();
+            Signals.updateNewMessages();
             if (cb) cb(true);
             return true;
         });
         cs.run();
+    }
+
+    function updateMessages(cb) {
+        _rpc.call("/inbox/messages", "get", {}, function (ok, r) {
+            if (!ok) {
+                Signals.showMessage(qsTr("Cannot update messages: %1").arg(r.message));
+                if (cb) cb(false);
+                return;
+            }
+            _inbox = {}
+            var markMessagesUnread = _newMessages;
+            for (var i = 0; i < r.length; i++) {
+                var cmsg = r[i];
+                var penpal = _inbox[cmsg.username]
+                if (!penpal) {
+                    penpal = {
+                        username: cmsg.username,
+                        userId: cmsg.uuid,
+                        name: cmsg.user,
+                        avatar: _makeAvatarParts(cmsg.userStyles),
+                        unread: 0,
+                        msgs: [],
+                    };
+                    _inbox[cmsg.username] = penpal;
+                }
+                var msg = _transformPrivateMessage(cmsg);
+                if (markMessagesUnread > 0) {
+                    penpal.unread++;
+                    msg.unread = true;
+                    markMessagesUnread--;
+                }
+                penpal.msgs.push(msg);
+            }
+            _rpc.call("/user/mark-pms-read", "post", {}, function (ok, r) {
+                if (ok) {
+                    _newMessages = 0;
+                    Signals.updateNewMessages();
+                }
+            });
+            if (cb) cb(true);
+        });
+    }
+
+    function postMessage(userId, text, cb) {
+        _rpc.call("/members/send-private-message", "post", { message: text, toUserId: userId }, function (ok, o) {
+            if (ok) {
+                if (cb) cb(true, _transformPrivateMessage(o));
+            } else {
+                Signals.showMessage(qsTr("Cannot post private message: %1").arg(o.message))
+                if (cb) cb(false);
+            }
+        });
     }
 
     function cron(cb) {
@@ -164,8 +219,28 @@ QtObject {
     function getGold() { return _stats.gp; }
     function getGems() { return _balance * 4; }
     function hasParty() { return !!_party; }
+    function hasInbox() { return _inboxEnabled; }
+    function hasNewMessages() { return _newMessages; }
+    function hasNewPartyMessages() { return _newPartyMessages; }
 
     function isSleeping() { return _sleeping; }
+
+    function getPenpals() {
+        var r = [];
+        for (var ppu in _inbox) {
+            r.push(Object.sclone(_inbox[ppu]));
+        }
+        return r;
+    }
+
+    function getMessages(username) {
+        var r = [];
+        if (!_inbox[username]) return r;
+        _inbox[username].msgs.forEach(function (o) {
+            r.push(Object.sclone(o));
+        });
+        return r;
+    }
 
     function listHabits() { return _habits.map(_filterTask); }
     function listRewards() { return _rewards.map(_filterReward); }
@@ -183,6 +258,7 @@ QtObject {
     }
 
     function getGroupData(gid, cb) {
+        if (gid === "party") gid = _party;
         _rpc.call("/groups/:gid", "get", { gid: gid }, function (ok, o) {
             if (ok) {
                 var r = {
@@ -198,6 +274,16 @@ QtObject {
                 r.quest = _transformQuestData(o.quest);
 
                 if (cb) cb(true, r);
+
+                // Always mark as seen because we don’t know when to do it precisely.
+                _rpc.call("/groups/:gid/chat/seen", "post-no-body", { gid: gid }, function (ok, o) {
+                    if (ok) {
+                        _newPartyMessages = false;
+                        Signals.updateNewMessages();
+                    } else {
+                        Signals.showMessage(qsTr("Cannot set group read: %1").arg(o.message));
+                    }
+                });
             } else {
                 Signals.showMessage(qsTr("Cannot get chat messages: %1").arg(o.message))
                 if (cb) cb(false);
@@ -627,9 +713,13 @@ QtObject {
     property var _habits
     property var _tasks
     property var _rewards
+    property bool _inboxEnabled: false
+    property var _inbox: ({})
     property var _avatarParts
     property string _party: ""
     property var _habiticaContent: null
+    property int _newMessages: 0
+    property bool _newPartyMessages: false
 
     function _setupRpc() {
         if (_configGet("apiUser")) {
@@ -637,6 +727,20 @@ QtObject {
             _rpc.apiUser = _configGet("apiUser");
             _rpc.apiKey = _configGet("apiKey");
             _myId = _configGet("apiUser");
+        }
+        _rpc.notificationsCallback = _notificationsCallback;
+    }
+
+    function _notificationsCallback(notifs) {
+        var newPartyMessages = false;
+        notifs.forEach(function (n) {
+            if (n.type === "NEW_CHAT_MESSAGE" && n.data.group.id === _party) {
+                newPartyMessages = true;
+            }
+        });
+        if (_newPartyMessages != newPartyMessages) {
+            _newPartyMessages = newPartyMessages;
+            Signals.updateNewMessages();
         }
     }
 
@@ -841,6 +945,16 @@ QtObject {
             }
         });
         return r;
+    }
+
+    function _transformPrivateMessage(omsg) {
+        return {
+            id: omsg.id,
+            mine: omsg.sent,
+            date: new Date(omsg.timestamp),
+            text: Utils.md(omsg.text),
+            unread: false,
+        };
     }
 
     function _transformGroupMessage(omsg) {

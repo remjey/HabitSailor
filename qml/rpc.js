@@ -34,12 +34,14 @@ Service.defaultErrorList = { 0: qsTr("Invalid URL"), 400: qsTr("Bad request"), 4
 Service.prototype.apiUrl = null;
 Service.prototype.apiKey = null;
 Service.prototype.apiUser = null;
+Service.prototype.notificationsCallback = null;
 
 Service.prototype.call = function (path, method, data, onload, options) {
     options = options || {};
 
     var xhr = new XMLHttpRequest();
-    var fullpath = formatPath(this.apiUrl + "/api/v3" + path, data);
+    var notificationsCallback = this.notificationsCallback;
+    var fullpath = formatPath(this.apiUrl + "/api/v4" + path, data);
     var noBody = method === "get" || method === "delete"
     if (method === "post-no-body") {
         method = "post";
@@ -57,6 +59,13 @@ Service.prototype.call = function (path, method, data, onload, options) {
             xhr.setRequestHeader(header, options.headers[header]);
         }
     }
+
+    xhr.processNotificationsNow = function () {
+        if (notificationsCallback && Array.isArray(xhr.notifications)) {
+            notificationsCallback(xhr.notifications);
+        }
+        xhr.processNotificationsNow = null;
+    };
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
@@ -77,6 +86,7 @@ Service.prototype.call = function (path, method, data, onload, options) {
                     message: qsTr("Invalid data or no data was received from server")
                 };
             }
+            xhr.notifications = o.notifications;
             o.httpStatus = xhr.status;
             if (o.success) {
                 ok = true;
@@ -84,7 +94,8 @@ Service.prototype.call = function (path, method, data, onload, options) {
             } else if (!o.hasOwnProperty("message")) {
                 o.message = Service.err(o);
             }
-            onload(ok, o, xhr);
+            if (onload) onload(ok, o, xhr);
+            if (xhr.processNotificationsNow) xhr.processNotificationsNow();
         }
     }
     xhr.setRequestHeader("Content-Type", "application/json");

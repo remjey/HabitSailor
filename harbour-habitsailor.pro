@@ -84,5 +84,8 @@ DISTFILES += \
     qml/assets/icon-m-todo.svg \
     qml/pages/PartyChat.qml \
     qml/pages/PartyDetails.qml \
-    qml/components/ExpandBox.qml
+    qml/components/ExpandBox.qml \
+    qml/pages/Penpals.qml \
+    qml/pages/Messages.qml \
+    qml/components/SendMessageBox.qml
 

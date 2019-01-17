@@ -103,8 +103,18 @@ Array.prototype.findItem = function (fun, defaultValue) {
 }
 
 Object.sclone = function (o) {
-    var r = {};
-    for (var i in o) r[i] = o[i];
+    var r = o;
+    if (Array.isArray(o)) {
+        r = [];
+        o.forEach(function (i) {
+            return Object.sclone(i);
+        });
+    } else if (typeof(o) == "object") {
+        r = {};
+        for (var i in o) {
+            r[i] = Object.sclone(o[i]);
+        }
+    }
     return r;
 }
 
