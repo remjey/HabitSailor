@@ -62,7 +62,7 @@ ApplicationWindow
 
         Rectangle {
             anchors.fill: parent
-            color: "black"
+            color: Theme.colorScheme ? "white" : "black"
             opacity: 0.85
         }
 

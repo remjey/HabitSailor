@@ -18,6 +18,7 @@
 */
 
 import QtQuick 2.0
+import QtGraphicalEffects 1.0
 import Sailfish.Silica 1.0
 
 BackgroundItem {
@@ -31,6 +32,8 @@ BackgroundItem {
     property string label
     property string subLabel
 
+    property bool themeImageSource: imageSource.toString().substring(0, 8) === "image://"
+
     Item {
         id: box
         anchors.fill: parent
@@ -41,9 +44,16 @@ BackgroundItem {
             anchors.left: parent.left
             anchors.topMargin: (Theme.itemSizeSmall - height) / 2
             anchors.leftMargin: Theme.horizontalPageMargin
-            source: root.imageSource
+            source: root.imageSource + (themeImageSource && root.highlighted ? "?" + Theme.highlightColor : "")
             width: Theme.iconSizeMedium
             height: Theme.iconSizeMedium
+        }
+
+        ColorOverlay {
+            anchors.fill: imageItem
+            source: imageItem
+            visible: Theme.colorScheme && !themeImageSource
+            color: root.highlighted ? Theme.highlightColor : "#ff000000"
         }
 
         Label {
