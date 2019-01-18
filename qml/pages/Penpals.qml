@@ -85,9 +85,10 @@ Page {
                     id: penpalAvatar
                     anchors.fill: parent
                     parts: model.avatar
+                    userId: model.userId
                     small: true
 
-                    opacity: loaded ? 1.0 : 0.0
+                    //opacity: loaded ? 1.0 : 0.0
 
                     Behavior on opacity {
                         NumberAnimation { duration: 200 }

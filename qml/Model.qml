@@ -191,6 +191,31 @@ QtObject {
         };
     }
 
+    function getMemberAvatar(uuid, cb) {
+        if (_avatarsCache[uuid] && _avatarsCache[uuid].expires > Date.now()) {
+            cb(_avatarsCache[uuid].parts, true);
+            return true;
+        } else {
+            _rpc.call("/members/:uuid", "get", { uuid: uuid }, function (ok, o) {
+                if (ok) {
+                    var parts = _makeAvatarParts(o);
+                    _avatarsCache[uuid] = {
+                        parts: parts,
+                        expires: Date.now() + 600000,
+                    };
+                    cb(parts, false);
+                } else {
+                    _avatarsCache[uuid] = {
+                        parts: null,
+                        expires: Date.now() + 600000,
+                    };
+                    cb(null, false);
+                }
+            });
+            return false;
+        }
+    }
+
     function cron(cb) {
         _rpc.call("/cron", "post", {},
                   function (ok, o) {
@@ -723,6 +748,7 @@ QtObject {
     property var _habiticaContent: null
     property int _newMessages: 0
     property bool _newPartyMessages: false
+    property var _avatarsCache: ({})
 
     function _setupRpc() {
         if (_configGet("apiUser")) {
@@ -849,12 +875,13 @@ QtObject {
             penpal = {
                 userId: cmsg.uuid,
                 name: cmsg.user,
-                avatar: _makeAvatarParts(cmsg.userStyles),
+                avatar: null,
                 unread: 0,
                 msgs: [],
             };
             _inbox[cmsg.uuid] = penpal;
         }
+        if (cmsg.userStyles && !penpal.avatar) penpal.avatar = _makeAvatarParts(cmsg.userStyles);
         var msg = _transformPrivateMessage(cmsg);
         penpal.msgs[unshift ? "unshift" : "push"](msg);
         return msg;

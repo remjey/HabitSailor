@@ -5,18 +5,20 @@ import ".."
 Canvas {
 
     property var parts: ({})
+    property string userId: ""
     property bool small: false
 
     property bool loaded: false
-
     property var imageCollection: ({})
 
     onPartsChanged: requestPaint();
+    onUserIdChanged: requestPaint();
     onSmallChanged: requestPaint();
-
     onImageLoaded: requestPaint();
 
-    onPaint: {
+    onPaint: doPaint();
+
+    function doPaint() {
         var imagesLoaded = 0, imagesCount = 0;
 
         // Mark all images as unused
@@ -46,13 +48,13 @@ Canvas {
         });
 
         // If images are still not loaded, do not display
-        if (imagesLoaded !== imagesCount || imagesCount == 0) {
+        if (imagesLoaded !== imagesCount || parts && imagesCount == 0) {
             loaded = false;
             return;
         }
 
         // Render the avatar, show it
-        loaded = true;
+        loaded = parts || !userId;
 
         var ctx = getContext("2d");
         if (!available || !ctx) {
@@ -68,22 +70,36 @@ Canvas {
 
         ctx.clearRect(0, 0, 140, 147);
 
-        if (!small) {
-            drawImageIfAvailable(ctx, parts.background, 0, 0);
-            drawImageIfAvailable(ctx, parts.mountBody, 24, 18);
-        }
 
-        // Draw parts in order
-        [ "chair", "back", "skin", "shirt", "armor", "body", "bangs", "base", "mustache",
-          "beard", "eyewear", "head", "headAccessory", "flower", "shield", "weapon", "zzz",
-        ].every(function (part) {
-            drawImageIfAvailable(ctx, parts[part], 24, small || parts.mountBody ? 0 : 24);
-            return true;
-        });
+        if (parts) {
 
-        if (!small) {
-            drawImageIfAvailable(ctx, parts.mountHead, 24, 18);
-            drawImageIfAvailable(ctx, parts.pet, 0, 48);
+            if (!small) {
+                drawImageIfAvailable(ctx, parts.background, 0, 0);
+                drawImageIfAvailable(ctx, parts.mountBody, 24, 18);
+            }
+
+            // Draw parts in order
+            [ "chair", "back", "skin", "shirt", "armor", "body", "bangs", "base", "mustache",
+              "beard", "eyewear", "head", "headAccessory", "flower", "shield", "weapon", "zzz",
+            ].every(function (part) {
+                drawImageIfAvailable(ctx, parts[part], 24, small || parts.mountBody ? 0 : 24);
+                return true;
+            });
+
+            if (!small) {
+                drawImageIfAvailable(ctx, parts.mountHead, 24, 18);
+                drawImageIfAvailable(ctx, parts.pet, 0, 48);
+            }
+
+        } else if (userId) {
+
+            var imm = Model.getMemberAvatar(userId, function (cparts, imm) {
+                parts = cparts;
+                if (!cparts) userId = ""; // If loading failed, disable further loading
+                if (!imm) requestPaint();
+            });
+            if (imm) return doPaint();
+
         }
 
         painted(ctx);
