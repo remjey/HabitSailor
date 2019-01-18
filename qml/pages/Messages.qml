@@ -8,6 +8,7 @@ import ".."
 Page {
     id: root
 
+    property bool updateMessages: false
     property alias title: pageHeader.title
     property string username
     property string userId
@@ -20,6 +21,18 @@ Page {
 
         PageHeader {
             id: pageHeader
+        }
+
+        BusyIndicator {
+            anchors.centerIn: parent
+            running: updateMessages
+            size: BusyIndicatorSize.Large
+        }
+
+        EmptyListHint {
+            label: qsTr("No messages yet")
+            subLabel: ""
+            visible: !updateMessages && messages.count === 0
         }
 
         SilicaListView {
@@ -94,6 +107,17 @@ Page {
     }
 
     Component.onCompleted: {
+        if (updateMessages) {
+            Model.updateMessages(function (ok, o) {
+                updateMessages = false;
+                loadMessages();
+            });
+        } else {
+            loadMessages();
+        }
+    }
+
+    function loadMessages() {
         Model.getMessages(username).forEach(function (msg) {
             msg.loadId = 0; messages.append(msg)
         });
@@ -106,16 +130,7 @@ Page {
         var msgLoadId = ++_msgLoadIdCounter;
 
         sendMessageBox.currentlyPosting = true;
-        messages.insert(0, {
-                            id: "",
-                            mine: true,
-                            date: new Date(),
-                            text: Utils.md(msgText),
-                            unread: false,
-                            loadId: msgLoadId,
-                        });
-
-        Model.postMessage(userId, msgText, function (ok, msg) {
+        var msgObject = Model.postMessage(userId, msgText, function (ok, msg) {
             sendMessageBox.currentlyPosting = false;
             if (ok) {
                 for (var i = 0; i < messages.count; ++i) {
@@ -135,6 +150,8 @@ Page {
                 }
             }
         });
+        msgObject.loadId = msgLoadId;
+        messages.insert(0, msgObject);
         sendMessageBox.text = "";
     }
 

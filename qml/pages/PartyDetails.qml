@@ -273,9 +273,10 @@ Page {
     Component {
         id: memberItemComponent
 
-        Item {
+        ListItem {
+            id: bgItem
             width: parent.width
-            height: Math.max(memberAvatarPanel.height, memberDetails.height)
+            contentHeight: Math.max(memberAvatarPanel.height, memberDetails.height)
             opacity: 0
 
             Behavior on opacity { NumberAnimation { duration: 200 } }
@@ -342,7 +343,7 @@ Page {
                     anchors.rightMargin: Theme.paddingMedium
                     truncationMode: TruncationMode.Elide
                     text: model.name
-                    color: Theme.highlightColor
+                    color: bgItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                 }
 
                 Label {
@@ -384,6 +385,22 @@ Page {
                         maximum: model.mpMax
                         height: Theme.itemSizeSmall / 3
                     }
+                }
+            }
+
+            onClicked: openMenu()
+
+            menu: ContextMenu {
+                MenuItem {
+                    text: qsTr("Send message")
+                    onClicked: pageStack.push(
+                                   Qt.resolvedUrl("Messages.qml"),
+                                   {
+                                       updateMessages: true,
+                                       title: model.name,
+                                       userId: model.id,
+                                       username: model.username,
+                                   });
                 }
             }
         }

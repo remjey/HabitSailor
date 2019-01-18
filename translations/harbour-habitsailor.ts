@@ -312,6 +312,13 @@ All dailies completed!</source>
     </message>
 </context>
 <context>
+    <name>Messages</name>
+    <message>
+        <source>No messages yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Model</name>
     <message>
         <source>Bad or no response from server: %1</source>
@@ -417,6 +424,10 @@ All dailies completed!</source>
         <source>Cannot post private message: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Cannot set group read: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PartyChat</name>
@@ -509,6 +520,10 @@ All dailies completed!</source>
     </message>
     <message>
         <source>Quest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send message</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

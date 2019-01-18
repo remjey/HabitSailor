@@ -153,26 +153,12 @@ QtObject {
             _inbox = {}
             var markMessagesUnread = _newMessages;
             for (var i = 0; i < r.length; i++) {
-                var cmsg = r[i];
-                var penpal = _inbox[cmsg.username]
-                if (!penpal) {
-                    penpal = {
-                        username: cmsg.username,
-                        userId: cmsg.uuid,
-                        name: cmsg.user,
-                        avatar: _makeAvatarParts(cmsg.userStyles),
-                        unread: 0,
-                        msgs: [],
-                    };
-                    _inbox[cmsg.username] = penpal;
-                }
-                var msg = _transformPrivateMessage(cmsg);
-                if (markMessagesUnread > 0) {
+                var msg = _addMessageToInbox(r[i]);
+                if (!msg.mine && markMessagesUnread > 0) {
                     penpal.unread++;
                     msg.unread = true;
                     markMessagesUnread--;
                 }
-                penpal.msgs.push(msg);
             }
             _rpc.call("/user/mark-pms-read", "post", {}, function (ok, r) {
                 if (ok) {
@@ -187,12 +173,20 @@ QtObject {
     function postMessage(userId, text, cb) {
         _rpc.call("/members/send-private-message", "post", { message: text, toUserId: userId }, function (ok, o) {
             if (ok) {
-                if (cb) cb(true, _transformPrivateMessage(o));
+                var msg = _addMessageToInbox(o.message, true);
+                if (cb) cb(true, msg);
             } else {
                 Signals.showMessage(qsTr("Cannot post private message: %1").arg(o.message))
                 if (cb) cb(false);
             }
         });
+        return {
+            id: "",
+            mine: true,
+            date: new Date(),
+            text: Utils.md(text),
+            unread: false,
+        };
     }
 
     function cron(cb) {
@@ -309,6 +303,8 @@ QtObject {
                 o.forEach(function (op) {
                     r.push({
                                id: op.id,
+                               username: op.auth.local.username,
+                               inboxEnabled: !op.inbox.optOut,
                                name: op.profile.name,
                                parts: _makeAvatarParts(op),
                                hp: op.stats.hp,
@@ -838,6 +834,24 @@ QtObject {
         } else {
             Signals.updateStats();
         }
+    }
+
+    function _addMessageToInbox(cmsg, unshift) {
+        var penpal = _inbox[cmsg.username]
+        if (!penpal) {
+            penpal = {
+                username: cmsg.username,
+                userId: cmsg.uuid,
+                name: cmsg.user,
+                avatar: _makeAvatarParts(cmsg.userStyles),
+                unread: 0,
+                msgs: [],
+            };
+            _inbox[cmsg.username] = penpal;
+        }
+        var msg = _transformPrivateMessage(cmsg);
+        penpal.msgs[unshift ? "unshift" : "push"](msg);
+        return msg;
     }
 
     function _makeAvatarParts(r) {

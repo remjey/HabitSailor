@@ -386,6 +386,14 @@ Toutes vos quotidiennes sont faites!</translation>
     </message>
 </context>
 <context>
+    <name>Messages</name>
+    <message>
+        <location filename="../qml/pages/Messages.qml" line="33"/>
+        <source>No messages yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Model</name>
     <message>
         <location filename="../qml/Model.qml" line="70"/>
@@ -398,22 +406,27 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="192"/>
+        <location filename="../qml/Model.qml" line="179"/>
         <source>Cannot post private message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="204"/>
+        <location filename="../qml/Model.qml" line="198"/>
         <source>Impossible to run cron: %1</source>
         <translation>Impossible de lancer le cron: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="284"/>
+        <location filename="../qml/Model.qml" line="278"/>
+        <source>Cannot set group read: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="282"/>
         <source>Cannot get chat messages: %1</source>
         <translation>Impossible d’obtenir la discussion: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="295"/>
+        <location filename="../qml/Model.qml" line="293"/>
         <source>Cannot load members of group: %1</source>
         <translation>Impossible de charger les membres du groupe: %1</translation>
     </message>
@@ -630,9 +643,14 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Membres de l’équipe ayant décliné la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="353"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="354"/>
         <source>Lv. %1</source>
         <translation>Lv: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PartyDetails.qml" line="395"/>
+        <source>Send message</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
