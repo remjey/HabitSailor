@@ -27,11 +27,11 @@ Also I don’t like very much the Android emulation stack, and I love the way Sa
 
 ## Features
 
-* View your profile general info
+* View your profile general info, send and receive private messages
 * View the lists of your habits, dailies and active todos with their status and checklists
 * Click plus, minus on your habits, check your dailies and todos, update their checklists
 * Create, edit and delete habits, dailies, todos (although setting value, tags and aliases is not yet implemented)
-* The cover shows your stats and remaining dailies and todos
+* The cover shows your stats and remaining dailies and todos, and an indicator for new messages
 * Rest in the inn
 * Buy health potion, revive if you run out of health
 * Buy custom reward
@@ -53,6 +53,6 @@ Also I don’t like very much the Android emulation stack, and I love the way Sa
 * Filter tasks by tag, completed/not completed, add tag in task edition/creation
 * Sort tasks by color
 * Other rewards
-* Team, team spells
+* Team spells
 * More languages
 
