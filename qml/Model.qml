@@ -83,7 +83,8 @@ QtObject {
             _name = r.profile.name;
             _stats = r.stats;
             _party = r.party._id || "";
-            _avatarParts = _makeAvatarParts(r);
+            _avatarInfo = _extractAvatarInfo(r);
+            _avatarParts = _makeAvatarParts(_avatarInfo);
             if (!_habiticaContent) {
                 cs.autofail = false;
                 cs.insert("/content?language=:lang", "get", { lang: r.preferences.language }, function (ok, r, xhr) {
@@ -198,7 +199,7 @@ QtObject {
         } else {
             _rpc.call("/members/:uuid", "get", { uuid: uuid }, function (ok, o) {
                 if (ok) {
-                    var parts = _makeAvatarParts(o);
+                    var parts = _makeAvatarParts(_extractAvatarInfo(o));
                     _avatarsCache[uuid] = {
                         parts: parts,
                         expires: Date.now() + 600000,
@@ -332,7 +333,7 @@ QtObject {
                                id: op.id,
                                inboxEnabled: !op.inbox.optOut,
                                name: op.profile.name,
-                               parts: _makeAvatarParts(op),
+                               parts: _makeAvatarParts(_extractAvatarInfo(op)),
                                hp: op.stats.hp,
                                hpMax: op.stats.maxHealth,
                                mp: op.stats.mp,
@@ -470,7 +471,8 @@ QtObject {
         _rpc.call("/user/sleep", "post-no-body", {}, function (ok, o) {
             if (ok) {
                 _sleeping = o;
-                _makeAvatarDetails();
+                _avatarInfo.sleep = o;
+                _avatarParts = _makeAvatarParts(_avatarInfo);
                 Signals.updateStats();
                 if (cb) cb(true, o);
             } else {
@@ -743,6 +745,7 @@ QtObject {
     property var _rewards
     property bool _inboxEnabled: false
     property var _inbox: ({})
+    property var _avatarInfo
     property var _avatarParts
     property string _party: ""
     property var _habiticaContent: null
@@ -881,34 +884,57 @@ QtObject {
             };
             _inbox[cmsg.uuid] = penpal;
         }
-        if (cmsg.userStyles && !penpal.avatar) penpal.avatar = _makeAvatarParts(cmsg.userStyles);
+        if (cmsg.userStyles && !penpal.avatar) penpal.avatar = _makeAvatarParts(_extractAvatarInfo(cmsg.userStyles));
         var msg = _transformPrivateMessage(cmsg);
         penpal.msgs[unshift ? "unshift" : "push"](msg);
         return msg;
     }
 
+    function _extractAvatarInfo(o) {
+        var costume = (o.preferences.costume ? o.items.gear.costume : o.items.gear.equipped);
+        var r = {
+            background: o.preferences.background,
+            sleep: o.preferences.sleep,
+            pet: o.items.currentPet,
+            mount: o.items.currentMount,
+            class: o.stats.class || "warrior",
+            size: o.preferences.size,
+            hairColor: o.preferences.hair.color,
+            gear: {},
+            body: {},
+            hair: {},
+        };
+        [ "armor", "back", "body", "eyewear", "head", "headAccessory", "shield", "weapon" ].forEach(function (part) {
+            r.gear[part] = costume[part];
+        });
+        [ "chair", "shirt", "skin" ].forEach(function (part) {
+            r.body[part] = o.preferences[part];
+        });
+        [ "bangs", "base", "mustache", "beard", "flower" ].forEach(function (part) {
+            r.hair[part] = o.preferences.hair[part];
+        });
+        return r;
+    }
+
     function _makeAvatarParts(r) {
         if (!r) return {};
-        var costume = (r.preferences.costume ? r.items.gear.costume : r.items.gear.equipped);
         var ad = {
-            background: _avatarBgUrl(r.preferences.background),
-            zzz: _avatarZzzUrl(r.preferences.sleep),
-            pet: _avatarPetUrl(r.items.currentPet),
-            mountBody: _avatarMountUrl(r.items.currentMount, "body"),
-            mountHead: _avatarMountUrl(r.items.currentMount, "head"),
+            background: _avatarBgUrl(r.background),
+            zzz: _avatarZzzUrl(r.sleep),
+            pet: _avatarPetUrl(r.pet),
+            mountBody: _avatarMountUrl(r.mount, "body"),
+            mountHead: _avatarMountUrl(r.mount, "head"),
         };
-        [ "armor", "back", "body", "eyewear", "head", "headAccessory", "shield", "weapon" ].every(function (part) {
-            ad[part] = _avatarGearUrl(costume[part], r.stats.class || "warrior", r.preferences.size);
-            return true;
-        });
-        [ "chair", "shirt", "skin" ].every(function (part) {
-            ad[part] = _avatarBodyUrl(part, r.preferences[part], r.preferences.size, r.preferences.sleep);
-            return true;
-        });
-        [ "bangs", "base", "mustache", "beard", "flower" ].every(function (part) {
-            ad[part] = _avatarHairUrl(part, r.preferences.hair[part], r.preferences.hair.color);
-            return true;
-        });
+        var part;
+        for (part in r.gear) {
+            ad[part] = _avatarGearUrl(r.gear[part], r.class, r.size);
+        }
+        for (part in r.body) {
+            ad[part] = _avatarBodyUrl(part, r.body[part], r.size, r.sleep);
+        }
+        for (part in r.hair) {
+            ad[part] = _avatarHairUrl(part, r.hair[part], r.hairColor);
+        }
         return ad;
     }
 
