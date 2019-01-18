@@ -102,17 +102,27 @@ Array.prototype.findItem = function (fun, defaultValue) {
     return defaultValue;
 }
 
-Object.sclone = function (o) {
+function sclone(o) {
+    // This is a pretty bad cloning facility but it suits our needs (for now)
+
+    if (typeof(o) != "object" || o === null || o instanceof Boolean || o instanceof Function || o instanceof Number) {
+        // Copy simple, unmutable types
+        return o;
+    }
+
+    // Now handle more complex objects
     var r = o;
-    if (Array.isArray(o)) {
+    if (o instanceof Date) {
+        r = new Date(o);
+    } else if (o instanceof Array) {
         r = [];
         o.forEach(function (i) {
-            return Object.sclone(i);
+            return sclone(i);
         });
-    } else if (typeof(o) == "object") {
+    } else {
         r = {};
         for (var i in o) {
-            r[i] = Object.sclone(o[i]);
+            r[i] = sclone(o[i]);
         }
     }
     return r;

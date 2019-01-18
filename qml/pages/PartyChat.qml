@@ -144,14 +144,8 @@ Page {
         var msgLoadId = ++_msgLoadIdCounter;
 
         chatSendItem.currentlyPosting = true;
-        chatModel.insert(0, {
-                             name: Model.getName(),
-                             text: Utils.md(msgText),
-                             fromType: "me",
-                             loadId: msgLoadId,
-                         });
 
-        Model.postChatMessage("party", msgText, function (ok, msg) {
+        var msg = Model.postChatMessage("party", msgText, function (ok, msg) {
             chatSendItem.currentlyPosting = false;
             if (ok) {
                 var found = false;
@@ -172,6 +166,8 @@ Page {
                 }
             }
         });
+        msg.loadId = msgLoadId;
+        chatModel.insert(0, msg);
         chatSendItem.text = "";
     }
 

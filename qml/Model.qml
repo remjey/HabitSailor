@@ -173,17 +173,19 @@ QtObject {
     function postMessage(userId, text, cb) {
         _rpc.call("/members/send-private-message", "post", { message: text, toUserId: userId }, function (ok, o) {
             if (ok) {
-                var msg = _addMessageToInbox(o.message, true);
+                var msg = Utils.sclone(_addMessageToInbox(o.message, true));
                 if (cb) cb(true, msg);
             } else {
                 Signals.showMessage(qsTr("Cannot post private message: %1").arg(o.message))
                 if (cb) cb(false);
             }
         });
+        // Return a fake object for displaying while waiting for the real thing
         return {
             id: "",
             mine: true,
             date: new Date(),
+            rawText: text,
             text: Utils.md(text),
             unread: false,
         };
@@ -222,7 +224,7 @@ QtObject {
     function getPenpals() {
         var r = [];
         for (var ppu in _inbox) {
-            r.push(Object.sclone(_inbox[ppu]));
+            r.push(Utils.sclone(_inbox[ppu]));
         }
         return r;
     }
@@ -231,7 +233,7 @@ QtObject {
         var r = [];
         if (!_inbox[username]) return r;
         _inbox[username].msgs.forEach(function (o) {
-            r.push(Object.sclone(o));
+            r.push(Utils.sclone(o));
         });
         return r;
     }
@@ -363,6 +365,12 @@ QtObject {
                 if (cb) cb(false);
             }
         });
+        return {
+            name: getName(),
+            rawText: msg,
+            text: Utils.md(msg),
+            fromType: "me",
+        };
     }
 
     function login(url, login, password, success, error) {
@@ -595,7 +603,7 @@ QtObject {
                 task.frequency = o.repeatType;
                 task.everyX = o.everyX;
                 if (o.repeatType === "monthly" && o.monthlyWeekDay) {
-                    task.repeat = Object.sclone(Utils.repeatNever);
+                    task.repeat = Utils.sclone(Utils.repeatNever);
                     task.repeat[Utils.weekDays[task.startDate.getDay()]] = true;
                     task.weeksOfMonth = [Math.floor((task.startDate.getDate() - 1) / 7)];
                 } else {
@@ -687,7 +695,7 @@ QtObject {
     }
 
     function getAvatarParts() {
-        return Object.sclone(_avatarParts);
+        return Utils.sclone(_avatarParts);
     }
 
     /**** Private Functions and Data ****/
@@ -966,6 +974,7 @@ QtObject {
             id: omsg.id,
             mine: omsg.sent,
             date: new Date(omsg.timestamp),
+            rawText: omsg.text,
             text: Utils.md(omsg.text),
             unread: false,
         };
@@ -974,6 +983,7 @@ QtObject {
     function _transformGroupMessage(omsg) {
         var rmsg = {
             name: omsg.user || "(no name)",
+            rawText: omsg.text || "",
             text: Utils.md(omsg.text || ""),
         };
         if (omsg.uuid === "system") rmsg.fromType = "system";
