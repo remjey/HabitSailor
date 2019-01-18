@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<TS version="2.0" language="fr_FR">
 <context>
     <name>About</name>
     <message>
@@ -357,7 +357,7 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/pages/Main.qml" line="320"/>
         <source>Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Messages</translation>
     </message>
     <message>
         <location filename="../qml/pages/Main.qml" line="331"/>
@@ -389,8 +389,8 @@ Toutes vos quotidiennes sont faites!</translation>
     <name>Messages</name>
     <message>
         <location filename="../qml/pages/Messages.qml" line="33"/>
-        <source>No messages yet</source>
-        <translation type="unfinished"></translation>
+        <source>No messages</source>
+        <translation>Pas de messages</translation>
     </message>
 </context>
 <context>
@@ -403,12 +403,12 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/Model.qml" line="149"/>
         <source>Cannot update messages: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de charger les messages: %1</translation>
     </message>
     <message>
         <location filename="../qml/Model.qml" line="179"/>
         <source>Cannot post private message: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d’envoyer le message privé: %1</translation>
     </message>
     <message>
         <location filename="../qml/Model.qml" line="198"/>
@@ -418,7 +418,7 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/Model.qml" line="278"/>
         <source>Cannot set group read: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de marquer le groupe comme lu: %1</translation>
     </message>
     <message>
         <location filename="../qml/Model.qml" line="282"/>
@@ -650,7 +650,7 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/pages/PartyDetails.qml" line="395"/>
         <source>Send message</source>
-        <translation type="unfinished"></translation>
+        <translation>Envoyer un message</translation>
     </message>
 </context>
 <context>
@@ -658,17 +658,17 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/pages/Penpals.qml" line="35"/>
         <source>No messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas de messages</translation>
     </message>
     <message>
         <location filename="../qml/pages/Penpals.qml" line="36"/>
         <source>Start a new conversation by selecting a member of your party</source>
-        <translation type="unfinished"></translation>
+        <translation>Commencez une conversation en sélectionnant un membre de votre équipe</translation>
     </message>
     <message>
         <location filename="../qml/pages/Penpals.qml" line="48"/>
         <source>Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Messages</translation>
     </message>
 </context>
 <context>
@@ -752,7 +752,7 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/components/SendMessageBox.qml" line="21"/>
         <source>Type your message here</source>
-        <translation type="unfinished">Saisissez votre message ici</translation>
+        <translation>Saisissez votre message ici</translation>
     </message>
 </context>
 <context>

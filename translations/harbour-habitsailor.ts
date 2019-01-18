@@ -314,7 +314,7 @@ All dailies completed!</source>
 <context>
     <name>Messages</name>
     <message>
-        <source>No messages yet</source>
+        <source>No messages</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

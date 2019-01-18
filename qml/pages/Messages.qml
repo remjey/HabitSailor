@@ -30,7 +30,7 @@ Page {
         }
 
         EmptyListHint {
-            label: qsTr("No messages yet")
+            label: qsTr("No messages")
             subLabel: ""
             visible: !updateMessages && messages.count === 0
         }
