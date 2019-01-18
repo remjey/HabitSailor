@@ -8,6 +8,11 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Fri Jan 18 2019 Jérémy Farnaud <jf@almel.fr> 0.6-1
+- Send and receive private messages
+- Indicators for new messages (private messages and party chat)
+- Adapt icons for light ambiances
+
 * Thu May 03 2018 Jérémy Farnaud <jf@almel.fr> 0.5-1
 - Party chat, members, quest management
 
