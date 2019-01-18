@@ -64,9 +64,10 @@ Page {
             onClicked: {
                 penpals.setProperty(model.index, "unread", 0);
                 pageStack.push(Qt.resolvedUrl("Messages.qml"),
-                               { username: model.username,
+                               {
                                    userId: model.userId,
-                                   title: model.name });
+                                   title: model.name
+                               });
             }
 
             PanelBackground {

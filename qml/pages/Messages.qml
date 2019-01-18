@@ -10,7 +10,6 @@ Page {
 
     property bool updateMessages: false
     property alias title: pageHeader.title
-    property string username
     property string userId
 
     ListModel { id: messages }
@@ -118,7 +117,7 @@ Page {
     }
 
     function loadMessages() {
-        Model.getMessages(username).forEach(function (msg) {
+        Model.getMessages(userId).forEach(function (msg) {
             msg.loadId = 0; messages.append(msg)
         });
     }

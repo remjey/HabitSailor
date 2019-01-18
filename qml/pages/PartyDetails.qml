@@ -399,7 +399,6 @@ Page {
                                        updateMessages: true,
                                        title: model.name,
                                        userId: model.id,
-                                       username: model.username,
                                    });
                 }
             }

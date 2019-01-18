@@ -229,10 +229,10 @@ QtObject {
         return r;
     }
 
-    function getMessages(username) {
+    function getMessages(uuid) {
         var r = [];
-        if (!_inbox[username]) return r;
-        _inbox[username].msgs.forEach(function (o) {
+        if (!_inbox[uuid]) return r;
+        _inbox[uuid].msgs.forEach(function (o) {
             r.push(Utils.sclone(o));
         });
         return r;
@@ -305,7 +305,6 @@ QtObject {
                 o.forEach(function (op) {
                     r.push({
                                id: op.id,
-                               username: op.auth.local.username,
                                inboxEnabled: !op.inbox.optOut,
                                name: op.profile.name,
                                parts: _makeAvatarParts(op),
@@ -845,17 +844,16 @@ QtObject {
     }
 
     function _addMessageToInbox(cmsg, unshift) {
-        var penpal = _inbox[cmsg.username]
+        var penpal = _inbox[cmsg.uuid]
         if (!penpal) {
             penpal = {
-                username: cmsg.username,
                 userId: cmsg.uuid,
                 name: cmsg.user,
                 avatar: _makeAvatarParts(cmsg.userStyles),
                 unread: 0,
                 msgs: [],
             };
-            _inbox[cmsg.username] = penpal;
+            _inbox[cmsg.uuid] = penpal;
         }
         var msg = _transformPrivateMessage(cmsg);
         penpal.msgs[unshift ? "unshift" : "push"](msg);
