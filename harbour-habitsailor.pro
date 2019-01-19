@@ -15,7 +15,8 @@ TARGET = harbour-habitsailor
 CONFIG += sailfishapp
 
 SOURCES += \
-    src/habitsailor.cpp
+    src/habitsailor.cpp \
+    src/cachednetworkaccessmanagerfactory.cpp
 
 CODECFORSRC = UTF-8
 
@@ -88,4 +89,7 @@ DISTFILES += \
     qml/pages/Penpals.qml \
     qml/pages/Messages.qml \
     qml/components/SendMessageBox.qml
+
+HEADERS += \
+    src/cachednetworkaccessmanagerfactory.h
 
