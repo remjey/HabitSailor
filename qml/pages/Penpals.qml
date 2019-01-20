@@ -11,17 +11,36 @@ Page {
 
     Component.onCompleted: updateData();
 
-    function updateData(cdetails) {
+    function updateData() {
         _loading = true;
         penpals.clear()
         Model.updateMessages(function (ok) {
-            Model.getPenpals().forEach(function (o) { penpals.append(o) });
+            var nonloadedAvatars = [];
+            Model.getPenpals().forEach(function (o) {
+                o.hasAvatar = true;
+                if (!o.avatar) nonloadedAvatars.push(o.userId);
+                penpals.append(o);
+            });
             _loading = false;
+            nonloadedAvatars.forEach(function (userId) {
+                Model.getMemberAvatar(userId, function (parts) {
+                    for (var i = 0; i < penpals.count; ++i) {
+                        if (penpals.get(i).userId === userId) {
+                            if (parts) {
+                                penpals.setProperty(i, "avatar", parts);
+                            } else {
+                                penpals.setProperty(i, "hasAvatar", false);
+                            }
+                        }
+                    }
+                });
+            })
         });
     }
 
     ListModel {
         id: penpals
+        dynamicRoles: true
     }
 
     BusyIndicator {
@@ -77,7 +96,7 @@ Page {
 
                 BusyIndicator {
                     anchors.centerIn: parent
-                    running: !penpalAvatar.loaded
+                    running: !penpalAvatar.loaded && model.hasAvatar
                     size: BusyIndicatorSize.Small
                 }
 
@@ -85,10 +104,9 @@ Page {
                     id: penpalAvatar
                     anchors.fill: parent
                     parts: model.avatar
-                    userId: model.userId
                     small: true
 
-                    //opacity: loaded ? 1.0 : 0.0
+                    opacity: loaded ? 1.0 : 0.0
 
                     Behavior on opacity {
                         NumberAnimation { duration: 200 }

@@ -250,7 +250,13 @@ QtObject {
     function getPenpals() {
         var r = [];
         for (var ppu in _inbox) {
-            r.push(Utils.sclone(_inbox[ppu]));
+            var pp = _inbox[ppu];
+            r.push({
+                       userId: pp.userId,
+                       name: pp.name,
+                       avatar: pp.avatar,
+                       unread: pp.unread,
+                   });
         }
         return r;
     }
@@ -884,7 +890,7 @@ QtObject {
             };
             _inbox[cmsg.uuid] = penpal;
         }
-        if (cmsg.userStyles && !penpal.avatar) penpal.avatar = _makeAvatarParts(_extractAvatarInfo(cmsg.userStyles));
+        if (!penpal.avatar && !cmsg.sent && cmsg.userStyles) penpal.avatar = _makeAvatarParts(_extractAvatarInfo(cmsg.userStyles));
         var msg = _transformPrivateMessage(cmsg);
         penpal.msgs[unshift ? "unshift" : "push"](msg);
         return msg;

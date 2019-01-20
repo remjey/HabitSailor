@@ -5,14 +5,12 @@ import ".."
 Canvas {
 
     property var parts: ({})
-    property string userId: ""
     property bool small: false
 
     property bool loaded: false
     property var imageCollection: ({})
 
     onPartsChanged: requestPaint();
-    onUserIdChanged: requestPaint();
     onSmallChanged: requestPaint();
     onImageLoaded: requestPaint();
 
@@ -24,18 +22,20 @@ Canvas {
         // Mark all images as unused
         for (var imageUrl in imageCollection) imageCollection[imageUrl] = false;
 
-        // Load images that are necessary, mark images still used
-        for (var part in parts) {
-            if (small && _bigParts.indexOf(part) > -1) continue;
-            var partUrl = parts[part];
-            if (!partUrl) continue;
-            ++imagesCount;
-            imageCollection[partUrl] = true;
-            if (!isImageLoaded(partUrl) && !isImageLoading(partUrl) && !isImageError(partUrl)) {
-                loadImage(partUrl);
-            }
-            if (isImageLoaded(partUrl) || isImageError(partUrl)) {
-                ++imagesLoaded;
+        if (parts) {
+            // Load images that are necessary, mark images still used
+            for (var part in parts) {
+                if (small && _bigParts.indexOf(part) > -1) continue;
+                var partUrl = parts[part];
+                if (!partUrl) continue;
+                ++imagesCount;
+                imageCollection[partUrl] = true;
+                if (!isImageLoaded(partUrl) && !isImageLoading(partUrl) && !isImageError(partUrl)) {
+                    loadImage(partUrl);
+                }
+                if (isImageLoaded(partUrl) || isImageError(partUrl)) {
+                    ++imagesLoaded;
+                }
             }
         }
 
@@ -48,13 +48,13 @@ Canvas {
         });
 
         // If images are still not loaded, do not display
-        if (imagesLoaded !== imagesCount || parts && imagesCount == 0) {
+        if (imagesLoaded !== imagesCount || imagesCount == 0) {
             loaded = false;
             return;
         }
 
         // Render the avatar, show it
-        loaded = parts || !userId;
+        loaded = true;
 
         var ctx = getContext("2d");
         if (!available || !ctx) {
@@ -90,15 +90,6 @@ Canvas {
                 drawImageIfAvailable(ctx, parts.mountHead, 24, 18);
                 drawImageIfAvailable(ctx, parts.pet, 0, 48);
             }
-
-        } else if (userId) {
-
-            var imm = Model.getMemberAvatar(userId, function (cparts, imm) {
-                parts = cparts;
-                if (!cparts) userId = ""; // If loading failed, disable further loading
-                if (!imm) requestPaint();
-            });
-            if (imm) return doPaint();
 
         }
 
