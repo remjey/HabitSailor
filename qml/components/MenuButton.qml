@@ -38,6 +38,7 @@ BackgroundItem {
 
     opacity: enabled ? 1 : 0.4
 
+    property bool preventAmbianceAdaptation: false
     property bool hidden: false
     property url imageSource
     property string label
@@ -70,7 +71,7 @@ BackgroundItem {
         ColorOverlay {
             anchors.fill: imageItem
             source: imageItem
-            visible: Theme.colorScheme && !themeImageSource
+            visible: Theme.colorScheme && !themeImageSource && !preventAmbianceAdaptation
             color: root.highlighted ? Theme.highlightColor : "#ff000000"
         }
 

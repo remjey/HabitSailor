@@ -48,6 +48,7 @@ Page {
                         label: model.text
                         subLabel: model.notes
                         enabled: model.mana <= mp && !loading
+                        preventAmbianceAdaptation: true
 
                         onClicked: useSkill(model.key, model.text, model.target)
                     }

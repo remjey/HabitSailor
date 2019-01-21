@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>About</name>
     <message>
@@ -778,7 +778,7 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Skills.qml" line="92"/>
+        <location filename="../qml/pages/Skills.qml" line="93"/>
         <source>Costs %1 MP</source>
         <translation>Coûte %1 MP</translation>
     </message>

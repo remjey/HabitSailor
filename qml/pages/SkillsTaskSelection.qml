@@ -29,7 +29,7 @@ Page {
             }
 
             enabled: !loading
-            opacity: enabled ? 1.0 : 0.8
+            opacity: enabled ? 1.0 : 0.5
 
             Behavior on opacity { NumberAnimation { duration: 200 } }
 
