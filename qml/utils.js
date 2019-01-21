@@ -117,7 +117,7 @@ function sclone(o) {
     } else if (o instanceof Array) {
         r = [];
         o.forEach(function (i) {
-            return sclone(i);
+            r.push(sclone(i));
         });
     } else {
         r = {};

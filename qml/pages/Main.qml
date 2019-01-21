@@ -285,7 +285,7 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Rewards")
+                text: qsTr("Rewards and Skills")
             }
 
             MenuButton {
@@ -301,11 +301,22 @@ Page {
             }
 
             MenuButton {
+                id: customRewardsButton
                 enabled: !menu.busy
                 imageSource: Qt.resolvedUrl("../assets/icon-m-reward.svg")
                 label: qsTr("Custom Rewards")
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("Rewards.qml"));
+                }
+            }
+
+            MenuButton {
+                id: skillsButton
+                enabled: !menu.busy
+                imageSource: "image://theme/icon-m-wizard"
+                label: qsTr("Skills")
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("Skills.qml"))
                 }
             }
 
@@ -340,6 +351,8 @@ Page {
     function update() {
         profileName.text = Model.getName();
 
+        customRewardsButton.visible = Model.listRewards().length > 0;
+
         sleeping.visible = Model.isSleeping();
         sleepMenuItem.text = Model.isSleeping() ? qsTr("Check Out of Inn") : qsTr("Rest in the Inn")
         sleepMenuItem.remorseText = Model.isSleeping() ? qsTr("Checking out of inn") : qsTr("Resting in the inn")
@@ -357,6 +370,8 @@ Page {
         exp.value = Model.getXp();
         partyButton.hidden = !Model.hasParty();
         messagesButton.hidden = !Model.hasInbox();
+
+        skillsButton.visible = Model.listSkills().length > 0;
 
         startANewDay._visible = Model.getNeedsCron();
 

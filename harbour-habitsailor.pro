@@ -88,7 +88,9 @@ DISTFILES += \
     qml/components/ExpandBox.qml \
     qml/pages/Penpals.qml \
     qml/pages/Messages.qml \
-    qml/components/SendMessageBox.qml
+    qml/components/SendMessageBox.qml \
+    qml/pages/Skills.qml \
+    qml/pages/SkillsTaskSelection.qml
 
 HEADERS += \
     src/cachednetworkaccessmanagerfactory.h

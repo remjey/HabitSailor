@@ -131,13 +131,23 @@ function CallSeq(service, onfail) {
     this.index = 0;
 }
 
-CallSeq.prototype.push = function (path, method, data, onload, options) {
-    this.list.push({ path: path, method: method, data: data, onload: onload, options: options });
+CallSeq.makeRequest = function (/* { path, method, data, onload, options } | { function, arguments } */) {
+    if (typeof(arguments[0]) == "string") {
+        return { path: arguments[0], method: arguments[1], data: arguments[2], onload: arguments[3], options: arguments[4] };
+    } else if (typeof(arguments[0]) == "function") {
+        return { func: arguments[0], args: Array.prototype.slice.call(arguments, 1) };
+    } else {
+        console.error("Invalid CallSeq request");
+    }
+}
+
+CallSeq.prototype.push = function () {
+    this.list.push(CallSeq.makeRequest.apply(null, arguments));
     return this;
 }
 
-CallSeq.prototype.insert = function (path, method, data, onload, options) {
-    this.list.splice(this.index, 0, { path: path, method: method, data: data, onload: onload, options: options });
+CallSeq.prototype.insert = function () {
+    this.list.splice(this.index, 0, CallSeq.makeRequest.apply(null, arguments));
     return this;
 }
 
@@ -145,11 +155,19 @@ CallSeq.prototype.run = function () {
     if (this.index >= this.list.length) return;
     var c = this.list[this.index];
     this.index++;
-    this.service.call(c.path, c.method, c.data, (function (ok, r, xhr) {
-        if ((!this.autofail || ok) && c.onload(ok, r, xhr))
+    if (c.func) {
+        if (c.func.apply(null, c.args)) {
             return this.run();
-        this.index = 0;
-        if (this.onfail) this.onfail(r);
-    }).bind(this), c.options);
+        } else {
+            // Silently stop
+        }
+    } else {
+        this.service.call(c.path, c.method, c.data, (function (ok, r, xhr) {
+            if ((!this.autofail || ok) && c.onload(ok, r, xhr))
+                return this.run();
+            this.index = 0;
+            if (this.onfail) this.onfail(r);
+        }).bind(this), c.options);
+    }
 }
 

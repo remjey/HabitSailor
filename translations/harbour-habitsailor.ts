@@ -242,10 +242,6 @@ All dailies completed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Rewards</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Health Potion</source>
         <translation type="unfinished"></translation>
     </message>
@@ -308,6 +304,14 @@ All dailies completed!</source>
     </message>
     <message>
         <source>Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rewards and Skills</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Skills</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -426,6 +430,10 @@ All dailies completed!</source>
     </message>
     <message>
         <source>Cannot set group read: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot use skill: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -608,6 +616,44 @@ All dailies completed!</source>
     <name>SendMessageBox</name>
     <message>
         <source>Type your message here</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Skills</name>
+    <message>
+        <source>Skills</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Costs %1 MP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Mana</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SkillsTaskSelection</name>
+    <message>
+        <source>Habits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dailies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To-Dos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Target for %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

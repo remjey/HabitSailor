@@ -67,7 +67,7 @@ QtObject {
 
     function update(cb) {
         var cs = _rpc.callSeq(function (o) {
-            Signals.showMessage(qsTr("Bad or no response from server: %1").arg(o.message))
+            Signals.showMessage(qsTr("Bad or no response from server: %1").arg(o.message));
             if (cb) cb(false);
         });
         cs.autofail = true;
@@ -85,6 +85,7 @@ QtObject {
             _party = r.party._id || "";
             _avatarInfo = _extractAvatarInfo(r);
             _avatarParts = _makeAvatarParts(_avatarInfo);
+            _skillsAvailable = r.stats.lvl >= 10 && r.flags.classSelected && !r.preferences.disableClasses
             if (!_habiticaContent) {
                 cs.autofail = false;
                 cs.insert("/content?language=:lang", "get", { lang: r.preferences.language }, function (ok, r, xhr) {
@@ -134,6 +135,19 @@ QtObject {
             });
             _habits = Utils.sortTasks(_tasksOrder.habits, _habits)
             _rewards = Utils.sortTasks(_tasksOrder.rewards, _rewards)
+            return true;
+        });
+        cs.push(function () {
+            var skillsData = _habiticaContent.spells[_stats.class || "warrior"];
+            _skills = [];
+            for (var id in skillsData) {
+                var skill = skillsData[id];
+                if (skill.lvl > _stats.lvl) continue;
+                if (["self", "task", "party", "tasks"].indexOf(skill.target) == -1) continue;
+                skill = Utils.sclone(skill);
+                skill.iconSource = _pictureBaseUrl + "skills/shop_" + id + ".png";
+                _skills.push(skill);
+            }
 
             Signals.updateStats();
             Signals.updateTasks();
@@ -270,6 +284,11 @@ QtObject {
         return r;
     }
 
+    function listSkills() {
+        if (_skillsAvailable) return Utils.sclone(_skills);
+        else return [];
+    }
+
     function listHabits() { return _habits.map(_filterTask); }
     function listRewards() { return _rewards.map(_filterReward); }
     function listTodos() {
@@ -383,6 +402,27 @@ QtObject {
             } else {
                 Signals.showMessage(qsTr("Could not update quest: %1").arg(o.message))
                 if (cb) cb(false);
+            }
+        });
+    }
+
+    function useSkill(id, target, cb) {
+        var url, data;
+        if (target) {
+            url = "/user/class/cast/:spellId?targetId=:targetId";
+            data = { spellId: id, targetId: target };
+        } else {
+            url = "/user/class/cast/:spellId";
+            data = { spellId: id };
+        }
+        _rpc.call(url, "post-no-body", data, function (ok, r) {
+            if (ok) {
+                _partialStatsUpdate(r.user.stats);
+                if (r.task) _prepareTask(r.task);
+                if (cb) cb(ok, r);
+            } else {
+                Signals.showMessage(qsTr("Cannot use skill: %1").arg(r.message))
+                if (cb) cb(ok);
             }
         });
     }
@@ -758,6 +798,8 @@ QtObject {
     property int _newMessages: 0
     property bool _newPartyMessages: false
     property var _avatarsCache: ({})
+    property bool _skillsAvailable: false
+    property var _skills: []
 
     function _setupRpc() {
         if (_configGet("apiUser")) {
@@ -946,28 +988,28 @@ QtObject {
 
     function _avatarPetUrl(name) {
         if (!name || name === "none") return false;
-        return _avatarPictureBaseUrl + "stable/pets/Pet-" + name + ".png";
+        return _pictureBaseUrl + "stable/pets/Pet-" + name + ".png";
     }
 
     function _avatarMountUrl(name, type) {
         if (!name || name === "none") return false;
-        return _avatarPictureBaseUrl + "stable/mounts/" + type + "/Mount_"
+        return _pictureBaseUrl + "stable/mounts/" + type + "/Mount_"
                 + type[0].toUpperCase() + type.substr(1) + "_" + name + ".png";
     }
 
     function _avatarBgUrl(name) {
         if (!name || name === "none") return false;
-        return _avatarPictureBaseUrl + "backgrounds/background_" + name + ".png";
+        return _pictureBaseUrl + "backgrounds/background_" + name + ".png";
     }
 
     function _avatarZzzUrl(sleeping) {
         if (!sleeping) return false;
-        else return _avatarPictureBaseUrl + "misc/zzz.png"
+        else return _pictureBaseUrl + "misc/zzz.png"
     }
 
     function _avatarHairUrl(name, value, color) {
         if (value === 0) return false;
-        var base = _avatarPictureBaseUrl + "customize/";
+        var base = _pictureBaseUrl + "customize/";
         if ((name === "beard" || name === "mustache") && !color.match(/^p.*2$/)) {
             base += "beards/";
         } else if (name === "flower") {
@@ -989,7 +1031,7 @@ QtObject {
             ne[1] = clazz;
         }
 
-        var base = _avatarPictureBaseUrl + "gear/";
+        var base = _pictureBaseUrl + "gear/";
         if (ne[1] === "armoire") {
             base += "armoire/";
         } else if (ne[1] === "special" && _isEventGear(ne[2])) {
@@ -1006,7 +1048,7 @@ QtObject {
     function _avatarBodyUrl(type, name, bodyType, sleeping) {
         if (!name || name === "none") return false;
 
-        var base = _avatarPictureBaseUrl + "customize/";
+        var base = _pictureBaseUrl + "customize/";
         if (type === "skin") base += "skin/";
         else base += type + "s/";
         if (type === "shirt") base += bodyType + "_";
@@ -1055,7 +1097,7 @@ QtObject {
         var r = {
             key: quest.key,
             name: qc.text,
-            iconSource: _avatarPictureBaseUrl + "/quests/bosses/quest_" + quest.key + ".png",
+            iconSource: _pictureBaseUrl + "/quests/bosses/quest_" + quest.key + ".png",
             active: quest.active,
             members: quest.members, // Map of (memberId(string) -> memberOfQuest(bool))
             leader: quest.leader,
@@ -1087,7 +1129,7 @@ QtObject {
         return r;
     }
 
-    property string _avatarPictureBaseUrl: "https://raw.githubusercontent.com/HabitRPG/habitica/release/website/raw_sprites/spritesmith/";
+    property string _pictureBaseUrl: "https://raw.githubusercontent.com/HabitRPG/habitica/release/website/raw_sprites/spritesmith/";
 
     property var _eventNamePrefixes: [
         "birthday", "fall", "gaymerx", "spring", "summer", "takeThis", "winter", "wondercon",

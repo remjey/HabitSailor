@@ -61,6 +61,12 @@ BackgroundItem {
             height: Theme.iconSizeMedium
         }
 
+        BusyIndicator {
+            anchors.centerIn: imageItem
+            running: imageItem.status == Image.Loading
+            size: BusyIndicatorSize.Small
+        }
+
         ColorOverlay {
             anchors.fill: imageItem
             source: imageItem

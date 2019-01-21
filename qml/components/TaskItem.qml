@@ -30,6 +30,7 @@ ListItem {
     property bool busy: false
     property bool crossed: false
     property bool counters: false
+    property bool compact: false
 
     Component.onCompleted: {
         if (model.missedDueDate) {
@@ -108,7 +109,7 @@ ListItem {
 
         Label {
             width: parent.width
-            visible: !!text
+            visible: !!text && !compact
             color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
             text: makeText(
                       subLabel, model.dueDateFormatted, model.startDateFormatted,
