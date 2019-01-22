@@ -89,11 +89,11 @@ Page {
 
     function useSkill(id, name, targetType) {
         if (targetType === "self" || targetType === "party" || targetType === "tasks") {
-            useSkillNow(id)
+            useSkillNow(id);
         } else if (targetType === "user") {
             // TODO show users
         } else if (targetType === "task") {
-            pageStack.push(Qt.resolvedUrl("SkillsTaskSelection.qml"), { spellId: id, skillName: name })
+            pageStack.push(Qt.resolvedUrl("SkillsTaskSelection.qml"), { spellId: id, skillName: name });
         }
     }
 
@@ -110,7 +110,7 @@ Page {
             if (skill.mana) {
                 skill.notes += "\n" + qsTr("Costs %1 MP").arg(skill.mana);
             } else {
-                skill.mana = 0
+                skill.mana = 0;
             }
             skills.append(skill);
         });

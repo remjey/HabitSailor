@@ -418,7 +418,19 @@ QtObject {
         _rpc.call(url, "post-no-body", data, function (ok, r) {
             if (ok) {
                 _partialStatsUpdate(r.user.stats);
-                if (r.task) _prepareTask(r.task);
+                if (r.task) {
+                    _prepareTask(r.task);
+                    [ _habits, _tasks ].every(function (tasks) {
+                        return tasks.every(function (itask) {
+                            if (itask.id === r.task.id) {
+                                itask.value = r.task.value;
+                                itask.color = r.task.color;
+                                return false;
+                            }
+                            return true;
+                        });
+                    });
+                }
                 if (cb) cb(ok, r);
             } else {
                 Signals.showMessage(qsTr("Cannot use skill: %1").arg(r.message))
@@ -900,13 +912,12 @@ QtObject {
         {p:"hp", n:qsTr("Health")},
         {p:"mp", n:qsTr("Mana")},
         {p:"exp", n:qsTr("Experience")},
-        {p:"gp", n:qsTr("Gold")}].every(function (item) {
+        {p:"gp", n:qsTr("Gold")}].forEach(function (item) {
             if (stats.hasOwnProperty(item.p)) {
                 if (item.p !== "exp" || !lvlChange)
                     _addStatDiff(msgs, item.n, _stats[item.p], stats[item.p]);
                 _stats[item.p] = stats[item.p];
             }
-            return true;
         });
         if (_stats.hp === 0) {
             Signals.showMessage(qsTr("Sorry, you ran out of health... Refill your health on the profile page to continue!"));
