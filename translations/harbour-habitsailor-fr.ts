@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<TS version="2.0" language="fr_FR">
 <context>
     <name>About</name>
     <message>
@@ -418,7 +418,7 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/Model.qml" line="248"/>
         <source>Cannot start quest: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de démarrer la quête: %1</translation>
     </message>
     <message>
         <location filename="../qml/Model.qml" line="260"/>
@@ -499,7 +499,7 @@ Toutes vos quotidiennes sont faites!</translation>
         <location filename="../qml/Model.qml" line="1168"/>
         <location filename="../qml/Model.qml" line="1173"/>
         <source>%1 Gold</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 pièce d’or</translation>
     </message>
     <message>
         <location filename="../qml/Model.qml" line="525"/>
@@ -606,7 +606,7 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/pages/PartyDetails.qml" line="53"/>
         <source>Start a new quest</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarrer une nouvelle quête</translation>
     </message>
     <message>
         <location filename="../qml/pages/PartyDetails.qml" line="80"/>
@@ -703,37 +703,37 @@ Toutes vos quotidiennes sont faites!</translation>
         <location filename="../qml/pages/QuestDetails.qml" line="46"/>
         <location filename="../qml/pages/QuestDetails.qml" line="53"/>
         <source>Start quest</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarrer la quête</translation>
     </message>
     <message>
         <location filename="../qml/pages/QuestDetails.qml" line="62"/>
         <source>Quest Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Détails de la quête</translation>
     </message>
     <message>
         <location filename="../qml/pages/QuestDetails.qml" line="102"/>
         <source>Items to collect</source>
-        <translation type="unfinished"></translation>
+        <translation>Objets à collecter</translation>
     </message>
     <message>
         <location filename="../qml/pages/QuestDetails.qml" line="123"/>
         <source>Boss Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistiques du boss</translation>
     </message>
     <message>
         <location filename="../qml/pages/QuestDetails.qml" line="129"/>
         <source>Health</source>
-        <translation type="unfinished">Santé</translation>
+        <translation>Santé</translation>
     </message>
     <message>
         <location filename="../qml/pages/QuestDetails.qml" line="136"/>
         <source>Strength</source>
-        <translation type="unfinished"></translation>
+        <translation>Force</translation>
     </message>
     <message>
         <location filename="../qml/pages/QuestDetails.qml" line="167"/>
         <source>Rewards</source>
-        <translation type="unfinished"></translation>
+        <translation>Récompenses</translation>
     </message>
 </context>
 <context>
@@ -741,7 +741,7 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/pages/Quests.qml" line="17"/>
         <source>Available Quests</source>
-        <translation type="unfinished"></translation>
+        <translation>Quêtes disponibles</translation>
     </message>
 </context>
 <context>
@@ -838,7 +838,7 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/pages/Skills.qml" line="38"/>
         <source>Health</source>
-        <translation type="unfinished">Santé</translation>
+        <translation>Santé</translation>
     </message>
     <message>
         <location filename="../qml/pages/Skills.qml" line="48"/>
