@@ -42,6 +42,18 @@ Page {
 
         VerticalScrollDecorator {}
 
+        PullDownMenu {
+            /* TODO
+            MenuItem {
+                text: qsTr("Leave party")
+            } */
+            MenuItem {
+                text: qsTr("Start a new quest")
+                enabled: !hasQuest
+                onClicked: pageStack.push(Qt.resolvedUrl("Quests.qml"))
+            }
+        }
+
         Column {
             id: pageContent
             width: parent.width
@@ -125,31 +137,11 @@ Page {
 
                         visible: questActive && questCollect
 
-                        delegate: Item {
+                        delegate: KeyValueItem {
                             width: parent.width - Theme.horizontalPageMargin * 2
                             x: Theme.horizontalPageMargin
-                            height: collectItemName.implicitHeight
-
-                            Label {
-                                id: collectItemName
-                                width: parent.width / 2 - Theme.paddingSmall
-                                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                                color: Theme.secondaryHighlightColor
-                                font.pixelSize: Theme.fontSizeSmall
-                                horizontalAlignment: Text.AlignRight
-                                text: model.name
-                            }
-
-                            Label {
-                                id: collectItemCount
-                                anchors.right: parent.right
-                                anchors.verticalCenter: parent.verticalCenter
-                                width: parent.width / 2 - Theme.paddingSmall
-                                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                                color: Theme.highlightColor
-                                font.pixelSize: Theme.fontSizeMedium
-                                text: model.count + " / " + model.max
-                            }
+                            key: model.name
+                            value: model.count + " / " + model.max
                         }
                     }
 

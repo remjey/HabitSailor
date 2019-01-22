@@ -436,6 +436,10 @@ All dailies completed!</source>
         <source>Cannot use skill: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>%1 Gold</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PartyChat</name>
@@ -534,6 +538,10 @@ All dailies completed!</source>
         <source>Send message</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Start a new quest</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Penpals</name>
@@ -547,6 +555,37 @@ All dailies completed!</source>
     </message>
     <message>
         <source>Start a new conversation by selecting a member of your party</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Quests</name>
+    <message>
+        <source>Available Quests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quest Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Boss Statistics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Health</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Strength</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Items to collect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rewards</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

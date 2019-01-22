@@ -13,7 +13,7 @@ CachedNetworkAccessManagerFactory::CachedNetworkAccessManagerFactory(const QNetw
         throw std::runtime_error("Cache directory cannot be created");
     }
     cache->setCacheDirectory(cacheDir.absolutePath());
-    cache->setMaximumCacheSize(8589934592 /* 8MB */);
+    cache->setMaximumCacheSize(16777216 /* 16MB */);
 }
 
 CachedNetworkAccessManagerFactory::~CachedNetworkAccessManagerFactory()

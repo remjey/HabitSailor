@@ -28,7 +28,7 @@ BackgroundItem {
              ? 0
              : (root.subLabel
                 ? (subLabelItem.y + subLabelItem.height + Theme.paddingMedium)
-                : Theme.itemSizeSmall))
+                : box.height))
 
     visible: height != 0
 
@@ -44,18 +44,19 @@ BackgroundItem {
     property string label
     property string subLabel
     property bool badge: false
+    property bool allowLabelWrapping: false
 
     property bool themeImageSource: imageSource.toString().substring(0, 8) === "image://"
 
     Item {
         id: box
-        anchors.fill: parent
+        width: parent.width
+        height: Math.max(Theme.itemSizeSmall, labelItem.height + Theme.paddingLarge)
 
         Image {
             id: imageItem
-            anchors.top: parent.top
+            anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
-            anchors.topMargin: (Theme.itemSizeSmall - height) / 2
             anchors.leftMargin: Theme.horizontalPageMargin
             source: root.imageSource + (themeImageSource && root.highlighted ? "?" + Theme.highlightColor : "")
             width: Theme.iconSizeMedium
@@ -81,9 +82,10 @@ BackgroundItem {
             anchors.leftMargin: Theme.paddingMedium
             anchors.right: parent.right
             anchors.rightMargin: Theme.horizontalPageMargin
-            anchors.verticalCenter: imageItem.verticalCenter
+            anchors.verticalCenter: parent.verticalCenter
             text: root.label
             color: root.highlighted ? Theme.highlightColor : Theme.primaryColor
+            wrapMode: allowLabelWrapping ? Text.WrapAtWordBoundaryOrAnywhere : Text.NoWrap
         }
 
         Label {

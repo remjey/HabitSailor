@@ -71,6 +71,7 @@ QtObject {
             if (cb) cb(false);
         });
         cs.autofail = true;
+        var questsData;
         cs.push("/user", "get", {}, function (ok, r) {
             _inboxEnabled = !r.inbox.optOut;
             _newMessages = _inboxEnabled ? r.inbox.newMessages : 0;
@@ -86,6 +87,7 @@ QtObject {
             _avatarInfo = _extractAvatarInfo(r);
             _avatarParts = _makeAvatarParts(_avatarInfo);
             _skillsAvailable = r.stats.lvl >= 10 && r.flags.classSelected && !r.preferences.disableClasses
+            questsData = r.items.quests;
             if (!_habiticaContent) {
                 cs.autofail = false;
                 cs.insert("/content?language=:lang", "get", { lang: r.preferences.language }, function (ok, r, xhr) {
@@ -147,6 +149,13 @@ QtObject {
                 skill = Utils.sclone(skill);
                 skill.iconSource = _pictureBaseUrl + "skills/shop_" + id + ".png";
                 _skills.push(skill);
+            }
+
+            _quests = [];
+            for (var key in questsData) {
+                if (!(questsData[key] > 0)) continue;
+                var q = _makeQuestObject(key);
+                if (q) _quests.push(q);
             }
 
             Signals.updateStats();
@@ -287,6 +296,10 @@ QtObject {
     function listSkills() {
         if (_skillsAvailable) return Utils.sclone(_skills);
         else return [];
+    }
+
+    function listQuests() {
+        return Utils.sclone(_quests);
     }
 
     function listHabits() { return _habits.map(_filterTask); }
@@ -812,6 +825,7 @@ QtObject {
     property var _avatarsCache: ({})
     property bool _skillsAvailable: false
     property var _skills: []
+    property var _quests: []
 
     function _setupRpc() {
         if (_configGet("apiUser")) {
@@ -1102,6 +1116,91 @@ QtObject {
         return rmsg;
     }
 
+    function _makeQuestObject(key) {
+        var qc = _habiticaContent.quests[key];
+        if (!qc) return false;
+        var q = {
+            key: key,
+            name: qc.text,
+            desc: qc.notes,
+            iconSource: _pictureBaseUrl + "quests/scrolls/inventory_quest_scroll_" + qc.key + ".png",
+            pictureSource: _pictureBaseUrl + "quests/bosses/quest_" + qc.key + ".png",
+            value: qc.value,
+            drop: qc.drop || {},
+            type: "other",
+            maxHp: 0,
+            str: 0.0,
+            collect: [],
+        };
+        if (qc.boss) {
+            q.type = "boss";
+            q.maxHp = qc.boss.hp;
+            q.str = qc.boss.str;
+        } else if (qc.collect) {
+            q.type = "collect";
+            for (var ckey in qc.collect) {
+                var co = qc.collect[ckey];
+                var rc = {
+                    key: ckey,
+                    name: co.text,
+                    max: co.count,
+                };
+                q.collect.push(rc);
+            }
+            q.collect.sort(function (a, b) { return a.name.localeCompare(b.name); });
+        }
+        q.rewards = [];
+        if (qc.drop) {
+            if (qc.drop.gp) q.rewards.push({
+                                               iconSource: _pictureGoldUrl,
+                                               iconZoom: -1,
+                                               text: qsTr("%1 Gold").arg(qc.drop.gp),
+                                           });
+            if (qc.drop.exp) q.rewards.push({
+                                                iconSource: _pictureExperienceUrl,
+                                                iconZoom: -1,
+                                                text: qsTr("%1 Gold").arg(qc.drop.gp),
+                                            });
+            (qc.drop.items || []).forEach(function (item) {
+                var r = {
+                    key: item.key,
+                    iconSource: "",
+                    iconMargin: 0,
+                    text: item.text
+                };
+                switch (item.type) {
+                case "pets":
+                    r.iconSource = _pictureBaseUrl + "stable/pets/Pet-" + item.key + ".png";
+                    break;
+                case "mounts":
+                    r.iconSource = _pictureBaseUrl + "stable/mounts/icon/Mount_Icon_" + item.key + ".png";
+                    break;
+                case "food":
+                    r.iconSource = _pictureBaseUrl + "stable/food/Pet_Food_" + item.key + ".png";
+                    r.iconZoom = 1;
+                    break;
+                case "eggs":
+                    r.iconSource = _pictureBaseUrl + "stable/eggs/Pet_Egg_" + item.key + ".png";
+                    r.iconZoom = 1;
+                    break;
+                case "quests":
+                    r.iconSource = _pictureBaseUrl + "quests/scrolls/inventory_quest_scroll_" + item.key + ".png";
+                    break;
+                case "gear":
+                    r.iconSource = _pictureBaseUrl + "gear/" + item.key.match(/^[^_]+/)[0] + "/shop/shop_" + item.key + ".png";
+                    r.iconZoom = 1;
+                    break;
+                case "hatchingPotions":
+                    r.iconSource = _pictureBaseUrl + "stable/potions/Pet_HatchingPotion_" + item.key + ".png";
+                    r.iconZoom = 1;
+                    break;
+                }
+                q.rewards.push(r);
+            });
+        }
+        return q;
+    }
+
     function _transformQuestData(quest) {
         if (!quest || !quest.key) return null;
         var qc = _habiticaContent.quests[quest.key];
@@ -1141,6 +1240,9 @@ QtObject {
     }
 
     property string _pictureBaseUrl: "https://raw.githubusercontent.com/HabitRPG/habitica/release/website/raw_sprites/spritesmith/";
+
+    property string _pictureGoldUrl: "https://raw.githubusercontent.com/HabitRPG/habitica/release/website/client/assets/svg/gold.svg";
+    property string _pictureExperienceUrl: "https://raw.githubusercontent.com/HabitRPG/habitica/release/website/client/assets/svg/experience.svg";
 
     property var _eventNamePrefixes: [
         "birthday", "fall", "gaymerx", "spring", "summer", "takeThis", "winter", "wondercon",

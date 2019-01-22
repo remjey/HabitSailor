@@ -90,7 +90,9 @@ DISTFILES += \
     qml/pages/Messages.qml \
     qml/components/SendMessageBox.qml \
     qml/pages/Skills.qml \
-    qml/pages/SkillsTaskSelection.qml
+    qml/pages/SkillsTaskSelection.qml \
+    qml/pages/Quests.qml \
+    qml/components/KeyValueItem.qml
 
 HEADERS += \
     src/cachednetworkaccessmanagerfactory.h
