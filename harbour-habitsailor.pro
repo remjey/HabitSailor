@@ -92,7 +92,9 @@ DISTFILES += \
     qml/pages/Skills.qml \
     qml/pages/SkillsTaskSelection.qml \
     qml/pages/Quests.qml \
-    qml/components/KeyValueItem.qml
+    qml/components/KeyValueItem.qml \
+    qml/components/ImageWithBusyIndicator.qml \
+    qml/pages/QuestDetails.qml
 
 HEADERS += \
     src/cachednetworkaccessmanagerfactory.h

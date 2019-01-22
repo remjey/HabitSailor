@@ -440,6 +440,10 @@ All dailies completed!</source>
         <source>%1 Gold</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Cannot start quest: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PartyChat</name>
@@ -559,13 +563,17 @@ All dailies completed!</source>
     </message>
 </context>
 <context>
-    <name>Quests</name>
+    <name>QuestDetails</name>
     <message>
-        <source>Available Quests</source>
+        <source>Start quest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Quest Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Items to collect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -581,11 +589,14 @@ All dailies completed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Items to collect</source>
+        <source>Rewards</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>Quests</name>
     <message>
-        <source>Rewards</source>
+        <source>Available Quests</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

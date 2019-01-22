@@ -33,6 +33,7 @@ QtObject {
     signal showMessage(string msg)
     signal setTask(string taskId, bool checked)
     signal setSubtask(string taskId, string subtaskId, bool checked)
+    signal questStarted(string questKey, var questData)
 
     signal bringToFront(string action)
 

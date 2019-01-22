@@ -240,6 +240,17 @@ QtObject {
         }
     }
 
+    function startQuest(key, cb) {
+        _rpc.call("/groups/party/quests/invite/:questKey", "post", { questKey: key }, function (ok, o) {
+            if (ok) {
+                Signals.questStarted(key, _transformQuestData(o))
+            } else {
+                Signals.showMessage(qsTr("Cannot start quest: %1").arg(o.message))
+            }
+            if (cb) cb(ok);
+        });
+    }
+
     function cron(cb) {
         _rpc.call("/cron", "post", {},
                   function (ok, o) {

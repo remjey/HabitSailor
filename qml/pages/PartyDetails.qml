@@ -7,6 +7,8 @@ import ".."
 Page {
     id: root
 
+    property string pageName: "PartyDetails" // Used for app self-navigation
+
     property var details: null
     property var members: []
     property bool reloadMembers: true
@@ -78,11 +80,13 @@ Page {
                         text: qsTr("Quest")
                     }
 
-                    Image {
+                    ImageWithBusyIndicator {
                         id: questPicture
-                        width: parent.width - Theme.itemSizeMedium * 2
-                        height: implicitHeight * width / implicitWidth
-                        x: Theme.itemSizeMedium
+                        x: Theme.itemSizeLarge
+                        width: parent.width - x * 2
+                        height: Math.max(Theme.itemSizeLarge, implicitHeight * width / implicitWidth || 0)
+                        animateOnLoaded: true
+                        fillMode: Image.PreserveAspectCrop
                     }
 
                     Item { height: Theme.paddingLarge; width: 1 }
@@ -153,6 +157,7 @@ Page {
 
                     Flow {
                         id: questButtonsFlow
+                        visible: hasQuest
                         width: parent.width - Theme.horizontalPageMargin * 2
                         x: Theme.horizontalPageMargin
                         spacing: Theme.paddingMedium
@@ -259,6 +264,14 @@ Page {
             if (!busy && pageStack.currentPage === root) {
                 _updateMembers();
             }
+        }
+    }
+
+    Connections {
+        target: Signals
+        onQuestStarted: {
+            details.quest = questData;
+            updateData();
         }
     }
 
