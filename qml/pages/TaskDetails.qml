@@ -31,6 +31,8 @@ Page {
     property string taskId
     property var checklist
 
+    // TODO use a normal page with a Repeater for checklist
+
     SilicaListView {
         id: list
         anchors.fill: parent
@@ -79,6 +81,8 @@ Page {
                 visible: model.count > 0
             }
         }
+
+        footer: Item { height: Theme.paddingLarge }
 
         VerticalScrollDecorator {}
 

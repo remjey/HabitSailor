@@ -113,17 +113,17 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Aucune habitude</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="116"/>
+        <location filename="../qml/pages/Habits.qml" line="118"/>
         <source>Edit</source>
         <translation>Modifier</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="128"/>
+        <location filename="../qml/pages/Habits.qml" line="130"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Habits.qml" line="75"/>
+        <location filename="../qml/pages/Habits.qml" line="77"/>
         <source>Deleting</source>
         <translation>Suppression</translation>
     </message>
@@ -732,27 +732,27 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Vous possédez actuellement %1 Or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Rewards.qml" line="67"/>
+        <location filename="../qml/pages/Rewards.qml" line="69"/>
         <source>Costs %1 Gold</source>
         <translation>Coûte %1 pièce(s) d’or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Rewards.qml" line="96"/>
+        <location filename="../qml/pages/Rewards.qml" line="98"/>
         <source>Buy</source>
         <translation>Acheter</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Rewards.qml" line="101"/>
+        <location filename="../qml/pages/Rewards.qml" line="103"/>
         <source>Edit</source>
         <translation>Modifier</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Rewards.qml" line="113"/>
+        <location filename="../qml/pages/Rewards.qml" line="115"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Rewards.qml" line="79"/>
+        <location filename="../qml/pages/Rewards.qml" line="81"/>
         <source>Deleting</source>
         <translation>Suppression</translation>
     </message>
@@ -768,17 +768,22 @@ Toutes vos quotidiennes sont faites!</translation>
 <context>
     <name>Skills</name>
     <message>
-        <location filename="../qml/pages/Skills.qml" line="26"/>
+        <location filename="../qml/pages/Skills.qml" line="28"/>
         <source>Skills</source>
         <translation>Compétences</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Skills.qml" line="33"/>
+        <location filename="../qml/pages/Skills.qml" line="38"/>
+        <source>Health</source>
+        <translation type="unfinished">Santé</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Skills.qml" line="48"/>
         <source>Mana</source>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Skills.qml" line="93"/>
+        <location filename="../qml/pages/Skills.qml" line="111"/>
         <source>Costs %1 MP</source>
         <translation>Coûte %1 MP</translation>
     </message>
@@ -814,27 +819,27 @@ Toutes vos quotidiennes sont faites!</translation>
 <context>
     <name>TaskDetails</name>
     <message>
-        <location filename="../qml/pages/TaskDetails.qml" line="43"/>
+        <location filename="../qml/pages/TaskDetails.qml" line="45"/>
         <source>To-Do</source>
         <translation>À faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskDetails.qml" line="44"/>
+        <location filename="../qml/pages/TaskDetails.qml" line="46"/>
         <source>Daily</source>
         <translation>Quotidienne</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskDetails.qml" line="48"/>
+        <location filename="../qml/pages/TaskDetails.qml" line="50"/>
         <source>Title</source>
         <translation>Titre</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskDetails.qml" line="60"/>
+        <location filename="../qml/pages/TaskDetails.qml" line="62"/>
         <source>Extra Notes</source>
         <translation>Notes supplémentaires</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskDetails.qml" line="78"/>
+        <location filename="../qml/pages/TaskDetails.qml" line="80"/>
         <source>Checklist</source>
         <translation>Check-list</translation>
     </message>
@@ -1139,37 +1144,37 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Quotidiennes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="67"/>
+        <location filename="../qml/pages/Tasks.qml" line="69"/>
         <source>%1 / %2 subtasks completed</source>
         <translation>%1 / %2 sous-tâches complétées</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="74"/>
+        <location filename="../qml/pages/Tasks.qml" line="76"/>
         <source>Uncheck Task</source>
         <translation>Décocher la tâche</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="74"/>
+        <location filename="../qml/pages/Tasks.qml" line="76"/>
         <source>Check Task</source>
         <translation>Cocher la tâche</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="212"/>
+        <location filename="../qml/pages/Tasks.qml" line="214"/>
         <source>Check %1</source>
         <translation>Cocher %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="82"/>
+        <location filename="../qml/pages/Tasks.qml" line="84"/>
         <source>View Details</source>
         <translation>Vue détaillée</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="97"/>
+        <location filename="../qml/pages/Tasks.qml" line="99"/>
         <source>Edit</source>
         <translation>Modifier</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="81"/>
+        <location filename="../qml/pages/Tasks.qml" line="83"/>
         <source>View Details and Checklist</source>
         <translation>Vue détaillée et check-list</translation>
     </message>
@@ -1194,17 +1199,17 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Ajouter une quotidienne</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="109"/>
+        <location filename="../qml/pages/Tasks.qml" line="111"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="216"/>
+        <location filename="../qml/pages/Tasks.qml" line="218"/>
         <source>Deleting</source>
         <translation>Suppression</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Tasks.qml" line="119"/>
+        <location filename="../qml/pages/Tasks.qml" line="121"/>
         <source>Quick Checklist</source>
         <translation>Mini check-list</translation>
     </message>

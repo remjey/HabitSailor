@@ -57,6 +57,8 @@ Page {
             }
         }
 
+        footer: Item { height: Theme.paddingLarge }
+
         VerticalScrollDecorator {}
 
         // TODO placeholder for empty ListElement

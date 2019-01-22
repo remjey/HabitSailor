@@ -637,6 +637,10 @@ All dailies completed!</source>
         <source>Mana</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Health</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SkillsTaskSelection</name>

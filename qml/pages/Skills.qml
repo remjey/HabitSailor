@@ -11,6 +11,8 @@ Page {
     property bool loading: false
     property double mp: 0
     property double mpMax: 0
+    property double hp: 0
+    property double hpMax: 0
 
     SilicaFlickable {
         anchors.fill: parent
@@ -26,15 +28,29 @@ Page {
                 title: qsTr("Skills")
             }
 
-            Stat {
+            Row {
                 width: parent.width - Theme.paddingMedium * 2
                 anchors.horizontalCenter: parent.horizontalCenter
 
-                label: qsTr("Mana")
-                barColor: "#4781e7"
+                Stat {
+                    width: parent.width / 2
 
-                value: mp
-                maximum: mpMax
+                    label: qsTr("Health")
+                    barColor: "#da5353"
+
+                    value: hp
+                    maximum: hpMax
+                }
+
+                Stat {
+                    width: parent.width / 2
+
+                    label: qsTr("Mana")
+                    barColor: "#4781e7"
+
+                    value: mp
+                    maximum: mpMax
+                }
             }
 
             Column {
@@ -81,13 +97,15 @@ Page {
         }
     }
 
-    function updateMp() {
+    function updateStats() {
         mp = Model.getMp();
         mpMax = Model.getMpMax();
+        hp = Model.getHp();
+        hpMax = Model.getHpMax();
     }
 
     Component.onCompleted: {
-        updateMp();
+        updateStats();
         Model.listSkills().forEach(function (skill) {
             if (skill.mana) {
                 skill.notes += "\n" + qsTr("Costs %1 MP").arg(skill.mana);
@@ -100,6 +118,6 @@ Page {
 
     Connections {
         target: Signals
-        onUpdateStats: updateMp();
+        onUpdateStats: updateStats();
     }
 }

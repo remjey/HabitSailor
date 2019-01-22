@@ -53,6 +53,8 @@ Page {
             title: mode == "todos" ? qsTr("To-Dos") : qsTr("Dailies")
         }
 
+        footer: Item { height: Theme.paddingLarge }
+
         VerticalScrollDecorator {}
 
         // TODO placeholder for empty ListElement

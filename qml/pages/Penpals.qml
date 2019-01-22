@@ -65,6 +65,8 @@ Page {
         VerticalScrollDecorator {}
 
         header: PageHeader { title: qsTr("Messages") }
+
+        footer: Item { height: Theme.paddingLarge }
     }
 
     Component {
