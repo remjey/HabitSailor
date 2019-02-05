@@ -50,7 +50,7 @@ Page {
                 text: qsTr("Leave party")
             } */
             MenuItem {
-                text: qsTr("Start a new quest")
+                text: qsTr("Invite party to a quest")
                 enabled: !hasQuest
                 onClicked: pageStack.push(Qt.resolvedUrl("Quests.qml"))
             }
@@ -133,6 +133,7 @@ Page {
                         visible: questActive && questBoss
                         label: qsTr("Health")
                         barColor: "#da5353"
+                        secondaryBarColor: "#ffcc35"
                     }
 
                     Repeater {
@@ -468,6 +469,7 @@ Page {
                     details.quest.collect.forEach(function (ci) { collectRepeater.model.append(ci); });
                 } else if (details.quest.type === "boss") {
                     health.value = details.quest.hp;
+                    health.secondaryValue = -details.quest.progress;
                     health.maximum = details.quest.maxHp;
                 }
             }

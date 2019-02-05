@@ -22,22 +22,27 @@ import Sailfish.Silica 1.0
 
 Column {
     property real value: 0
+    property real secondaryValue: 0
     property real maximum: 0
     property string label: ""
     property color barColor: Theme.highlightColor
+    property color secondaryBarColor: Theme.secondaryHighlightColor
 
     Label {
         anchors.horizontalCenter: parent.horizontalCenter
         color: Theme.highlightColor
-        text: Math.floor(value) + (maximum <= 0 ? "" : " / " + Math.floor(maximum))
+        text: (Math.floor(value) + (maximum <= 0 ? "" : " / " + Math.floor(maximum))
+               + (secondaryValue != 0 ? " ( " + secondaryValue + " )" : ""))
     }
     Bar {
         anchors.horizontalCenter: parent.horizontalCenter
         visible: maximum > 0
         width: parent.width - Theme.paddingLarge
         value: parent.value
+        secondaryValue: Math.abs(parent.secondaryValue)
         maximum: parent.maximum
         color: barColor
+        secondaryColor: secondaryBarColor
     }
     Label {
         anchors.horizontalCenter: parent.horizontalCenter

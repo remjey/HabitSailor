@@ -43,14 +43,14 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: qsTr("Start quest")
+                text: qsTr("Invite party to this quest")
                 onClicked: startQuest()
             }
         }
 
         PushUpMenu {
             MenuItem {
-                text: qsTr("Start quest")
+                text: qsTr("Invite party to this quest")
                 onClicked: startQuest()
             }
         }

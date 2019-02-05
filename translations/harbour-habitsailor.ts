@@ -444,6 +444,10 @@ All dailies completed!</source>
         <source>Cannot start quest: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Total boss damage</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PartyChat</name>
@@ -543,7 +547,7 @@ All dailies completed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Start a new quest</source>
+        <source>Invite party to a quest</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -564,10 +568,6 @@ All dailies completed!</source>
 </context>
 <context>
     <name>QuestDetails</name>
-    <message>
-        <source>Start quest</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Quest Details</source>
         <translation type="unfinished"></translation>
@@ -590,6 +590,10 @@ All dailies completed!</source>
     </message>
     <message>
         <source>Rewards</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invite party to this quest</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

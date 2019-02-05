@@ -25,8 +25,10 @@ Item {
     height: Theme.itemSizeSmall / 2
 
     property real value: 0;
+    property real secondaryValue: 0;
     property real maximum: 100;
     property color color: Theme.highlightColor
+    property color secondaryColor: Theme.secondaryHighlightColor
 
     GlassItem {
         id: track
@@ -42,12 +44,29 @@ Item {
         cache: false
 
         GlassItem {
+            id: secondaryBar
             anchors.top: parent.top
             anchors.left: parent.left
 
             height: parent.height
-            width: barWidth(track.width, track.height, root.value, root.maximum) // To trigger the change of width through binding
-            visible: root.value > 0
+            width: barWidth(parent.width, parent.height, root.secondaryValue, root.maximum) // To trigger the change of width through binding
+            visible: root.secondaryValue > 0
+
+            color: root.secondaryColor
+            falloffRadius: 0.07
+            radius: 3
+            ratio: 0.0
+            cache: false
+        }
+
+        GlassItem {
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.leftMargin: barWidth(parent.width - parent.height, 0, root.secondaryValue, root.maximum)
+
+            height: parent.height
+            width: barWidth(parent.width, parent.height, root.value - Math.max(0, root.secondaryValue), root.maximum) // To trigger the change of width through binding
+            visible: root.value > root.secondaryValue
 
             color: root.color
             falloffRadius: 0.07

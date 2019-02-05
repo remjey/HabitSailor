@@ -33,9 +33,9 @@ Also I don’t like very much the Android emulation stack, and I love the way Sa
 * Create, edit and delete habits, dailies, todos (although setting value, tags and aliases is not yet implemented)
 * The cover shows your stats and remaining dailies and todos, and an indicator for new messages
 * Rest in the inn
-* Buy health potion, revive if you run out of health
-* Buy custom reward
-* Party: chat, list of members, actions on current quest
+* Buy health potion, custom reward, revive if you run out of health
+* Cast skills
+* Party: chat, list of members, actions on current quest, invite party to a quest
 * Use a custom Habitica server
 
 ## Roadmap

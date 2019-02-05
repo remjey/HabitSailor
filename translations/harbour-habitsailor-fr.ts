@@ -406,149 +406,154 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Réponse du serveur incorrecte on manquante: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="173"/>
+        <location filename="../qml/Model.qml" line="174"/>
         <source>Cannot update messages: %1</source>
         <translation>Impossible de charger les messages: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="203"/>
+        <location filename="../qml/Model.qml" line="204"/>
         <source>Cannot post private message: %1</source>
         <translation>Impossible d’envoyer le message privé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="248"/>
+        <location filename="../qml/Model.qml" line="249"/>
         <source>Cannot start quest: %1</source>
         <translation>Impossible de démarrer la quête: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="260"/>
+        <location filename="../qml/Model.qml" line="261"/>
         <source>Impossible to run cron: %1</source>
         <translation>Impossible de lancer le cron: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="355"/>
+        <location filename="../qml/Model.qml" line="356"/>
         <source>Cannot set group read: %1</source>
         <translation>Impossible de marquer le groupe comme lu: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="359"/>
+        <location filename="../qml/Model.qml" line="360"/>
         <source>Cannot get chat messages: %1</source>
         <translation>Impossible d’obtenir la discussion: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="370"/>
+        <location filename="../qml/Model.qml" line="371"/>
         <source>Cannot load members of group: %1</source>
         <translation>Impossible de charger les membres du groupe: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="460"/>
+        <location filename="../qml/Model.qml" line="461"/>
         <source>Cannot use skill: %1</source>
         <translation>Impossible d’utiliser la compétence: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="471"/>
+        <location filename="../qml/Model.qml" line="472"/>
         <source>Cannot post chat message: %1</source>
         <translation>Impossible d’envoyer le message: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="536"/>
+        <location filename="../qml/Model.qml" line="537"/>
         <source>Not enough gold to buy this custom reward!</source>
         <translation>Pas assez d’or pour acheter cette récompense !</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="546"/>
+        <location filename="../qml/Model.qml" line="547"/>
         <source>Cannot buy custom reward: %1</source>
         <translation>Impossible d’acheter la récompense: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="930"/>
+        <location filename="../qml/Model.qml" line="938"/>
         <source>You must first refill your health from the profile page before you can do this!</source>
         <translation>Vous devez d’abord récupérer votre santé depuis la page de profil avant de pouvoir faire ça !</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="936"/>
+        <location filename="../qml/Model.qml" line="946"/>
         <source>Level</source>
         <translation>Niveau</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="937"/>
+        <location filename="../qml/Model.qml" line="947"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="938"/>
+        <location filename="../qml/Model.qml" line="948"/>
         <source>Mana</source>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="939"/>
+        <location filename="../qml/Model.qml" line="949"/>
         <source>Experience</source>
         <translation>Expérience</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="940"/>
+        <location filename="../qml/Model.qml" line="950"/>
         <source>Gold</source>
         <translation>Or</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="948"/>
+        <location filename="../qml/Model.qml" line="958"/>
+        <source>Total boss damage</source>
+        <translation>Dommage total au boss</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="961"/>
         <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
         <translation>Désolé, vous avez épuisé votre santé… Restaurez votre santé depuis la page de profil pour continuer !</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="1168"/>
-        <location filename="../qml/Model.qml" line="1173"/>
+        <location filename="../qml/Model.qml" line="1181"/>
+        <location filename="../qml/Model.qml" line="1186"/>
         <source>%1 Gold</source>
         <translation>%1 pièce d’or</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="525"/>
+        <location filename="../qml/Model.qml" line="526"/>
         <source>Cannot update habit: %1</source>
         <translation>Impossible de mettre à jour l’habitude: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="109"/>
+        <location filename="../qml/Model.qml" line="110"/>
         <source>Could not load Habitica content: %1</source>
         <translation>Impossible de charger le contenu Habitica: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="427"/>
+        <location filename="../qml/Model.qml" line="428"/>
         <source>Could not update quest: %1</source>
         <translation>Impossible de mettre à jour la quête: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="561"/>
+        <location filename="../qml/Model.qml" line="562"/>
         <source>Cannot toggle sleeping status: %1</source>
         <translation>Impossible de modifier la présence à l’auberge: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="573"/>
+        <location filename="../qml/Model.qml" line="574"/>
         <source>Cannot refill health: %1</source>
         <translation>Impossible de restaurer la santé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="586"/>
+        <location filename="../qml/Model.qml" line="587"/>
         <source>Cannot buy Health Potion: %1</source>
         <translation>Impossible d’acheter une Potion de santé: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="604"/>
+        <location filename="../qml/Model.qml" line="605"/>
         <source>Cannot update subtask: %1</source>
         <translation>Impossible de mettre à jour la sous-tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="638"/>
-        <location filename="../qml/Model.qml" line="756"/>
+        <location filename="../qml/Model.qml" line="639"/>
+        <location filename="../qml/Model.qml" line="757"/>
         <source>Cannot update task: %1</source>
         <translation>Impossible de mettre à jour la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="780"/>
+        <location filename="../qml/Model.qml" line="781"/>
         <source>Cannot create new task: %1</source>
         <translation>Impossible de créer la tâche: %1</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="799"/>
+        <location filename="../qml/Model.qml" line="800"/>
         <source>Cannot delete task: %1</source>
         <translation>Impossible de supprimer la tâche: %1</translation>
     </message>
@@ -579,34 +584,34 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="179"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="180"/>
         <source>Decline</source>
         <translation>Décliner</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="207"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="208"/>
         <source>Abort</source>
         <translation>Interrompre</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="209"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="210"/>
         <source>Aborting quest</source>
         <translation>Interruption de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="241"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="242"/>
         <source>Party members</source>
         <translation>Membres de l’équipe</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="240"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="241"/>
         <source>Other party members</source>
         <translation>Autres membres de l’équipe</translation>
     </message>
     <message>
         <location filename="../qml/pages/PartyDetails.qml" line="53"/>
-        <source>Start a new quest</source>
-        <translation>Démarrer une nouvelle quête</translation>
+        <source>Invite party to a quest</source>
+        <translation>Inviter l’équipe à une quête</translation>
     </message>
     <message>
         <location filename="../qml/pages/PartyDetails.qml" line="80"/>
@@ -614,67 +619,67 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="172"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="173"/>
         <source>Accept</source>
         <translation>Accepter</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="174"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="175"/>
         <source>Accepting quest</source>
         <translation>Acceptation de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="181"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="182"/>
         <source>Declining quest</source>
         <translation>Déclinement de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="186"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="187"/>
         <source>Start</source>
         <translation>Commencer</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="188"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="189"/>
         <source>Starting quest</source>
         <translation>Commencement de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="193"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="194"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="195"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="196"/>
         <source>Cancelling quest</source>
         <translation>Annulation de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="200"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="201"/>
         <source>Leave</source>
         <translation>Abandonner</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="202"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="203"/>
         <source>Leaving quest</source>
         <translation>Abandon de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="216"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="217"/>
         <source>Party members who accepted the quest</source>
         <translation>Membres de l’équipe participant à la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="227"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="228"/>
         <source>Party members who declined the quest</source>
         <translation>Membres de l’équipe ayant décliné la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="359"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="360"/>
         <source>Lv. %1</source>
         <translation>Lv: %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="400"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="401"/>
         <source>Send message</source>
         <translation>Envoyer un message</translation>
     </message>
@@ -702,8 +707,8 @@ Toutes vos quotidiennes sont faites!</translation>
     <message>
         <location filename="../qml/pages/QuestDetails.qml" line="46"/>
         <location filename="../qml/pages/QuestDetails.qml" line="53"/>
-        <source>Start quest</source>
-        <translation>Démarrer la quête</translation>
+        <source>Invite party to this quest</source>
+        <translation>Inviter l’équipe à une quête</translation>
     </message>
     <message>
         <location filename="../qml/pages/QuestDetails.qml" line="62"/>

@@ -86,7 +86,8 @@ QtObject {
             _party = r.party._id || "";
             _avatarInfo = _extractAvatarInfo(r);
             _avatarParts = _makeAvatarParts(_avatarInfo);
-            _skillsAvailable = r.stats.lvl >= 10 && r.flags.classSelected && !r.preferences.disableClasses
+            _skillsAvailable = r.stats.lvl >= 10 && r.flags.classSelected && !r.preferences.disableClasses;
+            _questBossProgress = (r.party && r.party.quest && r.party.quest.progress) ? (r.party.quest.progress.up || 0) : 0;
             questsData = r.items.quests;
             if (!_habiticaContent) {
                 cs.autofail = false;
@@ -441,7 +442,7 @@ QtObject {
         }
         _rpc.call(url, "post-no-body", data, function (ok, r) {
             if (ok) {
-                _partialStatsUpdate(r.user.stats);
+                _partialStatsUpdate(r.user);
                 if (r.task) {
                     _prepareTask(r.task);
                     [ _habits, _tasks ].every(function (tasks) {
@@ -580,11 +581,11 @@ QtObject {
         if (_stats.hp === 0) { _remindDead(); return; }
         _rpc.call("/user/buy-health-potion", "post-no-body", {}, function (ok, o) {
             if (ok) {
-                _partialStatsUpdate(o)
-                if (cb) cb(true)
+                _partialStatsUpdate(o);
+                if (cb) cb(true);
             } else {
-                Signals.showMessage(qsTr("Cannot buy Health Potion: %1").arg(o.message))
-                if (cb) cb(false)
+                Signals.showMessage(qsTr("Cannot buy Health Potion: %1").arg(o.message));
+                if (cb) cb(false);
             }
         });
     }
@@ -837,6 +838,7 @@ QtObject {
     property bool _skillsAvailable: false
     property var _skills: []
     property var _quests: []
+    property real _questBossProgress: 0
 
     function _setupRpc() {
         if (_configGet("apiUser")) {
@@ -923,14 +925,22 @@ QtObject {
 
     function _addStatDiff(list, name, a, b) {
         if (a === b) return;
-        list.push(name + " " + ((b > a) ? "+" : "") + (Math.round(100 * (b - a)) / 100));
+        if (typeof(b) == "undefined") {
+            list.push(name + " " + Math.round(100 * a) / 100);
+        } else {
+            list.push(
+                        name + " " + ((b > a) ? "+" : "")
+                        + (Math.round(100 * (b - a)) / 100));
+        }
     }
 
     function _remindDead() {
         Signals.showMessage(qsTr("You must first refill your health from the profile page before you can do this!"));
     }
 
-    function _partialStatsUpdate(stats) {
+    function _partialStatsUpdate(o) {
+        var party = o.party;
+        var stats = o.stats ? o.stats : o;
         var msgs = [];
         var lvlChange = stats.hasOwnProperty("lvl") && stats.lvl !== _stats.lvl;
         [{p:"lvl", n:qsTr("Level")},
@@ -944,6 +954,10 @@ QtObject {
                 _stats[item.p] = stats[item.p];
             }
         });
+        if (party && party.quest && party.quest.progress) {
+            _questBossProgress = (party.quest.progress.up || 0);
+            _addStatDiff(msgs, qsTr("Total boss damage"), party.quest.progress.up);
+        }
         if (_stats.hp === 0) {
             Signals.showMessage(qsTr("Sorry, you ran out of health... Refill your health on the profile page to continue!"));
         } else {
@@ -1229,6 +1243,7 @@ QtObject {
                 r.type = "boss";
                 r.maxHp = qc.boss.hp;
                 r.hp = Math.ceil(quest.progress.hp);
+                r.progress = Math.ceil(_questBossProgress);
             } else if (qc.collect) {
                 r.type = "collect";
                 r.collect = [];
