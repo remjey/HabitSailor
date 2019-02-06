@@ -285,107 +285,107 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="218"/>
+        <location filename="../qml/pages/Main.qml" line="220"/>
         <source>Cron</source>
         <translation>Cron</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="225"/>
+        <location filename="../qml/pages/Main.qml" line="227"/>
         <source>The last cron ran yesterday or earlier. To start a new day, touch the button below. Before doing so, you may still check yesterday’s dailies.</source>
         <translation>Le dernier cron a eu lieu hier ou avant. Pour commencer une nouvelle journée, touchez le bouton ci-dessous. Avant cela, vous pouvez encore cocher vos quotidiennes d’hier.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="234"/>
+        <location filename="../qml/pages/Main.qml" line="236"/>
         <source>Start new day</source>
         <translation>Commencer ma journée</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="247"/>
+        <location filename="../qml/pages/Main.qml" line="249"/>
         <source>Tasks</source>
         <translation>Tâches</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="254"/>
+        <location filename="../qml/pages/Main.qml" line="256"/>
         <source>Refill your health</source>
         <translation>Restaurez votre santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="263"/>
+        <location filename="../qml/pages/Main.qml" line="265"/>
         <source>Habits</source>
         <translation>Habitudes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="272"/>
+        <location filename="../qml/pages/Main.qml" line="274"/>
         <source>Dailies</source>
         <translation>Quotidiennes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="281"/>
+        <location filename="../qml/pages/Main.qml" line="283"/>
         <source>To-Dos</source>
         <translation>À faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="288"/>
+        <location filename="../qml/pages/Main.qml" line="290"/>
         <source>Rewards and Skills</source>
         <translation>Récompenses et compétences</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="294"/>
+        <location filename="../qml/pages/Main.qml" line="296"/>
         <source>Health Potion</source>
         <translation>Potion de santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="295"/>
+        <location filename="../qml/pages/Main.qml" line="297"/>
         <source>Costs %1 Gold</source>
         <translation>Coûte %1 pièce(s) d’or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="297"/>
+        <location filename="../qml/pages/Main.qml" line="299"/>
         <source>Buying Health Potion</source>
         <translation>Achat d’une Potion de Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="307"/>
+        <location filename="../qml/pages/Main.qml" line="309"/>
         <source>Custom Rewards</source>
         <translation>Récompenses personnalisées</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="317"/>
+        <location filename="../qml/pages/Main.qml" line="319"/>
         <source>Skills</source>
         <translation>Compétences</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="324"/>
+        <location filename="../qml/pages/Main.qml" line="326"/>
         <source>Social</source>
         <translation>Social</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="331"/>
+        <location filename="../qml/pages/Main.qml" line="333"/>
         <source>Messages</source>
         <translation>Messages</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="342"/>
+        <location filename="../qml/pages/Main.qml" line="344"/>
         <source>Party</source>
         <translation>Équipe</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="357"/>
+        <location filename="../qml/pages/Main.qml" line="359"/>
         <source>Check Out of Inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="357"/>
+        <location filename="../qml/pages/Main.qml" line="359"/>
         <source>Rest in the Inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="358"/>
+        <location filename="../qml/pages/Main.qml" line="360"/>
         <source>Checking out of inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="358"/>
+        <location filename="../qml/pages/Main.qml" line="360"/>
         <source>Resting in the inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
@@ -678,12 +678,12 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Membres de l’équipe ayant décliné la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="360"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="361"/>
         <source>Lv. %1</source>
         <translation>Lv: %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="401"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="402"/>
         <source>Send message</source>
         <translation>Envoyer un message</translation>
     </message>
@@ -709,38 +709,32 @@ Toutes vos quotidiennes sont faites!</translation>
 <context>
     <name>QuestDetails</name>
     <message>
-        <location filename="../qml/pages/QuestDetails.qml" line="46"/>
-        <location filename="../qml/pages/QuestDetails.qml" line="53"/>
-        <source>Invite party to this quest</source>
+        <location filename="../qml/pages/QuestDetails.qml" line="43"/>
+        <source>Invite party to a quest</source>
         <translation>Inviter l’équipe à une quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/QuestDetails.qml" line="62"/>
-        <source>Quest Details</source>
-        <translation>Détails de la quête</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/QuestDetails.qml" line="102"/>
+        <location filename="../qml/pages/QuestDetails.qml" line="84"/>
         <source>Items to collect</source>
         <translation>Objets à collecter</translation>
     </message>
     <message>
-        <location filename="../qml/pages/QuestDetails.qml" line="123"/>
+        <location filename="../qml/pages/QuestDetails.qml" line="105"/>
         <source>Boss Statistics</source>
         <translation>Statistiques du boss</translation>
     </message>
     <message>
-        <location filename="../qml/pages/QuestDetails.qml" line="129"/>
+        <location filename="../qml/pages/QuestDetails.qml" line="111"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/QuestDetails.qml" line="136"/>
+        <location filename="../qml/pages/QuestDetails.qml" line="118"/>
         <source>Strength</source>
         <translation>Force</translation>
     </message>
     <message>
-        <location filename="../qml/pages/QuestDetails.qml" line="167"/>
+        <location filename="../qml/pages/QuestDetails.qml" line="149"/>
         <source>Rewards</source>
         <translation>Récompenses</translation>
     </message>

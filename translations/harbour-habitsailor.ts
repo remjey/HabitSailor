@@ -573,10 +573,6 @@ All dailies completed!</source>
 <context>
     <name>QuestDetails</name>
     <message>
-        <source>Quest Details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Items to collect</source>
         <translation type="unfinished"></translation>
     </message>
@@ -597,7 +593,7 @@ All dailies completed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Invite party to this quest</source>
+        <source>Invite party to a quest</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

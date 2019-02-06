@@ -206,13 +206,15 @@ Page {
                 width: parent.width
                 spacing: Theme.paddingMedium
                 clip: true
+                visible: height != 0
 
                 property bool _visible: false;
                 height: _visible ? implicitHeight : 0
+                opacity: _visible ? 1.0 : 0.0
 
-                Behavior on height {
-                    NumberAnimation { duration: 200 }
-                }
+                Behavior on height { NumberAnimation { duration: 200 } }
+
+                Behavior on opacity { NumberAnimation { duration: 200 } }
 
                 SectionHeader {
                     text: qsTr("Cron")

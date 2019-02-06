@@ -4,7 +4,7 @@ import Sailfish.Silica 1.0
 import ".."
 import "../components"
 
-Page {
+Dialog {
     property var quest: ({})
 
     ListModel { id: collectibles }
@@ -17,49 +17,31 @@ Page {
         quest.rewards.forEach(function (r) { rewards.append(r); });
     }
 
-    function startQuest() {
-        flickable.enabled = false
-        busyIndicator.running = true
-        Model.startQuest(quest.key, function (ok) {
-            if (ok) {
-                var pdpage = pageStack.find(function (page) {
-                    return page.pageName === "PartyDetails"
-                });
-                pageStack.pop(pdpage);
-            } else {
-                flickable.enabled = true
-                busyIndicator.running = false
-            }
-        });
-    }
+    acceptDestination: pageStack.find(function (page) {
+        return page.pageName === "PartyDetails"
+    });
+
+    acceptDestinationAction: PageStackAction.Pop
+
+    onAccepted: Model.startQuest(quest.key);
 
     SilicaFlickable {
         id: flickable
         anchors.fill: parent
         contentHeight: content.implicitHeight + Theme.paddingLarge
         opacity: enabled ? 1.0 : 0.5
+        clip: true
 
         VerticalScrollDecorator {}
-
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("Invite party to this quest")
-                onClicked: startQuest()
-            }
-        }
-
-        PushUpMenu {
-            MenuItem {
-                text: qsTr("Invite party to this quest")
-                onClicked: startQuest()
-            }
-        }
 
         Column {
             id: content
             width: parent.width
 
-            PageHeader { title: qsTr("Quest Details") }
+            DialogHeader {
+                id: dialogHeader
+                title: qsTr("Invite party to a quest")
+            }
 
             ImageWithBusyIndicator {
                 x: Theme.itemSizeLarge
@@ -210,5 +192,9 @@ Page {
         id: busyIndicator
         anchors.centerIn: parent
         size: BusyIndicatorSize.Large
+    }
+
+    RemorsePopup {
+        id: remorse
     }
 }

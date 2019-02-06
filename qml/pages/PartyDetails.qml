@@ -272,7 +272,8 @@ Page {
         target: Signals
         onQuestStarted: {
             details.quest = questData;
-            updateData();
+            _updateQuestData(details.quest);
+            _populateMembers();
         }
     }
 
