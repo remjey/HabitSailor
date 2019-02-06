@@ -86,7 +86,7 @@ Dialog {
 
                     Label {
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: itemStatPlus.left
+                        anchors.right: unallocated == 1 ? parent.right : itemStatPlus.left
                         color: statItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                         font.pixelSize: Theme.fontSizeLarge
                         font.bold: true
