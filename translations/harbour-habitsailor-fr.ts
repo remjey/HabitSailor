@@ -491,20 +491,24 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Or</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="958"/>
+        <location filename="../qml/Model.qml" line="959"/>
         <source>Total boss damage</source>
         <translation>Dommage total au boss</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="961"/>
+        <location filename="../qml/Model.qml" line="962"/>
         <source>Sorry, you ran out of health... Refill your health on the profile page to continue!</source>
         <translation>Désolé, vous avez épuisé votre santé… Restaurez votre santé depuis la page de profil pour continuer !</translation>
     </message>
     <message>
-        <location filename="../qml/Model.qml" line="1181"/>
-        <location filename="../qml/Model.qml" line="1186"/>
+        <location filename="../qml/Model.qml" line="1182"/>
         <source>%1 Gold</source>
         <translation>%1 pièce d’or</translation>
+    </message>
+    <message>
+        <location filename="../qml/Model.qml" line="1187"/>
+        <source>%1 Experience points</source>
+        <translation>%1 Points d’expérience</translation>
     </message>
     <message>
         <location filename="../qml/Model.qml" line="526"/>

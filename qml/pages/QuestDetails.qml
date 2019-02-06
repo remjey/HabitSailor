@@ -74,7 +74,7 @@ Page {
 
             Label {
                 x: Theme.horizontalPageMargin
-                width: parent.width - Theme.horizontalPageMargin
+                width: parent.width - Theme.horizontalPageMargin * 2
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 color: Theme.highlightColor
                 horizontalAlignment: Text.AlignHCenter

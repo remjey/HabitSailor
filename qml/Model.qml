@@ -1184,7 +1184,7 @@ QtObject {
             if (qc.drop.exp) q.rewards.push({
                                                 iconSource: _pictureExperienceUrl,
                                                 iconZoom: -1,
-                                                text: qsTr("%1 Gold").arg(qc.drop.gp),
+                                                text: qsTr("%1 Experience points").arg(qc.drop.gp),
                                             });
             (qc.drop.items || []).forEach(function (item) {
                 var r = {

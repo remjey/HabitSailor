@@ -448,6 +448,10 @@ All dailies completed!</source>
         <source>Total boss damage</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>%1 Experience points</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PartyChat</name>
