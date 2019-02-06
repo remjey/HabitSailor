@@ -24,10 +24,10 @@ var taskPriorities = [ 0.1, 1, 1.5, 2 ];
 var repeatEveryDay = { m: true, t: true, w: true, th: true, f: true, s: true, su: true };
 var repeatNever = { m: false, t: false, w: false, th: false, f: false, s: false, su: false };
 
-function filterObject(props, o) {
+function filterObject(props, o, clone) {
     var r = {};
     props.forEach(function (prop) {
-        r[prop] = o[prop];
+        r[prop] = clone ? sclone(o[prop]) : o[prop];
     });
     return r;
 }

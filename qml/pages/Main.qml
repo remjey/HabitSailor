@@ -23,6 +23,11 @@ import "../components"
 import ".."
 
 Page {
+
+    property string pageName: "Main"
+
+    property bool allocateStatPointsBusy: false
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: content.height + Theme.paddingLarge
@@ -202,6 +207,58 @@ Page {
             }
 
             Column {
+                id: unallocatedStatPoints
+                width: parent.width
+                spacing: Theme.paddingMedium
+                clip: true
+                visible: height != 0
+
+                property bool _visible: false;
+                height: _visible ? implicitHeight : 0
+                opacity: _visible ? 1.0 : 0.0
+
+                Behavior on height { NumberAnimation { duration: 200 } }
+
+                Behavior on opacity { NumberAnimation { duration: 200 } }
+
+                SectionHeader {
+                    text: qsTr("Your stats")
+                }
+
+                Label {
+                    width: parent.width - Theme.horizontalPageMargin * 2
+                    x: Theme.horizontalPageMargin
+                    color: Theme.highlightColor
+                    text: qsTr("You have unallocated stat points!")
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    horizontalAlignment: Text.AlignHCenter
+                }
+
+                Row {
+                    width: parent.width - Theme.horizontalPageMargin * 2
+                    x: Theme.horizontalPageMargin
+                    spacing: Theme.paddingMedium
+
+                    Button {
+                        width: 2 * (parent.width - parent.spacing) / 3
+                        enabled: !allocateStatPointsBusy && !menu.busy
+                        text: qsTr("Allocate stat points");
+                        onClicked: pageStack.push(Qt.resolvedUrl("AllocateStatPoints.qml"));
+                    }
+
+                    Button {
+                        width: (parent.width - parent.spacing) / 3
+                        enabled: !allocateStatPointsBusy && !menu.busy
+                        text: qsTr("Later");
+                        onClicked: {
+                            Model.hideUnallocatedStatPoints();
+                            unallocatedStatPoints._visible = false
+                        }
+                    }
+                }
+            }
+
+            Column {
                 id: startANewDay
                 width: parent.width
                 spacing: Theme.paddingMedium
@@ -376,6 +433,7 @@ Page {
         skillsButton.visible = Model.listSkills().length > 0;
 
         startANewDay._visible = Model.getNeedsCron();
+        unallocatedStatPoints._visible = Model.getDisplayUnallocatedStatPoints() && Model.getUnallocatedStatPoints();
 
         updateMessageBadges();
     }

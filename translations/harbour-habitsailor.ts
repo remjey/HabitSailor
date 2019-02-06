@@ -41,6 +41,45 @@
     </message>
 </context>
 <context>
+    <name>AllocateStatPoints</name>
+    <message>
+        <source>Strength</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Intelligence</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Constitution</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Perception</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allocate Stat Points</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Available points: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allocated: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CoverPage</name>
     <message>
         <source>Dailies</source>
@@ -314,6 +353,22 @@ All dailies completed!</source>
         <source>Skills</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>You have unallocated stat points!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allocate stat points</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your stats</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Later</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Messages</name>
@@ -450,6 +505,10 @@ All dailies completed!</source>
     </message>
     <message>
         <source>%1 Experience points</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot allocate stat points: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

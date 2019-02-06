@@ -94,7 +94,8 @@ DISTFILES += \
     qml/pages/Quests.qml \
     qml/components/KeyValueItem.qml \
     qml/components/ImageWithBusyIndicator.qml \
-    qml/pages/QuestDetails.qml
+    qml/pages/QuestDetails.qml \
+    qml/pages/AllocateStatPoints.qml
 
 HEADERS += \
     src/cachednetworkaccessmanagerfactory.h

@@ -83,11 +83,14 @@ QtObject {
             _balance = r.balance;
             _name = r.profile.name;
             _stats = r.stats;
+            _equipped = r.items.gear.equipped;
             _party = r.party._id || "";
             _avatarInfo = _extractAvatarInfo(r);
             _avatarParts = _makeAvatarParts(_avatarInfo);
-            _skillsAvailable = r.stats.lvl >= 10 && r.flags.classSelected && !r.preferences.disableClasses;
+            _classSelected = r.flags.classSelected && !r.preferences.disableClasses;
+            _skillsAvailable = r.stats.lvl >= 10 && _classSelected;
             _questBossProgress = (r.party && r.party.quest && r.party.quest.progress) ? (r.party.quest.progress.up || 0) : 0;
+            _unallocatedStatPoints = _classSelected ? (r.stats.points || 0) : 0;
             questsData = r.items.quests;
             if (!_habiticaContent) {
                 cs.autofail = false;
@@ -158,6 +161,8 @@ QtObject {
                 var q = _makeQuestObject(key);
                 if (q) _quests.push(q);
             }
+
+            _updateStats();
 
             Signals.updateStats();
             Signals.updateTasks();
@@ -273,10 +278,13 @@ QtObject {
     function getMpMax() { return _stats.maxMP; }
     function getXp() { return _stats.exp; }
     function getXpNext() { return _stats.toNextLevel; }
+    function getStats() { return Utils.filterObject([ "int", "con", "per", "str", "total" ], _stats, true); }
     function getGold() { return _stats.gp; }
     function getGems() { return _balance * 4; }
     function hasParty() { return !!_party; }
     function hasInbox() { return _inboxEnabled; }
+    function getDisplayUnallocatedStatPoints() { return !!_displayUnallocatedStatPoints; }
+    function getUnallocatedStatPoints() { return _unallocatedStatPoints; }
     function hasNewMessages() { return _newMessages; }
     function hasNewPartyMessages() { return _newPartyMessages; }
 
@@ -428,6 +436,22 @@ QtObject {
                 Signals.showMessage(qsTr("Could not update quest: %1").arg(o.message))
                 if (cb) cb(false);
             }
+        });
+    }
+
+    function hideUnallocatedStatPoints() {
+        _rpc.call("/notifications/:nid/read", "post-no-body", { nid: _displayUnallocatedStatPoints });
+    }
+
+    function allocateStatPoints(stats, cb) {
+        _rpc.call("/user/allocate-bulk", "post", { stats: stats }, function (ok, o, xhr) {
+            if (ok) {
+                xhr.processNotificationsNow();
+                _partialStatsUpdate(o);
+            } else {
+                Signals.showMessage(qsTr("Cannot allocate stat points: %1").arg(o.message));
+            }
+            if (cb) cb(ok);
         });
     }
 
@@ -823,6 +847,7 @@ QtObject {
     property real _balance // gems
     property string _name
     property var _stats
+    property var _equipped
     property var _habits
     property var _tasks
     property var _rewards
@@ -839,6 +864,9 @@ QtObject {
     property var _skills: []
     property var _quests: []
     property real _questBossProgress: 0
+    property int _unallocatedStatPoints: 0
+    property string _displayUnallocatedStatPoints: ""
+    property bool _classSelected: false
 
     function _setupRpc() {
         if (_configGet("apiUser")) {
@@ -852,9 +880,12 @@ QtObject {
 
     function _notificationsCallback(notifs) {
         var newPartyMessages = false;
+        _displayUnallocatedStatPoints = "";
         notifs.forEach(function (n) {
             if (n.type === "NEW_CHAT_MESSAGE" && n.data.group.id === _party) {
                 newPartyMessages = true;
+            } else if (n.type === "UNALLOCATED_STATS_POINTS") {
+                _displayUnallocatedStatPoints = n.id;
             }
         });
         if (_newPartyMessages != newPartyMessages) {
@@ -874,6 +905,22 @@ QtObject {
                 tx.executeSql("insert or replace into config (k, v) values (?, ?)", [ key, value ]);
             });
         }
+    }
+
+    function _updateStats() {
+        _stats.total = {};
+        [ "str", "int", "con", "per" ].forEach(function (statk) {
+            _stats.total[statk] = _stats[statk] + _stats.lvl / 2;
+            Object.keys(_equipped).forEach(function (eqk) {
+                var item = _habiticaContent.gear.flat[_equipped[eqk]];
+                if (item) {
+                    _stats.total[statk] += item[statk];
+                    if (item.klass === _stats.class && _classAttrs[_stats.class].indexOf(statk) !== -1) {
+                        _stats.total[statk] += item[statk] / 2;
+                    }
+                }
+            });
+        });
     }
 
     function _prepareTask(item) {
@@ -954,6 +1001,9 @@ QtObject {
                 _stats[item.p] = stats[item.p];
             }
         });
+        _unallocatedStatPoints = _classSelected ? (stats.points || 0) : 0;
+        [ "int", "con", "per", "str" ].forEach(function (k) { _stats[k] = stats[k]; });
+        _updateStats();
         if (party && party.quest && party.quest.progress) {
             _questBossProgress = (party.quest.progress.up || 0);
             _addStatDiff(msgs, qsTr("Total boss damage"), party.quest.progress.up);
@@ -1273,6 +1323,13 @@ QtObject {
     property var _eventNamePrefixes: [
         "birthday", "fall", "gaymerx", "spring", "summer", "takeThis", "winter", "wondercon",
     ]
+
+    property var _classAttrs: ({
+                                   "warrior": [ "str", "con" ],
+                                   "mage": [ "int", "per" ],
+                                   "healer": [ "con", "int" ],
+                                   "rogue": [ "per", "str" ],
+                               })
 
 }
 
