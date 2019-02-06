@@ -82,17 +82,17 @@
         <translation>Points disponibles: %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AllocateStatPoints.qml" line="77"/>
+        <location filename="../qml/pages/AllocateStatPoints.qml" line="78"/>
         <source>Total: %1</source>
         <translation>Total: %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AllocateStatPoints.qml" line="83"/>
+        <location filename="../qml/pages/AllocateStatPoints.qml" line="84"/>
         <source>Allocated: %1</source>
         <translation>Alloués: %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AllocateStatPoints.qml" line="134"/>
+        <location filename="../qml/pages/AllocateStatPoints.qml" line="140"/>
         <source>Reset</source>
         <translation>Réinitialiser</translation>
     </message>
@@ -293,6 +293,7 @@ Toutes vos quotidiennes sont faites!</translation>
     </message>
     <message>
         <location filename="../qml/pages/Main.qml" line="93"/>
+        <location filename="../qml/pages/Main.qml" line="411"/>
         <source>Profile</source>
         <translation>Profil</translation>
     </message>
@@ -333,127 +334,132 @@ Toutes vos quotidiennes sont faites!</translation>
         <translation>Mana</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="225"/>
+        <location filename="../qml/pages/Main.qml" line="227"/>
         <source>Your stats</source>
         <translation>Vos caractéristiques</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="232"/>
+        <location filename="../qml/pages/Main.qml" line="234"/>
         <source>You have unallocated stat points!</source>
         <translation>Vous avez des points de caractéristiques non alloués !</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="245"/>
+        <location filename="../qml/pages/Main.qml" line="247"/>
         <source>Allocate stat points</source>
         <translation>Allouer les points</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="252"/>
+        <location filename="../qml/pages/Main.qml" line="254"/>
         <source>Later</source>
         <translation>Plus tard</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="277"/>
+        <location filename="../qml/pages/Main.qml" line="279"/>
         <source>Cron</source>
         <translation>Cron</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="284"/>
+        <location filename="../qml/pages/Main.qml" line="286"/>
         <source>The last cron ran yesterday or earlier. To start a new day, touch the button below. Before doing so, you may still check yesterday’s dailies.</source>
         <translation>Le dernier cron a eu lieu hier ou avant. Pour commencer une nouvelle journée, touchez le bouton ci-dessous. Avant cela, vous pouvez encore cocher vos quotidiennes d’hier.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="293"/>
+        <location filename="../qml/pages/Main.qml" line="295"/>
         <source>Start new day</source>
         <translation>Commencer ma journée</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="306"/>
+        <location filename="../qml/pages/Main.qml" line="308"/>
         <source>Tasks</source>
         <translation>Tâches</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="313"/>
+        <location filename="../qml/pages/Main.qml" line="315"/>
         <source>Refill your health</source>
         <translation>Restaurez votre santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="322"/>
+        <location filename="../qml/pages/Main.qml" line="324"/>
         <source>Habits</source>
         <translation>Habitudes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="331"/>
+        <location filename="../qml/pages/Main.qml" line="333"/>
         <source>Dailies</source>
         <translation>Quotidiennes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="340"/>
+        <location filename="../qml/pages/Main.qml" line="342"/>
         <source>To-Dos</source>
         <translation>À faire</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="347"/>
+        <location filename="../qml/pages/Main.qml" line="349"/>
         <source>Rewards and Skills</source>
         <translation>Récompenses et compétences</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="353"/>
+        <location filename="../qml/pages/Main.qml" line="355"/>
         <source>Health Potion</source>
         <translation>Potion de santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="354"/>
+        <location filename="../qml/pages/Main.qml" line="356"/>
         <source>Costs %1 Gold</source>
         <translation>Coûte %1 pièce(s) d’or</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="356"/>
+        <location filename="../qml/pages/Main.qml" line="358"/>
         <source>Buying Health Potion</source>
         <translation>Achat d’une Potion de Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="366"/>
+        <location filename="../qml/pages/Main.qml" line="368"/>
         <source>Custom Rewards</source>
         <translation>Récompenses personnalisées</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="376"/>
+        <location filename="../qml/pages/Main.qml" line="378"/>
         <source>Skills</source>
         <translation>Compétences</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="383"/>
+        <location filename="../qml/pages/Main.qml" line="385"/>
         <source>Social</source>
         <translation>Social</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="390"/>
+        <location filename="../qml/pages/Main.qml" line="392"/>
         <source>Messages</source>
         <translation>Messages</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="401"/>
+        <location filename="../qml/pages/Main.qml" line="403"/>
         <source>Party</source>
         <translation>Équipe</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="416"/>
+        <location filename="../qml/pages/Main.qml" line="419"/>
+        <source>Allocate Stat Points</source>
+        <translation>Allouer des points de caractéristiques</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Main.qml" line="434"/>
         <source>Check Out of Inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="416"/>
+        <location filename="../qml/pages/Main.qml" line="434"/>
         <source>Rest in the Inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="417"/>
+        <location filename="../qml/pages/Main.qml" line="435"/>
         <source>Checking out of inn</source>
         <translation>Quitter l’auberge</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Main.qml" line="417"/>
+        <location filename="../qml/pages/Main.qml" line="435"/>
         <source>Resting in the inn</source>
         <translation>Se reposer à l’auberge</translation>
     </message>

@@ -207,11 +207,13 @@ Page {
             }
 
             Column {
-                id: unallocatedStatPoints
+                id: unallocatedStatPointsReminder
                 width: parent.width
                 spacing: Theme.paddingMedium
                 clip: true
                 visible: height != 0
+
+                property int points: 0
 
                 property bool _visible: false;
                 height: _visible ? implicitHeight : 0
@@ -252,7 +254,7 @@ Page {
                         text: qsTr("Later");
                         onClicked: {
                             Model.hideUnallocatedStatPoints();
-                            unallocatedStatPoints._visible = false
+                            unallocatedStatPointsReminder._visible = false
                         }
                     }
                 }
@@ -404,6 +406,22 @@ Page {
                     pageStack.push(Qt.resolvedUrl("PartyChat.qml"));
                 }
             }
+
+            SectionHeader {
+                text: qsTr("Profile")
+                visible: allocateStatPointsButton.visible
+            }
+
+            MenuButton {
+                id: allocateStatPointsButton
+                enabled: !menu.busy
+                imageSource: "image://theme/icon-m-capslock"
+                label: qsTr("Allocate Stat Points")
+
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("AllocateStatPoints.qml"));
+                }
+            }
         }
     }
 
@@ -433,7 +451,8 @@ Page {
         skillsButton.visible = Model.listSkills().length > 0;
 
         startANewDay._visible = Model.getNeedsCron();
-        unallocatedStatPoints._visible = Model.getDisplayUnallocatedStatPoints() && Model.getUnallocatedStatPoints();
+        unallocatedStatPointsReminder._visible = Model.getDisplayUnallocatedStatPoints() && Model.getUnallocatedStatPoints();
+        allocateStatPointsButton.hidden = !Model.getUnallocatedStatPoints() > 0;
 
         updateMessageBadges();
     }

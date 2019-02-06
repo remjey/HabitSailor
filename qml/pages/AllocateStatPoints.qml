@@ -58,6 +58,7 @@ Dialog {
                 delegate: ListItem {
                     id: statItem
                     contentHeight: statItemContent.implicitHeight + Theme.paddingMedium
+                    enabled: allocated < unallocated
 
                     Column {
                         id: statItemContent
@@ -86,33 +87,38 @@ Dialog {
 
                     Label {
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: unallocated == 1 ? parent.right : itemStatPlus.left
+                        anchors.right: parent.right
+                        anchors.rightMargin: Theme.horizontalPageMargin +
+                                             ((allocated < unallocated && unallocated > 1)
+                                              ? itemStatPlusImage.width + Theme.paddingMedium
+                                              : Theme.paddingMedium)
+
+                        Behavior on anchors.rightMargin {
+                            NumberAnimation {
+                                duration: 200;
+                                easing.type: Easing.InOutQuad
+                            }
+                        }
+
                         color: statItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                         font.pixelSize: Theme.fontSizeLarge
                         font.bold: true
-                        visible: model.alloc > 0
-                        text: "+" + model.alloc
+                        opacity: (model.alloc > 0) ? 1.0 : 0.0
+                        text: model.alloc > 0 ? "+" + model.alloc : ""
+
+                        Behavior on opacity { NumberAnimation { duration: 200 } }
                     }
 
-                    Item {
-                        id: itemStatPlus
-                        anchors.verticalCenter: parent.verticalCenter
+                    Image {
+                        id: itemStatPlusImage
                         anchors.right: parent.right
                         anchors.rightMargin: Theme.horizontalPageMargin
+                        anchors.verticalCenter: parent.verticalCenter
 
-                        width: allocated < unallocated ? itemStatPlusImage.implicitWidth + Theme.paddingMedium : 0
-                        height: itemStatPlusImage.height
+                        source: "image://theme/icon-m-add" + (parent.highlighted ? "?" + Theme.highlightColor : "")
                         opacity: allocated < unallocated ? 1.0 : 0.0
 
-                        Behavior on width { NumberAnimation { duration: 200 } }
                         Behavior on opacity { NumberAnimation { duration: 200 } }
-
-                        Image {
-                            id: itemStatPlusImage
-                            anchors.right: parent.right
-                            source: "image://theme/icon-m-add" + (parent.highlighted ? "?" + Theme.highlightColor : "")
-                        }
-
                     }
 
                     onClicked: {

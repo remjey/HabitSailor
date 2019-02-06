@@ -369,6 +369,10 @@ All dailies completed!</source>
         <source>Later</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Allocate Stat Points</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Messages</name>
