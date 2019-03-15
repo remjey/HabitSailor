@@ -53,6 +53,5 @@ Also I don’t like very much the Android emulation stack, and I love the way Sa
 * Filter tasks by tag, completed/not completed, add tag in task edition/creation
 * Sort tasks by color
 * Other rewards
-* Team spells
 * More languages
 

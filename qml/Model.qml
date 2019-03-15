@@ -541,11 +541,12 @@ QtObject {
         _rpc.call("/tasks/:tid/score/:dir", "post-no-body", { tid: tid, dir: orientation }, function (ok, o) {
             if (ok) {
                 habit.value += o.delta;
+                habit.color = Utils.colorForValue(habit.value);
                 _partialStatsUpdate(o);
                 if (orientation === "up") habit.counterUp++;
                 else habit.counterDown++;
                 if (cb)
-                    cb(true, Utils.colorForValue(habit.value), habit.counterUp, habit.counterDown);
+                    cb(true, habit.color, habit.counterUp, habit.counterDown);
             } else if (cb) {
                 Signals.showMessage(qsTr("Cannot update habit: %1").arg(o.message))
                 cb(false);
