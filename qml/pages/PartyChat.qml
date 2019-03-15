@@ -57,7 +57,7 @@ Page {
                 contentHeight: chatListContent.implicitHeight + Theme.paddingLarge
                 Rectangle {
                     anchors.fill: parent
-                    color: "black"
+                    color: Theme.overlayBackgroundColor
                     opacity: !chatListContentName.visible || model.loadId !== 0 ? 0.3 : 0
                     visible: opacity != 0
                     Behavior on opacity { NumberAnimation { duration: 200 } }
