@@ -44,7 +44,7 @@ BackgroundItem {
     property string label
     property string subLabel
     property bool badge: false
-    property bool allowLabelWrapping: false
+    property bool allowLabelWrapping: true
 
     property bool themeImageSource: imageSource.toString().substring(0, 8) === "image://"
 

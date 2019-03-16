@@ -72,27 +72,27 @@
         <translation>Perception</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AllocateStatPoints.qml" line="44"/>
+        <location filename="../qml/pages/AllocateStatPoints.qml" line="45"/>
         <source>Allocate Stat Points</source>
         <translation>Allouer des points de caractéristiques</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AllocateStatPoints.qml" line="51"/>
+        <location filename="../qml/pages/AllocateStatPoints.qml" line="52"/>
         <source>Available points: %1</source>
         <translation>Points disponibles: %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AllocateStatPoints.qml" line="78"/>
+        <location filename="../qml/pages/AllocateStatPoints.qml" line="79"/>
         <source>Total: %1</source>
         <translation>Total: %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AllocateStatPoints.qml" line="84"/>
+        <location filename="../qml/pages/AllocateStatPoints.qml" line="85"/>
         <source>Allocated: %1</source>
         <translation>Alloués: %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AllocateStatPoints.qml" line="140"/>
+        <location filename="../qml/pages/AllocateStatPoints.qml" line="141"/>
         <source>Reset</source>
         <translation>Réinitialiser</translation>
     </message>

@@ -39,6 +39,7 @@ Dialog {
 
         Column {
             width: parent.width
+            id: content
 
             DialogHeader {
                 title: qsTr("Allocate Stat Points")

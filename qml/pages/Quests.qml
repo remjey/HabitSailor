@@ -22,7 +22,6 @@ Page {
             imageSource: model.iconSource
             label: model.name
             preventAmbianceAdaptation: true
-            allowLabelWrapping: true
             onClicked: pageStack.push(Qt.resolvedUrl("QuestDetails.qml"), { quest: questsData[model.key] })
         }
 
