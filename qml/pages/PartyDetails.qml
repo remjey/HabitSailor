@@ -45,15 +45,61 @@ Page {
         VerticalScrollDecorator {}
 
         PullDownMenu {
+            id: pdMenu
             /* TODO
             MenuItem {
                 text: qsTr("Leave party")
             } */
+
             MenuItem {
                 text: qsTr("Invite party to a quest")
-                enabled: !hasQuest
+                enabled: !pdMenu.busy
+                visible: !hasQuest
                 onClicked: pageStack.push(Qt.resolvedUrl("Quests.qml"))
             }
+
+            MenuItem {
+                text: qsTr("Accept quest")
+                enabled: !pdMenu.busy
+                visible: hasQuest && !amQuester && !haveDeclinedQuest && !questActive
+                onClicked: questActionRemorsePopup.show(qsTr("Accepting quest"), "accept")
+            }
+
+            MenuItem {
+                text: qsTr("Decline quest")
+                enabled: !pdMenu.busy
+                visible: hasQuest && !amQuester && !haveDeclinedQuest && !questActive
+                onClicked: questActionRemorsePopup.show(qsTr("Declining quest"), "reject")
+            }
+
+            MenuItem {
+                text: qsTr("Start quest")
+                enabled: !pdMenu.busy
+                visible: hasQuest && (amLeader || amQuestLeader) && !questActive
+                onClicked: questActionRemorsePopup.show(qsTr("Starting quest"), "force-start")
+            }
+
+            MenuItem {
+                text: qsTr("Cancel quest")
+                enabled: !pdMenu.busy
+                visible: hasQuest && (amLeader || amQuestLeader) && !questActive
+                onClicked: questActionRemorsePopup.show(qsTr("Cancelling quest"), "cancel")
+            }
+
+            MenuItem {
+                text: qsTr("Leave quest")
+                enabled: !pdMenu.busy
+                visible: hasQuest && questActive && amQuester && !amQuestLeader
+                onClicked: questActionRemorsePopup.show(qsTr("Leaving quest"), "leave")
+            }
+
+            MenuItem {
+                text: qsTr("Abort quest")
+                enabled: !pdMenu.busy
+                visible: hasQuest && (amLeader || amQuestLeader) && questActive
+                onClicked: questActionRemorsePopup.show(qsTr("Aborting quest"), "abort")
+            }
+
         }
 
         Column {
@@ -147,67 +193,6 @@ Page {
                             x: Theme.horizontalPageMargin
                             key: model.name
                             value: model.count + " / " + model.max
-                        }
-                    }
-
-                    Item {
-                        height: Theme.paddingLarge
-                        width: 1
-                        visible: questActive
-                    }
-
-                    Flow {
-                        id: questButtonsFlow
-                        visible: hasQuest
-                        width: parent.width - Theme.horizontalPageMargin * 2
-                        x: Theme.horizontalPageMargin
-                        spacing: Theme.paddingMedium
-
-                        opacity: enabled ? 1.0 : 0.5
-                        Behavior on opacity { NumberAnimation { duration: 200 } }
-
-                        property int itemWidth: (width - spacing) / 2
-
-                        Button {
-                            width: parent.itemWidth
-                            text: qsTr("Accept")
-                            visible: !amQuester && !haveDeclinedQuest && !questActive
-                            onClicked: questActionRemorsePopup.show(qsTr("Accepting quest"), "accept")
-                        }
-
-                        Button {
-                            width: parent.itemWidth
-                            text: qsTr("Decline")
-                            visible: !amQuester && !haveDeclinedQuest && !questActive
-                            onClicked: questActionRemorsePopup.show(qsTr("Declining quest"), "reject")
-                        }
-
-                        Button {
-                            width: parent.itemWidth
-                            text: qsTr("Start")
-                            visible: (amLeader || amQuestLeader) && !questActive
-                            onClicked: questActionRemorsePopup.show(qsTr("Starting quest"), "force-start")
-                        }
-
-                        Button {
-                            width: parent.itemWidth
-                            text: qsTr("Cancel")
-                            visible: (amLeader || amQuestLeader) && !questActive
-                            onClicked: questActionRemorsePopup.show(qsTr("Cancelling quest"), "cancel")
-                        }
-
-                        Button {
-                            width: parent.itemWidth * 2 + parent.spacing
-                            text: qsTr("Leave")
-                            visible: questActive && amQuester && !amQuestLeader
-                            onClicked: questActionRemorsePopup.show(qsTr("Leaving quest"), "leave")
-                        }
-
-                        Button {
-                            width: parent.itemWidth * 2 + parent.spacing
-                            text: qsTr("Abort")
-                            visible: (amLeader || amQuestLeader) && questActive
-                            onClicked: questActionRemorsePopup.show(qsTr("Aborting quest"), "abort")
                         }
                     }
                 }
@@ -415,19 +400,21 @@ Page {
     RemorsePopup {
         id: questActionRemorsePopup
         function show(msg, action) {
-            questButtonsFlow.enabled = false;
+            pdMenu.enabled = false;
             execute(msg, function () {
+                pdMenu.busy = true;
                 Model.questAction(details.id, action, function (ok, r) {
                     if (ok) {
                         details.quest = r;
                         _updateQuestData();
                         _populateMembers();
                     }
-                    questButtonsFlow.enabled = true;
+                    pdMenu.busy = false;
+                    pdMenu.enabled = true;
                 });
             });
         }
-        onCanceled: questButtonsFlow.enabled = true
+        onCanceled: pdMenu.enabled = true;
     }
 
     function _updateMembers() {

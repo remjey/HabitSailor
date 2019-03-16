@@ -550,19 +550,7 @@ All dailies completed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Decline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Abort</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Aborting quest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Accept</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -574,19 +562,7 @@ All dailies completed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Starting quest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Leave</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -615,6 +591,30 @@ All dailies completed!</source>
     </message>
     <message>
         <source>Invite party to a quest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accept quest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Decline quest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start quest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel quest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Leave quest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Abort quest</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

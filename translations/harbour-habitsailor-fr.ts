@@ -657,112 +657,112 @@ Toutes vos quotidiennes sont faites!</translation>
 <context>
     <name>PartyDetails</name>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="118"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="164"/>
         <source>Not started yet</source>
         <translation>Pas encore commencée</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="134"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="180"/>
         <source>Health</source>
         <translation>Santé</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="180"/>
-        <source>Decline</source>
-        <translation>Décliner</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="208"/>
-        <source>Abort</source>
-        <translation>Interrompre</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="210"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="100"/>
         <source>Aborting quest</source>
         <translation>Interruption de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="242"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="227"/>
         <source>Party members</source>
         <translation>Membres de l’équipe</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="241"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="226"/>
         <source>Other party members</source>
         <translation>Autres membres de l’équipe</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="53"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="55"/>
         <source>Invite party to a quest</source>
         <translation>Inviter l’équipe à une quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="80"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="62"/>
+        <source>Accept quest</source>
+        <translation>Accepter la quête</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PartyDetails.qml" line="69"/>
+        <source>Decline quest</source>
+        <translation>Décliner la quête</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PartyDetails.qml" line="76"/>
+        <source>Start quest</source>
+        <translation>Commencer la quête</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PartyDetails.qml" line="83"/>
+        <source>Cancel quest</source>
+        <translation>Annuler la quête</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PartyDetails.qml" line="90"/>
+        <source>Leave quest</source>
+        <translation>Quitter la quête</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PartyDetails.qml" line="97"/>
+        <source>Abort quest</source>
+        <translation>Interrompre la quête</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PartyDetails.qml" line="126"/>
         <source>Quest</source>
         <translation>Quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="173"/>
-        <source>Accept</source>
-        <translation>Accepter</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="175"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="65"/>
         <source>Accepting quest</source>
         <translation>Acceptation de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="182"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="72"/>
         <source>Declining quest</source>
         <translation>Déclinement de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="187"/>
-        <source>Start</source>
-        <translation>Commencer</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="189"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="79"/>
         <source>Starting quest</source>
         <translation>Commencement de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="194"/>
-        <source>Cancel</source>
-        <translation>Annuler</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="196"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="86"/>
         <source>Cancelling quest</source>
         <translation>Annulation de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="201"/>
-        <source>Leave</source>
-        <translation>Abandonner</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="203"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="93"/>
         <source>Leaving quest</source>
         <translation>Abandon de la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="217"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="202"/>
         <source>Party members who accepted the quest</source>
         <translation>Membres de l’équipe participant à la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="228"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="213"/>
         <source>Party members who declined the quest</source>
         <translation>Membres de l’équipe ayant décliné la quête</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="361"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="346"/>
         <source>Lv. %1</source>
         <translation>Lv: %1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PartyDetails.qml" line="402"/>
+        <location filename="../qml/pages/PartyDetails.qml" line="387"/>
         <source>Send message</source>
         <translation>Envoyer un message</translation>
     </message>
