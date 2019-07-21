@@ -11,6 +11,7 @@ HabitSailor is Free Software, released under GPLv3. Artwork is CC-BY-SA 3.0. (se
 You can help me work on this project by donating:
 
 * <a href="https://liberapay.com/remjey/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+* <a href="https://ko-fi.com/remjey"><img alt="Donate using Ko-Fi" src="https://www.ko-fi.com/img/Kofi_Logo_Blue.svg"></a>
 * <a href="https://flattr.com/submit/auto?fid=mydw6m&amp;url=http%3A%2F%2Fjf.almel.fr%2Fflattr%2FHabitSailor" target="_blank"><img src="http://button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
 * BitCoin: <a href="bitcoin:1EVSFUTPCVXuTXEaAkowggToZgAS7ReZg5?label=HabitSailor">1EVSFUTPCVXuTXEaAkowggToZgAS7ReZg5</a>
 * <a href="http://jf.almel.fr/paypal/HabitSailor">PayPal</a>
