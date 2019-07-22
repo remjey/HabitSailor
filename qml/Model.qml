@@ -1327,9 +1327,13 @@ QtObject {
 
     property var _classAttrs: ({
                                    "warrior": [ "str", "con" ],
-                                   "mage": [ "int", "per" ],
+                                   "wizard": [ "int", "per" ],
                                    "healer": [ "con", "int" ],
                                    "rogue": [ "per", "str" ],
+                                   "special": [],
+                                   "armoire": [],
+                                   "base": [],
+                                   "mystery": [],
                                })
 
 }
