@@ -183,10 +183,8 @@ QtObject {
             _inbox = {}
             var markMessagesUnread = _newMessages;
             for (var i = 0; i < r.length; i++) {
-                var msg = _addMessageToInbox(r[i]);
-                if (!msg.mine && markMessagesUnread > 0) {
-                    penpal.unread++;
-                    msg.unread = true;
+                var msg = _addMessageToInbox(r[i], false, !!markMessagesUnread);
+                if (msg.unread) {
                     markMessagesUnread--;
                 }
             }
@@ -1021,7 +1019,7 @@ QtObject {
         }
     }
 
-    function _addMessageToInbox(cmsg, unshift) {
+    function _addMessageToInbox(cmsg, unshift, unread) {
         var penpal = _inbox[cmsg.uuid]
         if (!penpal) {
             penpal = {
@@ -1035,6 +1033,10 @@ QtObject {
         }
         if (!penpal.avatar && !cmsg.sent && cmsg.userStyles) penpal.avatar = _makeAvatarParts(_extractAvatarInfo(cmsg.userStyles));
         var msg = _transformPrivateMessage(cmsg);
+        if (!msg.mine && unread) {
+            penpal.unread++;
+            msg.unread = true;
+        }
         penpal.msgs[unshift ? "unshift" : "push"](msg);
         return msg;
     }
