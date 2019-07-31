@@ -8,7 +8,7 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* Sat Jul 27 2019 Jérémy Farnaud <jf@almel.fr> 0.7-3
+* Sat Jul 27 2019 Jérémy Farnaud <jf@almel.fr> 0.8-1
 - Fix freeze in private messages page when there is a new private message
 
 * Mon Jul 22 2019 Jérémy Farnaud <jf@almel.fr> 0.7-2
